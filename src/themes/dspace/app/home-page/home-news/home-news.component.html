@@ -1,4 +1,4 @@
-<div class="background-image-container mt-ncs">
+<div class="background-image-container mt-0">
   <div class="container">
     <div class="home-news-content py-4 px-2 py-sm-5 px-sm-0 mt-0 mb-4">
       @if (homeNewsMetadataValue$ | async; as homeNewsMetadataValue) {
@@ -32,7 +32,9 @@
       }
     </div>
   </div>
-  <picture class="background-image">
-    <img alt="" [src]="'assets/images/ucu-logo-lib.png'"/>
-  </picture>
+  <div class="background-image slider" aria-hidden="true">
+    <img class="slide slide-one" src="assets/dspace/images/banner.jpg" alt="">
+    <img class="slide slide-two" src="assets/dspace/images/banner-half.jpg" alt="">
+    <img class="slide slide-three" src="assets/images/ucu-logo-lib.png" alt="">
+  </div>
 </div>

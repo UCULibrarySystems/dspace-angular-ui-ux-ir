@@ -1,5 +1,23 @@
 <header id="main-site-header">
-  <div class="container h-100 d-flex flex-row align-items-center justify-content-between gapx-3 gapy-2" id="main-site-header-container">
+  <div class="ucu-utility-bar">
+    <div class="container d-flex align-items-center justify-content-between gapx-3">
+      <a class="utility-update" routerLink="/home">
+        <span aria-hidden="true"></span>
+        Check for recent website updates
+      </a>
+      <nav class="utility-links" aria-label="UCU quick links">
+        <a href="https://ucu.ac.ug/" target="_blank" rel="noopener">List of All Programmes</a>
+        <a href="https://mail.google.com/" target="_blank" rel="noopener">Webmail</a>
+        <a href="https://mail.google.com/" target="_blank" rel="noopener">Students Mail</a>
+        <a href="https://alpha.ucu.ac.ug/" target="_blank" rel="noopener">Alpha</a>
+        <a href="https://ucu.ac.ug/careers/" target="_blank" rel="noopener">Careers</a>
+        <a href="https://elearning.ucu.ac.ug/" target="_blank" rel="noopener">e-Learning</a>
+        <a href="https://ucu.ac.ug/research/" target="_blank" rel="noopener">Research at UCU</a>
+        <a href="https://ucu.ac.ug/" target="_blank" rel="noopener">UIS</a>
+      </nav>
+    </div>
+  </div>
+  <div class="container d-flex flex-row align-items-center justify-content-between gapx-3 gapy-2" id="main-site-header-container">
     <!-- Logo and navbar wrapper -->
     <div id="header-left"
       [attr.role]="(isMobile$ | async) ? 'navigation' : 'presentation'"
@@ -23,6 +41,7 @@
         <ds-impersonate-navbar></ds-impersonate-navbar>
         <ds-auth-nav-menu></ds-auth-nav-menu>
       </div>
+      <a class="apply-now d-none d-md-inline-flex" href="https://apply.ucu.ac.ug/" target="_blank" rel="noopener">Apply Now</a>
 
       @if ((isMobile$ | async)) {
         <div id="mobile-navbar-toggler" class="d-block d-lg-none ms-3">

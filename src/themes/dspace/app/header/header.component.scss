@@ -1,30 +1,159 @@
 :host {
   #main-site-header {
-    min-height: var(--ds-header-height);
-
-    @include media-breakpoint-up(md) {
-      height: var(--ds-header-height);
-    }
-
+    min-height: calc(var(--ds-header-height) + 48px);
     background-color: var(--ds-header-bg);
+    box-shadow: 0 1px 0 rgba(11, 61, 145, 0.18);
 
     &-container {
       min-height: var(--ds-header-height);
     }
   }
 
-  img#header-logo {
-    height: var(--ds-header-logo-height);
-    max-width: min(55vw, 430px);
-    object-fit: contain;
-  }
+  .ucu-utility-bar {
+    min-height: 48px;
+    background-color: var(--ucu-blue);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 700;
 
-  button#navbar-toggler {
-    color: var(--ds-header-icon-color);
-
-    &:hover, &:focus {
-      color: var(--ds-header-icon-color-hover);
+    .container {
+      min-height: 48px;
     }
   }
 
+  .utility-update {
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    white-space: nowrap;
+    text-decoration: none;
+
+    span {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: var(--ucu-maroon);
+      border-radius: 50%;
+      display: inline-block;
+    }
+  }
+
+  .utility-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    overflow: hidden;
+
+    a {
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 0.28rem 0.8rem;
+      line-height: 1.1;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:hover, &:focus {
+        color: var(--ucu-yellow);
+        border-color: rgba(255, 217, 50, 0.75);
+      }
+    }
+  }
+
+  img#header-logo {
+    height: var(--ds-header-logo-height);
+    max-width: min(36vw, 330px);
+    object-fit: contain;
+  }
+
+  #header-right {
+    gap: 0.85rem;
+  }
+
+  ::ng-deep ds-search-navbar .submit-icon,
+  button#navbar-toggler {
+    min-width: 7rem;
+    min-height: 2.75rem;
+    border: 2px solid var(--ucu-blue) !important;
+    border-radius: 0.45rem;
+    background: #f8fbff;
+    color: var(--ucu-blue);
+    box-shadow: 0 0.18rem 0.42rem rgba(11, 61, 145, 0.18);
+
+    &:hover, &:focus {
+      color: var(--ucu-maroon);
+      border-color: var(--ucu-maroon) !important;
+    }
+  }
+
+  ::ng-deep ds-search-navbar .submit-icon::after {
+    content: 'Search';
+    font-family: "Trebuchet MS", var(--bs-font-sans-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-left: 0.4rem;
+  }
+
+  ::ng-deep ds-auth-nav-menu .loginLink,
+  ::ng-deep ds-auth-nav-menu .dropdownLogin,
+  ::ng-deep ds-auth-nav-menu .logoutLink,
+  ::ng-deep ds-auth-nav-menu .dropdownLogout {
+    color: var(--ucu-maroon);
+    font-weight: 700;
+  }
+
+  .apply-now {
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0 1.2rem;
+    border-radius: 0.45rem;
+    background: var(--ucu-yellow);
+    color: #07234f;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 0.18rem 0.42rem rgba(255, 217, 50, 0.35);
+
+    &:hover, &:focus {
+      background: var(--ucu-maroon);
+      color: #fff;
+    }
+  }
+
+  button#navbar-toggler {
+    min-width: 6.5rem;
+    background: #fff0f5;
+    color: var(--ucu-maroon);
+    border-color: var(--ucu-maroon) !important;
+  }
+
+  @include media-breakpoint-down(lg) {
+    .utility-links a:nth-child(n+5) {
+      display: none;
+    }
+
+    img#header-logo {
+      max-width: min(52vw, 300px);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .ucu-utility-bar {
+      font-size: 0.78rem;
+    }
+
+    .utility-links {
+      display: none;
+    }
+
+    ::ng-deep ds-search-navbar .submit-icon {
+      min-width: 2.75rem;
+    }
+
+    ::ng-deep ds-search-navbar .submit-icon::after {
+      content: '';
+      margin-left: 0;
+    }
+  }
 }

@@ -25,9 +25,11 @@
 
 #main-site-navigation ::ng-deep .ds-menu-item-wrapper:not(ds-user-menu .ds-menu-item-wrapper) {
   background-color: var(--ds-navbar-link-bg);
+  border-radius: 999px;
 
   .toggle-menu-icon, .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
     color: var(--ds-navbar-link-color);
+    font-weight: 700;
   }
 
   &:hover, &:focus {

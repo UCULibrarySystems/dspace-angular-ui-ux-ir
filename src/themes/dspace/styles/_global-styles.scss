@@ -3,6 +3,24 @@
 // imports the base global style
 @import '../../../styles/_global-styles.scss';
 
+body {
+  font-family: "Trebuchet MS", var(--bs-font-sans-serif);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--ucu-blue);
+  --bs-btn-border-color: var(--ucu-blue);
+  --bs-btn-hover-bg: #092f70;
+  --bs-btn-hover-border-color: #092f70;
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--ucu-maroon);
+  --bs-btn-border-color: var(--ucu-maroon);
+  --bs-btn-hover-bg: #b50140;
+  --bs-btn-hover-border-color: #b50140;
+}
+
 .facet-filter, .setting-option, .advanced-search {
   background-color: var(--bs-light);
   border-radius: var(--bs-border-radius);
