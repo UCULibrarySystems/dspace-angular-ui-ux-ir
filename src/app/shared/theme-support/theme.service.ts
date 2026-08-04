@@ -297,13 +297,13 @@ export class ThemeService {
         // inherit the head tags of the parent theme
         return this.createHeadTags(parentThemeName);
       } else {
-        // last resort, use fallback favicon.ico
+        // last resort, use fallback favicon.png
         return [
           this.createHeadTag({
             'tagName': 'link',
             'attributes': {
               'rel': 'icon',
-              'href': 'assets/images/favicon.ico',
+              'href': 'assets/images/favicon.png',
               'sizes': 'any',
             },
           }),
