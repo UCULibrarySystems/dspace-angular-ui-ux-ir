@@ -54,14 +54,14 @@
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="bottom-footer p-1 d-flex flex-column flex-md-row justify-content-center align-items-center text-white">
+  <div class="bottom-footer p-3 d-flex flex-column flex-md-row justify-content-center align-items-center text-white">
     <div class="content-container align-self-center">
-      <p class="m-0">
-        <a class="text-white"
-        href="https://www.dspace.org/" role="link" tabindex="0">{{ 'footer.link.dspace' | translate}}</a>
+      <p class="m-0 fw-bold">
+        {{ 'footer.ucu.name' | translate }}
         {{ 'footer.copyright' | translate:{year: dateObj | date:'y'} }}
-        <a class="text-white"
-        href="https://www.lyrasis.org/" role="link" tabindex="0">{{ 'footer.link.lyrasis' | translate}}</a>
+      </p>
+      <p class="footer-license m-0">
+        {{ 'footer.ucu.license' | translate }}
       </p>
       <ul class="footer-info list-unstyled d-flex justify-content-center mb-0">
         @if (showCookieSettings) {

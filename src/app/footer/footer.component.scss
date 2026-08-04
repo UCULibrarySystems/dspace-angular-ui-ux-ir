@@ -22,6 +22,16 @@
     }
 
     .bottom-footer {
+      background: var(--ucu-blue);
+      border-top: 4px solid var(--ucu-maroon);
+      color: #fff;
+
+      .footer-license {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.875rem;
+        margin-top: 0.15rem !important;
+      }
+
       .notify-enabled {
         position: relative;
         margin-top: 4px;
@@ -50,6 +60,12 @@
             padding: 0 calc(var(--bs-spacer) / 2);
             color: inherit;
             font-size: .875em;
+            text-decoration-color: transparent;
+
+            &:hover {
+              color: var(--ucu-yellow) !important;
+              text-decoration-color: var(--ucu-yellow);
+            }
 
             &:focus {
               box-shadow: none;
@@ -77,6 +93,5 @@
     }
   }
 }
-
 
 

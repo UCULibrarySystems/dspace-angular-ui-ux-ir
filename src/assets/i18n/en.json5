@@ -2101,7 +2101,11 @@
 
   "file-section.error.header": "Error obtaining files for this item",
 
-  "footer.copyright": "copyright © 2002-{{ year }}",
+  "footer.copyright": "© {{ year }}",
+
+  "footer.ucu.name": "Uganda Christian University Libraries and Archives",
+
+  "footer.ucu.license": "Repository metadata and site content are distributed under the Creative Commons Attribution (CC BY) license; authors retain ownership of copyright and licensing rights for their publications.",
 
   "footer.link.accessibility": "Accessibility settings",
 
