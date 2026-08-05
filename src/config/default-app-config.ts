@@ -556,6 +556,223 @@ export class DefaultAppConfig implements AppConfig {
             'href': 'assets/dspace/images/favicons/manifest.webmanifest',
           },
         },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'description',
+            content: 'Uganda Christian University Institutional Repository preserves, showcases, and provides access to UCU research, theses, dissertations, publications, and scholarly outputs from Uganda Christian University Libraries and Archives.',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'keywords',
+            content: 'Uganda Christian University Institutional Repository, UCU Institutional Repository, Uganda Christian University research, UCU research, UCU theses, UCU dissertations, UCU publications, UCU Libraries and Archives, Uganda academic research, open access Uganda, scholarly repository Uganda, Mukono research, higher education research Uganda',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'robots',
+            content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'googlebot',
+            content: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'author',
+            content: 'Uganda Christian University Libraries and Archives',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'publisher',
+            content: 'Uganda Christian University Libraries and Archives',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'language',
+            content: 'en-UG',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'theme-color',
+            content: '#0B3D91',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.title',
+            content: 'Uganda Christian University Institutional Repository',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.creator',
+            content: 'Uganda Christian University Libraries and Archives',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.publisher',
+            content: 'Uganda Christian University Libraries and Archives',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.description',
+            content: 'The Uganda Christian University Institutional Repository provides access to UCU research, theses, dissertations, academic publications, and scholarly outputs.',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.subject',
+            content: 'Uganda Christian University research; institutional repository; UCU theses; UCU dissertations; scholarly publications; open access Uganda',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.language',
+            content: 'en-UG',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.coverage',
+            content: 'Uganda',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.spatial',
+            content: 'Mukono, Uganda',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'DC.rights',
+            content: 'Repository metadata and site content are distributed under the Creative Commons Attribution (CC BY) license; authors retain copyright and licensing rights for their publications.',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            property: 'og:title',
+            content: 'Uganda Christian University Institutional Repository',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            property: 'og:description',
+            content: 'Discover Uganda Christian University research, theses, dissertations, publications, and scholarly outputs through the UCU Libraries and Archives Institutional Repository.',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            property: 'og:type',
+            content: 'website',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            property: 'og:site_name',
+            content: 'Uganda Christian University Institutional Repository',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            property: 'og:locale',
+            content: 'en_UG',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            property: 'og:image',
+            content: 'assets/images/ucu-logo-lib.png',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'twitter:card',
+            content: 'summary_large_image',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'twitter:title',
+            content: 'Uganda Christian University Institutional Repository',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'twitter:description',
+            content: 'Access UCU research, theses, dissertations, academic publications, and scholarly outputs from Uganda Christian University Libraries and Archives.',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'twitter:image',
+            content: 'assets/images/ucu-logo-lib.png',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'geo.region',
+            content: 'UG',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'geo.placename',
+            content: 'Mukono, Uganda',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'geo.position',
+            content: '0.3539;32.7524',
+          },
+        },
+        {
+          tagName: 'meta',
+          attributes: {
+            name: 'ICBM',
+            content: '0.3539, 32.7524',
+          },
+        },
       ],
     },
   ];
@@ -726,10 +943,10 @@ export class DefaultAppConfig implements AppConfig {
       'OpenStreetMap.Mapnik',
     ],
     // Starting centre point for maps (before drawing and zooming to markers)
-    // Defaults to Istanbul
+    // Defaults to Uganda Christian University, Mukono, Uganda
     defaultCentrePoint: {
-      lat: 41.015137,
-      lng: 28.979530,
+      lat: 0.3539,
+      lng: 32.7524,
     },
   };
 
