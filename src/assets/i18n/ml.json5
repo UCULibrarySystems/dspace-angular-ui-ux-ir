@@ -2935,7 +2935,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "തിരയൽ സ്കോപ്പ് തിരഞ്ഞെടുക്കുക",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "DSpace മുഴുവനായും തിരയുക",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3229,11 +3229,11 @@
   // "footer.link.accessibility": "Accessibility settings",
   "footer.link.accessibility": "ആക്സസിബിലിറ്റി സജ്ജീകരണങ്ങൾ",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace സോഫ്റ്റ്വെയർ",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "കുക്കി സജ്ജീകരണങ്ങൾ",
@@ -5689,8 +5689,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "നിങ്ങളുടെ പാസ്വേഡ് മറന്നുപോയോ?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "ദയവായി DSpace-ലേക്ക് ലോഗിൻ ചെയ്യുക",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "പുതിയ ഉപയോക്താവാണോ? രജിസ്റ്റർ ചെയ്യാൻ ഇവിടെ ക്ലിക്ക് ചെയ്യുക.",
@@ -5719,8 +5719,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "ലോഗിൻ",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "DSpace-ൽ നിന്ന് ലോഗൗട്ട് ചെയ്യുക",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "ലോഗൗട്ട് ചെയ്യുക",
@@ -5783,8 +5783,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "ശീർഷകം പ്രകാരം",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "DSpace എല്ലാം",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "രചയിതാവ് പ്രകാരം",
@@ -6162,8 +6162,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "ദയവായി",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "DSpace ന്റെ എല്ലാം",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "കമ്മ്യൂണിറ്റി പ്രകാരം",
@@ -7301,12 +7301,12 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "റിപ്പോസിറ്ററി ലോഗോ",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "DSpace റിപ്പോസിറ്ററി",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "ചേർക്കുക",
@@ -8013,8 +8013,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "എല്ലാ റെപ്പോസിറ്ററി",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "എല്ലാ DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "തിരയൽ ഫലങ്ങൾ",

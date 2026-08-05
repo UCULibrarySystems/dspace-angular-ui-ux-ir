@@ -3132,7 +3132,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "Chọn một phạm vi tìm kiếm",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "Tìm kiếm trên toàn hệ thống",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3448,11 +3448,11 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "Phần mềm thư viện số",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "Cài đặt Cookie",
@@ -6082,8 +6082,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "Có phải bạn quên mật khẩu?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "Vui lòng đăng nhập vào DSpace",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "Bạn là người dùng mới? \n Vui lòng nhấp vào đây để đăng kí.",
@@ -6113,8 +6113,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "Đăng nhập",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "Đăng xuất khỏi DSpace",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Đăng xuất",
@@ -6182,8 +6182,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Nhan đề",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "Duyệt tìm",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Tác giả",
@@ -6576,8 +6576,8 @@
   // TODO New key - Add a translation
   "notification.suggestion.please": "Please",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "Tất cả DSpace",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Theo Đơn vị",
@@ -7851,13 +7851,13 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "Logo lưu trữ",
 
-  // "repository.title": "DSpace Repository",
+  // "repository.title": "Uganda Christian University Institutional Repository",
   // TODO New key - Add a translation
-  "repository.title": "DSpace Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Thêm",
@@ -8625,8 +8625,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "tất cả kho lưu trữ",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "Toàn bộ thư viện",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "Kết quả tìm kiếm",

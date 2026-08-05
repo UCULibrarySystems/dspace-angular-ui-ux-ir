@@ -86,6 +86,14 @@ src/themes/dspace/app/header/header.component.scss
 src/themes/dspace/app/navbar/navbar.component.scss
 src/themes/dspace/app/home-page/home-news/home-news.component.html
 src/themes/dspace/app/home-page/home-news/home-news.component.scss
+src/themes/custom/styles/_theme_sass_variable_overrides.scss
+src/themes/custom/styles/_theme_css_variable_overrides.scss
+src/themes/custom/app/header/header.component.ts
+src/themes/custom/app/header/header.component.html
+src/themes/custom/app/header/header.component.scss
+src/themes/custom/app/home-page/home-news/home-news.component.ts
+src/themes/custom/app/home-page/home-news/home-news.component.html
+src/themes/custom/app/home-page/home-news/home-news.component.scss
 ```
 
 Brand assets currently live in:
@@ -100,6 +108,12 @@ src/themes/dspace/assets/images/favicons/apple-touch-icon.png
 src/themes/dspace/assets/images/favicons/favicon.png
 src/themes/dspace/assets/images/favicons/favicon2.png
 src/themes/dspace/assets/images/favicons/manifest.webmanifest
+src/themes/custom/assets/images/favicons/android-chrome-192x192.jpg
+src/themes/custom/assets/images/favicons/android-chrome-512x512.png
+src/themes/custom/assets/images/favicons/apple-touch-icon.png
+src/themes/custom/assets/images/favicons/favicon.png
+src/themes/custom/assets/images/favicons/favicon2.png
+src/themes/custom/assets/images/favicons/manifest.webmanifest
 ```
 
 Homepage slider images currently live in:
@@ -143,6 +157,12 @@ assets/dspace/images/favicons/favicon2.png
 assets/dspace/images/favicons/apple-touch-icon.png
 assets/dspace/images/favicons/android-chrome-192x192.jpg
 assets/dspace/images/favicons/android-chrome-512x512.png
+```
+
+When maintaining the custom theme, keep the matching source files under:
+
+```text
+src/themes/custom/assets/images/favicons/
 ```
 
 The web manifest should use:
@@ -218,6 +238,50 @@ Apply Now background: #FFD932
 ```
 
 Keep the header responsive. On smaller screens, hide nonessential utility links and keep search/menu/login usable.
+
+## Theme Fallback Rules
+
+DSpace Angular can render the base app components, the `dspace` theme components, or the `custom` theme components depending on the configured theme and route match. To avoid a build falling back to the default UI, keep UCU branding present in all active fallback layers.
+
+Always update both of these theme paths when changing the public header or homepage banner:
+
+```text
+src/themes/dspace/app/header/
+src/themes/custom/app/header/
+src/themes/dspace/app/home-page/home-news/
+src/themes/custom/app/home-page/home-news/
+```
+
+The `custom` header must point to its own themed template and stylesheet, not the base app template:
+
+```ts
+styleUrls: ['header.component.scss'],
+templateUrl: 'header.component.html',
+```
+
+The `custom` home-news component must also point to its own themed template and stylesheet:
+
+```ts
+styleUrls: ['./home-news.component.scss'],
+templateUrl: './home-news.component.html',
+```
+
+Both theme style override files must carry the UCU palette and Trebuchet MS font:
+
+```text
+src/themes/dspace/styles/_theme_sass_variable_overrides.scss
+src/themes/dspace/styles/_theme_css_variable_overrides.scss
+src/themes/custom/styles/_theme_sass_variable_overrides.scss
+src/themes/custom/styles/_theme_css_variable_overrides.scss
+```
+
+Before committing branding work, scan for default UI fallbacks:
+
+```powershell
+rg -n --glob '!node_modules/**' --glob '!dist/**' "All of DSpace|DSpace Repository|Please log in to DSpace|Log out from DSpace|DSpace software|LYRASIS|DSpace Angular ::|logo_dspace|dspace-logo|DSpace_logo|dspace-logo-only" src config
+```
+
+This scan should return no runtime UI matches. Test fixtures may be updated to UCU names so future tests also protect the branded labels.
 
 ## Navbar Requirements
 
@@ -319,12 +383,28 @@ Remove visible DSpace and LYRASIS footer branding links from the public footer u
 Important English translation keys to preserve:
 
 ```json5
-"repository.title": "UCU Libraries and Archives"
-"repository.title.prefix": "UCU Libraries and Archives :: "
+"footer.link.dspace": "UCU Libraries and Archives"
+"footer.link.lyrasis": "Uganda Christian University"
+"login.form.header": "Please log in to UCU Institutional Repository"
+"logout.form.header": "Log out from UCU Institutional Repository"
 "menu.section.browse_global": "Browse Repository"
+"nav.browse.header": "Browse Repository"
+"repository.title": "Uganda Christian University Institutional Repository"
+"repository.title.prefix": "UCU Institutional Repository :: "
+"search.form.scope.all": "All of UCU Repository"
 "footer.ucu.name": "Uganda Christian University Libraries and Archives"
 "footer.ucu.license": "Repository metadata and site content are distributed under the Creative Commons Attribution (CC BY) license; authors retain ownership of copyright and licensing rights for their publications."
 ```
+
+The same core branding values should be applied across all `src/assets/i18n/*.json5` language files. This prevents a language switch from restoring default DSpace text in browser titles, search scopes, browse menus, login/logout headings, or footer labels.
+
+The custom theme also has its own override file:
+
+```text
+src/themes/custom/assets/i18n/en.json5
+```
+
+Keep that file aligned with the main English keys above.
 
 Search for remaining user-facing DSpace strings after each update:
 
@@ -423,7 +503,7 @@ npm audit
 Branding search:
 
 ```powershell
-rg -n "dspace-logo|qa-DSpaceUsers-logo|favicon\\.svg|favicon\\.ico|DSpace Sandbox|DSpace 9" src
+rg -n --glob '!node_modules/**' --glob '!dist/**' "All of DSpace|DSpace Repository|Please log in to DSpace|Log out from DSpace|DSpace software|LYRASIS|DSpace Angular ::|logo_dspace|dspace-logo|DSpace_logo|dspace-logo-only|qa-DSpaceUsers-logo|DSpace Sandbox|DSpace 9" src config
 ```
 
 Manual browser checks:
@@ -492,7 +572,9 @@ When pulling upstream DSpace Angular changes or upgrading to a new DSpace releas
 12. Login/logout page logos.
 13. Admin sidebar logo.
 14. Footer UCU name and CC BY/publication ownership notice.
-15. English translation overrides.
+15. English and multilingual translation fallbacks.
 16. Build and lint checks.
+17. Custom theme header/home-news components use their own UCU templates and styles.
+18. Custom theme Sass/CSS variables match the DSpace theme UCU palette.
 
 Treat this document as the baseline acceptance checklist for future Institutional Repository UI/UX customisation work.

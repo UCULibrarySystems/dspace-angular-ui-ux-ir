@@ -3188,7 +3188,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "Іздеу аймағын таңдаңыз",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "DSpace арқылы іздеу",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3522,11 +3522,11 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace бағдарламалық құралы",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "Cookie параметрлері",
@@ -6174,8 +6174,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "Сіз парольді ұмыттыңыз ба?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "DSpace жүйесіне кіріңіз",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "Жаңа пайдаланушы? Тіркелу үшін осы жерді басыңыз.",
@@ -6205,8 +6205,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "Кіру",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "DSpace жүйесінен шығу",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Шығу",
@@ -6275,8 +6275,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Тақырып бойынша",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "Барлық DSpace",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Авторымен",
@@ -6672,8 +6672,8 @@
   // TODO New key - Add a translation
   "notification.suggestion.please": "Please",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "Барлық DSpace",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Қауымдастық бойынша",
@@ -7975,13 +7975,13 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "Репозиторий логотипі",
 
-  // "repository.title": "DSpace Repository",
+  // "repository.title": "Uganda Christian University Institutional Repository",
   // TODO New key - Add a translation
-  "repository.title": "DSpace Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Қосу",
@@ -8748,8 +8748,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "Бүкіл репозиторий",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "Бүкіл DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "Іздеу нәтижелері",

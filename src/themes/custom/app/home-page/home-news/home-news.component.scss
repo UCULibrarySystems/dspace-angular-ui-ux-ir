@@ -1,0 +1,127 @@
+:host {
+  display: block;
+
+  div.background-image-container {
+    color: white;
+    position: relative;
+    font-weight: 600;
+    min-height: 260px;
+    overflow: hidden;
+
+    .background-image,
+    .background-image > img {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .background-image {
+      background-color: var(--ucu-blue);
+    }
+
+    .slide {
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      animation: ucuHeaderSlide 18s infinite;
+    }
+
+    .slide-two {
+      animation-delay: 6s;
+    }
+
+    .slide-three {
+      object-fit: contain;
+      padding: calc(var(--bs-spacer) * 2);
+      background: #fff;
+      animation-delay: 12s;
+    }
+
+    .container {
+      position: relative;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+
+      &:before, &:after {
+        content: '';
+        display: block;
+        width: var(--ds-banner-background-gradient-width);
+        height: 100%;
+        top: 0;
+        position: absolute;
+      }
+
+      &:before {
+        background: linear-gradient(to left, var(--ds-banner-text-background), transparent);
+        left: calc(-1 * var(--ds-banner-background-gradient-width));
+
+      }
+
+      &:after {
+        background: linear-gradient(to right, var(--ds-banner-text-background), transparent);
+        right: calc(-1 * var(--ds-banner-background-gradient-width));
+      }
+
+      background-color: var(--ds-banner-text-background);
+      max-width: 960px;
+    }
+
+
+    small.credits {
+      a {
+        color: inherit;
+      }
+
+      color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(0, 0, 0, 0.1);
+      position: absolute;
+      right: var(--bs-spacer);
+      bottom: 0;
+    }
+  }
+
+  .home-news-content {
+    background-color: transparent;
+    margin-bottom: 0 !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  a {
+    color: var(--ds-home-news-link-color);
+
+    &:hover {
+      color: var(--ds-home-news-link-hover-color);
+    }
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  @keyframes ucuHeaderSlide {
+    0%,
+    28% {
+      opacity: 1;
+    }
+
+    33%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    div.background-image-container {
+      min-height: 210px;
+    }
+
+    .home-news-content {
+      padding-top: 1.35rem !important;
+      padding-bottom: 1.35rem !important;
+    }
+  }
+}

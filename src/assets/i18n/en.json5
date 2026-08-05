@@ -1917,7 +1917,7 @@
 
   "dso-selector.set-scope.community.head": "Select a search scope",
 
-  "dso-selector.set-scope.community.button": "Search all of DSpace",
+  "dso-selector.set-scope.community.button": "Search All of UCU Repository",
 
   "dso-selector.set-scope.community.or-divider": "or",
 
@@ -2109,9 +2109,9 @@
 
   "footer.link.accessibility": "Accessibility settings",
 
-  "footer.link.dspace": "DSpace software",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  "footer.link.lyrasis": "LYRASIS",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   "footer.link.cookies": "Cookie settings",
 
@@ -3666,7 +3666,7 @@
 
   "login.form.forgot-password": "Have you forgotten your password?",
 
-  "login.form.header": "Please log in to DSpace",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   "login.form.new-user": "New user? Click here to register.",
 
@@ -3686,7 +3686,7 @@
 
   "login.breadcrumbs": "Login",
 
-  "logout.form.header": "Log out from DSpace",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   "logout.form.submit": "Log out",
 
@@ -3728,7 +3728,7 @@
 
   "menu.section.browse_community_by_title": "By Title",
 
-  "menu.section.browse_global": "All of DSpace",
+  "menu.section.browse_global": "Browse Repository",
 
   "menu.section.browse_global_by_author": "By Author",
 
@@ -3976,7 +3976,7 @@
 
   "notification.suggestion.please": "Please",
 
-  "nav.browse.header": "All of DSpace",
+  "nav.browse.header": "Browse Repository",
 
   "nav.community-browse.header": "By Community",
 
@@ -4718,9 +4718,9 @@
 
   "repository.image.logo": "Repository logo",
 
-  "repository.title": "DSpace Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  "repository.title.prefix": "UCU Libraries and Archives :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   "resource-policies.add.button": "Add",
 
@@ -5184,7 +5184,7 @@
 
   "search.form.search_dspace": "All repository",
 
-  "search.form.scope.all": "All of DSpace",
+  "search.form.scope.all": "All of UCU Repository",
 
   "search.results.head": "Search Results",
 

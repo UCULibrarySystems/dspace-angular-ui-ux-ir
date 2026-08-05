@@ -249,7 +249,7 @@
 
   // "admin.registries.bitstream-formats.title": "Bitstream Format Registry",
   // TODO Source message changed - Revise the translation
-  "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitu straumes Formatu Reģistrs",
+  "admin.registries.bitstream-formats.title": "UCU Institutional Repository :: Bitu straumes Formatu Reģistrs",
 
   // "admin.registries.bitstream-formats.select": "Select",
   // TODO New key - Add a translation
@@ -310,7 +310,7 @@
 
   // "admin.registries.metadata.title": "Metadata Registry",
   // TODO Source message changed - Revise the translation
-  "admin.registries.metadata.title": "DSpace Angular :: Metadatu Registry",
+  "admin.registries.metadata.title": "UCU Institutional Repository :: Metadatu Registry",
 
   // "admin.registries.schema.breadcrumbs": "Metadata schema",
   // TODO New key - Add a translation
@@ -404,7 +404,7 @@
 
   // "admin.registries.schema.title": "Metadata Schema Registry",
   // TODO Source message changed - Revise the translation
-  "admin.registries.schema.title": "DSpace Angular :: Metadatu shēmas reģistrs",
+  "admin.registries.schema.title": "UCU Institutional Repository :: Metadatu shēmas reģistrs",
 
   // "admin.access-control.bulk-access.breadcrumbs": "Bulk Access Management",
   // TODO New key - Add a translation
@@ -460,7 +460,7 @@
 
   // "admin.access-control.epeople.title": "EPeople",
   // TODO Source message changed - Revise the translation
-  "admin.access-control.epeople.title": "DSpace Angular :: EPersonas",
+  "admin.access-control.epeople.title": "UCU Institutional Repository :: EPersonas",
 
   // "admin.access-control.epeople.edit.breadcrumbs": "New EPerson",
   // TODO New key - Add a translation
@@ -630,7 +630,7 @@
 
   // "admin.access-control.groups.title": "Groups",
   // TODO Source message changed - Revise the translation
-  "admin.access-control.groups.title": "DSpace Angular :: Grupas",
+  "admin.access-control.groups.title": "UCU Institutional Repository :: Grupas",
 
   // "admin.access-control.groups.breadcrumbs": "Groups",
   // TODO New key - Add a translation
@@ -3442,9 +3442,9 @@
   // TODO New key - Add a translation
   "dso-selector.set-scope.community.head": "Select a search scope",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   // TODO New key - Add a translation
-  "dso-selector.set-scope.community.button": "Search all of DSpace",
+  "dso-selector.set-scope.community.button": "Search All of UCU Repository",
 
   // "dso-selector.set-scope.community.or-divider": "or",
   // TODO New key - Add a translation
@@ -3799,11 +3799,11 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace software",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   // TODO New key - Add a translation
@@ -4353,7 +4353,7 @@
 
   // "home.title": "Home",
   // TODO Source message changed - Revise the translation
-  "home.title": "DSpace Angular :: Sākums",
+  "home.title": "UCU Institutional Repository :: Sākums",
 
   // "home.top-level-communities.head": "Communities in DSpace",
   "home.top-level-communities.head": "DSpace Kategorijas",
@@ -6433,7 +6433,7 @@
 
   // "journal.search.title": "Journal Search",
   // TODO Source message changed - Revise the translation
-  "journal.search.title": "DSpace Angular :: Žurnālu Meklēšana",
+  "journal.search.title": "UCU Institutional Repository :: Žurnālu Meklēšana",
 
   // "journalissue.listelement.badge": "Journal Issue",
   "journalissue.listelement.badge": "Žurnāla izdevums",
@@ -6650,8 +6650,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "Vai esat aizmirsis paroli?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "Lūdzu pieslēdzieties DSpace",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "Jauns lietotājs? Noklikšķiniet šeit, lai reģistrētos.",
@@ -6683,8 +6683,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "Pierakstīties",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "Izrakstīties no DSpace",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Izrakstīties",
@@ -6754,8 +6754,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Pēc Nosaukuma",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "Viss no DSpace",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Pēc Autora",
@@ -7165,8 +7165,8 @@
   // TODO New key - Add a translation
   "notification.suggestion.please": "Please",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "Viss no DSpace",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Pēc Kategorijas",
@@ -7636,7 +7636,7 @@
 
   // "person.search.title": "Person Search",
   // TODO Source message changed - Revise the translation
-  "person.search.title": "DSpace Angular :: Personas Meklēšana",
+  "person.search.title": "UCU Institutional Repository :: Personas Meklēšana",
 
   // "process.new.select-parameters": "Parameters",
   // TODO New key - Add a translation
@@ -8143,7 +8143,7 @@
 
   // "publication.search.title": "Publication Search",
   // TODO Source message changed - Revise the translation
-  "publication.search.title": "DSpace Angular :: Publikācijas meklēšana",
+  "publication.search.title": "UCU Institutional Repository :: Publikācijas meklēšana",
 
   // "media-viewer.next": "Next",
   // TODO New key - Add a translation
@@ -8561,13 +8561,13 @@
   // TODO New key - Add a translation
   "repository.image.logo": "Repository logo",
 
-  // "repository.title": "DSpace Repository",
+  // "repository.title": "Uganda Christian University Institutional Repository",
   // TODO New key - Add a translation
-  "repository.title": "DSpace Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   // TODO New key - Add a translation
@@ -8873,7 +8873,7 @@
 
   // "search.title": "Search",
   // TODO Source message changed - Revise the translation
-  "search.title": "DSpace Angular :: Meklēt",
+  "search.title": "UCU Institutional Repository :: Meklēt",
 
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Meklēt",
@@ -9421,9 +9421,9 @@
   // TODO Source message changed - Revise the translation
   "search.form.search_dspace": "Meklēt DSpace",
 
-  // "search.form.scope.all": "All of DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
   // TODO New key - Add a translation
-  "search.form.scope.all": "All of DSpace",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "Meklēšanas rezultāti",

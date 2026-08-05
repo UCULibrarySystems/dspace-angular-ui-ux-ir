@@ -2927,7 +2927,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "একটি অনুসন্ধান লক্ষ্যবিণ্ডু নির্বাচন করুন",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "ডিস্পেস সব অনুসন্ধান করুন",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3221,11 +3221,11 @@
   // "footer.link.accessibility": "Accessibility settings",
   "footer.link.accessibility": "অ্যাক্সেসিবিলিটি সেটিংস",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "ডিস্পেস সফটওয়্যার",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "লিরাসিস",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "কুকি সেটিংস",
@@ -5685,8 +5685,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "আপনি আপনার পাসওয়ার্ড ভুলে গেছেন?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "ডিস্পেস লগ ইন করুন",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "নতুন ব্যবহারকারী? নিবন্ধন করতে এখানে ক্লিক করুন।",
@@ -5715,8 +5715,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "প্রবেশ করুন",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "ডিস্পেস থেকে লগ আউট করুন",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "প্রস্থান",
@@ -5779,8 +5779,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "শিরোনাম দ্বারা",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "ডিস্পেস এর সবকিছু",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "লেখক দ্বারা",
@@ -6158,8 +6158,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "অনুগ্রহ করে",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "ডিস্পেসের সবকিছু",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "সম্প্রদায় দ্বারা",
@@ -7296,12 +7296,12 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "রিপোজিটরি লোগো",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "ডিএসস্পেস সংগ্রহস্থল",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "যোগ করুন",
@@ -8008,8 +8008,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "সব সংগ্রহস্থল",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "ডিস্পেসের সবকিছু",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "অনুসন্ধানের ফলাফল",

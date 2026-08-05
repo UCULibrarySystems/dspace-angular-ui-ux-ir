@@ -2848,7 +2848,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "Vyberte rozsah vyhledávání",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "Hledat v celém DSpace",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3135,11 +3135,11 @@
   // "footer.link.accessibility": "Accessibility settings",
   "footer.link.accessibility": "Nastavení přístupnosti",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace software",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "Nastavení souborů cookie",
@@ -5483,8 +5483,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "Zapomněli jste své heslo?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "Přihlaste se prosím do DSpace",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "Jste nový uživatel? Klikněte zde pro registraci.",
@@ -5513,8 +5513,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "Přihlášení",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "Odhlásit se z DSpace",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Odhlásit se",
@@ -5576,8 +5576,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Podle názvu",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "Procházet podle",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Podle autora",
@@ -5948,8 +5948,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "Prosím",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "Celý repozitář",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Podle komunity",
@@ -7061,11 +7061,11 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "Logo repozitáře",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "Institucionální digitální repozitář",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
-  "repository.title.prefix": "IDR :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Přidat",
@@ -7761,8 +7761,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "Celý repozitář",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "Celý repozitář",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "Výsledky vyhledávání",

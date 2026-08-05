@@ -2990,7 +2990,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "శోధన పరిధిని ఎంచుకోండి",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "DSpace అంతటా శోధించండి",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3284,11 +3284,11 @@
   // "footer.link.accessibility": "Accessibility settings",
   "footer.link.accessibility": "యాక్సెసిబిలిటీ సెట్టింగ్లు",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace సాఫ్ట్వేర్",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "కుకీ సెట్టింగ్లు",
@@ -5748,8 +5748,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "మీ పాస్వర్డ్ మర్చిపోయారా?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "దయచేసి DSpace లో లాగిన్ అవ్వండి",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "కొత్త వినియోగదారు? నమోదు చేసుకోవడానికి ఇక్కడ క్లిక్ చేయండి.",
@@ -5778,8 +5778,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "లాగిన్",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "DSpace నుండి లాగ్ అవుట్ అవ్వండి",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "లాగ్ అవుట్ అవ్వండి",
@@ -5842,8 +5842,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "శీర్షిక ద్వారా",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "DSpace యొక్క అన్ని",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "రచయిత ద్వారా",
@@ -6221,8 +6221,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "దయచేసి",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "DSpace యొక్క అన్ని",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "సంఘం ద్వారా",
@@ -7360,12 +7360,12 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "రిపోజిటరీ లోగో",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "DSpace రిపోజిటరీ",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "జోడించు",
@@ -8072,8 +8072,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "మొత్తం రిపోజిటరీ",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "DSpace యొక్క అన్ని",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "శోధన ఫలితాలు",

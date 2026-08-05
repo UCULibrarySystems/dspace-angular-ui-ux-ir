@@ -1,7 +1,12 @@
 {
-  // DSpace default: "All of DSpace"
+  // UCU branding overrides for labels that otherwise fall back to DSpace defaults.
+  "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.lyrasis": "Uganda Christian University",
+  "login.form.header": "Please log in to UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
   "menu.section.browse_global": "Browse Repository",
-
-  // DSpace default: "DSpace Angular :: "
-  "repository.title.prefix": "UCU Libraries and Archives :: ",
+  "nav.browse.header": "Browse Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
+  "search.form.scope.all": "All of UCU Repository",
 }

@@ -2936,7 +2936,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "ଏକ ଖୋଜା ସ୍କୋପ୍ ଚୟନ କରନ୍ତୁ",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "ସମସ୍ତ DSpace ଖୋଜନ୍ତୁ",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3230,11 +3230,11 @@
   // "footer.link.accessibility": "Accessibility settings",
   "footer.link.accessibility": "ସୁଗମତା ସେଟିଂସ୍",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace ସଫ୍ଟୱେର୍",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "କୁକି ସେଟିଂସ୍",
@@ -5690,8 +5690,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "ଆପଣ ଆପଣଙ୍କର ପାସୱାର୍ଡ ଭୁଲି ଯାଇଛନ୍ତି କି?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "ଦୟାକରି DSpace ରେ ଲଗ୍ ଇନ୍ କରନ୍ତୁ",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "ନୂତନ ଉପଯୋଗକର୍ତ୍ତା? ରେଜିଷ୍ଟର କରିବାକୁ ଏଠାରେ କ୍ଲିକ୍ କରନ୍ତୁ।",
@@ -5720,8 +5720,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "ଲଗ୍ ଇନ୍",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "DSpace ରୁ ଲଗ୍ ଆଉଟ୍ କରନ୍ତୁ",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "ଲଗ୍ ଆଉଟ୍ କରନ୍ତୁ",
@@ -5784,8 +5784,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "ଆଖ୍ୟା ଦ୍ୱାରା",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "ସମସ୍ତ DSpace",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "ଲେଖକ ଦ୍ୱାରା",
@@ -6163,8 +6163,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "ଦୟାକରି",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "ସମସ୍ତ DSpace",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "କମ୍ୟୁନିଟି ଦ୍ୱାରା",
@@ -7302,12 +7302,12 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "ରିପୋଜିଟରି ଲୋଗୋ",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "DSpace ରିପୋଜିଟରି",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "ଯୋଡ଼ନ୍ତୁ",
@@ -8014,8 +8014,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "ସମସ୍ତ ରେପୋଜିଟୋରୀ",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "ଡିଏସ୍ପେସ୍ ର ସମସ୍ତ",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "ଖୋଜା ଫଳାଫଳ",

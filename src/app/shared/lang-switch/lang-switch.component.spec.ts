@@ -38,8 +38,8 @@ class CustomLoader implements TranslateLoader {
     return of({
       'footer': {
         'copyright': 'copyright © 2002-{{ year }}',
-        'link.dspace': 'DSpace software',
-        'link.lyrasis': 'LYRASIS',
+        'link.dspace': 'UCU Libraries and Archives',
+        'link.lyrasis': 'Uganda Christian University',
       },
     });
   }

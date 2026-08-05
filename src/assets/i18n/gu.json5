@@ -2940,7 +2940,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "શોધ સ્કોપ પસંદ કરો",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "DSpace ના બધા શોધો",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3235,11 +3235,11 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace સોફ્ટવેર",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "કૂકી સેટિંગ્સ",
@@ -5733,8 +5733,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "શું તમે તમારો પાસવર્ડ ભૂલી ગયા છો?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "કૃપા કરીને DSpace માં લોગિન કરો",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "નવો વપરાશકર્તા? નોંધણી માટે અહીં ક્લિક કરો.",
@@ -5763,8 +5763,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "લોગિન",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "DSpace માંથી લોગ આઉટ કરો",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "લોગ આઉટ",
@@ -5827,8 +5827,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "શીર્ષક દ્વારા",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "DSpace ના બધા",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "લેખક દ્વારા",
@@ -6206,8 +6206,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "કૃપા કરીને",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "DSpace ના બધા",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "સમુદાય દ્વારા",
@@ -7373,12 +7373,12 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "રિપોઝિટરી લોગો",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "DSpace રિપોઝિટરી",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "ઉમેરો",
@@ -8087,8 +8087,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "બધા રિપોઝિટરી",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "બધા DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "શોધ પરિણામો",

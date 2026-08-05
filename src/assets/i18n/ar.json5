@@ -2888,7 +2888,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "تحديد نطاق البحث",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "بحث دي سبيس بالكامل",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3179,11 +3179,11 @@
   // "footer.link.accessibility": "Accessibility settings",
   "footer.link.accessibility": "إعدادات إمكانية الوصول",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "المستودع الإلكتروني",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "ليراسيس",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "إعدادات ملفات تعريف الارتباط",
@@ -5591,8 +5591,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "هل نسيت كلمة المرور؟",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "يرجى تسجيل الدخول إلى دي سبيس",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "مستخدم جديد؟ اضغط هنا للتسجيل.",
@@ -5621,8 +5621,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "تسجيل الدخول",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "تسجيل الخروج من دي سبيس",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "خروج",
@@ -5685,8 +5685,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "حسب العنوان",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "كل الدي سبيس",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "حسب المؤلف",
@@ -6063,8 +6063,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "يرجى",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "تصفح",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "حسب المجتمع",
@@ -7185,11 +7185,11 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "شعار المستودع",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "مستودع دي سبيس",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
-  "repository.title.prefix": "مستودع دي سبيس :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "إضافة",
@@ -7896,8 +7896,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "كل المستودع",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "كل دي سبيس",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "نتائج البحث",

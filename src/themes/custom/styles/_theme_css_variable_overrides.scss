@@ -1,7 +1,45 @@
 // Override or add CSS variables for your theme here
 
 :root {
-  //--ds-header-logo-height: 80px;
-  //--ds-header-icon-color: #{$link-color};
-  //--ds-header-icon-color-hover: #{darken($link-color, 15%)};
+  --ucu-blue: #0B3D91;
+  --ucu-maroon: #D7014D;
+  --ucu-yellow: #FFD932;
+  --ucu-green: #007931;
+
+  @include media-breakpoint-up(md) {
+    --ds-header-logo-height: 76px;
+    --ds-header-height: 100px;
+  }
+  @include media-breakpoint-down(sm) {
+    --ds-header-logo-height: 54px;
+    --ds-header-height: 88px;
+  }
+
+  --ds-banner-text-background: rgba(11, 61, 145, 0.78);
+  --ds-banner-background-gradient-width: 180px;
+  --ds-header-bg: #fff;
+  --ds-header-icon-color: var(--ucu-blue);
+  --ds-header-icon-color-hover: var(--ucu-maroon);
+  --ds-navbar-bg: var(--ucu-blue);
+  --ds-navbar-link-bg: var(--ucu-blue);
+  --ds-navbar-link-bg-hover: rgba(255, 255, 255, 0.14);
+  --ds-navbar-link-color: #fff;
+  --ds-navbar-link-color-hover: #fff;
+  --ds-expandable-navbar-bg: var(--ucu-blue);
+  --ds-expandable-navbar-link-bg: #fff;
+  --ds-expandable-navbar-link-bg-hover: rgba(11, 61, 145, 0.08);
+  --ds-expandable-navbar-link-color: var(--ucu-blue);
+  --ds-expandable-navbar-link-color-hover: var(--ucu-maroon);
+
+  --ds-header-navbar-border-bottom-height: 2px;
+
+  /* set the next two properties as `--ds-header-navbar-border-bottom-*`
+  in order to keep the bottom border of the header when navbar is expanded */
+
+  --ds-expandable-navbar-border-top-color: #{$white};
+  --ds-expandable-navbar-border-top-height: 0;
+  --ds-expandable-navbar-padding-top: 0;
+
+  --ds-item-page-img-field-default-inline-height: 24px;
+  --ds-item-page-img-field-ror-inline-height: var(--ds-item-page-img-field-default-inline-height);
 }

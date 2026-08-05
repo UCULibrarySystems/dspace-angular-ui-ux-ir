@@ -3781,9 +3781,9 @@
   // TODO New key - Add a translation
   "dso-selector.set-scope.community.head": "Select a search scope",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   // TODO New key - Add a translation
-  "dso-selector.set-scope.community.button": "Search all of DSpace",
+  "dso-selector.set-scope.community.button": "Search All of UCU Repository",
 
   // "dso-selector.set-scope.community.or-divider": "or",
   // TODO New key - Add a translation
@@ -4157,13 +4157,13 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
+  // "footer.link.dspace": "UCU Libraries and Archives",
   // TODO New key - Add a translation
-  "footer.link.dspace": "DSpace software",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
   // TODO New key - Add a translation
-  "footer.link.lyrasis": "LYRASIS",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   // TODO New key - Add a translation
@@ -7270,9 +7270,9 @@
   // TODO New key - Add a translation
   "login.form.forgot-password": "Have you forgotten your password?",
 
-  // "login.form.header": "Please log in to DSpace",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
   // TODO New key - Add a translation
-  "login.form.header": "Please log in to DSpace",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   // TODO New key - Add a translation
@@ -7310,9 +7310,9 @@
   // TODO New key - Add a translation
   "login.breadcrumbs": "Login",
 
-  // "logout.form.header": "Log out from DSpace",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
   // TODO New key - Add a translation
-  "logout.form.header": "Log out from DSpace",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   // TODO New key - Add a translation
@@ -7394,9 +7394,9 @@
   // TODO New key - Add a translation
   "menu.section.browse_community_by_title": "By Title",
 
-  // "menu.section.browse_global": "All of DSpace",
+  // "menu.section.browse_global": "Browse Repository",
   // TODO New key - Add a translation
-  "menu.section.browse_global": "All of DSpace",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   // TODO New key - Add a translation
@@ -7890,9 +7890,9 @@
   // TODO New key - Add a translation
   "notification.suggestion.please": "Please",
 
-  // "nav.browse.header": "All of DSpace",
+  // "nav.browse.header": "Browse Repository",
   // TODO New key - Add a translation
-  "nav.browse.header": "All of DSpace",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   // TODO New key - Add a translation
@@ -9374,13 +9374,13 @@
   // TODO New key - Add a translation
   "repository.image.logo": "Repository logo",
 
-  // "repository.title": "DSpace Repository",
+  // "repository.title": "Uganda Christian University Institutional Repository",
   // TODO New key - Add a translation
-  "repository.title": "DSpace Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   // TODO New key - Add a translation
@@ -10306,9 +10306,9 @@
   // TODO New key - Add a translation
   "search.form.search_dspace": "All repository",
 
-  // "search.form.scope.all": "All of DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
   // TODO New key - Add a translation
-  "search.form.scope.all": "All of DSpace",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   // TODO New key - Add a translation

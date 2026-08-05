@@ -2902,7 +2902,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "Seleccione un ámbito de búsqueda",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "Buscar en todo DSpace",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3194,11 +3194,11 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "Software DSpace",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "Configuración de cookies",
@@ -5643,8 +5643,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "¿Has olvidado tu contraseña?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "Inicie sesión en DSpace",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "¿Nuevo Usuario? Pulse aquí para registrarse",
@@ -5673,8 +5673,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "Inicio de sesión",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "Cerrar sesión en DSpace",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Cerrar sesión",
@@ -5737,8 +5737,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Por titulo",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "Todo DSpace",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Por autor/a",
@@ -6116,8 +6116,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "Por favor",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "Todo DSpace",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Por comunidad",
@@ -7269,11 +7269,11 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "Logotipo del repositorio",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "Repositorio DSpace",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
-  "repository.title.prefix": "Repositorio DSpace :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Agregar",
@@ -7984,8 +7984,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "Todo el repositorio",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "Todo DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "Resultados de la búsqueda",

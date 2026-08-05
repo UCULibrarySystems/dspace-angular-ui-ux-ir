@@ -239,7 +239,7 @@
 
   // "admin.registries.bitstream-formats.title": "Bitstream Format Registry",
   // TODO Source message changed - Revise the translation
-  "admin.registries.bitstream-formats.title": "DSpace Angular :: Bitstream Biçimi Kayıt Defteri ",
+  "admin.registries.bitstream-formats.title": "UCU Institutional Repository :: Bitstream Biçimi Kayıt Defteri ",
 
   // "admin.registries.bitstream-formats.select": "Select",
   // TODO New key - Add a translation
@@ -299,7 +299,7 @@
 
   // "admin.registries.metadata.title": "Metadata Registry",
   // TODO Source message changed - Revise the translation
-  "admin.registries.metadata.title": "DSpace Angular :: Metadata Kayıt Defteri",
+  "admin.registries.metadata.title": "UCU Institutional Repository :: Metadata Kayıt Defteri",
 
   // "admin.registries.schema.breadcrumbs": "Metadata schema",
   "admin.registries.schema.breadcrumbs": "Metadata şeması",
@@ -392,7 +392,7 @@
 
   // "admin.registries.schema.title": "Metadata Schema Registry",
   // TODO Source message changed - Revise the translation
-  "admin.registries.schema.title": "DSpace Angular :: Metadata Şeması Kayıt Defteri",
+  "admin.registries.schema.title": "UCU Institutional Repository :: Metadata Şeması Kayıt Defteri",
 
   // "admin.access-control.bulk-access.breadcrumbs": "Bulk Access Management",
   // TODO New key - Add a translation
@@ -444,7 +444,7 @@
 
   // "admin.access-control.epeople.title": "EPeople",
   // TODO Source message changed - Revise the translation
-  "admin.access-control.epeople.title": "DSpace Angular :: E-kişiler",
+  "admin.access-control.epeople.title": "UCU Institutional Repository :: E-kişiler",
 
   // "admin.access-control.epeople.edit.breadcrumbs": "New EPerson",
   // TODO New key - Add a translation
@@ -613,7 +613,7 @@
 
   // "admin.access-control.groups.title": "Groups",
   // TODO Source message changed - Revise the translation
-  "admin.access-control.groups.title": "DSpace Angular :: Gruplar",
+  "admin.access-control.groups.title": "UCU Institutional Repository :: Gruplar",
 
   // "admin.access-control.groups.breadcrumbs": "Groups",
   // TODO New key - Add a translation
@@ -625,11 +625,11 @@
 
   // "admin.access-control.groups.title.singleGroup": "Edit Group",
   // TODO Source message changed - Revise the translation
-  "admin.access-control.groups.title.singleGroup": "DSpace Angular :: Grubu Düzenle",
+  "admin.access-control.groups.title.singleGroup": "UCU Institutional Repository :: Grubu Düzenle",
 
   // "admin.access-control.groups.title.addGroup": "New Group",
   // TODO Source message changed - Revise the translation
-  "admin.access-control.groups.title.addGroup": "DSpace Angular :: Yeni Grup",
+  "admin.access-control.groups.title.addGroup": "UCU Institutional Repository :: Yeni Grup",
 
   // "admin.access-control.groups.addGroup.breadcrumbs": "New Group",
   // TODO New key - Add a translation
@@ -3320,9 +3320,9 @@
   // TODO New key - Add a translation
   "dso-selector.set-scope.community.head": "Select a search scope",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   // TODO New key - Add a translation
-  "dso-selector.set-scope.community.button": "Search all of DSpace",
+  "dso-selector.set-scope.community.button": "Search All of UCU Repository",
 
   // "dso-selector.set-scope.community.or-divider": "or",
   // TODO New key - Add a translation
@@ -3668,11 +3668,11 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace yazılım",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "Çerez Ayarları",
@@ -5317,7 +5317,7 @@
 
   // "item.search.title": "Item Search",
   // TODO Source message changed - Revise the translation
-  "item.search.title": "DSpace Angular :: Öge Arama",
+  "item.search.title": "UCU Institutional Repository :: Öge Arama",
 
   // "item.truncatable-part.show-more": "Show more",
   // TODO New key - Add a translation
@@ -6237,7 +6237,7 @@
 
   // "journal.search.title": "Journal Search",
   // TODO Source message changed - Revise the translation
-  "journal.search.title": "DSpace Angular :: Süreli Yayın Arama",
+  "journal.search.title": "UCU Institutional Repository :: Süreli Yayın Arama",
 
   // "journalissue.listelement.badge": "Journal Issue",
   "journalissue.listelement.badge": "Süreli Yayın Sayısı",
@@ -6454,8 +6454,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "Parolanızı unuttunuz mu?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "Lütfen DSpace'e giriş yapın",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "Yeni kullanıcı mısınız? Kayıt olmak için buraya tıklayın.",
@@ -6487,8 +6487,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "Giriş",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "DSpace'den çıkış yapın",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Çıkış yap",
@@ -6558,8 +6558,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Başlığa göre",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "Tümü",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Yazara göre",
@@ -6963,8 +6963,8 @@
   // TODO New key - Add a translation
   "notification.suggestion.please": "Please",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "DSpace'in tümü",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Komünite tarafından",
@@ -7432,7 +7432,7 @@
 
   // "person.search.title": "Person Search",
   // TODO Source message changed - Revise the translation
-  "person.search.title": "DSpace Angular :: Kişi Arama",
+  "person.search.title": "UCU Institutional Repository :: Kişi Arama",
 
   // "process.new.select-parameters": "Parameters",
   "process.new.select-parameters": "Parametreler",
@@ -7914,7 +7914,7 @@
 
   // "publication.search.title": "Publication Search",
   // TODO Source message changed - Revise the translation
-  "publication.search.title": "DSpace Angular :: Yayın Arama",
+  "publication.search.title": "UCU Institutional Repository :: Yayın Arama",
 
   // "media-viewer.next": "Next",
   // TODO New key - Add a translation
@@ -8298,13 +8298,13 @@
   // TODO New key - Add a translation
   "repository.image.logo": "Repository logo",
 
-  // "repository.title": "DSpace Repository",
+  // "repository.title": "Uganda Christian University Institutional Repository",
   // TODO New key - Add a translation
-  "repository.title": "DSpace Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Ekle",
@@ -8563,7 +8563,7 @@
 
   // "search.title": "Search",
   // TODO Source message changed - Revise the translation
-  "search.title": "DSpace Angular :: Ara",
+  "search.title": "UCU Institutional Repository :: Ara",
 
   // "search.breadcrumbs": "Search",
   "search.breadcrumbs": "Ara",
@@ -9111,9 +9111,9 @@
   // TODO Source message changed - Revise the translation
   "search.form.search_dspace": "DSpace içinde Ara",
 
-  // "search.form.scope.all": "All of DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
   // TODO New key - Add a translation
-  "search.form.scope.all": "All of DSpace",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "Sonuçları Ara",

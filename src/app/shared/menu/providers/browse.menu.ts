@@ -31,7 +31,7 @@ import { PartialMenuSection } from '../menu-provider.model';
 import { AbstractExpandableMenuProvider } from './helper-providers/expandable-menu-provider';
 
 /**
- * Menu provider to create the "All of DSpace" browse menu sections in the public navbar
+ * Menu provider to create the global repository browse menu sections in the public navbar
  */
 @Injectable()
 export class BrowseMenuProvider extends AbstractExpandableMenuProvider {

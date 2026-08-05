@@ -2892,7 +2892,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "Sélectionner un champ de recherche",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "Chercher dans toutes les collections",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3174,11 +3174,11 @@
   // "footer.link.accessibility": "Accessibility settings",
   "footer.link.accessibility": "Paramètres d'accessibilité",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "Logiciel DSpace",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "Paramètres des témoins de connexion",
@@ -5579,8 +5579,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "Mot de passe oublié?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "Se connecter à DSpace",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "Pas encore de compte? Cliquer ici pour vous enregistrer.",
@@ -5609,8 +5609,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "Connexion",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "Se déconnecter de DSpace",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "Se déconnecter",
@@ -5673,8 +5673,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "Titre",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "Tout DSpace",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "Auteur",
@@ -6050,8 +6050,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "S'il vous plaît",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "Tout Dspace",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "Par communauté",
@@ -7178,11 +7178,11 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "Logo du dépôt",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "Dépôt DSpace",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
-  "repository.title.prefix": "Dépôt DSpace :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "Ajouter",
@@ -7880,8 +7880,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "Recherche dans DSpace",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "Tout le dépôt DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "Résultats de recherche",

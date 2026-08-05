@@ -2939,7 +2939,7 @@
   // "dso-selector.set-scope.community.head": "Select a search scope",
   "dso-selector.set-scope.community.head": "शोधाचा व्याप्ती निवडा",
 
-  // "dso-selector.set-scope.community.button": "Search all of DSpace",
+  // "dso-selector.set-scope.community.button": "Search All of UCU Repository",
   "dso-selector.set-scope.community.button": "संपूर्ण DSpace शोधा",
 
   // "dso-selector.set-scope.community.or-divider": "or",
@@ -3234,11 +3234,11 @@
   // TODO New key - Add a translation
   "footer.link.accessibility": "Accessibility settings",
 
-  // "footer.link.dspace": "DSpace software",
-  "footer.link.dspace": "DSpace सॉफ्टवेअर",
+  // "footer.link.dspace": "UCU Libraries and Archives",
+  "footer.link.dspace": "UCU Libraries and Archives",
 
-  // "footer.link.lyrasis": "LYRASIS",
-  "footer.link.lyrasis": "LYRASIS",
+  // "footer.link.lyrasis": "Uganda Christian University",
+  "footer.link.lyrasis": "Uganda Christian University",
 
   // "footer.link.cookies": "Cookie settings",
   "footer.link.cookies": "कुकी सेटिंग्ज",
@@ -5728,8 +5728,8 @@
   // "login.form.forgot-password": "Have you forgotten your password?",
   "login.form.forgot-password": "आपला पासवर्ड विसरलात?",
 
-  // "login.form.header": "Please log in to DSpace",
-  "login.form.header": "कृपया DSpace मध्ये लॉग इन करा",
+  // "login.form.header": "Please log in to UCU Institutional Repository",
+  "login.form.header": "Please log in to UCU Institutional Repository",
 
   // "login.form.new-user": "New user? Click here to register.",
   "login.form.new-user": "नवीन वापरकर्ता? नोंदणीसाठी येथे क्लिक करा.",
@@ -5758,8 +5758,8 @@
   // "login.breadcrumbs": "Login",
   "login.breadcrumbs": "लॉग इन",
 
-  // "logout.form.header": "Log out from DSpace",
-  "logout.form.header": "DSpace मधून लॉग आउट करा",
+  // "logout.form.header": "Log out from UCU Institutional Repository",
+  "logout.form.header": "Log out from UCU Institutional Repository",
 
   // "logout.form.submit": "Log out",
   "logout.form.submit": "लॉग आउट करा",
@@ -5822,8 +5822,8 @@
   // "menu.section.browse_community_by_title": "By Title",
   "menu.section.browse_community_by_title": "शीर्षकानुसार",
 
-  // "menu.section.browse_global": "All of DSpace",
-  "menu.section.browse_global": "संपूर्ण DSpace",
+  // "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global": "Browse Repository",
 
   // "menu.section.browse_global_by_author": "By Author",
   "menu.section.browse_global_by_author": "लेखकानुसार",
@@ -6201,8 +6201,8 @@
   // "notification.suggestion.please": "Please",
   "notification.suggestion.please": "कृपया",
 
-  // "nav.browse.header": "All of DSpace",
-  "nav.browse.header": "संपूर्ण DSpace",
+  // "nav.browse.header": "Browse Repository",
+  "nav.browse.header": "Browse Repository",
 
   // "nav.community-browse.header": "By Community",
   "nav.community-browse.header": "समुदायानुसार",
@@ -7368,12 +7368,12 @@
   // "repository.image.logo": "Repository logo",
   "repository.image.logo": "संग्रह लोगो",
 
-  // "repository.title": "DSpace Repository",
-  "repository.title": "DSpace संग्रह",
+  // "repository.title": "Uganda Christian University Institutional Repository",
+  "repository.title": "Uganda Christian University Institutional Repository",
 
-  // "repository.title.prefix": "DSpace Repository :: ",
+  // "repository.title.prefix": "UCU Institutional Repository :: ",
   // TODO New key - Add a translation
-  "repository.title.prefix": "DSpace Repository :: ",
+  "repository.title.prefix": "UCU Institutional Repository :: ",
 
   // "resource-policies.add.button": "Add",
   "resource-policies.add.button": "जोडा",
@@ -8082,8 +8082,8 @@
   // "search.form.search_dspace": "All repository",
   "search.form.search_dspace": "संपूर्ण संग्रह",
 
-  // "search.form.scope.all": "All of DSpace",
-  "search.form.scope.all": "संपूर्ण DSpace",
+  // "search.form.scope.all": "All of UCU Repository",
+  "search.form.scope.all": "All of UCU Repository",
 
   // "search.results.head": "Search Results",
   "search.results.head": "शोध परिणाम",
