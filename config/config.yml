@@ -3,3 +3,21 @@ rest:
   host: sandbox.dspace.org
   port: 443
   nameSpace: /server
+
+themes:
+  - name: ucu-branding
+    extends: custom
+    headTags:
+      - tagName: link
+        attributes:
+          rel: icon
+          href: assets/custom/images/favicons/favicon.png
+          sizes: any
+      - tagName: link
+        attributes:
+          rel: apple-touch-icon
+          href: assets/custom/images/favicons/apple-touch-icon.png
+      - tagName: link
+        attributes:
+          rel: manifest
+          href: assets/custom/images/favicons/manifest.webmanifest

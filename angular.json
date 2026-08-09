@@ -55,6 +55,11 @@
                 "bundleName": "custom-theme"
               },
               {
+                "input": "src/themes/ucu-branding/styles/theme.scss",
+                "inject": false,
+                "bundleName": "ucu-branding-theme"
+              },
+              {
                 "input": "src/themes/dspace/styles/theme.scss",
                 "inject": false,
                 "bundleName": "dspace-theme"
