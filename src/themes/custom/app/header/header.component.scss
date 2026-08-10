@@ -9,6 +9,10 @@
     }
   }
 
+  #main-site-header-container {
+    padding-left: 0.25rem;
+  }
+
   .ucu-utility-bar {
     min-height: 48px;
     background-color: var(--ucu-blue);
@@ -65,6 +69,7 @@
     height: var(--ds-header-logo-height);
     max-width: min(36vw, 330px);
     object-fit: contain;
+    transform: translateX(-1.5rem);
   }
 
   #header-right {
@@ -135,10 +140,19 @@
 
     img#header-logo {
       max-width: min(52vw, 300px);
+      transform: translateX(-0.75rem);
     }
   }
 
   @include media-breakpoint-down(md) {
+    #main-site-header-container {
+      padding-left: var(--bs-gutter-x, 0.75rem);
+    }
+
+    img#header-logo {
+      transform: none;
+    }
+
     .ucu-utility-bar {
       font-size: 0.78rem;
     }

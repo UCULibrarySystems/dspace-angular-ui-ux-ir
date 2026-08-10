@@ -1,8 +1,21 @@
 .login-container {
-  max-width: 350px;
+  max-width: 24rem;
+  width: 100%;
 }
 
 a {
   white-space: normal;
   padding: .25rem .75rem;
+}
+
+@include media-breakpoint-down(sm) {
+  .login-container {
+    max-width: 100%;
+    padding-inline: 0.75rem !important;
+  }
+
+  a {
+    display: inline-block;
+    padding-inline: 0.25rem;
+  }
 }

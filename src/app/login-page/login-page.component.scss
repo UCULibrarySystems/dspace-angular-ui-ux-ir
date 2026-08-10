@@ -1,4 +1,44 @@
+.login-page-container {
+  min-height: calc(100vh - var(--ds-header-height));
+}
+
+.login-page-content {
+  align-items: flex-start;
+  padding-top: clamp(1.5rem, 6vh, 4rem);
+  padding-bottom: 2rem;
+}
+
+.login-panel {
+  width: min(100%, 30rem);
+  margin-inline: auto;
+}
+
 .login-logo {
-  height: var(--ds-login-logo-height);
-  width: var(--ds-login-logo-width);
+  display: block;
+  width: min(82vw, 22rem);
+  height: auto;
+  max-height: 9rem;
+  margin: 0 auto 1.5rem;
+  object-fit: contain;
+}
+
+@include media-breakpoint-down(sm) {
+  .login-page-content {
+    padding-top: 1.25rem;
+  }
+
+  .login-panel {
+    width: 100%;
+  }
+
+  .login-logo {
+    width: min(88vw, 19rem);
+    max-height: 7.25rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
 }
