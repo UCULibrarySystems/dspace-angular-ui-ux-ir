@@ -11,7 +11,7 @@ import { PrivacyContentComponent } from './privacy-content/privacy-content.compo
   ],
 })
 /**
- * Component displaying the Privacy Statement
+ * Component displaying the Privacy Policy
  */
 export class PrivacyComponent {
 }
