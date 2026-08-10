@@ -83,7 +83,7 @@
     height: var(--ds-header-logo-height);
     max-width: min(42vw, 460px);
     object-fit: contain;
-    transform: translateX(-1.5rem);
+    transform: translateX(-4rem);
   }
 
   #header-right {
@@ -150,7 +150,7 @@
   @include media-breakpoint-down(lg) {
     img#header-logo {
       max-width: min(58vw, 390px);
-      transform: translateX(-0.75rem);
+      transform: translateX(-2rem);
     }
   }
 
