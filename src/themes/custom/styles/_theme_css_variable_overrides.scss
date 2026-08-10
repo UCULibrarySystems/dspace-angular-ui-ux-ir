@@ -7,12 +7,12 @@
   --ucu-green: #007931;
 
   @include media-breakpoint-up(md) {
-    --ds-header-logo-height: 76px;
-    --ds-header-height: 100px;
+    --ds-header-logo-height: 64px;
+    --ds-header-height: 84px;
   }
   @include media-breakpoint-down(sm) {
-    --ds-header-logo-height: 54px;
-    --ds-header-height: 88px;
+    --ds-header-logo-height: 48px;
+    --ds-header-height: 72px;
   }
 
   --ds-banner-text-background: rgba(11, 61, 145, 0.78);

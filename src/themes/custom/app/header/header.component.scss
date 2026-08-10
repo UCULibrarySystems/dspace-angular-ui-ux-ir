@@ -104,6 +104,27 @@
     min-width: 0;
   }
 
+  #desktop-navbar {
+    min-width: 0;
+
+    ::ng-deep #main-site-navigation {
+      flex-wrap: nowrap;
+      gap: clamp(0.25rem, 0.7vw, 0.65rem) !important;
+    }
+
+    ::ng-deep .ds-menu-item-wrapper,
+    ::ng-deep .ds-menu-item,
+    ::ng-deep .ds-menu-toggler-wrapper {
+      white-space: nowrap;
+    }
+
+    ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
+      padding: 0.3rem 0.2rem;
+      font-size: clamp(0.74rem, 0.8vw, 0.92rem);
+      line-height: 1.15;
+    }
+  }
+
   ::ng-deep ds-search-navbar .submit-icon,
   button#navbar-toggler {
     min-width: 7rem;
@@ -301,6 +322,14 @@
 
     img#header-logo {
       width: clamp(15rem, 33vw, 22rem);
+    }
+
+    #desktop-navbar {
+      ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
+        font-size: 0.72rem;
+        padding-right: 0.12rem;
+        padding-left: 0.12rem;
+      }
     }
   }
 
