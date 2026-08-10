@@ -3,6 +3,115 @@ html {
     min-height: 100%;
 }
 
+/* Sitewide accessibility preferences controlled by ds-sitewide-accessibility. */
+html {
+    font-size: var(--ucu-a11y-font-size, 100%);
+}
+
+html.ucu-a11y-highlight-titles ds-root :is(h1, h2, h3, h4, h5, h6) {
+    color: #000 !important;
+    background-color: #ffdf57 !important;
+    outline: 2px solid #000 !important;
+    outline-offset: 2px;
+}
+
+html.ucu-a11y-highlight-links ds-root a {
+    color: #001c8f !important;
+    background-color: #fff06a !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 0.15em !important;
+    text-underline-offset: 0.18em !important;
+}
+
+html.ucu-a11y-dyslexia-font ds-root {
+    font-family: OpenDyslexic, "Atkinson Hyperlegible", Verdana, Arial, sans-serif !important;
+}
+
+html.ucu-a11y-dyslexia-font ds-root * {
+    font-family: inherit !important;
+}
+
+html.ucu-a11y-letter-spacing ds-root {
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.16em !important;
+}
+
+html.ucu-a11y-line-height ds-root {
+    line-height: 1.8 !important;
+}
+
+html.ucu-a11y-line-height ds-root :is(p, li, dd, dt, label, input, button, textarea, select) {
+    line-height: 1.8 !important;
+}
+
+html.ucu-a11y-font-weight ds-root {
+    font-weight: 600 !important;
+}
+
+html.ucu-a11y-font-weight ds-root :is(p, li, dd, dt, label, input, button, textarea, select) {
+    font-weight: 600 !important;
+}
+
+html.ucu-a11y-align-left ds-root,
+html.ucu-a11y-align-left ds-root * {
+    text-align: left !important;
+}
+
+html.ucu-a11y-stop-animations ds-root *,
+html.ucu-a11y-stop-animations ds-root *::before,
+html.ucu-a11y-stop-animations ds-root *::after {
+    animation-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+}
+
+html.ucu-a11y-big-cursor ds-root,
+html.ucu-a11y-big-cursor ds-root * {
+    cursor: url('/assets/images/accessibility-cursor.svg') 3 3, auto !important;
+}
+
+html.ucu-a11y-big-cursor ds-root :is(a, button, [role='button'], input, select, textarea, summary) {
+    cursor: url('/assets/images/accessibility-pointer.svg') 7 3, pointer !important;
+}
+
+html.ucu-a11y-focus-highlight ds-root *:focus-visible {
+    outline: 4px solid #ffbf00 !important;
+    outline-offset: 4px !important;
+    box-shadow: 0 0 0 2px #111 !important;
+}
+
+html.ucu-a11y-dark ds-root {
+    filter: invert(0.92) hue-rotate(180deg);
+    background: #111;
+}
+
+html.ucu-a11y-dark ds-root :is(img, video, canvas, svg, picture) {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html.ucu-a11y-light ds-root {
+    filter: brightness(1.08) contrast(0.9);
+}
+
+html.ucu-a11y-high ds-root {
+    filter: contrast(1.45) saturate(1.15);
+}
+
+html.ucu-a11y-high-saturation ds-root {
+    filter: saturate(1.8);
+}
+
+html.ucu-a11y-low-saturation ds-root {
+    filter: saturate(0.45);
+}
+
+html.ucu-a11y-monochrome ds-root {
+    filter: grayscale(1);
+}
+
 body {
     overflow-x: hidden;
 }

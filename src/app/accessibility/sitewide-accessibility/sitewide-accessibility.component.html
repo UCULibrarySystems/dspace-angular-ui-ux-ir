@@ -1,0 +1,166 @@
+<div class="visually-hidden" aria-live="polite" aria-atomic="true">{{ statusMessage }}</div>
+
+@if (preferences.readingGuide) {
+  <div class="reading-guide" [style.top.px]="guideY" aria-hidden="true"></div>
+}
+
+@if (panelOpen) {
+  <section
+    cdkTrapFocus
+    [cdkTrapFocusAutoCapture]="true"
+    class="accessibility-panel"
+    id="ucu-accessibility-panel"
+    lang="en"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="ucu-accessibility-title">
+    <header class="panel-header">
+      <h2 id="ucu-accessibility-title">
+        <i class="fas fa-universal-access" aria-hidden="true"></i>
+        Accessibility menu
+      </h2>
+      <div class="header-actions">
+        <button type="button" class="icon-button" (click)="resetAll()" title="Reset all settings" aria-label="Reset all accessibility settings">
+          <i class="fas fa-rotate-right" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="icon-button" (click)="togglePanel()" title="Close" aria-label="Close accessibility menu">
+          <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="panel-body">
+      <section class="control-section language-section" aria-labelledby="language-heading">
+        <div class="language-summary">
+          <span class="language-code" aria-hidden="true">{{ currentLanguage.substring(0, 2).toUpperCase() }}</span>
+          <div>
+            <h3 id="language-heading">Interface language</h3>
+            <span>{{ currentLanguage }}</span>
+          </div>
+          <i class="fas fa-language" aria-hidden="true"></i>
+        </div>
+        <label class="visually-hidden" for="a11y-language">Select interface language</label>
+        <select id="a11y-language" [value]="currentLanguage" (change)="changeLanguage($event)">
+          @for (language of languages; track language.code) {
+            <option [value]="language.code">{{ language.label }}</option>
+          }
+        </select>
+      </section>
+
+      <nav class="quick-actions" aria-label="Repository shortcuts">
+        <button type="button" (click)="startTour()"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> Tour</button>
+        <button type="button" (click)="navigate('/browse/dateissued')"><i class="fas fa-calendar-days" aria-hidden="true"></i> Arrivals</button>
+        <button type="button" (click)="navigate('/search')"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> Search</button>
+        <button type="button" (click)="contactLibrary()"><i class="far fa-comment-dots" aria-hidden="true"></i> Contact</button>
+      </nav>
+
+      <section class="control-section" aria-labelledby="profiles-heading">
+        <h3 class="section-heading" id="profiles-heading">
+          <span><i class="fas fa-universal-access" aria-hidden="true"></i> Accessibility profiles</span>
+        </h3>
+        <div class="control-grid two-columns">
+          <button type="button" class="tile-button" [class.active]="isProfileActive('epilepsy')" [attr.aria-pressed]="isProfileActive('epilepsy')" (click)="toggleProfile('epilepsy')">
+            <i class="fas fa-shield-halved" aria-hidden="true"></i><span>Epilepsy safe</span>
+          </button>
+          <button type="button" class="tile-button" [class.active]="isProfileActive('seizure')" [attr.aria-pressed]="isProfileActive('seizure')" (click)="toggleProfile('seizure')">
+            <i class="fas fa-shield" aria-hidden="true"></i><span>Seizure safe</span>
+          </button>
+          <button type="button" class="tile-button" [class.active]="isProfileActive('adhd')" [attr.aria-pressed]="isProfileActive('adhd')" (click)="toggleProfile('adhd')">
+            <i class="fas fa-brain" aria-hidden="true"></i><span>ADHD support</span>
+          </button>
+          <button type="button" class="tile-button" [class.active]="isProfileActive('low-vision')" [attr.aria-pressed]="isProfileActive('low-vision')" (click)="toggleProfile('low-vision')">
+            <i class="fas fa-eye" aria-hidden="true"></i><span>Low vision</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="reader-heading">
+        <h3 class="section-heading" id="reader-heading">
+          <span><i class="fas fa-volume-high" aria-hidden="true"></i> Reader controls</span>
+        </h3>
+        <label for="reading-speed">Reading speed</label>
+        <input id="reading-speed" type="range" min="0.5" max="2" step="0.05" [value]="preferences.readingSpeed" (input)="setReadingSpeed($event)">
+        <output for="reading-speed" class="value-chip">{{ preferences.readingSpeed.toFixed(2) }}x</output>
+
+        <label for="reader-voice">Voice</label>
+        <select id="reader-voice" [value]="preferences.voiceURI" (change)="setVoice($event)">
+          @if (voices.length === 0) {
+            <option value="">Browser default voice</option>
+          }
+          @for (voice of voices; track voice.voiceURI) {
+            <option [value]="voice.voiceURI">{{ voice.name }} - {{ voice.lang }}</option>
+          }
+        </select>
+        <div class="reader-actions">
+          <button type="button" (click)="startReader()"><i class="fas fa-play" aria-hidden="true"></i> Start reader</button>
+          <button type="button" (click)="startReader(true)"><i class="fas fa-volume-high" aria-hidden="true"></i> Replay</button>
+          <button type="button" (click)="stopReader()"><i class="fas fa-stop" aria-hidden="true"></i> Stop</button>
+        </div>
+      </section>
+
+      <details class="control-section" open>
+        <summary><strong>Content</strong><span>Text, spacing &amp; layout</span></summary>
+        <div class="section-content">
+          <div class="font-size-control">
+            <span>Font size</span>
+            <div>
+              <button type="button" class="round-button" (click)="changeFontSize(-10)" [disabled]="preferences.fontSize <= 80" aria-label="Decrease font size">
+                <i class="fas fa-minus" aria-hidden="true"></i>
+              </button>
+              <output>{{ preferences.fontSize }}%</output>
+              <button type="button" class="round-button" (click)="changeFontSize(10)" [disabled]="preferences.fontSize >= 150" aria-label="Increase font size">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div class="control-grid three-columns">
+            <button type="button" class="tile-button" [class.active]="preferences.highlightTitles" [attr.aria-pressed]="preferences.highlightTitles" (click)="toggle('highlightTitles')"><i class="fas fa-heading" aria-hidden="true"></i><span>Highlight titles</span></button>
+            <button type="button" class="tile-button" [class.active]="preferences.highlightLinks" [attr.aria-pressed]="preferences.highlightLinks" (click)="toggle('highlightLinks')"><i class="fas fa-link" aria-hidden="true"></i><span>Highlight links</span></button>
+            <button type="button" class="tile-button" [class.active]="preferences.dyslexiaFont" [attr.aria-pressed]="preferences.dyslexiaFont" (click)="toggle('dyslexiaFont')"><i class="fas fa-font" aria-hidden="true"></i><span>Dyslexia font</span></button>
+            <button type="button" class="tile-button" [class.active]="preferences.letterSpacing" [attr.aria-pressed]="preferences.letterSpacing" (click)="toggle('letterSpacing')"><i class="fas fa-text-width" aria-hidden="true"></i><span>Letter spacing</span></button>
+            <button type="button" class="tile-button" [class.active]="preferences.lineHeight" [attr.aria-pressed]="preferences.lineHeight" (click)="toggle('lineHeight')"><i class="fas fa-arrows-up-down" aria-hidden="true"></i><span>Line height</span></button>
+            <button type="button" class="tile-button" [class.active]="preferences.fontWeight" [attr.aria-pressed]="preferences.fontWeight" (click)="toggle('fontWeight')"><i class="fas fa-bold" aria-hidden="true"></i><span>Font weight</span></button>
+            <button type="button" class="tile-button" [class.active]="preferences.alignLeft" [attr.aria-pressed]="preferences.alignLeft" (click)="toggle('alignLeft')"><i class="fas fa-align-left" aria-hidden="true"></i><span>Align left</span></button>
+            <button type="button" class="tile-button" [class.active]="preferences.focusHighlight" [attr.aria-pressed]="preferences.focusHighlight" (click)="toggle('focusHighlight')"><i class="fas fa-keyboard" aria-hidden="true"></i><span>Focus highlight</span></button>
+          </div>
+        </div>
+      </details>
+
+      <details class="control-section" open>
+        <summary><strong>Colors</strong><span>Contrast &amp; saturation</span></summary>
+        <div class="section-content control-grid three-columns">
+          <button type="button" class="tile-button" [class.active]="preferences.colorMode === 'dark'" [attr.aria-pressed]="preferences.colorMode === 'dark'" (click)="setColorMode('dark')"><i class="fas fa-moon" aria-hidden="true"></i><span>Dark contrast</span></button>
+          <button type="button" class="tile-button" [class.active]="preferences.colorMode === 'light'" [attr.aria-pressed]="preferences.colorMode === 'light'" (click)="setColorMode('light')"><i class="fas fa-sun" aria-hidden="true"></i><span>Light contrast</span></button>
+          <button type="button" class="tile-button" [class.active]="preferences.colorMode === 'high'" [attr.aria-pressed]="preferences.colorMode === 'high'" (click)="setColorMode('high')"><i class="fas fa-circle-half-stroke" aria-hidden="true"></i><span>High contrast</span></button>
+          <button type="button" class="tile-button" [class.active]="preferences.colorMode === 'high-saturation'" [attr.aria-pressed]="preferences.colorMode === 'high-saturation'" (click)="setColorMode('high-saturation')"><i class="fas fa-droplet" aria-hidden="true"></i><span>High saturation</span></button>
+          <button type="button" class="tile-button" [class.active]="preferences.colorMode === 'low-saturation'" [attr.aria-pressed]="preferences.colorMode === 'low-saturation'" (click)="setColorMode('low-saturation')"><i class="fas fa-droplet-slash" aria-hidden="true"></i><span>Low saturation</span></button>
+          <button type="button" class="tile-button" [class.active]="preferences.colorMode === 'monochrome'" [attr.aria-pressed]="preferences.colorMode === 'monochrome'" (click)="setColorMode('monochrome')"><i class="fas fa-circle-half-stroke" aria-hidden="true"></i><span>Monochrome</span></button>
+        </div>
+      </details>
+
+      <details class="control-section" open>
+        <summary><strong>Navigation</strong><span>Focus &amp; motion</span></summary>
+        <div class="section-content control-grid three-columns">
+          <button type="button" class="tile-button" [class.active]="preferences.readingGuide" [attr.aria-pressed]="preferences.readingGuide" (click)="toggle('readingGuide')"><i class="fas fa-ruler-horizontal" aria-hidden="true"></i><span>Reading guide</span></button>
+          <button type="button" class="tile-button" [class.active]="preferences.stopAnimations" [attr.aria-pressed]="preferences.stopAnimations" (click)="toggle('stopAnimations')"><i class="fas fa-circle-pause" aria-hidden="true"></i><span>Stop animations</span></button>
+          <button type="button" class="tile-button" [class.active]="preferences.bigCursor" [attr.aria-pressed]="preferences.bigCursor" (click)="toggle('bigCursor')"><i class="fas fa-arrow-pointer" aria-hidden="true"></i><span>Big cursor</span></button>
+        </div>
+      </details>
+
+      <button type="button" class="reset-button" (click)="resetAll()">Reset all settings</button>
+    </div>
+  </section>
+}
+
+<button
+  type="button"
+  class="accessibility-launcher"
+  lang="en"
+  [class.open]="panelOpen"
+  [attr.aria-expanded]="panelOpen"
+  aria-controls="ucu-accessibility-panel"
+  [attr.aria-label]="panelOpen ? 'Close accessibility menu' : 'Open accessibility menu'"
+  title="Accessibility menu"
+  (click)="togglePanel()">
+  <i class="fas fa-universal-access" aria-hidden="true"></i>
+</button>

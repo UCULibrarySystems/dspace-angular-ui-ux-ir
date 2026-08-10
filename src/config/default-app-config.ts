@@ -335,6 +335,7 @@ export class DefaultAppConfig implements AppConfig {
     { code: 'sr-lat', label: 'Srpski (lat)', active: true },
     { code: 'sr-cyr', label: 'Српски', active: true },
     { code: 'sv', label: 'Svenska', active: true },
+    { code: 'sw', label: 'Kiswahili', active: true },
     { code: 'te', label: 'తెలుగు', active: true },
     { code: 'ta', label: 'தமிழ்', active: true },
     { code: 'tr', label: 'Türkçe', active: true },
