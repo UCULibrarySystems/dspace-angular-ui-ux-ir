@@ -10,7 +10,7 @@ export const environment: Partial<BuildConfig> = {
 
   // Angular SSR (Server Side Rendering) settings
   ssr: {
-    enabled: false,
+    enabled: true,
     enablePerformanceProfiler: false,
     inlineCriticalCss: false,
     transferState: true,

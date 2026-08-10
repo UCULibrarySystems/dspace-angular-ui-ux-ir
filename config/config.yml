@@ -1,3 +1,18 @@
+ui:
+  ssl: false
+  host: localhost
+  port: 4000
+  baseUrl: https://ucudir.ucu.ac.ug
+  nameSpace: /
+  useProxies: true
+
+ssr:
+  inlineCriticalCss: false
+  enableSearchComponent: false
+  enableBrowseComponent: false
+  transferState: true
+  replaceRestUrl: true
+
 rest:
   ssl: true
   host: sandbox.dspace.org
