@@ -36,6 +36,8 @@
 
     img#admin-sidebar-logo {
       height: var(--ds-admin-sidebar-logo-height);
+      width: var(--ds-admin-sidebar-logo-height);
+      object-fit: contain;
     }
 
     ::ng-deep {
