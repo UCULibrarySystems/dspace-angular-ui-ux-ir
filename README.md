@@ -388,6 +388,7 @@ See our [Contributing guidelines](CONTRIBUTING.md) for general tips on contribut
 
 For developers, we also provide guidelines for:
 * [Code Style](CODE_STYLE.md) - our code formatting rules
+* [UCU Theme Documentation](UCU_THEME_DOCUMENTATION.md) - UCU branding, responsive layout, accessibility, SEO, and maintenance file locations
 * [Code Conventions](CODE_CONVENTIONS.md) - our established coding best practices
 
 File Structure

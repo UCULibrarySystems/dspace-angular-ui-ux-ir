@@ -11,6 +11,17 @@
 
   #main-site-header-container {
     padding-left: 0.25rem;
+    gap: 0.5rem !important;
+  }
+
+  #header-left {
+    min-width: 0;
+    gap: 0.5rem !important;
+  }
+
+  #header-left > a {
+    min-width: 0;
+    flex: 0 1 auto;
   }
 
   .ucu-utility-bar {
@@ -87,7 +98,8 @@
   }
 
   #header-right {
-    gap: 0.85rem;
+    gap: 0.55rem;
+    min-width: 0;
   }
 
   ::ng-deep ds-search-navbar .submit-icon,
@@ -152,6 +164,10 @@
       max-width: min(58vw, 390px);
       transform: translateX(-2rem);
     }
+
+    #desktop-navbar {
+      min-width: 0;
+    }
   }
 
   @include media-breakpoint-down(sm) {
@@ -161,12 +177,60 @@
   }
 
   @include media-breakpoint-down(md) {
+    #main-site-header {
+      min-height: calc(clamp(4.5rem, 15vw, var(--ds-header-height)) + 48px);
+    }
+
     #main-site-header-container {
       padding-left: var(--bs-gutter-x, 0.75rem);
+      min-height: clamp(4.5rem, 15vw, var(--ds-header-height));
+      gap: 0.35rem !important;
+    }
+
+    #header-left {
+      flex: 1 1 auto;
+      gap: 0.25rem !important;
+    }
+
+    #header-left > a {
+      max-width: 48vw;
     }
 
     img#header-logo {
+      display: block;
+      width: clamp(9rem, 42vw, 15rem);
+      height: auto;
+      max-width: 100%;
+      max-height: clamp(2.4rem, 12vw, 4rem);
       transform: none;
+    }
+
+    #header-right {
+      flex: 0 1 auto;
+      gap: 0.25rem;
+    }
+
+    #header-right > div[role="toolbar"] {
+      gap: 0.2rem !important;
+    }
+
+    ::ng-deep ds-context-help-toggle,
+    ::ng-deep ds-impersonate-navbar {
+      display: none !important;
+    }
+
+    ::ng-deep ds-search-navbar .submit-icon,
+    button#navbar-toggler {
+      width: 2.75rem;
+      min-width: 2.75rem;
+      max-width: 2.75rem;
+      height: 2.75rem;
+      min-height: 2.75rem;
+      padding: 0;
+    }
+
+    button#navbar-toggler {
+      margin-left: 0 !important;
     }
 
     .ucu-utility-bar {
@@ -194,6 +258,64 @@
     ::ng-deep ds-search-navbar .submit-icon::after {
       content: '';
       margin-left: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #main-site-header-container {
+      padding-right: 0.5rem;
+    }
+
+    #header-left > a {
+      max-width: 46vw;
+    }
+
+    img#header-logo {
+      width: clamp(8.5rem, 43vw, 12.5rem);
+      max-height: 3.25rem;
+    }
+
+    ::ng-deep ds-lang-switch {
+      max-width: 2.25rem;
+      overflow: hidden;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    img#header-logo {
+      width: clamp(11rem, 35vw, 17rem);
+      max-height: 4rem;
+    }
+
+    ::ng-deep ds-context-help-toggle {
+      display: inline-flex !important;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    #main-site-header-container {
+      gap: 0.75rem !important;
+    }
+
+    img#header-logo {
+      width: clamp(15rem, 33vw, 22rem);
+    }
+  }
+
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    img#header-logo {
+      width: clamp(18rem, 31vw, 29rem);
+    }
+  }
+
+  @media (min-width: 1441px) {
+    #main-site-header-container {
+      gap: 1rem !important;
+    }
+
+    img#header-logo {
+      width: clamp(24rem, 28vw, 36rem);
+      max-width: min(42vw, 36rem);
     }
   }
 }

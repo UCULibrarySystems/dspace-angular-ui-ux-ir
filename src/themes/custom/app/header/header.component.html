@@ -1,7 +1,10 @@
 <header id="main-site-header">
   <div class="ucu-utility-bar">
     <div class="container d-flex align-items-center justify-content-between gapx-3">
-      <a class="utility-update" routerLink="/home">
+      <a class="utility-update"
+        [routerLink]="['/search']"
+        [queryParams]="{ 'spc.page': 1, 'spc.sf': 'dc.date.accessioned', 'spc.sd': 'DESC' }"
+        title="View the latest repository additions">
         <span aria-hidden="true"></span>
         Check for recent website updates
       </a>

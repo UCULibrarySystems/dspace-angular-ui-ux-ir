@@ -21,6 +21,9 @@
         height: auto;
         border-bottom: var(--ds-header-navbar-border-bottom-style);
         background-color: var(--ds-navbar-bg);
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
       }
     }
   }
@@ -28,6 +31,18 @@
   ::ng-deep ds-user-menu {
     .ds-menu-item {
       text-decoration: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    div#mobile-navbar-wrapper {
+      max-height: calc(100dvh - 5rem);
+
+      nav#collapsible-mobile-navbar {
+        min-height: 0;
+        max-height: calc(100dvh - 5rem);
+        padding-bottom: 1rem;
+      }
     }
   }
 }
