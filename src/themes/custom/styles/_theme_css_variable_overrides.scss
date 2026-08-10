@@ -20,18 +20,19 @@
   --ds-header-bg: #fff;
   --ds-header-icon-color: var(--ucu-blue);
   --ds-header-icon-color-hover: var(--ucu-maroon);
-  --ds-navbar-bg: var(--ucu-blue);
-  --ds-navbar-link-bg: var(--ucu-blue);
-  --ds-navbar-link-bg-hover: rgba(255, 255, 255, 0.14);
-  --ds-navbar-link-color: #fff;
-  --ds-navbar-link-color-hover: #fff;
-  --ds-expandable-navbar-bg: var(--ucu-blue);
+  --ds-navbar-bg: #fff;
+  --ds-navbar-link-bg: transparent;
+  --ds-navbar-link-bg-hover: #f8f9fa;
+  --ds-navbar-link-color: #0B3D91;
+  --ds-navbar-link-color-hover: #071f49;
+  --ds-expandable-navbar-bg: #fff;
   --ds-expandable-navbar-link-bg: #fff;
-  --ds-expandable-navbar-link-bg-hover: rgba(11, 61, 145, 0.08);
-  --ds-expandable-navbar-link-color: var(--ucu-blue);
-  --ds-expandable-navbar-link-color-hover: var(--ucu-maroon);
+  --ds-expandable-navbar-link-bg-hover: #f8f9fa;
+  --ds-expandable-navbar-link-color: #0B3D91;
+  --ds-expandable-navbar-link-color-hover: #071f49;
 
-  --ds-header-navbar-border-bottom-height: 2px;
+  --ds-header-navbar-border-bottom-color: #ced4da;
+  --ds-header-navbar-border-bottom-height: 1px;
 
   /* set the next two properties as `--ds-header-navbar-border-bottom-*`
   in order to keep the bottom border of the header when navbar is expanded */

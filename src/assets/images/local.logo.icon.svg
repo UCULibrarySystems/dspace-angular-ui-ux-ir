@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M448 73.1v45.7C448 159.1 347.7 192 224 192S0 159.1 0 118.9V73.1C0 32.9 100.3 0 224 0s224 32.9 224 73.1zM448 176v102.9C448 319.1 347.7 352 224 352S0 319.1 0 278.9V176c48.1 33.1 136.2 48.6 224 48.6S399.9 209.1 448 176zm0 160v102.9C448 479.1 347.7 512 224 512S0 479.1 0 438.9V336c48.1 33.1 136.2 48.6 224 48.6S399.9 369.1 448 336z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">UCU local authority icon</title>
+  <desc id="desc">Uganda Christian University crest-inspired icon</desc>
+  <rect width="512" height="512" rx="96" fill="#0B3D91"/>
+  <path fill="#FFD932" d="M256 66 418 128v106c0 101-62 177-162 212C156 411 94 335 94 234V128l162-62Z"/>
+  <path fill="#fff" d="M256 102 132 149v85c0 78 45 139 124 170 79-31 124-92 124-170v-85l-124-47Z"/>
+  <path fill="#D7014D" d="M256 133 160 170v64c0 60 34 107 96 135 62-28 96-75 96-135v-64l-96-37Z"/>
+  <text x="256" y="269" text-anchor="middle" font-family="Trebuchet MS, Arial, sans-serif" font-size="104" font-weight="700" fill="#fff">UCU</text>
+</svg>
