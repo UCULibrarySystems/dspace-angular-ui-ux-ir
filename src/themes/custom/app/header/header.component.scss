@@ -10,7 +10,9 @@
   }
 
   #main-site-header-container {
-    padding-left: 0.25rem;
+    width: 100%;
+    max-width: none;
+    padding-left: 0 !important;
     gap: 0.5rem !important;
   }
 
@@ -94,7 +96,7 @@
     height: var(--ds-header-logo-height);
     max-width: min(42vw, 460px);
     object-fit: contain;
-    transform: translateX(-4rem);
+    transform: none;
   }
 
   #header-right {
@@ -162,7 +164,7 @@
   @include media-breakpoint-down(lg) {
     img#header-logo {
       max-width: min(58vw, 390px);
-      transform: translateX(-2rem);
+      transform: none;
     }
 
     #desktop-navbar {
