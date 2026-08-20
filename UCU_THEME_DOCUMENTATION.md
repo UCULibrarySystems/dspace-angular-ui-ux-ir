@@ -15,6 +15,8 @@ The current UCU UI/UX layer provides:
 - A simplified repository header with the UCU Libraries and Archives logo, search, language, authentication controls, and no admissions `Apply Now` button.
 - Responsive header and hamburger navigation for phone, tablet, desktop, and widescreen layouts.
 - UCU-maroon lower footer section with responsive policy/help links and no hover underlines.
+- A compact homepage research-impact slider managed by Site Administrators through CMS metadata.
+- In-browser PDF previews on item pages for accessible open-access PDF bitstreams.
 - A sitewide accessibility menu with profiles, reader controls, content controls, color modes, navigation controls, language selection, and persistent preferences.
 - UCU-branded Orejime cookie consent notice and settings modal with responsive layout and keyboard focus states.
 - Repository-oriented SEO metadata, Dublin Core and citation metadata, Open Graph/Twitter metadata, geographic metadata, and JSON-LD descriptions.
@@ -60,6 +62,8 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Header markup | `src/themes/custom/app/header/header.component.html` | `src/themes/dspace/app/header/header.component.html` |
 | Header spacing, logo, and responsive controls | `src/themes/custom/app/header/header.component.scss` | `src/themes/dspace/app/header/header.component.scss` |
 | Mobile hamburger navigation | `src/themes/dspace/app/header-nav-wrapper/header-navbar-wrapper.component.scss` | `src/themes/dspace/app/header-nav-wrapper/header-navbar-wrapper.component.html` |
+| Homepage research-impact slider | `src/app/home-page/home-page.component.*` | `src/themes/custom/app/home-page/home-page.component.ts` |
+| Site admin CMS editor helper | `src/app/admin/admin-edit-cms-metadata/` | `src/config/default-app-config.ts` CMS metadata list |
 | Footer markup and info links | `src/app/footer/footer.component.html` | `src/app/footer/footer.component.ts` |
 | Footer maroon strip styling | `src/app/footer/footer.component.scss` | `src/styles/_custom_variables.scss` |
 | Sitewide accessibility launcher and panel | `src/app/accessibility/sitewide-accessibility/` | `src/app/app.component.html`, `src/app/app.component.ts` |
@@ -77,6 +81,7 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Privacy policy page | `src/app/info/privacy/privacy-content/privacy-content.component.html` | `src/assets/i18n/en.json5` |
 | UCU repository info pages | `src/app/info/<page>/` | `src/themes/custom/app/info/<page>/`, `src/app/info/info-routes.ts` |
 | Info page path constants | `src/app/core/router/info-routing-paths.ts` | Footer links and translation keys |
+| Item PDF preview | `src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/` | Simple/full file-section components and custom theme wrappers |
 | Default UI/runtime settings | `src/config/default-app-config.ts` | `src/environments/environment*.ts` |
 | SSR settings | `config/config.yml`, `src/environments/environment.ts` | `src/environments/environment.production.ts` |
 
@@ -180,6 +185,99 @@ When adding or renaming a footer link:
 2. Add the label key in `src/assets/i18n/en.json5`.
 3. Add matching placeholder or translated keys in active locale files such as `src/assets/i18n/sw.json5`.
 4. Confirm the footer still wraps cleanly at 320px, 390px, 768px, and desktop widths.
+
+## Homepage Research-Impact Slider
+
+The compact homepage research-impact slider is rendered from site CMS metadata:
+
+```text
+dspace.cms.home-header
+```
+
+Site Administrators can update it from:
+
+```text
+/admin/edit-cms-metadata
+```
+
+Select `dspace.cms.home-header`. The editor includes helper buttons to insert a slide template or upload a slide image. Uploaded images are inserted as data URLs into the CMS metadata field, which is convenient for small managed banners. For very large or frequently changed images, prefer uploading an optimized image asset to the repository deployment and referencing its URL in the `image:` field.
+
+Each slide uses this editable block format:
+
+```text
+---
+kicker: UCU Research Impact
+title: Article title
+subtitle: Short article subtitle
+summary: One concise sentence about why this research matters.
+image: assets/images/ucu-logo-lib.png
+alt: Short description of the image
+link: /items/item-uuid-or-handle
+button: Read more
+findings:
+- First research impact highlight
+- Second research impact highlight
+- Third research impact highlight
+```
+
+Use one `---` separated block per slide. The `link:` value should point to an item page or article detail route inside the same repository, so the `Read more` button keeps users in the system. External URLs are normalized to their path only; the slider is intended for repository content, not outside news pages.
+
+The slider parser and fallback slide are maintained in:
+
+```text
+src/app/home-page/home-page.component.ts
+```
+
+The compact visual layout is maintained in:
+
+```text
+src/app/home-page/home-page.component.html
+src/app/home-page/home-page.component.scss
+```
+
+The custom theme wrapper must import `RouterLink` because the base template uses Angular router links:
+
+```text
+src/themes/custom/app/home-page/home-page.component.ts
+```
+
+Keep the slider modest in height. It is designed as a homepage header highlight, not a full-screen hero. Check 320px, 390px, 768px, and desktop widths after changing image ratios, text length, or button labels.
+
+## Item PDF Preview
+
+Open-access PDF bitstreams are previewed directly on item pages below the normal file link. The preview appears only when:
+
+- the bitstream format is PDF, either by MIME type `application/pdf` or a `.pdf` filename;
+- the current user is authorized for `FeatureID.CanDownload`;
+- the bitstream has a content URL.
+
+The preview component is:
+
+```text
+src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/
+```
+
+It is used by both item file-section templates:
+
+```text
+src/app/item-page/simple/field-components/file-section/file-section.component.html
+src/app/item-page/full/field-components/file-section/full-file-section.component.html
+```
+
+The simple file-section now always follows the bitstream `format` link so PDF detection works:
+
+```text
+src/app/item-page/simple/field-components/file-section/file-section.component.ts
+```
+
+The custom theme wrappers must also import `PdfBitstreamPreviewComponent` because they point back to base templates:
+
+```text
+src/themes/custom/app/item-page/simple/field-components/file-section/file-section.component.ts
+src/themes/custom/app/item-page/full/field-components/file-section/full-file-section.component.ts
+```
+
+The preview uses the browser's native PDF rendering in an `iframe`. If a deployment still downloads PDFs instead of displaying them inline, check the DSpace REST/content response headers and proxy behavior, especially `Content-Type: application/pdf` and `Content-Disposition`.
 
 ## Responsive Design
 

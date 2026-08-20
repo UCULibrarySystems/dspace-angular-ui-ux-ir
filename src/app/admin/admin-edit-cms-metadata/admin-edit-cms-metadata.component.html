@@ -35,6 +35,24 @@
         @for (lang of (languageMap | keyvalue); track lang.key) {
           <div class="form-group">
             <label>{{languageLabel(lang.value)}}</label>
+            @if (isEditingHomeHeader()) {
+              <div class="cms-home-header-tools m-2 p-3">
+                <p class="mb-2">
+                  Use this field to manage the compact homepage research-impact slider. Add one slide per block and separate slides with <code>---</code>. The link should point to an item page inside this repository.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <button type="button" class="btn btn-outline-primary btn-sm" (click)="insertResearchImpactSlide(lang.key)">
+                    <i class="fas fa-plus mr-1"></i>
+                    Insert slide template
+                  </button>
+                  <label class="btn btn-outline-secondary btn-sm mb-0">
+                    <i class="fas fa-image mr-1"></i>
+                    Upload slide image
+                    <input type="file" class="d-none" accept="image/*" (change)="uploadResearchImpactImage($event, lang.key)">
+                  </label>
+                </div>
+              </div>
+            }
             <textarea class="col-md-12 m-2" [ngModel]="selectedMetadataValues.get(lang.key)" (ngModelChange)="selectedMetadataValues.set(lang.key, $event)" rows="10"></textarea>
           </div>
         }

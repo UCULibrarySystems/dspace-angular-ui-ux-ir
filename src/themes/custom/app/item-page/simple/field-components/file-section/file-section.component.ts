@@ -9,6 +9,7 @@ import { ThemedLoadingComponent } from '../../../../../../../app/shared/loading/
 import { MetadataFieldWrapperComponent } from '../../../../../../../app/shared/metadata-field-wrapper/metadata-field-wrapper.component';
 import { FileSizePipe } from '../../../../../../../app/shared/utils/file-size-pipe';
 import { VarDirective } from '../../../../../../../app/shared/utils/var.directive';
+import { PdfBitstreamPreviewComponent } from '../../../../../../../app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component';
 
 
 @Component({
@@ -20,6 +21,7 @@ import { VarDirective } from '../../../../../../../app/shared/utils/var.directiv
     CommonModule,
     FileSizePipe,
     MetadataFieldWrapperComponent,
+    PdfBitstreamPreviewComponent,
     ThemedFileDownloadLinkComponent,
     ThemedLoadingComponent,
     TranslateModule,

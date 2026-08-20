@@ -41,6 +41,7 @@ import { PaginationComponent } from '../../../../shared/pagination/pagination.co
 import { FileSizePipe } from '../../../../shared/utils/file-size-pipe';
 import { VarDirective } from '../../../../shared/utils/var.directive';
 import { ThemedThumbnailComponent } from '../../../../thumbnail/themed-thumbnail.component';
+import { PdfBitstreamPreviewComponent } from '../../../simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component';
 import { FileSectionComponent } from '../../../simple/field-components/file-section/file-section.component';
 
 /**
@@ -58,6 +59,7 @@ import { FileSectionComponent } from '../../../simple/field-components/file-sect
     MetadataDirective,
     MetadataFieldWrapperComponent,
     PaginationComponent,
+    PdfBitstreamPreviewComponent,
     ThemedFileDownloadLinkComponent,
     ThemedThumbnailComponent,
     TranslateModule,

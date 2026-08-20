@@ -1,6 +1,5 @@
 import {
   AsyncPipe,
-  NgClass,
   NgTemplateOutlet,
 } from '@angular/common';
 import {
@@ -31,7 +30,6 @@ import {
 
 import { SuggestionsPopupComponent } from '../notifications/suggestions/popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
-import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
 import { ThemedSearchFormComponent } from '../shared/search-form/themed-search-form.component';
 import { HomeCoarComponent } from './home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from './home-news/themed-home-news.component';
@@ -57,8 +55,6 @@ interface ResearchImpactSlide {
   imports: [
     AsyncPipe,
     HomeCoarComponent,
-    MarkdownViewerComponent,
-    NgClass,
     NgTemplateOutlet,
     RecentItemListComponent,
     RouterLink,
@@ -70,7 +66,7 @@ interface ResearchImpactSlide {
     TranslateModule,
   ],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
 
   site$: Observable<Site>;
   recentSubmissionspageSize: number;
@@ -93,7 +89,6 @@ export class HomePageComponent implements OnInit {
       map((data) => data.site as Site),
     );
 
-    this.homeHeaderMetadataValue$ = combineLatest({
     this.homeHeaderSlides$ = combineLatest({
       site: this.site$,
       language: this.locale.getCurrentLanguageCode(),
@@ -211,7 +206,7 @@ export class HomePageComponent implements OnInit {
         summary: 'Explore publications, theses, dissertations, datasets, and scholarly outputs produced by the UCU academic community.',
         image: 'assets/images/ucu-logo-lib.png',
         imageAlt: 'Uganda Christian University Libraries and Archives',
-        link: '/search?spc.page=1&spc.sf=dc.date.accessioned&spc.sd=DESC',
+        link: '/search',
         button: 'Read more',
         findings: [
           'Open access scholarship',

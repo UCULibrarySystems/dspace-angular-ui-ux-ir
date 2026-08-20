@@ -34,6 +34,7 @@ import { ThemedLoadingComponent } from '../../../../shared/loading/themed-loadin
 import { MetadataFieldWrapperComponent } from '../../../../shared/metadata-field-wrapper/metadata-field-wrapper.component';
 import { FileSizePipe } from '../../../../shared/utils/file-size-pipe';
 import { VarDirective } from '../../../../shared/utils/var.directive';
+import { PdfBitstreamPreviewComponent } from './pdf-bitstream-preview/pdf-bitstream-preview.component';
 
 /**
  * This component renders the file section of the item
@@ -46,6 +47,7 @@ import { VarDirective } from '../../../../shared/utils/var.directive';
     CommonModule,
     FileSizePipe,
     MetadataFieldWrapperComponent,
+    PdfBitstreamPreviewComponent,
     ThemedFileDownloadLinkComponent,
     ThemedLoadingComponent,
     TranslateModule,
@@ -115,11 +117,12 @@ export class FileSectionComponent implements OnInit {
     }
     const followLinks: FollowLinkConfig<HALResource>[] = [
       followLink('accessStatus'),
+      followLink('format'),
     ];
 
     if (this.showDownloadLinkAsAttachment) {
       followLinks.push(
-        ...[followLink('thumbnail'), followLink('format')],
+        followLink('thumbnail'),
       );
     }
 

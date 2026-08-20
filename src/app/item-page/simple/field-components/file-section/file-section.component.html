@@ -24,6 +24,7 @@
             [item]="item">
             <ng-container *ngTemplateOutlet="fileContent"></ng-container>
           </ds-file-download-link>
+          <ds-pdf-bitstream-preview [bitstream]="file"></ds-pdf-bitstream-preview>
         }
         @if (isLoading) {
           <ds-loading message="{{'loading.default' | translate}}" [showMessage]="false"></ds-loading>

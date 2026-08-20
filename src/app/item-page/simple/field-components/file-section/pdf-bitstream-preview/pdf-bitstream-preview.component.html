@@ -1,0 +1,9 @@
+@if (preview$ | async; as preview) {
+  <section class="pdf-preview" [attr.aria-label]="preview.title">
+    <div class="pdf-preview-header">
+      <span class="fas fa-file-pdf" aria-hidden="true"></span>
+      <span>{{ preview.title }}</span>
+    </div>
+    <iframe [src]="preview.url" [title]="preview.title" loading="lazy"></iframe>
+  </section>
+}

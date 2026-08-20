@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FullFileSectionComponent as BaseComponent } from '../../../../../../../app/item-page/full/field-components/file-section/full-file-section.component';
+import { PdfBitstreamPreviewComponent } from '../../../../../../../app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component';
 import { ThemedFileDownloadLinkComponent } from '../../../../../../../app/shared/file-download-link/themed-file-download-link.component';
 import { MetadataDirective } from '../../../../../../../app/shared/metadata.directive';
 import { MetadataFieldWrapperComponent } from '../../../../../../../app/shared/metadata-field-wrapper/metadata-field-wrapper.component';
@@ -24,6 +25,7 @@ import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/the
     MetadataDirective,
     MetadataFieldWrapperComponent,
     PaginationComponent,
+    PdfBitstreamPreviewComponent,
     ThemedFileDownloadLinkComponent,
     ThemedThumbnailComponent,
     TranslateModule,

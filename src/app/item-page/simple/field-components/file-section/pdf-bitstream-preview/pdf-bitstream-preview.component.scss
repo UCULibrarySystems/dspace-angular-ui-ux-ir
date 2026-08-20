@@ -1,0 +1,31 @@
+.pdf-preview {
+  border: 1px solid #d8e0ea;
+  border-radius: 0.4rem;
+  margin: 0.65rem 0 1rem;
+  overflow: hidden;
+}
+
+.pdf-preview-header {
+  align-items: center;
+  background: #f8fafc;
+  color: #092f73;
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: 800;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+}
+
+iframe {
+  background: #fff;
+  border: 0;
+  display: block;
+  height: clamp(24rem, 58vh, 44rem);
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  iframe {
+    height: 28rem;
+  }
+}

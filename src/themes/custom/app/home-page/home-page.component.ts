@@ -3,8 +3,8 @@ import {
   NgTemplateOutlet,
 } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { MarkdownViewerComponent } from 'src/app/shared/markdown-viewer/markdown-viewer.component';
 
 import { HomeCoarComponent } from '../../../../app/home-page/home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from '../../../../app/home-page/home-news/themed-home-news.component';
@@ -24,9 +24,9 @@ import { ThemedSearchFormComponent } from '../../../../app/shared/search-form/th
   imports: [
     AsyncPipe,
     HomeCoarComponent,
-    MarkdownViewerComponent,
     NgTemplateOutlet,
     RecentItemListComponent,
+    RouterLink,
     SuggestionsPopupComponent,
     ThemedConfigurationSearchPageComponent,
     ThemedHomeNewsComponent,
