@@ -2109,6 +2109,20 @@
 
   "footer.link.accessibility": "Accessibility settings",
 
+  "footer.link.deposit": "Deposit guidance",
+
+  "footer.link.data": "Data reuse",
+
+  "footer.link.service": "Service level",
+
+  "footer.link.terms": "Terms of use",
+
+  "footer.link.preservation": "Preservation",
+
+  "footer.link.notice": "Notice and takedown",
+
+  "footer.link.quality": "Quality assurance",
+
   "footer.link.dspace": "UCU Libraries and Archives",
 
   "footer.link.lyrasis": "Uganda Christian University",
@@ -2464,6 +2478,34 @@
   "info.privacy.head": "Privacy Policy",
 
   "info.privacy.title": "Privacy Policy",
+
+  "info.deposit.breadcrumbs": "Deposit guidance",
+
+  "info.deposit.title": "Deposit guidance",
+
+  "info.data.breadcrumbs": "Data reuse",
+
+  "info.data.title": "Data reuse",
+
+  "info.service.breadcrumbs": "Service level",
+
+  "info.service.title": "Service level",
+
+  "info.terms.breadcrumbs": "Terms of use",
+
+  "info.terms.title": "Terms of use",
+
+  "info.preservation.breadcrumbs": "Preservation",
+
+  "info.preservation.title": "Preservation",
+
+  "info.notice.breadcrumbs": "Notice and takedown",
+
+  "info.notice.title": "Notice and takedown",
+
+  "info.quality.breadcrumbs": "Quality assurance",
+
+  "info.quality.title": "Quality assurance",
 
   "info.feedback.breadcrumbs": "Feedback",
 

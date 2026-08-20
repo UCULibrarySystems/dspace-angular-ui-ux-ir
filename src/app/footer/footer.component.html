@@ -54,7 +54,7 @@
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="bottom-footer p-3 d-flex flex-column flex-md-row justify-content-center align-items-center text-white">
+  <div class="bottom-footer d-flex flex-column flex-md-row justify-content-center align-items-center text-white">
     <div class="content-container align-self-center">
       <p class="m-0 fw-bold">
         {{ 'footer.ucu.name' | translate }}
@@ -63,7 +63,7 @@
       <p class="footer-license m-0">
         {{ 'footer.ucu.license' | translate }}
       </p>
-      <ul class="footer-info list-unstyled d-flex justify-content-center mb-0">
+      <ul class="footer-info list-unstyled d-flex justify-content-center align-items-center mb-0">
         @if (showCookieSettings) {
         <li>
           <button class="btn btn-link text-white" type="button" (click)="openCookieSettings()" role="button" tabindex="0">
@@ -74,6 +74,34 @@
         <li>
           <a class="btn text-white"
              routerLink="info/accessibility" role="link" tabindex="0">{{ 'footer.link.accessibility' | translate }}</a>
+        </li>
+        <li>
+          <a class="btn text-white"
+             routerLink="info/deposit" role="link" tabindex="0">{{ 'footer.link.deposit' | translate }}</a>
+        </li>
+        <li>
+          <a class="btn text-white"
+             routerLink="info/data" role="link" tabindex="0">{{ 'footer.link.data' | translate }}</a>
+        </li>
+        <li>
+          <a class="btn text-white"
+             routerLink="info/service" role="link" tabindex="0">{{ 'footer.link.service' | translate }}</a>
+        </li>
+        <li>
+          <a class="btn text-white"
+             routerLink="info/terms" role="link" tabindex="0">{{ 'footer.link.terms' | translate }}</a>
+        </li>
+        <li>
+          <a class="btn text-white"
+             routerLink="info/preservation" role="link" tabindex="0">{{ 'footer.link.preservation' | translate }}</a>
+        </li>
+        <li>
+          <a class="btn text-white"
+             routerLink="info/notice" role="link" tabindex="0">{{ 'footer.link.notice' | translate }}</a>
+        </li>
+        <li>
+          <a class="btn text-white"
+             routerLink="info/quality" role="link" tabindex="0">{{ 'footer.link.quality' | translate }}</a>
         </li>
         @if (showPrivacyPolicy) {
           <li>

@@ -12,11 +12,14 @@ The current UCU UI/UX layer provides:
 - UCU blue, maroon, yellow, and green design tokens for navigation, buttons, links, borders, alerts, and focus states.
 - Trebuchet MS as the primary interface font with system-font fallbacks.
 - A utility header with the latest repository additions link and official UCU social profiles.
+- A simplified repository header with the UCU Libraries and Archives logo, search, language, authentication controls, and no admissions `Apply Now` button.
 - Responsive header and hamburger navigation for phone, tablet, desktop, and widescreen layouts.
+- UCU-maroon lower footer section with responsive policy/help links and no hover underlines.
 - A sitewide accessibility menu with profiles, reader controls, content controls, color modes, navigation controls, language selection, and persistent preferences.
 - UCU-branded Orejime cookie consent notice and settings modal with responsive layout and keyboard focus states.
 - Repository-oriented SEO metadata, Dublin Core and citation metadata, Open Graph/Twitter metadata, geographic metadata, and JSON-LD descriptions.
 - Public sitemap and robots configuration that exposes repository content while excluding administrative and query-heavy routes.
+- UCU-adjusted repository information pages for deposit guidance, data reuse, service level, terms, preservation, notice and takedown, and quality assurance.
 
 This document is the maintenance reference for these features and their source locations.
 
@@ -57,6 +60,8 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Header markup | `src/themes/custom/app/header/header.component.html` | `src/themes/dspace/app/header/header.component.html` |
 | Header spacing, logo, and responsive controls | `src/themes/custom/app/header/header.component.scss` | `src/themes/dspace/app/header/header.component.scss` |
 | Mobile hamburger navigation | `src/themes/dspace/app/header-nav-wrapper/header-navbar-wrapper.component.scss` | `src/themes/dspace/app/header-nav-wrapper/header-navbar-wrapper.component.html` |
+| Footer markup and info links | `src/app/footer/footer.component.html` | `src/app/footer/footer.component.ts` |
+| Footer maroon strip styling | `src/app/footer/footer.component.scss` | `src/styles/_custom_variables.scss` |
 | Sitewide accessibility launcher and panel | `src/app/accessibility/sitewide-accessibility/` | `src/app/app.component.html`, `src/app/app.component.ts` |
 | Accessibility preference effects | `src/styles/_global-styles.scss` | `src/app/accessibility/sitewide-accessibility/sitewide-accessibility.component.scss` |
 | Cookie consent appearance | `src/styles/_global-styles.scss` | `src/app/core/cookies/browser-orejime.service.ts`, `src/app/core/cookies/orejime-configuration.ts` |
@@ -70,6 +75,8 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Robots and sitemap origin | `src/robots.txt.ejs` | `config/config.yml`, reverse proxy headers |
 | Community heading and interface text | `src/assets/i18n/en.json5` | Other active locale files |
 | Privacy policy page | `src/app/info/privacy/privacy-content/privacy-content.component.html` | `src/assets/i18n/en.json5` |
+| UCU repository info pages | `src/app/info/<page>/` | `src/themes/custom/app/info/<page>/`, `src/app/info/info-routes.ts` |
+| Info page path constants | `src/app/core/router/info-routing-paths.ts` | Footer links and translation keys |
 | Default UI/runtime settings | `src/config/default-app-config.ts` | `src/environments/environment*.ts` |
 | SSR settings | `config/config.yml`, `src/environments/environment.ts` | `src/environments/environment.production.ts` |
 
@@ -92,6 +99,8 @@ The header contains:
 - Desktop navigation through `ds-navbar`.
 - Search, language, authentication, and context controls.
 - The mobile hamburger trigger.
+
+The former `Apply Now` admissions button was intentionally removed from both active header templates. This repository header should point users toward repository discovery and account actions, not undergraduate admissions. If an admissions link is ever reintroduced, it should be discussed with the repository team and added to both header templates with responsive behavior verified.
 
 ### Latest Repository Additions Link
 
@@ -126,6 +135,51 @@ When replacing a profile, update the HTML in both header theme files. Keep `aria
 ```text
 src/styles/helpers/_font_awesome_imports.scss
 ```
+
+## Footer
+
+The footer is shared by the base app and the custom theme wrapper:
+
+```text
+src/app/footer/footer.component.html
+src/app/footer/footer.component.scss
+src/themes/custom/app/footer/footer.component.ts
+```
+
+The current footer contains:
+
+- UCU copyright and licence text.
+- Cookie settings action when cookie consent is enabled.
+- Accessibility settings.
+- Deposit guidance.
+- Data reuse.
+- Service level.
+- Terms of use.
+- Preservation.
+- Notice and takedown.
+- Quality assurance.
+- Privacy policy.
+- End user agreement.
+- Send feedback.
+- COAR Notify support when enabled.
+
+The lower footer section is intentionally UCU maroon:
+
+```scss
+.bottom-footer {
+  background: var(--ucu-maroon);
+  border-top: 4px solid var(--ucu-yellow);
+}
+```
+
+Footer links are designed to wrap neatly when there are many policy links. Do not force them into a single no-wrap row on narrow screens. The link hover state changes color without adding underlines, while keyboard users still receive a visible `:focus-visible` outline.
+
+When adding or renaming a footer link:
+
+1. Add or update the route in `src/app/footer/footer.component.html`.
+2. Add the label key in `src/assets/i18n/en.json5`.
+3. Add matching placeholder or translated keys in active locale files such as `src/assets/i18n/sw.json5`.
+4. Confirm the footer still wraps cleanly at 320px, 390px, 768px, and desktop widths.
 
 ## Responsive Design
 
@@ -406,6 +460,101 @@ src/assets/i18n/en.json5
 
 Update the visible “Last updated” date whenever the approved institutional policy changes. The policy text should be reviewed and approved by UCU before deployment; frontend maintenance alone is not legal approval.
 
+## Repository Information Pages
+
+Custom UCU repository guidance and policy-style pages live under the Angular `info` module. Each page has three layers:
+
+1. A base standalone component and content component in `src/app/info/<page>/`.
+2. A themed wrapper in `src/themes/custom/app/info/<page>/<page>.component.ts`.
+3. A route entry in `src/app/info/info-routes.ts` using a path constant from `src/app/core/router/info-routing-paths.ts`.
+
+Current custom information pages:
+
+| Public route | Purpose | Base source | Theme wrapper |
+| --- | --- | --- | --- |
+| `/info/deposit` | How to deposit repository content | `src/app/info/deposit/` | `src/themes/custom/app/info/deposit/` |
+| `/info/data` | Data discovery, reuse, licensing, and citation guidance | `src/app/info/data/` | `src/themes/custom/app/info/data/` |
+| `/info/service` | Repository service level and support expectations | `src/app/info/service/` | `src/themes/custom/app/info/service/` |
+| `/info/terms` | Repository terms of use | `src/app/info/terms/` | `src/themes/custom/app/info/terms/` |
+| `/info/preservation` | Preservation approach and access/dissemination notes | `src/app/info/preservation/` | `src/themes/custom/app/info/preservation/` |
+| `/info/notice` | Notice and takedown process | `src/app/info/notice/` | `src/themes/custom/app/info/notice/` |
+| `/info/quality` | Quality assurance and curation workflow | `src/app/info/quality/` | `src/themes/custom/app/info/quality/` |
+
+### Adding a New Info Page
+
+Use the existing pages as templates. A new page named `example` should normally include:
+
+```text
+src/app/info/example/example-content/example-content.component.ts
+src/app/info/example/example-content/example-content.component.html
+src/app/info/example/example-content/example-content.component.scss
+src/app/info/example/example.component.ts
+src/app/info/example/example.component.html
+src/app/info/example/example.component.scss
+src/app/info/example/themed-example.component.ts
+src/themes/custom/app/info/example/example.component.ts
+```
+
+Then update:
+
+```text
+src/app/core/router/info-routing-paths.ts
+src/app/info/info-routes.ts
+src/app/footer/footer.component.html
+src/assets/i18n/en.json5
+src/assets/i18n/sw.json5
+```
+
+Most current pages reuse the shared info-page presentation from:
+
+```text
+src/app/info/service/service-content/service-content.component.scss
+```
+
+Reuse that style when the page is another policy/guidance page. Create a separate stylesheet only when the page needs a genuinely different layout.
+
+### Content Adaptation Rules
+
+Several repository policy pages were adapted from Cambridge Apollo-style reference material. Do not paste external institutional content directly. When updating these pages:
+
+- Replace `Apollo`, `University of Cambridge`, `Cambridge University Library`, Cambridge addresses, and Cambridge emails with UCU-specific wording.
+- Prefer `Uganda Christian University Digital Institutional Repository` on first mention and `the repository` afterwards.
+- Use internal links such as `/info/deposit`, `/info/data`, `/info/privacy`, `/info/notice`, `/info/quality`, and `/info/feedback`.
+- Do not invent legal contact details, DOIs, policy identifiers, or office addresses unless UCU has approved them.
+- Route contact prompts to the repository feedback form unless an approved UCU repository email is supplied.
+- Keep policy wording practical and institutional, but avoid claiming a service level, DOI workflow, preservation system, or takedown authority that UCU has not approved operationally.
+
+### Info Page Translation Keys
+
+Each page needs at least:
+
+```text
+info.<page>.breadcrumbs
+info.<page>.title
+footer.link.<page>
+```
+
+The current custom keys include:
+
+```text
+info.deposit.*
+info.data.*
+info.service.*
+info.terms.*
+info.preservation.*
+info.notice.*
+info.quality.*
+footer.link.deposit
+footer.link.data
+footer.link.service
+footer.link.terms
+footer.link.preservation
+footer.link.notice
+footer.link.quality
+```
+
+Add English first in `src/assets/i18n/en.json5`, then add translated or TODO placeholder entries in active locale files. The current Kiswahili file keeps many English placeholders with TODO comments, so follow that local pattern until approved translations are available.
+
 ## Runtime Configuration
 
 The local deployment configuration is:
@@ -457,6 +606,10 @@ rg -n "ucu-logo|favicon|ucu-blue|ucu-maroon|Trebuchet" src config angular.json
 **Latest additions are not current:** confirm both header templates still use `dc.date.accessioned` with `DESC`. This link sorts search results; it does not reindex the backend or bypass caching.
 
 **Accessibility changes affect only one page:** confirm the preference class is applied to `html` and that global selectors target `ds-root`. Sitewide effects belong in `src/styles/_global-styles.scss`.
+
+**New info page gives a blank page or build error:** confirm the themed wrapper import path in `themed-<page>.component.ts`, the custom wrapper path in `src/themes/custom/app/info/<page>/`, and the route import in `src/app/info/info-routes.ts`. Standalone components must list imported components, directives, and `RouterLink` where templates use Angular links.
+
+**Footer links are cramped or underlined:** confirm `.footer-info` still uses `flex-wrap: wrap` and that footer anchors use `text-decoration: none` in `src/app/footer/footer.component.scss`.
 
 ## Files Generated by Build or Runtime Scripts
 

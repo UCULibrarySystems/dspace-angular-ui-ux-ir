@@ -157,24 +157,6 @@
     font-weight: 700;
   }
 
-  .apply-now {
-    align-items: center;
-    justify-content: center;
-    min-height: 2.75rem;
-    padding: 0 1.2rem;
-    border-radius: 0.45rem;
-    background: var(--ucu-yellow);
-    color: #07234f;
-    font-weight: 800;
-    text-decoration: none;
-    box-shadow: 0 0.18rem 0.42rem rgba(255, 217, 50, 0.35);
-
-    &:hover, &:focus {
-      background: var(--ucu-maroon);
-      color: #fff;
-    }
-  }
-
   button#navbar-toggler {
     min-width: 6.5rem;
     background: #fff0f5;
