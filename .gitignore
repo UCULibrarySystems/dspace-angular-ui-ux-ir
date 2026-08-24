@@ -3,6 +3,9 @@
 /__build__
 /__server_build__
 /node_modules
+
+# DSpace Angular is a Node application; PHP source must never be committed.
+*.php
 /typings
 /tsd_typings/
 npm-debug.log

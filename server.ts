@@ -72,6 +72,7 @@ const cookieParser = require('cookie-parser');
 const configJson = join(DIST_FOLDER, 'assets/config.json');
 const hashedFileMapping = new ServerHashedFileMapping(DIST_FOLDER, 'index.html');
 const appConfig: AppConfig = buildAppConfig(configJson, hashedFileMapping);
+const publicUiHostname = new URL(appConfig.ui.baseUrl).hostname.toLowerCase();
 appConfig.themes.forEach(themeConfig => hashedFileMapping.addThemeStyle(themeConfig.name, themeConfig.prefetch));
 hashedFileMapping.save();
 
@@ -122,6 +123,21 @@ export function app() {
    * See [morgan](https://github.com/expressjs/morgan)
    */
   server.use(morgan('dev'));
+
+  /*
+   * This is a Node/Angular application and never serves executable server-side
+   * scripts. Return a real 404 for common script probes instead of passing them
+   * to Angular's catch-all route, which would otherwise return index.html with
+   * a misleading 200 response.
+   */
+  server.use(rejectUnsupportedRequestProbe);
+
+  /*
+   * Reject forged or raw-IP Host headers before SSR. Angular performs the same
+   * validation internally, but handling it here avoids a noisy SSR exception
+   * and an unsafe-looking fallback to CSR.
+   */
+  server.use(rejectUnexpectedHost);
 
   /*
    * Add cookie parser middleware
@@ -238,6 +254,36 @@ function ngApp(req, res, next) {
   }
 }
 
+const executableScriptPath = /(?:^|\/)[^/?]*\.(?:php\d*|phtml|phar|cgi|pl|asp|aspx|jsp)(?:\/|$)/i;
+const sensitiveServicePath = /^\/(?:containers\/json|docker(?:\/|$)|\.env(?:\.|$)|\.git(?:\/|$))/i;
+
+function rejectUnsupportedRequestProbe(req, res, next) {
+  let requestPath: string;
+  try {
+    requestPath = decodeURIComponent(req.path);
+  } catch {
+    res.status(400).type('text/plain').send('Bad Request');
+    return;
+  }
+
+  if (executableScriptPath.test(requestPath) || sensitiveServicePath.test(requestPath)) {
+    res.status(404).type('text/plain').send('Not Found');
+    return;
+  }
+  next();
+}
+
+function rejectUnexpectedHost(req, res, next) {
+  // Keep local development and health checks usable from the host/container network.
+  const requestHostname = (req.hostname || '').toLowerCase();
+  if (!environment.production || req.path === '/app/health' || requestHostname === publicUiHostname) {
+    next();
+    return;
+  }
+
+  res.status(421).type('text/plain').send('Misdirected Request');
+}
+
 /**
  * Render page content on server side using Angular SSR. By default this page content is
  * returned to the user.
@@ -314,6 +360,7 @@ function serverSideRender(req, res, next, sendToUser: boolean = true) {
         if (sendToUser) {
           console.warn('Falling back to serving direct client-side rendering (CSR).');
           clientSideRender(req, res);
+          return;
         }
       }
       next(err);
@@ -577,15 +624,7 @@ function createHttpsServer(keys) {
     serverStarted();
   });
 
-  // Graceful shutdown when signalled
-  const terminator = createHttpTerminator({ server: listener });
-  process.on('SIGINT', () => {
-    void (async ()=> {
-      console.debug('Closing HTTPS server on signal');
-      await terminator.terminate().catch(e => { console.error(e); });
-      console.debug('HTTPS server closed');
-    })();
-  });
+  registerGracefulShutdown(listener, 'HTTPS');
 }
 
 /**
@@ -601,15 +640,39 @@ function run() {
     serverStarted();
   });
 
-  // Graceful shutdown when signalled
+  registerGracefulShutdown(listener, 'HTTP');
+}
+
+/**
+ * Close the listener and all active connections when PM2 or the container
+ * requests a shutdown. Explicitly exiting prevents long-lived Angular/RxJS
+ * handles from keeping a stopped PM2 worker alive until it is SIGKILLed.
+ */
+function registerGracefulShutdown(listener, protocol: string) {
   const terminator = createHttpTerminator({ server: listener });
-  process.on('SIGINT', () => {
+  let shuttingDown = false;
+
+  const shutdown = (signal: string) => {
+    if (shuttingDown) {
+      return;
+    }
+    shuttingDown = true;
+
     void (async () => {
-      console.debug('Closing HTTP server on signal');
-      await terminator.terminate().catch(e => { console.error(e); });
-      console.debug('HTTP server closed.');return undefined;
+      console.debug(`Closing ${protocol} server on ${signal}`);
+      try {
+        await terminator.terminate();
+        console.debug(`${protocol} server closed.`);
+        process.exit(0);
+      } catch (error) {
+        console.error(`Failed to close ${protocol} server cleanly.`, error);
+        process.exit(1);
+      }
     })();
-  });
+  };
+
+  process.once('SIGINT', () => shutdown('SIGINT'));
+  process.once('SIGTERM', () => shutdown('SIGTERM'));
 }
 
 function start() {
