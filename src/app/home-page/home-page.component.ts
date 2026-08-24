@@ -18,7 +18,6 @@ import {
 } from '@dspace/config/app-config.interface';
 import { LocaleService } from '@dspace/core/locale/locale.service';
 import { Site } from '@dspace/core/shared/site.model';
-import { TranslateModule } from '@ngx-translate/core';
 import {
   combineLatest,
   Observable,
@@ -30,7 +29,6 @@ import {
 
 import { SuggestionsPopupComponent } from '../notifications/suggestions/popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
-import { ThemedSearchFormComponent } from '../shared/search-form/themed-search-form.component';
 import { HomeCoarComponent } from './home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from './home-news/themed-home-news.component';
 import { RecentItemListComponent } from './recent-item-list/recent-item-list.component';
@@ -61,9 +59,7 @@ interface ResearchImpactSlide {
     SuggestionsPopupComponent,
     ThemedConfigurationSearchPageComponent,
     ThemedHomeNewsComponent,
-    ThemedSearchFormComponent,
     ThemedTopLevelCommunityListComponent,
-    TranslateModule,
   ],
 })
 export class HomePageComponent implements OnInit, OnDestroy {

@@ -102,8 +102,12 @@ The header contains:
 - The latest repository additions link.
 - The UCU Libraries and Archives logo.
 - Desktop navigation through `ds-navbar`.
-- Search, language, authentication, and context controls.
+- A full repository search field beneath the main navigation.
+- Header guidance tabs for depositing, data reuse, and repository governance/quality policies.
+- Language, authentication, and context controls.
 - The mobile hamburger trigger.
+
+The guidance tabs and repository search are intentionally part of the shared header, so they remain available away from the home page. The home-page search form is omitted to avoid presenting the same search control twice. On narrow screens, the guidance tabs become a horizontally scrollable row and the search button uses its icon-only treatment.
 
 The former `Apply Now` admissions button was intentionally removed from both active header templates. This repository header should point users toward repository discovery and account actions, not undergraduate admissions. If an admissions link is ever reintroduced, it should be discussed with the repository team and added to both header templates with responsive behavior verified.
 

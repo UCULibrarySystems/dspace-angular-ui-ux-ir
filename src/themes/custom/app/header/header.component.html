@@ -47,7 +47,6 @@
     </div>
     <!-- Search bar and other menus -->
     <div id="header-right" class="h-100 d-flex flex-row flex-nowrap flex-shrink-0 justify-content-end align-items-center gapx-1 ms-auto">
-      <ds-search-navbar></ds-search-navbar>
       <div role="toolbar" class="h-100 d-flex flex-row flex-nowrap align-items-center gapx-1">
         <ds-lang-switch></ds-lang-switch>
         <ds-context-help-toggle></ds-context-help-toggle>
@@ -62,6 +61,33 @@
           </button>
         </div>
       }
+    </div>
+  </div>
+  <div class="ucu-discovery-header">
+    <div class="container">
+      <nav class="ucu-guide-tabs" aria-label="Repository guidance">
+        <a class="ucu-guide-tab" [routerLink]="['/info/deposit']">
+          <span class="ucu-guide-tab-title">How to deposit</span>
+          <span class="ucu-guide-tab-copy">Deposit processes and eligibility</span>
+        </a>
+        <a class="ucu-guide-tab" [routerLink]="['/info/data']">
+          <span class="ucu-guide-tab-title">Data reuse</span>
+          <span class="ucu-guide-tab-copy">Discover, reuse and cite repository data</span>
+        </a>
+        <a class="ucu-guide-tab" [routerLink]="['/info/quality']">
+          <span class="ucu-guide-tab-title">Governance</span>
+          <span class="ucu-guide-tab-copy">Repository governance and policies</span>
+        </a>
+      </nav>
+
+      <form class="ucu-header-search" action="/search" method="get" role="search">
+        <label class="visually-hidden" for="ucu-header-search-query">Search the repository</label>
+        <input id="ucu-header-search-query" class="form-control" type="search" name="query" placeholder="Search the repository ...">
+        <button class="btn" type="submit">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <span>Search</span>
+        </button>
+      </form>
     </div>
   </div>
 </header>

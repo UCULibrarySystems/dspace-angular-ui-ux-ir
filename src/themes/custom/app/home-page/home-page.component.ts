@@ -4,7 +4,6 @@ import {
 } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { HomeCoarComponent } from '../../../../app/home-page/home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from '../../../../app/home-page/home-news/themed-home-news.component';
@@ -13,7 +12,6 @@ import { RecentItemListComponent } from '../../../../app/home-page/recent-item-l
 import { ThemedTopLevelCommunityListComponent } from '../../../../app/home-page/top-level-community-list/themed-top-level-community-list.component';
 import { SuggestionsPopupComponent } from '../../../../app/notifications/suggestions/popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../../../../app/search-page/themed-configuration-search-page.component';
-import { ThemedSearchFormComponent } from '../../../../app/shared/search-form/themed-search-form.component';
 
 @Component({
   selector: 'ds-themed-home-page',
@@ -30,9 +28,7 @@ import { ThemedSearchFormComponent } from '../../../../app/shared/search-form/th
     SuggestionsPopupComponent,
     ThemedConfigurationSearchPageComponent,
     ThemedHomeNewsComponent,
-    ThemedSearchFormComponent,
     ThemedTopLevelCommunityListComponent,
-    TranslateModule,
   ],
 })
 export class HomePageComponent extends BaseComponent {

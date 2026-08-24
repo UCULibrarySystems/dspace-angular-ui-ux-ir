@@ -104,6 +104,103 @@
     min-width: 0;
   }
 
+  .ucu-discovery-header {
+    background: #fff;
+    border-top: 1px solid rgba(11, 61, 145, 0.14);
+    padding: 1rem 0 1.15rem;
+
+    > .container {
+      max-width: 960px;
+    }
+  }
+
+  .ucu-guide-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .ucu-guide-tab {
+    background: #fff;
+    border: 1px solid #d8dde5;
+    border-radius: 0.25rem;
+    color: #252525;
+    display: flex;
+    flex-direction: column;
+    min-height: 5.75rem;
+    padding: 0.9rem 1rem;
+    text-decoration: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+
+    &:hover,
+    &:focus {
+      border-color: var(--ucu-blue);
+      box-shadow: 0 0.25rem 0.7rem rgba(11, 61, 145, 0.14);
+      color: var(--ucu-blue);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--ucu-yellow);
+      outline-offset: 2px;
+    }
+  }
+
+  .ucu-guide-tab-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+  }
+
+  .ucu-guide-tab-copy {
+    color: #4c5561;
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
+  .ucu-header-search {
+    display: flex;
+
+    .form-control {
+      border-color: #cbd2dc;
+      border-radius: 0.25rem 0 0 0.25rem;
+      min-height: 3rem;
+
+      &:focus {
+        border-color: var(--ucu-blue);
+        box-shadow: 0 0 0 0.2rem rgba(11, 61, 145, 0.16);
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    .btn {
+      align-items: center;
+      background: var(--ucu-blue);
+      border-radius: 0 0.25rem 0.25rem 0;
+      color: #fff;
+      display: inline-flex;
+      font-weight: 700;
+      gap: 0.4rem;
+      justify-content: center;
+      min-width: 7.25rem;
+
+      &:hover,
+      &:focus {
+        background: var(--ucu-maroon);
+        color: #fff;
+      }
+
+      &:focus-visible {
+        outline: 3px solid var(--ucu-yellow);
+        outline-offset: 2px;
+      }
+    }
+  }
+
   #desktop-navbar {
     min-width: 0;
 
@@ -263,6 +360,36 @@
     ::ng-deep ds-search-navbar .submit-icon::after {
       content: '';
       margin-left: 0;
+    }
+
+    .ucu-discovery-header {
+      padding: 0.75rem 0 0.85rem;
+    }
+
+    .ucu-guide-tabs {
+      display: flex;
+      gap: 0.55rem;
+      margin-bottom: 0.75rem;
+      overflow-x: auto;
+      padding: 0.15rem 0.15rem 0.45rem;
+      scroll-snap-type: x proximity;
+    }
+
+    .ucu-guide-tab {
+      flex: 0 0 min(76vw, 15rem);
+      min-height: 4.75rem;
+      padding: 0.7rem 0.8rem;
+      scroll-snap-align: start;
+    }
+
+    .ucu-header-search .btn {
+      min-width: 3rem;
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+
+      span {
+        display: none;
+      }
     }
   }
 

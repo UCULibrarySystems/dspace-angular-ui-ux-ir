@@ -12,7 +12,6 @@ import { ThemedLangSwitchComponent } from 'src/app/shared/lang-switch/themed-lan
 import { ContextHelpToggleComponent } from '../../../../app/header/context-help-toggle/context-help-toggle.component';
 import { HeaderComponent as BaseComponent } from '../../../../app/header/header.component';
 import { ThemedNavbarComponent } from '../../../../app/navbar/themed-navbar.component';
-import { ThemedSearchNavbarComponent } from '../../../../app/search-navbar/themed-search-navbar.component';
 import { ThemedAuthNavMenuComponent } from '../../../../app/shared/auth-nav-menu/themed-auth-nav-menu.component';
 import { ImpersonateNavbarComponent } from '../../../../app/shared/impersonate-navbar/impersonate-navbar.component';
 
@@ -32,7 +31,6 @@ import { ImpersonateNavbarComponent } from '../../../../app/shared/impersonate-n
     ThemedAuthNavMenuComponent,
     ThemedLangSwitchComponent,
     ThemedNavbarComponent,
-    ThemedSearchNavbarComponent,
     TranslateModule,
   ],
 })
