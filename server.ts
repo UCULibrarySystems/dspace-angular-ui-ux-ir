@@ -88,6 +88,10 @@ extendEnvironmentWithAppConfig(environment, appConfig);
 // The REST server base URL
 const REST_BASE_URL = environment.rest.ssrBaseUrl || environment.rest.baseUrl;
 
+// Do not leave browser requests waiting indefinitely when the REST API used by
+// SSR is unavailable. The client-side application can still render and retry.
+const SSR_RENDER_TIMEOUT_MS = 15_000;
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
 
@@ -301,33 +305,51 @@ function serverSideRender(req, res, next, sendToUser: boolean = true) {
                                           allowedHosts: [ new URL(environment.ui.baseUrl).hostname ],
                                         });
   // Render the page via SSR (server side rendering)
-  commonEngine
-    .render({
-      bootstrap,
-      documentFilePath: indexHtml,
-      inlineCriticalCss: environment.ssr.inlineCriticalCss,
-      url: `${protocol}://${headers.host}${originalUrl}`,
-      publicPath: DIST_FOLDER,
-      providers: [
-        { provide: APP_BASE_HREF, useValue: baseUrl },
-        {
-          provide: REQUEST,
-          useValue: req,
-        },
-        {
-          provide: RESPONSE,
-          useValue: res,
-        },
-        {
-          provide: APP_CONFIG,
-          useValue: toClientConfig(environment as AppConfig),
-        },
-      ],
-    })
+  let renderTimeout: ReturnType<typeof setTimeout>;
+  const renderPromise = commonEngine.render({
+    bootstrap,
+    documentFilePath: indexHtml,
+    inlineCriticalCss: environment.ssr.inlineCriticalCss,
+    url: `${protocol}://${headers.host}${originalUrl}`,
+    publicPath: DIST_FOLDER,
+    providers: [
+      { provide: APP_BASE_HREF, useValue: baseUrl },
+      {
+        provide: REQUEST,
+        useValue: req,
+      },
+      {
+        provide: RESPONSE,
+        useValue: res,
+      },
+      {
+        provide: APP_CONFIG,
+        useValue: toClientConfig(environment as AppConfig),
+      },
+    ],
+  });
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    renderTimeout = setTimeout(() => {
+      reject(new Error(`SSR rendering timed out after ${SSR_RENDER_TIMEOUT_MS}ms`));
+    }, SSR_RENDER_TIMEOUT_MS);
+  });
+
+  Promise.race([renderPromise, timeoutPromise])
     .then((html) => {
       // If headers were already sent, then do nothing else, it is probably a
       // redirect response
       if (res.headersSent) {
+        return;
+      }
+
+      // Angular may complete rendering after recording an internal error on
+      // the response. Serve the application shell instead of error HTML so
+      // the browser can recover through client-side rendering.
+      if (res.statusCode >= 500) {
+        if (sendToUser) {
+          console.warn(`SSR completed with HTTP ${res.statusCode}; falling back to CSR.`);
+          clientSideRender(req, res);
+        }
         return;
       }
 
@@ -364,6 +386,9 @@ function serverSideRender(req, res, next, sendToUser: boolean = true) {
         }
       }
       next(err);
+    })
+    .finally(() => {
+      clearTimeout(renderTimeout);
     });
 }
 
@@ -384,7 +409,7 @@ function clientSideRender(req, res) {
     html = html.replace(new RegExp(REST_BASE_URL, 'g'), environment.rest.baseUrl);
   }
 
-  res.set('Cache-Control', 'no-cache, no-store').send(html);
+  res.status(200).set('Cache-Control', 'no-cache, no-store').send(html);
 }
 
 
