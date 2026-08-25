@@ -61,12 +61,22 @@ export class ServerHashedFileMapping extends HashedFileMapping {
   /**
    * Add a new file to the mapping by an absolute path (within the root directory).
    * If {@link content} is provided, the {@link path} itself does not have to exist.
-   * Otherwise, it is read out from the original path.
-   * The original path is never overwritten.
-   */
+  * Otherwise, it is read out from the original path.
+  * The original path is never overwritten.
+  */
   add(path: string, content?: string, compress = false): string {
+    const contentWasProvided = content !== undefined;
     if (content === undefined) {
       content = readFileSync(path).toString();
+    }
+
+    // Runtime-generated files (notably assets/config.json) can change after
+    // the production build. Remove build-time compressed siblings so static
+    // middleware cannot serve stale configuration to gzip/Brotli clients.
+    if (contentWasProvided) {
+      [`${path}.br`, `${path}.gz`]
+        .filter(existsSync)
+        .forEach(compressedPath => rmSync(compressedPath));
     }
 
     // remove previous files

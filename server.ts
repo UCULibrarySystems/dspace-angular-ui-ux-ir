@@ -72,7 +72,18 @@ const cookieParser = require('cookie-parser');
 const configJson = join(DIST_FOLDER, 'assets/config.json');
 const hashedFileMapping = new ServerHashedFileMapping(DIST_FOLDER, 'index.html');
 const appConfig: AppConfig = buildAppConfig(configJson, hashedFileMapping);
-const publicUiHostname = new URL(appConfig.ui.baseUrl).hostname.toLowerCase();
+const normalizeHostname = (hostname: string): string => hostname
+  .trim()
+  .toLowerCase()
+  .replace(/^\[(.*)]$/, '$1')
+  .replace(/\.$/, '');
+const allowedUiHostnames = new Set([
+  new URL(appConfig.ui.baseUrl).hostname,
+  appConfig.ui.host,
+  'localhost',
+  '127.0.0.1',
+  '::1',
+].map(normalizeHostname).filter(Boolean));
 appConfig.themes.forEach(themeConfig => hashedFileMapping.addThemeStyle(themeConfig.name, themeConfig.prefetch));
 hashedFileMapping.save();
 
@@ -278,9 +289,8 @@ function rejectUnsupportedRequestProbe(req, res, next) {
 }
 
 function rejectUnexpectedHost(req, res, next) {
-  // Keep local development and health checks usable from the host/container network.
-  const requestHostname = (req.hostname || '').toLowerCase();
-  if (!environment.production || req.path === '/app/health' || requestHostname === publicUiHostname) {
+  const requestHostname = normalizeHostname(req.hostname || '');
+  if (!environment.production || req.path === '/app/health' || allowedUiHostnames.has(requestHostname)) {
     next();
     return;
   }
@@ -302,7 +312,7 @@ function serverSideRender(req, res, next, sendToUser: boolean = true) {
   // "allowedHosts" specifies which hosts are allowed to be rendered via SSR.
   // By default, this is set to the host of the UI's baseUrl.
   const commonEngine = new CommonEngine({ enablePerformanceProfiler: environment.ssr.enablePerformanceProfiler,
-                                          allowedHosts: [ new URL(environment.ui.baseUrl).hostname ],
+                                          allowedHosts: [...allowedUiHostnames],
                                         });
   // Render the page via SSR (server side rendering)
   let renderTimeout: ReturnType<typeof setTimeout>;

@@ -2,7 +2,7 @@ ui:
   ssl: false
   host: localhost
   port: 4000
-  baseUrl: https://ucudir.ucu.ac.ug
+  baseUrl: http://localhost:4000
   nameSpace: /
   useProxies: true
 
@@ -18,9 +18,6 @@ rest:
   host: sandbox.dspace.org
   port: 443
   nameSpace: /server
-  # SSR runs on the same host as the DSpace backend. Use the internal endpoint
-  # so rendering does not depend on the public reverse-proxy/hairpin route.
-  ssrBaseUrl: http://localhost:8080/server
 
 themes:
   - name: ucu-branding
