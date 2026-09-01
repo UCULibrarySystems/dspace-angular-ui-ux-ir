@@ -1,9 +1,5 @@
-import {
-  AsyncPipe,
-  NgTemplateOutlet,
-} from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 import { HomeCoarComponent } from '../../../../app/home-page/home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from '../../../../app/home-page/home-news/themed-home-news.component';
@@ -20,11 +16,9 @@ import { ThemedConfigurationSearchPageComponent } from '../../../../app/search-p
   // templateUrl: './home-page.component.html'
   templateUrl: '../../../../app/home-page/home-page.component.html',
   imports: [
-    AsyncPipe,
     HomeCoarComponent,
     NgTemplateOutlet,
     RecentItemListComponent,
-    RouterLink,
     SuggestionsPopupComponent,
     ThemedConfigurationSearchPageComponent,
     ThemedHomeNewsComponent,

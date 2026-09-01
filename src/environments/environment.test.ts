@@ -636,7 +636,6 @@ export const environment: BuildConfig = {
 
   cms: {
     metadataList: [
-      'dspace.cms.home-header',
       'dspace.cms.home-news',
       'dspace.cms.footer',
     ],

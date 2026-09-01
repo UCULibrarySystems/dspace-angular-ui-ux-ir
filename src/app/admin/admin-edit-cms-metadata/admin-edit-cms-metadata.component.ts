@@ -29,7 +29,6 @@ import { AlertComponent } from '../../shared/alert/alert.component';
 @Component({
   selector: 'ds-edit-homepage-metadata',
   templateUrl: './admin-edit-cms-metadata.component.html',
-  styleUrls: ['./admin-edit-cms-metadata.component.scss'],
   imports: [
     AlertComponent,
     AsyncPipe,
@@ -65,21 +64,6 @@ export class AdminEditCmsMetadataComponent implements OnInit {
    * list of the metadata to be edited by the user
    */
   metadataList: string[] = [];
-
-  readonly homeHeaderSlideTemplate = `---
-kicker: UCU Research Impact
-title: Article title
-subtitle: Short article subtitle
-summary: One concise sentence about why this research matters.
-image: assets/images/ucu-logo-lib.png
-alt: Short description of the image
-link: /items/item-uuid-or-handle
-button: Read more
-findings:
-- First research impact highlight
-- Second research impact highlight
-- Third research impact highlight
-`;
 
   constructor(
     private siteService: SiteDataService,
@@ -144,36 +128,6 @@ findings:
   back() {
     this.selectedMetadata = undefined;
     this.editMode.next(false);
-  }
-
-  isEditingHomeHeader(): boolean {
-    return this.selectedMetadata === 'dspace.cms.home-header';
-  }
-
-  insertResearchImpactSlide(language: string, image?: string): void {
-    const currentValue = this.selectedMetadataValues.get(language) || '';
-    const slideTemplate = image
-      ? this.homeHeaderSlideTemplate.replace('assets/images/ucu-logo-lib.png', image)
-      : this.homeHeaderSlideTemplate;
-    const separator = currentValue.trim().length > 0 ? '\n' : '';
-
-    this.selectedMetadataValues.set(language, `${currentValue}${separator}${slideTemplate}`);
-  }
-
-  uploadResearchImpactImage(event: Event, language: string): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.insertResearchImpactSlide(language, reader.result as string);
-      input.value = '';
-    };
-    reader.readAsDataURL(file);
   }
 
   /**

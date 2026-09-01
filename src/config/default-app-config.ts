@@ -1083,7 +1083,6 @@ export class DefaultAppConfig implements AppConfig {
 
   cms: CmsMetadata = {
     metadataList: [
-      'dspace.cms.home-header',
       'dspace.cms.home-news',
       'dspace.cms.footer',
     ],
