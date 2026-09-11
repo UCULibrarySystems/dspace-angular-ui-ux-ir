@@ -227,7 +227,7 @@
 
     ::ng-deep .navbar-nav {
       flex-wrap: nowrap;
-      gap: clamp(0.25rem, 0.7vw, 0.65rem) !important;
+      gap: 2rem !important;
     }
 
     ::ng-deep .ds-menu-item-wrapper,
@@ -480,7 +480,7 @@
     }
 
     #desktop-navbar {
-      margin-left: 18rem;
+      margin-left: 22rem;
     }
   }
 
