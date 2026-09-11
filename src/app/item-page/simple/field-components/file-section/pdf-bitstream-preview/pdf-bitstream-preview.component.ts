@@ -1,14 +1,17 @@
 import { AsyncPipe } from '@angular/common';
 import {
   Component,
+  Inject,
   Input,
   OnInit,
 } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { APP_CONFIG, AppConfig } from '@dspace/config/app-config.interface';
 import { DSONameService } from '@dspace/core/breadcrumbs/dso-name.service';
 import { AuthorizationDataService } from '@dspace/core/data/feature-authorization/authorization-data.service';
 import { FeatureID } from '@dspace/core/data/feature-authorization/feature-id';
 import { Bitstream } from '@dspace/core/shared/bitstream.model';
+import { RESTURLCombiner } from '@dspace/core/url-combiner/rest-url-combiner';
 import {
   combineLatest,
   Observable,
@@ -35,6 +38,7 @@ export class PdfBitstreamPreviewComponent implements OnInit {
   preview$: Observable<PdfPreview>;
 
   constructor(
+    @Inject(APP_CONFIG) private appConfig: AppConfig,
     private authorizationService: AuthorizationDataService,
     private sanitizer: DomSanitizer,
     private dsoNameService: DSONameService,
@@ -56,7 +60,7 @@ export class PdfBitstreamPreviewComponent implements OnInit {
         const mimetype = format?.mimetype?.toLowerCase();
         const name = this.dsoNameService.getName(this.bitstream);
         const isPdf = mimetype === 'application/pdf' || name?.toLowerCase().endsWith('.pdf');
-        const contentUrl = this.bitstream?._links?.content?.href;
+        const contentUrl = this.getContentUrl();
 
         if (!canDownload || !isPdf || !contentUrl) {
           return undefined;
@@ -68,5 +72,14 @@ export class PdfBitstreamPreviewComponent implements OnInit {
         };
       }),
     );
+  }
+
+  private getContentUrl(): string {
+    const uuid = this.bitstream?.uuid;
+    if (uuid && this.appConfig.rest?.baseUrl) {
+      return new RESTURLCombiner(this.appConfig.rest.baseUrl, `/core/bitstreams/${uuid}/content`).toString();
+    }
+
+    return this.bitstream?._links?.content?.href;
   }
 }
