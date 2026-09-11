@@ -197,6 +197,34 @@ body::-webkit-scrollbar {
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
+.orejime-Notice-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.3rem;
+}
+
+.orejime-Notice-actionItem {
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.orejime-Notice-actionItem .orejime-Button {
+  margin-right: 0;
+  min-height: 2.2rem;
+  width: 100%;
+  padding: 0.45rem 0.25rem;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 769px) {
+  :root {
+    --ds-thumbnail-max-width: 250px;
+    --ds-card-thumbnail-height: 480px;
+  }
+}
+
 .orejime-Button--save,
 .orejime-Button--accept,
 .orejime-Modal-saveButton,
