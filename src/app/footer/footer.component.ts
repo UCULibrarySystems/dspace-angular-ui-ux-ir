@@ -1,7 +1,4 @@
-import {
-  AsyncPipe,
-  DatePipe,
-} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import {
   Component,
   Inject,
@@ -37,14 +34,12 @@ import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-view
   templateUrl: 'footer.component.html',
   imports: [
     AsyncPipe,
-    DatePipe,
     MarkdownViewerComponent,
     RouterLink,
     TranslateModule,
   ],
 })
 export class FooterComponent implements OnInit {
-  dateObj: number = Date.now();
   footerCollapsed = true;
 
   /**
@@ -57,6 +52,10 @@ export class FooterComponent implements OnInit {
   showSendFeedback$: Observable<boolean>;
   coarLdnEnabled$: Observable<boolean>;
   footerMetadataValue$: Observable<string>;
+
+  get copyrightYear(): number {
+    return new Date().getFullYear();
+  }
 
   constructor(
     @Optional() public cookies: OrejimeService,
