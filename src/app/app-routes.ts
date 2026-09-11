@@ -7,10 +7,8 @@ import { authBlockingGuard } from '@dspace/core/auth/auth-blocking.guard';
 import { authenticatedGuard } from '@dspace/core/auth/authenticated.guard';
 import { groupAdministratorGuard } from '@dspace/core/data/feature-authorization/feature-authorization-guard/group-administrator.guard';
 import { siteAdministratorGuard } from '@dspace/core/data/feature-authorization/feature-authorization-guard/site-administrator.guard';
-import { siteRegisterGuard } from '@dspace/core/data/feature-authorization/feature-authorization-guard/site-register.guard';
 import { endUserAgreementCurrentUserGuard } from '@dspace/core/end-user-agreement/end-user-agreement-current-user.guard';
 import { reloadGuard } from '@dspace/core/reload/reload.guard';
-import { forgotPasswordCheckGuard } from '@dspace/core/rest-property/forgot-password-check-guard.guard';
 import {
   BITSTREAM_MODULE_PATH,
   COLLECTION_MODULE_PATH,
@@ -29,10 +27,8 @@ import { NOTIFICATIONS_MODULE_PATH } from './admin/admin-routing-paths';
 import {
   ADMIN_MODULE_PATH,
   EDIT_ITEM_PATH,
-  FORGOT_PASSWORD_PATH,
   HEALTH_PAGE_PATH,
   PROFILE_MODULE_PATH,
-  REGISTER_PATH,
   REQUEST_COPY_MODULE_PATH,
   WORKFLOW_ITEM_MODULE_PATH,
 } from './app-routing-paths';
@@ -96,18 +92,6 @@ export const APP_ROUTES: Route[] = [
         loadChildren: () => import('./lookup-by-id/lookup-by-id-routes')
           .then((m) => m.ROUTES),
         canActivate: [endUserAgreementCurrentUserGuard],
-      },
-      {
-        path: REGISTER_PATH,
-        loadChildren: () => import('./register-page/register-page-routes')
-          .then((m) => m.ROUTES),
-        canActivate: [notAuthenticatedGuard, siteRegisterGuard],
-      },
-      {
-        path: FORGOT_PASSWORD_PATH,
-        loadChildren: () => import('./forgot-password/forgot-password-routes')
-          .then((m) => m.ROUTES),
-        canActivate: [notAuthenticatedGuard, endUserAgreementCurrentUserGuard, forgotPasswordCheckGuard],
       },
       {
         path: COMMUNITY_MODULE_PATH,
