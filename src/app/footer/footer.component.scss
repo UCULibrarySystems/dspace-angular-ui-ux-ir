@@ -27,6 +27,10 @@
       color: #fff;
       padding: 0.7rem 1rem;
 
+      .footer-toggle {
+        display: none;
+      }
+
       .footer-license {
         color: rgba(255, 255, 255, 0.9);
         font-size: 0.875rem;
@@ -103,6 +107,26 @@
       .bottom-footer {
         padding: 0.65rem 0.5rem;
 
+        .footer-toggle {
+          align-items: center;
+          background: transparent;
+          border: 0;
+          color: #fff;
+          display: inline-flex;
+          font-size: 0.82rem;
+          font-weight: 700;
+          gap: 0.45rem;
+          justify-content: center;
+          padding: 0.35rem 0.6rem;
+        }
+
+        &.footer-collapsed {
+          .content-container,
+          .notify-enabled {
+            display: none;
+          }
+        }
+
         .content-container {
           width: 100%;
         }
@@ -120,4 +144,3 @@
     }
   }
 }
-

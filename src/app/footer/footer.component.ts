@@ -45,6 +45,7 @@ import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-view
 })
 export class FooterComponent implements OnInit {
   dateObj: number = Date.now();
+  footerCollapsed = true;
 
   /**
    * A boolean representing if to show or not the top footer container
@@ -91,5 +92,9 @@ export class FooterComponent implements OnInit {
       this.cookies.showSettings();
     }
     return false;
+  }
+
+  toggleFooter(): void {
+    this.footerCollapsed = !this.footerCollapsed;
   }
 }

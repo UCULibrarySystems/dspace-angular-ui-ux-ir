@@ -116,6 +116,25 @@ body {
     overflow-x: hidden;
 }
 
+@media (max-width: 768px) {
+  .nav-tabs {
+    flex-wrap: wrap;
+    overflow-x: clip;
+  }
+
+  .nav-tabs .nav-item {
+    flex: 1 1 auto;
+  }
+
+  .nav-tabs .nav-link {
+    font-size: 0.9rem;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.65rem;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
 /* Preserve wheel, touch, and keyboard scrolling while hiding the browser's
    vertical scrollbar, as requested for the public-facing site. */
 html,

@@ -87,6 +87,7 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
 
   private lastSpokenText = '';
   private voiceListener: () => void;
+  private closeTimer: ReturnType<typeof setTimeout>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -109,6 +110,7 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    clearTimeout(this.closeTimer);
     if (this.voiceListener && 'speechSynthesis' in window) {
       window.speechSynthesis.removeEventListener('voiceschanged', this.voiceListener);
     }
@@ -130,6 +132,7 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   }
 
   togglePanel(): void {
+    clearTimeout(this.closeTimer);
     this.panelOpen = !this.panelOpen;
     this.statusMessage = `Accessibility menu ${this.panelOpen ? 'opened' : 'closed'}.`;
   }
@@ -304,6 +307,24 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
       // Keep the setting active for this page when browser storage is unavailable.
     }
     this.statusMessage = message;
+    this.closeAfterSelection();
+  }
+
+  private closeAfterSelection(): void {
+    if (!this.panelOpen) {
+      return;
+    }
+
+    clearTimeout(this.closeTimer);
+    if (window.innerWidth <= 768) {
+      this.panelOpen = false;
+      return;
+    }
+
+    this.closeTimer = setTimeout(() => {
+      this.panelOpen = false;
+      this.statusMessage = 'Accessibility menu closed.';
+    }, 2500);
   }
 
   private restorePreferences(): void {

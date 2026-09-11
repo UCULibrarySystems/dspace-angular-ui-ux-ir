@@ -430,7 +430,7 @@ details.control-section {
 
 @media (max-width: 480px) {
   :host {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .accessibility-panel {
@@ -443,8 +443,8 @@ details.control-section {
   .accessibility-launcher {
     right: 0.75rem;
     bottom: 0.75rem;
-    width: 3.15rem;
-    height: 3.15rem;
+    width: 2.8rem;
+    height: 2.8rem;
   }
 
   .panel-body {
@@ -461,7 +461,8 @@ details.control-section {
   }
 
   .tile-button {
-    min-height: 4.6rem;
+    min-height: 3.9rem;
+    padding: 0.45rem;
   }
 
   .reader-actions {

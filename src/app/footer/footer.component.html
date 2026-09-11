@@ -54,8 +54,12 @@
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="bottom-footer d-flex flex-column flex-md-row justify-content-center align-items-center text-white">
-    <div class="content-container align-self-center">
+  <div class="bottom-footer d-flex flex-column flex-md-row justify-content-center align-items-center text-white" [class.footer-collapsed]="footerCollapsed">
+    <button class="footer-toggle" type="button" (click)="toggleFooter()" [attr.aria-expanded]="!footerCollapsed" aria-controls="footer-content">
+      <span>{{ footerCollapsed ? 'Show footer links' : 'Hide footer links' }}</span>
+      <i class="fas" [class.fa-chevron-down]="footerCollapsed" [class.fa-chevron-up]="!footerCollapsed" aria-hidden="true"></i>
+    </button>
+    <div id="footer-content" class="content-container align-self-center">
       <p class="m-0 fw-bold">
         {{ 'footer.ucu.name' | translate }}
         {{ 'footer.copyright' | translate:{year: dateObj | date:'y'} }}
