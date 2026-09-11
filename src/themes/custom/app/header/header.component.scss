@@ -230,6 +230,14 @@
       gap: 2rem !important;
     }
 
+    ::ng-deep .nav-dropdown-menu {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(11, 61, 145, 0.2);
+      box-shadow: 0 0.7rem 1.6rem rgba(6, 24, 58, 0.16);
+    }
+
     ::ng-deep .ds-menu-item-wrapper,
     ::ng-deep .ds-menu-item,
     ::ng-deep .ds-menu-toggler-wrapper {

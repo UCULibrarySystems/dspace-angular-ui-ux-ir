@@ -21,7 +21,7 @@ import {
 } from '@dspace/core/auth/selectors';
 import { EPerson } from '@dspace/core/eperson/models/eperson.model';
 import { isNotUndefined } from '@dspace/shared/utils/empty.util';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdown, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterReducerState } from '@ngrx/router-store';
 import {
   select,
@@ -112,5 +112,12 @@ export class AuthNavMenuComponent implements OnInit {
         && !router.state.url.startsWith(LOGOUT_ROUTE)),
       ),
     );
+  }
+
+  closeLoginAfterSubmit(event: MouseEvent, dropdown: NgbDropdown): void {
+    const target = event.target as HTMLElement;
+    if (target.closest('[data-test="login-button"]')) {
+      setTimeout(() => dropdown.close(), 150);
+    }
   }
 }

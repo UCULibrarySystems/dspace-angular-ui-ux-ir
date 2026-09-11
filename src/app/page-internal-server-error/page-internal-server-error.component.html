@@ -1,12 +1,7 @@
-<div class="page-internal-server-error container">
-  <h1>500</h1>
-  <h2><small>
-    {{"500.page-internal-server-error" | translate}}
-  </small></h2>
-  <br/>
-  <p>{{"500.help" | translate}}</p>
-  <br/>
-  <p class="text-center">
-    <a href="home" class="btn btn-primary">{{"500.link.home-page" | translate}}</a>
-  </p>
-</div>
+<main class="error-page container" data-animation-source="assets/animations/ucu-loader.json">
+  <div class="error-orbit error-orbit--alert" aria-hidden="true"><span>500</span></div>
+  <p class="error-eyebrow">Service temporarily unavailable</p>
+  <h1>{{"500.page-internal-server-error" | translate}}</h1>
+  <p class="error-copy">{{"500.help" | translate}}</p>
+  <a href="home" class="btn btn-primary">{{"500.link.home-page" | translate}}</a>
+</main>

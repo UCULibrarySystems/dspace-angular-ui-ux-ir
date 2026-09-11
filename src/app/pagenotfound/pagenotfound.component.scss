@@ -1,0 +1,32 @@
+.error-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 55vh;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.error-orbit {
+  align-items: center;
+  animation: error-orbit 5s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 25%, #fff 0, #e9f1ff 24%, #0b3d91 100%);
+  border: 0.55rem solid rgba(255, 255, 255, 0.82);
+  border-radius: 50%;
+  box-shadow: 0 1rem 2.5rem rgba(11, 61, 145, 0.22);
+  color: #fff;
+  display: flex;
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  font-weight: 800;
+  height: clamp(9rem, 22vw, 13rem);
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  width: clamp(9rem, 22vw, 13rem);
+}
+
+.error-orbit--alert { background: radial-gradient(circle at 30% 25%, #fff 0, #ffe8f1 24%, #a40045 100%); }
+.error-eyebrow { color: #a40045; font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.error-page h1 { color: #14284a; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; }
+.error-copy { color: #52657d; font-size: 1.08rem; max-width: 48ch; }
+@keyframes error-orbit { 50% { transform: translateY(-.45rem) rotate(3deg); } }
