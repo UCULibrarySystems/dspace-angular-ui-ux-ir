@@ -238,7 +238,7 @@
 
     ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
       padding: 0.3rem 0.2rem;
-      font-size: clamp(0.74rem, 0.8vw, 0.92rem);
+      font-size: calc(clamp(0.74rem, 0.8vw, 0.92rem) + 2px);
       line-height: 1.15;
     }
   }
@@ -480,7 +480,7 @@
     }
 
     #desktop-navbar {
-      margin-left: 6rem;
+      margin-left: 18rem;
     }
   }
 
