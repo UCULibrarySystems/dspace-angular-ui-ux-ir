@@ -218,11 +218,9 @@ body::-webkit-scrollbar {
   white-space: nowrap;
 }
 
-@media (min-width: 769px) {
-  :root {
-    --ds-thumbnail-max-width: 250px;
-    --ds-card-thumbnail-height: 480px;
-  }
+:root {
+  --ds-thumbnail-max-width: 250px;
+  --ds-card-thumbnail-height: 480px;
 }
 
 .orejime-Button--save,
