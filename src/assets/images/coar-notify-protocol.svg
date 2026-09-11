@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1320" role="img" aria-labelledby="title desc">
+  <title id="title">COAR Notify Protocol</title>
+  <desc id="desc">An overview of the COAR Notify protocol connecting an LDN inbox, repositories, message moderation, and feedback.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0b234f" flood-opacity=".14"/>
+    </filter>
+    <style>
+      .navy { fill: #0b234f; }
+      .line { fill: none; stroke: #0b234f; stroke-width: 5; }
+      .label { font-family: Arial, sans-serif; font-weight: 700; letter-spacing: 1px; }
+      .body { font-family: Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect width="800" height="1320" fill="#f8fcff"/>
+  <text x="400" y="72" text-anchor="middle" class="navy label" font-size="30">UGANDA CHRISTIAN UNIVERSITY</text>
+  <text x="400" y="110" text-anchor="middle" class="navy label" font-size="27">LIBRARIES &amp; SERVICES</text>
+  <text x="400" y="172" text-anchor="middle" class="navy label" font-size="26">COAR NOTIFY PROTOCOL</text>
+
+  <g filter="url(#shadow)">
+    <rect x="64" y="228" width="350" height="290" rx="28" fill="#fff"/>
+  </g>
+  <path d="M111 299h62l18 28v46h-80v-46zM142 318v-46m0 0-18 18m18-18 18 18" class="line" stroke-linejoin="round"/>
+  <text x="201" y="304" class="navy label" font-size="24">LDN INBOX</text>
+  <text x="104" y="405" class="navy body" font-size="14">The LDN InBox enables seamless</text>
+  <text x="104" y="426" class="navy body" font-size="14">communication and data exchange,</text>
+  <text x="104" y="447" class="navy body" font-size="14">ensuring efficient collaboration.</text>
+
+  <circle cx="400" cy="720" r="252" class="line"/>
+  <circle cx="400" cy="720" r="112" fill="#bfd2f8" stroke="#fff" stroke-width="12"/>
+  <circle cx="400" cy="720" r="112" fill="none" class="line" stroke-width="3"/>
+  <text x="400" y="702" text-anchor="middle" class="navy label" font-size="22">COAR</text>
+  <text x="400" y="729" text-anchor="middle" class="navy label" font-size="22">NOTIFY</text>
+  <text x="400" y="756" text-anchor="middle" class="navy label" font-size="22">PROTOCOL</text>
+
+  <circle cx="572" cy="495" r="74" fill="#ffe8a3"/>
+  <path d="M542 489h59l12 19v31h-83v-31zm30-4v-37m0 0-15 15m15-15 15 15" class="line" stroke-linejoin="round"/>
+  <text x="572" y="615" text-anchor="middle" class="navy body" font-size="16">LDN inbox</text>
+  <circle cx="176" cy="720" r="74" fill="#c8efd8"/>
+  <path d="M143 699h65m-65 12h65m-65 12h65m-55-35v47m12-47v47m12-47v47" class="line" stroke-width="3"/>
+  <text x="176" y="838" text-anchor="middle" class="navy body" font-size="16">Repositories</text>
+  <circle cx="572" cy="945" r="74" fill="#ffc38f"/>
+  <path d="m572 902 29 12v25c0 22-16 37-29 43-13-6-29-21-29-43v-25z" class="line"/>
+  <path d="m558 937 10 10 20-23" class="line" stroke-width="3"/>
+  <text x="572" y="1058" text-anchor="middle" class="navy body" font-size="16">Moderation</text>
+  <path d="M492 604l38-47 18 14-38 47zM300 720h-82v-20h82zM492 836l38 47-18 14-38-47z" fill="#f5c74d" stroke="#0b234f" stroke-width="5"/>
+
+  <g filter="url(#shadow)">
+    <rect x="64" y="1100" width="350" height="154" rx="28" fill="#fff"/>
+  </g>
+  <text x="239" y="1150" text-anchor="middle" class="navy label" font-size="23">FEEDBACK</text>
+  <text x="239" y="1190" text-anchor="middle" class="navy body" font-size="18">Planning to exchange information?</text>
+  <text x="239" y="1218" text-anchor="middle" class="navy body" font-size="18">Reach out via our feedback form.</text>
+  <g filter="url(#shadow)">
+    <rect x="452" y="1100" width="284" height="154" rx="28" fill="#fff"/>
+  </g>
+  <text x="594" y="1151" text-anchor="middle" class="navy label" font-size="21">MESSAGE</text>
+  <text x="594" y="1179" text-anchor="middle" class="navy label" font-size="21">MODERATION</text>
+  <text x="594" y="1212" text-anchor="middle" class="navy body" font-size="15">All incoming LDN messages</text>
+  <text x="594" y="1235" text-anchor="middle" class="navy body" font-size="15">are moderated.</text>
+</svg>
