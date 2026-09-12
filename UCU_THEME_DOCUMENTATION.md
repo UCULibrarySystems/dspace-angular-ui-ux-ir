@@ -848,7 +848,7 @@ src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf
 
 ### Sustainable Development Goal badges
 
-- Item pages show a responsive **Sustainable Development Goals** panel when an item contains an SDG value in `datacite.subject.sdg` or `dc.subject.sdg`. Accepted values include `03`, `SDG 3`, and controlled-vocabulary labels such as `03: Good Health and Well-being`.
+- Item pages show a responsive **Sustainable Development Goals** panel when an item contains an SDG value in `datacite.subject.sdg` or `dc.subject.sdg`. Accepted values include `03`, `SDG 3`, and controlled-vocabulary labels such as `03: Good Health and Well-being`. The panel uses the supplied official inverted SDG artwork.
 - The panel is metadata-driven, makes no external classification or API call, removes duplicate goals, and links each displayed goal to its official UN goal page. Items with no recognised SDG metadata do not show an empty panel.
 - Set `sdg.enabled: false` in `config/config.yml` to disable it, or replace `sdg.metadataFields` with the repository's own SDG field(s).
 
@@ -861,6 +861,7 @@ src/config/default-app-config.ts
 src/app/shared/sdg-badges/sdg-badges.component.ts
 src/app/shared/sdg-badges/sdg-badges.component.html
 src/app/shared/sdg-badges/sdg-badges.component.scss
+src/assets/images/sdg/sdg-01.png through src/assets/images/sdg/sdg-17.png
 src/themes/custom/app/item-page/simple/item-page.component.html
 src/themes/custom/app/item-page/simple/item-page.component.ts
 src/themes/custom/app/item-page/full/full-item-page.component.html
