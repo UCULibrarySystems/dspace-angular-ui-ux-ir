@@ -34,9 +34,15 @@
 
 	.notify-overview {
 		align-items: start;
-		display: grid;
-		gap: 3rem;
-		grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
+		max-width: 72ch;
+	}
+
+	.notify-introduction {
+		background: #f7fbff;
+		border: 1px solid #d8e0ea;
+		border-radius: 0.5rem;
+		margin-bottom: 1.5rem;
+		padding: 1.2rem 1.35rem;
 	}
 
 	section {
@@ -59,10 +65,9 @@
 		background: #f7fbff;
 		border: 1px solid #d8e0ea;
 		border-radius: 0.5rem;
-		margin: 0;
+		margin: 1.5rem auto 0;
+		max-width: 48rem;
 		padding: 1rem;
-		position: sticky;
-		top: 1.5rem;
 	}
 
 	.notify-infographic img {
@@ -70,6 +75,17 @@
 		height: auto;
 		max-width: 100%;
 	}
+
+	.protocol-resource {
+		border-top: 1px solid #d8e0ea;
+		margin-top: 2rem;
+		padding-top: 1.75rem;
+
+		> div {
+			max-width: 72ch;
+		}
+	}
+
 }
 
 @media (max-width: 767px) {
@@ -85,9 +101,7 @@
 		}
 
 		.notify-overview {
-			display: flex;
-			flex-direction: column-reverse;
-			gap: 1rem;
+			max-width: none;
 		}
 
 		.notify-infographic {
@@ -95,5 +109,6 @@
 			max-width: 34rem;
 			position: static;
 		}
+
 	}
 }
