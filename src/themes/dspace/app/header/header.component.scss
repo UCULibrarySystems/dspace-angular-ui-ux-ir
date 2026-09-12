@@ -1,6 +1,6 @@
 :host {
   #main-site-header {
-    min-height: calc(var(--ds-header-height) + 48px);
+    min-height: 48px;
     background-color: var(--ds-header-bg);
     box-shadow: 0 1px 0 rgba(11, 61, 145, 0.18);
 
@@ -14,6 +14,14 @@
     max-width: none;
     padding-left: 0 !important;
     gap: 0.5rem !important;
+  }
+
+  .ucu-sticky-header {
+    background-color: var(--ds-header-bg);
+    box-shadow: 0 1px 0 rgba(11, 61, 145, .18);
+    position: sticky;
+    top: 0;
+    z-index: var(--bs-zindex-sticky, 1020);
   }
 
   #header-left {
@@ -202,7 +210,41 @@
   }
 
   #desktop-navbar {
+    align-self: center !important;
+    display: flex;
+    align-items: center;
     min-width: 0;
+    padding: 0 !important;
+
+    ::ng-deep ds-navbar {
+      display: block;
+      width: 100%;
+    }
+
+    ::ng-deep #main-navbar {
+      align-items: center;
+      background: transparent;
+      padding: 0;
+    }
+
+    ::ng-deep .navbar-inner-container {
+      margin: 0;
+      max-width: none;
+      padding: 0;
+    }
+
+    ::ng-deep .navbar-nav {
+      flex-wrap: nowrap;
+      gap: 2rem !important;
+    }
+
+    ::ng-deep .nav-dropdown-menu {
+      background: rgba(255, 255, 255, .82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(11, 61, 145, .2);
+      box-shadow: 0 .7rem 1.6rem rgba(6, 24, 58, .16);
+    }
 
     ::ng-deep #main-site-navigation {
       flex-wrap: nowrap;
@@ -217,7 +259,7 @@
 
     ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
       padding: 0.3rem 0.2rem;
-      font-size: clamp(0.74rem, 0.8vw, 0.92rem);
+      font-size: calc(clamp(.74rem, .8vw, .92rem) + 2px);
       line-height: 1.15;
     }
   }
@@ -280,7 +322,7 @@
 
   @include media-breakpoint-down(md) {
     #main-site-header {
-      min-height: calc(clamp(4.5rem, 15vw, var(--ds-header-height)) + 48px);
+      min-height: 48px;
     }
 
     #main-site-header-container {
@@ -448,14 +490,29 @@
     }
   }
 
+  @media (min-width: 1025px) {
+    #header-left > a {
+      left: 2rem;
+      position: relative;
+    }
+
+    #header-right {
+      margin-right: 3rem;
+    }
+
+    #desktop-navbar {
+      margin-left: 22rem;
+    }
+  }
+
   @media (min-width: 1441px) {
     #main-site-header-container {
       gap: 1rem !important;
     }
 
     img#header-logo {
-      width: clamp(24rem, 28vw, 36rem);
-      max-width: min(42vw, 36rem);
+      width: clamp(20rem, 20vw, 24rem);
+      max-width: min(30vw, 24rem);
     }
   }
 }
