@@ -764,3 +764,84 @@ Manually check at minimum:
 6. Test the relevant responsive widths and keyboard flow.
 7. Run the production SSR build before deployment.
 8. Review the final diff for unrelated changes before committing or pushing.
+
+## Current UCU UI Change Register
+
+This register records the current UCU-specific behavior. Update this section whenever a branding or interface change is made.
+
+### Header, navigation, and homepage
+
+- The utility ribbon label is **"Click to check latest research"** and links to repository records sorted by `dc.date.accessioned` descending. The main navigation is sticky during scrolling; the utility ribbon scrolls away.
+- The desktop navigation is rendered inline with the UCU logo and login controls. Its dropdown menus use a translucent, blurred surface.
+- Mobile navigation remains available from the header hamburger control. The custom wrapper avoids rendering a duplicate desktop navigation row.
+- The guidance cards and repository search field appear directly below the homepage image-slider hero, not inside the global header.
+- The homepage no longer renders the top-level community list. The recent-items heading is **"Latest research outputs"**.
+
+```text
+src/themes/custom/app/header/header.component.html
+src/themes/custom/app/header/header.component.scss
+src/themes/custom/app/header-nav-wrapper/header-navbar-wrapper.component.html
+src/themes/custom/app/header-nav-wrapper/header-navbar-wrapper.component.ts
+src/themes/custom/app/home-page/home-news/home-news.component.html
+src/themes/custom/app/home-page/home-news/home-news.component.scss
+src/themes/custom/app/home-page/home-news/home-news.component.ts
+src/app/home-page/home-page.component.html
+src/app/home-page/home-page.component.ts
+src/themes/custom/app/home-page/home-page.component.ts
+src/assets/i18n/en.json5
+```
+
+### Footer, consent, and accessibility
+
+- The primary footer surface is UCU blue. Its lower policy-link strip is UCU green, and its individual links have compact UCU-blue backgrounds.
+- On mobile, the footer starts collapsed and exposes a chevron control to expand or minimize the footer links.
+- Cookie-notice actions are equal-width, compact buttons that remain side by side. Do not apply a viewport-only rule: the notice can be narrow even on a desktop browser.
+- Mobile tabs wrap instead of causing horizontal scrolling. Thumbnail dimensions use the global values `--ds-thumbnail-max-width: 250px` and `--ds-card-thumbnail-height: 480px`.
+- The accessibility launcher and panel are compact on phones. Selecting a preference closes the panel immediately on mobile and after 2.5 seconds on larger screens.
+
+```text
+src/app/footer/footer.component.html
+src/app/footer/footer.component.ts
+src/app/footer/footer.component.scss
+src/themes/custom/app/footer/footer.component.ts
+src/styles/_global-styles.scss
+src/app/accessibility/sitewide-accessibility/sitewide-accessibility.component.ts
+src/app/accessibility/sitewide-accessibility/sitewide-accessibility.component.scss
+```
+
+### Authentication and error pages
+
+- Public self-registration and forgotten-password routes are intentionally unavailable. The login form must not expose links to `/register` or `/forgot`.
+- The login dropdown closes after the Sign In action is submitted.
+- The 404 and 500 pages use the UCU error-page layout. The supplied Lottie JSON asset is stored for production assets, but the visible error treatment is CSS-based.
+
+```text
+src/app/app-routes.ts
+src/app/shared/log-in/methods/password/log-in-password.component.html
+src/app/shared/log-in/methods/password/log-in-password.component.ts
+src/app/shared/auth-nav-menu/auth-nav-menu.component.html
+src/app/shared/auth-nav-menu/auth-nav-menu.component.ts
+src/app/pagenotfound/pagenotfound.component.html
+src/app/pagenotfound/pagenotfound.component.scss
+src/app/page-internal-server-error/page-internal-server-error.component.html
+src/app/page-internal-server-error/page-internal-server-error.component.scss
+src/assets/animations/ucu-loader.json
+```
+
+### Information pages and repository assets
+
+- The privacy policy uses the shared `ucu-info-page` hierarchy: eyebrow, hero, lead copy, section separators, and responsive typography.
+- The COAR Notify page uses the same information-page pattern. Its centered protocol infographic is the supplied PNG asset; do not reintroduce the previous SVG or embedded PDF representation.
+- PDF item previews use the configured REST base URL and bitstream UUID to create the canonical endpoint `/api/core/bitstreams/{uuid}/content`, falling back to the HAL content link only when necessary.
+
+```text
+src/app/info/privacy/privacy-content/privacy-content.component.html
+src/app/info/privacy/privacy-content/privacy-content.component.scss
+src/app/info/notify-info/notify-info.component.html
+src/app/info/notify-info/notify-info.component.scss
+src/assets/images/coar-notify-protocol-infographic.png
+src/assets/images/coar-notify-protocol-infographic.pdf
+src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.ts
+src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.html
+src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.scss
+```
