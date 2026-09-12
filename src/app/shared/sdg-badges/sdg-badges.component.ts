@@ -1,8 +1,11 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   inject,
   Input,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 
 import {
@@ -10,11 +13,29 @@ import {
   AppConfig,
 } from '@dspace/config/app-config.interface';
 import { Item } from '@dspace/core/shared/item.model';
+import { PaginationComponentOptions } from '@dspace/core/pagination/pagination-component-options.model';
+import { PaginatedSearchOptions } from '@dspace/core/shared/search/models/paginated-search-options.model';
+import { SearchFilter } from '@dspace/core/shared/search/models/search-filter.model';
+import {
+  catchError,
+  filter,
+  forkJoin,
+  map,
+  of,
+  take,
+} from 'rxjs';
+
+import { SearchService } from '../search/search.service';
 
 interface SustainableDevelopmentGoal {
   image: string;
   name: string;
   number: number;
+}
+
+interface ItemSustainableDevelopmentGoal extends SustainableDevelopmentGoal {
+  metadataField: string;
+  metadataValue: string;
 }
 
 const GOALS: SustainableDevelopmentGoal[] = [
@@ -45,28 +66,78 @@ const GOALS: SustainableDevelopmentGoal[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
 })
-export class SDGBadgesComponent {
+export class SDGBadgesComponent implements OnChanges {
   private readonly appConfig = inject<AppConfig>(APP_CONFIG);
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+  private readonly searchService = inject(SearchService);
 
   @Input() item: Item;
+
+  counts: Record<number, number> = {};
 
   get enabled(): boolean {
     return this.appConfig.sdg.enabled;
   }
 
-  get goals(): SustainableDevelopmentGoal[] {
+  get goals(): ItemSustainableDevelopmentGoal[] {
     if (!this.item || !this.enabled) {
       return [];
     }
 
-    const goalNumbers = new Set<number>();
-    this.item.allMetadataValues(this.appConfig.sdg.metadataFields).forEach((value) => {
-      const number = this.goalNumber(value);
-      if (number) {
-        goalNumbers.add(number);
-      }
+    const goalValues = new Map<number, { field: string, value: string }>();
+    this.appConfig.sdg.metadataFields.forEach((field) => {
+      this.item.allMetadataValues(field).forEach((value) => {
+        const number = this.goalNumber(value);
+        if (number && !goalValues.has(number)) {
+          goalValues.set(number, { field, value });
+        }
+      });
     });
-    return GOALS.filter((goal) => goalNumbers.has(goal.number));
+    return GOALS
+      .filter((goal) => goalValues.has(goal.number))
+      .map((goal) => ({
+        ...goal,
+        metadataField: goalValues.get(goal.number).field,
+        metadataValue: goalValues.get(goal.number).value,
+      }));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.item) {
+      this.counts = {};
+      this.loadCounts();
+    }
+  }
+
+  private loadCounts(): void {
+    const goals = this.goals;
+    if (!this.enabled || goals.length === 0) {
+      return;
+    }
+
+    forkJoin(goals.map((goal) => this.countFor(goal).pipe(
+      map((count) => ({ number: goal.number, count })),
+    ))).subscribe((results) => {
+      this.counts = results.reduce((counts, result) => ({
+        ...counts,
+        [result.number]: result.count,
+      }), {} as Record<number, number>);
+      this.changeDetectorRef.markForCheck();
+    });
+  }
+
+  private countFor(goal: ItemSustainableDevelopmentGoal) {
+    const options = new PaginatedSearchOptions({
+      filters: [new SearchFilter(`f.${goal.metadataField}`, [goal.metadataValue], 'equals')],
+      pagination: Object.assign(new PaginationComponentOptions(), { currentPage: 1, pageSize: 1 }),
+    });
+
+    return this.searchService.search(options).pipe(
+      filter((response) => response.hasCompleted),
+      take(1),
+      map((response) => response.hasSucceeded ? response.payload.pageInfo.totalElements : 0),
+      catchError(() => of(0)),
+    );
   }
 
   private goalNumber(value: string): number | undefined {

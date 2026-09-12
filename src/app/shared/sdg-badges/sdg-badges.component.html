@@ -9,6 +9,7 @@
         <li>
           <a class="sdg-badge" [href]="'https://sdgs.un.org/goals/goal' + goal.number" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'UN Sustainable Development Goal ' + goal.number + ': ' + goal.name + ' (opens in a new tab)'">
             <img [src]="goal.image" [alt]="'Sustainable Development Goal ' + goal.number + ': ' + goal.name">
+            <span class="sdg-badge__count" [attr.aria-label]="(counts[goal.number] ?? 0) + ' research outputs'">{{ counts[goal.number] ?? 0 }} research outputs</span>
           </a>
         </li>
       }

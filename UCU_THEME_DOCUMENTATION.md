@@ -849,7 +849,7 @@ src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf
 ### Sustainable Development Goal badges
 
 - Item pages show a responsive **Sustainable Development Goals** panel when an item contains an SDG value in `datacite.subject.sdg` or `dc.subject.sdg`. Accepted values include `03`, `SDG 3`, and controlled-vocabulary labels such as `03: Good Health and Well-being`. The panel uses the supplied official inverted SDG artwork.
-- The panel is metadata-driven, makes no external classification or API call, removes duplicate goals, and links each displayed goal to its official UN goal page. Items with no recognised SDG metadata do not show an empty panel.
+- The panel is metadata-driven, removes duplicate goals, links each displayed goal to its official UN goal page, and shows a live count of matching repository research outputs. Items with no recognised SDG metadata do not show an empty panel.
 - Set `sdg.enabled: false` in `config/config.yml` to disable it, or replace `sdg.metadataFields` with the repository's own SDG field(s).
 
 ```text
