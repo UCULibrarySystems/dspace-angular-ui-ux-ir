@@ -33,6 +33,7 @@ import { INotificationBoardOptions } from './notifications-config.interfaces';
 import { QualityAssuranceConfig } from './quality-assurance.config';
 import { SearchConfig } from './search-page-config.interface';
 import { SearchResultConfig } from './search-result-config.interface';
+import { SDGBadgeConfig } from './sdg-badge-config.interface';
 import { ServerConfig } from './server-config.interface';
 import { SubmissionConfig } from './submission-config.interface';
 import { SuggestionConfig } from './suggestion-config.interfaces';
@@ -75,6 +76,7 @@ interface AppConfig extends Config {
   accessibility: AccessibilitySettingsConfig;
   layout: LayoutConfig;
   searchResult: SearchResultConfig;
+  sdg: SDGBadgeConfig;
   addToAnyPlugin: AddToAnyPluginConfig;
   cms: CmsMetadata;
 }

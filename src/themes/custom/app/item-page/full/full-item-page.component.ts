@@ -20,14 +20,13 @@ import { fadeInOut } from '../../../../../app/shared/animations/fade';
 import { DsoEditMenuComponent } from '../../../../../app/shared/dso-page/dso-edit-menu/dso-edit-menu.component';
 import { ErrorComponent } from '../../../../../app/shared/error/error.component';
 import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed-loading.component';
+import { SDGBadgesComponent } from '../../../../../app/shared/sdg-badges/sdg-badges.component';
 import { VarDirective } from '../../../../../app/shared/utils/var.directive';
 
 @Component({
   selector: 'ds-themed-full-item-page',
-  // styleUrls: ['./full-item-page.component.scss'],
-  styleUrls: ['../../../../../app/item-page/full/full-item-page.component.scss'],
-  // templateUrl: './full-item-page.component.html',
-  templateUrl: '../../../../../app/item-page/full/full-item-page.component.html',
+  styleUrls: ['./full-item-page.component.scss', '../../../../../app/item-page/full/full-item-page.component.scss'],
+  templateUrl: './full-item-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeInOut],
   imports: [
@@ -39,6 +38,7 @@ import { VarDirective } from '../../../../../app/shared/utils/var.directive';
     ItemVersionsNoticeComponent,
     KeyValuePipe,
     RouterLink,
+    SDGBadgesComponent,
     ThemedFullFileSectionComponent,
     ThemedItemAlertsComponent,
     ThemedItemPageTitleFieldComponent,

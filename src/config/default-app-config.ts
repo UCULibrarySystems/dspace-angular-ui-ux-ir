@@ -1,5 +1,6 @@
 import { LayoutConfig } from '@dspace/config/layout-config.interfaces';
 import { SearchResultConfig } from '@dspace/config/search-result-config.interface';
+import { SDGBadgeConfig } from '@dspace/config/sdg-badge-config.interface';
 
 import { AccessibilitySettingsConfig } from './accessibility-settings.config';
 import { ActuatorsConfig } from './actuators.config';
@@ -376,6 +377,12 @@ export class DefaultAppConfig implements AppConfig {
       pageSize: 5,
     },
     showDiscoverFilters: false,
+  };
+
+  // SDG badges consume controlled metadata only; no external classification API is used.
+  sdg: SDGBadgeConfig = {
+    enabled: true,
+    metadataFields: ['datacite.subject.sdg', 'dc.subject.sdg'],
   };
 
   // Item Config

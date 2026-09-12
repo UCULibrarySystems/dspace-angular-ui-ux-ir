@@ -1,0 +1,18 @@
+@if (goals.length > 0) {
+  <section class="sdg-badges" aria-labelledby="sdg-badges-heading">
+    <div class="sdg-badges__heading">
+      <span class="sdg-badges__eyebrow">Research impact</span>
+      <h2 id="sdg-badges-heading">Sustainable Development Goals</h2>
+    </div>
+    <ul class="sdg-badges__list" role="list">
+      @for (goal of goals; track goal.number) {
+        <li>
+          <a class="sdg-badge" [href]="'https://sdgs.un.org/goals/goal' + goal.number" target="_blank" rel="noopener noreferrer" [style.--sdg-color]="goal.color" [attr.aria-label]="'UN Sustainable Development Goal ' + goal.number + ': ' + goal.name + ' (opens in a new tab)'">
+            <span class="sdg-badge__number" aria-hidden="true">{{ goal.number }}</span>
+            <span class="sdg-badge__label">{{ goal.name }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </section>
+}

@@ -19,6 +19,14 @@ rest:
   port: 443
   nameSpace: /server
 
+# Sustainable Development Goal badges shown on item pages. Set enabled to false
+# to hide them, or point metadataFields at the local controlled vocabulary.
+sdg:
+  enabled: true
+  metadataFields:
+    - datacite.subject.sdg
+    - dc.subject.sdg
+
 themes:
   - name: ucu-branding
     extends: custom

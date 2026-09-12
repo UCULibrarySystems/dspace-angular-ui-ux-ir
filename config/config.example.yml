@@ -87,6 +87,14 @@ rest:
   # server namespace (uncomment to use it).
   #ssrBaseUrl: http://localhost:8080/server
 
+# Sustainable Development Goal badges use values already stored in item metadata.
+# Examples of accepted values are "03", "SDG 3", and "03: Good Health and Well-being".
+sdg:
+  enabled: true
+  metadataFields:
+    - datacite.subject.sdg
+    - dc.subject.sdg
+
 # Caching settings
 cache:
   # NOTE: how long should objects be cached for by default
