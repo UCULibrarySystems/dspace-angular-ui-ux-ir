@@ -1,6 +1,6 @@
 :host {
   #main-site-header {
-    min-height: calc(var(--ds-header-height) + 48px);
+    min-height: 48px;
     background-color: var(--ds-header-bg);
     box-shadow: 0 1px 0 rgba(11, 61, 145, 0.18);
 
@@ -20,7 +20,7 @@
     background-color: var(--ds-header-bg);
     position: sticky;
     top: 0;
-    z-index: calc(var(--ds-nav-z-index) + 1);
+    z-index: var(--bs-zindex-sticky, 1020);
     box-shadow: 0 1px 0 rgba(11, 61, 145, 0.18);
   }
 
@@ -317,7 +317,7 @@
 
   @include media-breakpoint-down(md) {
     #main-site-header {
-      min-height: calc(clamp(4.5rem, 15vw, var(--ds-header-height)) + 48px);
+      min-height: 48px;
     }
 
     #main-site-header-container {

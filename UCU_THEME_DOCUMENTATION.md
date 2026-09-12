@@ -771,7 +771,7 @@ This register records the current UCU-specific behavior. Update this section whe
 
 ### Header, navigation, and homepage
 
-- The utility ribbon label is **"Click to check latest research"** and links to repository records sorted by `dc.date.accessioned` descending. The main navigation is sticky during scrolling; the utility ribbon scrolls away.
+- The utility ribbon label is **"Click to check latest research"** and links to repository records sorted by `dc.date.accessioned` descending. The main navigation and login row are sticky for the full scroll; the utility ribbon scrolls away.
 - The desktop navigation is rendered inline with the UCU logo and login controls. Its dropdown menus use a translucent, blurred surface.
 - Mobile navigation remains available from the header hamburger control. The custom wrapper avoids rendering a duplicate desktop navigation row.
 - The guidance cards and repository search field appear directly below the homepage image-slider hero, not inside the global header.
