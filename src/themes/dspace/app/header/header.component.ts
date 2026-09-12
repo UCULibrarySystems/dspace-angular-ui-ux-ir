@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import {
   Component,
+  HostListener,
   OnInit,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -36,9 +37,15 @@ import { ImpersonateNavbarComponent } from '../../../../app/shared/impersonate-n
 })
 export class HeaderComponent extends BaseComponent implements OnInit {
   public isNavBarCollapsed$: Observable<boolean>;
+  public isPinned = false;
 
   ngOnInit() {
     super.ngOnInit();
     this.isNavBarCollapsed$ = this.menuService.isMenuCollapsed(this.menuID);
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.isPinned = window.scrollY > 48;
   }
 }

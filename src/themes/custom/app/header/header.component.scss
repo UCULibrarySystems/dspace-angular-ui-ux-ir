@@ -18,10 +18,20 @@
 
   .ucu-sticky-header {
     background-color: var(--ds-header-bg);
-    position: sticky;
-    top: 0;
     z-index: var(--bs-zindex-sticky, 1020);
     box-shadow: 0 1px 0 rgba(11, 61, 145, 0.18);
+
+    &.is-pinned {
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  .ucu-sticky-header-spacer.is-pinned {
+    height: var(--ds-header-height);
   }
 
   #header-left {
@@ -316,6 +326,9 @@
   }
 
   @include media-breakpoint-down(md) {
+    .ucu-sticky-header-spacer.is-pinned {
+      height: clamp(4.5rem, 15vw, var(--ds-header-height));
+    }
     #main-site-header {
       min-height: 48px;
     }
