@@ -19,13 +19,13 @@ rest:
   port: 443
   nameSpace: /server
 
-# Sustainable Development Goal badges shown on item pages. Set enabled to false
-# to hide them, or point metadataFields at the local controlled vocabulary.
+# Sustainable Development Goal badges need no backend customization. Add goal
+# values such as "03: Good Health and Well-being" to standard dc.subject metadata.
 sdg:
   enabled: true
   metadataFields:
-    - datacite.subject.sdg
-    - dc.subject.sdg
+    - dc.subject
+  countSearchFilter: subject
 
 themes:
   - name: ucu-branding

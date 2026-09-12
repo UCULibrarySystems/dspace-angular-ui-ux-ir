@@ -848,9 +848,9 @@ src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf
 
 ### Sustainable Development Goal badges
 
-- Item pages show a responsive **Sustainable Development Goals** panel when an item contains an SDG value in `datacite.subject.sdg` or `dc.subject.sdg`. Accepted values include `03`, `SDG 3`, and controlled-vocabulary labels such as `03: Good Health and Well-being`. The panel uses the supplied official inverted SDG artwork.
-- The panel is metadata-driven, removes duplicate goals, links each displayed goal to its official UN goal page, and shows a live count of matching repository research outputs. Items with no recognised SDG metadata do not show an empty panel.
-- Set `sdg.enabled: false` in `config/config.yml` to disable it, or replace `sdg.metadataFields` with the repository's own SDG field(s).
+- Item pages show a responsive **Sustainable Development Goals** panel when an item contains an SDG value in standard Dublin Core `dc.subject`. Accepted values include `03`, `SDG 3`, and controlled-vocabulary labels such as `03: Good Health and Well-being`. The panel uses the supplied official inverted SDG artwork.
+- No backend customization, metadata schema, controlled vocabulary, or custom Discovery index is required. Repository staff only add the chosen SDG value to an item's `dc.subject` field. The built-in DSpace `subject` filter supplies the live matching-output count.
+- Set `sdg.enabled: false` in `config/config.yml` to disable it. `sdg.metadataFields` may be changed to another existing Dublin Core field; set `sdg.countSearchFilter` to the matching built-in Discovery filter when using one other than `dc.subject`.
 
 ```text
 config/config.yml

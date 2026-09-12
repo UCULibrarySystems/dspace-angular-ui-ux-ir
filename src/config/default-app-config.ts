@@ -382,7 +382,8 @@ export class DefaultAppConfig implements AppConfig {
   // SDG badges consume controlled metadata only; no external classification API is used.
   sdg: SDGBadgeConfig = {
     enabled: true,
-    metadataFields: ['datacite.subject.sdg', 'dc.subject.sdg'],
+    metadataFields: ['dc.subject'],
+    countSearchFilter: 'subject',
   };
 
   // Item Config

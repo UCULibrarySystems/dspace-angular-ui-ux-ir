@@ -128,7 +128,7 @@ export class SDGBadgesComponent implements OnChanges {
 
   private countFor(goal: ItemSustainableDevelopmentGoal) {
     const options = new PaginatedSearchOptions({
-      filters: [new SearchFilter(`f.${goal.metadataField}`, [goal.metadataValue], 'equals')],
+      filters: [new SearchFilter(`f.${this.appConfig.sdg.countSearchFilter}`, [goal.metadataValue], 'equals')],
       pagination: Object.assign(new PaginationComponentOptions(), { currentPage: 1, pageSize: 1 }),
     });
 
