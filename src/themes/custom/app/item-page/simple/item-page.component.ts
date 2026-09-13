@@ -17,7 +17,7 @@ import { fadeInOut } from '../../../../../app/shared/animations/fade';
 import { ErrorComponent } from '../../../../../app/shared/error/error.component';
 import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed-loading.component';
 import { ListableObjectComponentLoaderComponent } from '../../../../../app/shared/object-collection/shared/listable-object/listable-object-component-loader.component';
-import { SDGBadgesComponent } from '../../../../../app/shared/sdg-badges/sdg-badges.component';
+import { GoalBadgesComponent } from '../../../../../app/shared/goal-badges/goal-badges.component';
 import { VarDirective } from '../../../../../app/shared/utils/var.directive';
 
 @Component({
@@ -36,7 +36,7 @@ import { VarDirective } from '../../../../../app/shared/utils/var.directive';
     ListableObjectComponentLoaderComponent,
     NotifyRequestsStatusComponent,
     QaEventNotificationComponent,
-    SDGBadgesComponent,
+    GoalBadgesComponent,
     ThemedItemAlertsComponent,
     ThemedLoadingComponent,
     TranslateModule,

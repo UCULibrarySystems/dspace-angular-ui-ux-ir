@@ -87,14 +87,30 @@ rest:
   # server namespace (uncomment to use it).
   #ssrBaseUrl: http://localhost:8080/server
 
-# Sustainable Development Goal badges need no backend customization. Add values
-# to standard dc.subject metadata; accepted forms include "03", "SDG 3", and
-# "03: Good Health and Well-being". `subject` is DSpace's built-in dc.subject filter.
-sdg:
-  enabled: true
-  metadataFields:
-    - dc.subject
-  countSearchFilter: subject
+# Goal-badge frameworks are driven by item metadata. NDP and Agenda 2063 need
+# their metadata fields and corresponding Discovery facets enabled in DSpace.
+goalBadges:
+  sdg:
+    enabled: true
+    metadataFields: [dc.subject]
+    countSearchFilter: subject
+    imageFolder: sdg
+    imagePrefix: 'sdg-'
+    codes: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17']
+  ndp:
+    enabled: true
+    metadataFields: [local.subject.visiongoal]
+    countSearchFilter: visiongoal
+    imageFolder: vision2040
+    imagePrefix: ''
+    codes: [OPP01, OPP02, OPP03, OPP04, OPP05, OPP06, OPP07, OPP08, OPP09, FUND01, FUND02, FUND03, FUND04, FUND05, FUND06, SOC01, SOC02, SOC03, SOC04, SOC05, SOC06, SOC07, SOC08, SOC09, GOV01, GOV02, GOV03, GOV04, GOV05, GOV06]
+  agenda2063:
+    enabled: true
+    metadataFields: [local.subject.agenda2063]
+    countSearchFilter: agenda2063
+    imageFolder: agenda2063
+    imagePrefix: 'agenda-'
+    codes: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
 
 # Caching settings
 cache:

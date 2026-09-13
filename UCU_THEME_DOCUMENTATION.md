@@ -769,6 +769,8 @@ Manually check at minimum:
 
 This register records the current UCU-specific behavior. Update this section whenever a branding or interface change is made.
 
+For SDG setup, backend integration, and production-output checks, see `SDG_INTEGRATION.md`.
+
 ### Header, navigation, and homepage
 
 - The utility ribbon label is **"Click to check latest research"** and links to repository records sorted by `dc.date.accessioned` descending. The main navigation and login row become a scroll-activated fixed top row after the ribbon scrolls away; a dynamic spacer prevents page-content jumps. This is applied in both the custom and production DSpace fallback headers.
@@ -846,22 +848,25 @@ src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf
 src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.scss
 ```
 
-### Sustainable Development Goal badges
+### Metadata-driven goal badges
 
-- Item pages show a responsive **Sustainable Development Goals** panel when an item contains an SDG value in standard Dublin Core `dc.subject`. Accepted values include `03`, `SDG 3`, and controlled-vocabulary labels such as `03: Good Health and Well-being`. The panel uses the supplied official inverted SDG artwork.
-- No backend customization, metadata schema, controlled vocabulary, or custom Discovery index is required. Repository staff only add the chosen SDG value to an item's `dc.subject` field. The built-in DSpace `subject` filter supplies the live matching-output count.
-- Set `sdg.enabled: false` in `config/config.yml` to disable it. `sdg.metadataFields` may be changed to another existing Dublin Core field; set `sdg.countSearchFilter` to the matching built-in Discovery filter when using one other than `dc.subject`.
+- Item pages support three independent badge rows: **UN SDGs** (`sdg`), **Uganda Vision 2040/NDP** (`ndp`), and **AU Agenda 2063** (`agenda2063`). Each row is enabled and configured in the `goalBadges` block of `config/config.yml`.
+- The shared `ds-goal-badges` component reads only the configured item metadata, uses set-specific code matching, and batches live counts through that framework's Discovery facet. SDG uses the standard `dc.subject`/`subject` pair; NDP and Agenda 2063 require their backend metadata fields and Discovery facets.
+- See `SDG_INTEGRATION.md` for all codes, image naming, configuration, source paths, and backend deployment steps.
 
 ```text
 config/config.yml
 config/config.example.yml
-src/config/sdg-badge-config.interface.ts
+src/config/goal-badge-config.interface.ts
 src/config/app-config.interface.ts
 src/config/default-app-config.ts
-src/app/shared/sdg-badges/sdg-badges.component.ts
-src/app/shared/sdg-badges/sdg-badges.component.html
-src/app/shared/sdg-badges/sdg-badges.component.scss
+src/app/shared/goal-badges/goal-code-matchers.ts
+src/app/shared/goal-badges/goal-badges.component.ts
+src/app/shared/goal-badges/goal-badges.component.html
+src/app/shared/goal-badges/goal-badges.component.scss
 src/assets/images/sdg/sdg-01.png through src/assets/images/sdg/sdg-17.png
+src/assets/images/vision2040/opp01.png through gov06.png
+src/assets/images/agenda2063/agenda-01.png through agenda-20.png
 src/themes/custom/app/item-page/simple/item-page.component.html
 src/themes/custom/app/item-page/simple/item-page.component.ts
 src/themes/custom/app/item-page/full/full-item-page.component.html

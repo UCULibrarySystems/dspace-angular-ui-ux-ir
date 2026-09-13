@@ -1,0 +1,23 @@
+@if (badges.length > 0) {
+  <section class="goal-badges" [attr.aria-labelledby]="set + '-goal-badges-heading'">
+    <div class="goal-badges__heading">
+      <span class="goal-badges__eyebrow">Research impact</span>
+      <h2 [id]="set + '-goal-badges-heading'">{{ title }}</h2>
+    </div>
+    <ul class="goal-badges__list" role="list">
+      @for (badge of badges; track badge.code) {
+        <li>
+          <a class="goal-badge" [routerLink]="['/search']" [queryParams]="searchParams(badge.value)" [attr.aria-label]="badge.code + ': ' + (counts[badge.code] ?? 0) + ' research outputs'">
+            @if (!missingImages.has(badge.code)) {
+              <img [src]="imagePath(badge.code)" [alt]="title + ' ' + badge.code" (error)="imageUnavailable(badge.code)">
+            } @else {
+              <span class="goal-badge__image-fallback" aria-hidden="true">{{ badge.code }}</span>
+            }
+            <span class="goal-badge__code">{{ badge.code }}</span>
+            <span class="goal-badge__count">{{ counts[badge.code] ?? 0 }} research outputs</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </section>
+}

@@ -20,7 +20,7 @@ import { fadeInOut } from '../../../../../app/shared/animations/fade';
 import { DsoEditMenuComponent } from '../../../../../app/shared/dso-page/dso-edit-menu/dso-edit-menu.component';
 import { ErrorComponent } from '../../../../../app/shared/error/error.component';
 import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed-loading.component';
-import { SDGBadgesComponent } from '../../../../../app/shared/sdg-badges/sdg-badges.component';
+import { GoalBadgesComponent } from '../../../../../app/shared/goal-badges/goal-badges.component';
 import { VarDirective } from '../../../../../app/shared/utils/var.directive';
 
 @Component({
@@ -38,7 +38,7 @@ import { VarDirective } from '../../../../../app/shared/utils/var.directive';
     ItemVersionsNoticeComponent,
     KeyValuePipe,
     RouterLink,
-    SDGBadgesComponent,
+    GoalBadgesComponent,
     ThemedFullFileSectionComponent,
     ThemedItemAlertsComponent,
     ThemedItemPageTitleFieldComponent,

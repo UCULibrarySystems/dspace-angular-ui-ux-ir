@@ -1,6 +1,6 @@
 import { LayoutConfig } from '@dspace/config/layout-config.interfaces';
 import { SearchResultConfig } from '@dspace/config/search-result-config.interface';
-import { SDGBadgeConfig } from '@dspace/config/sdg-badge-config.interface';
+import { GoalBadgesConfig } from '@dspace/config/goal-badge-config.interface';
 
 import { AccessibilitySettingsConfig } from './accessibility-settings.config';
 import { ActuatorsConfig } from './actuators.config';
@@ -379,11 +379,32 @@ export class DefaultAppConfig implements AppConfig {
     showDiscoverFilters: false,
   };
 
-  // SDG badges consume controlled metadata only; no external classification API is used.
-  sdg: SDGBadgeConfig = {
-    enabled: true,
-    metadataFields: ['dc.subject'],
-    countSearchFilter: 'subject',
+  // Safe fallbacks: deployment config enables the frameworks it supports.
+  goalBadges: GoalBadgesConfig = {
+    sdg: {
+      enabled: false,
+      metadataFields: ['dc.subject'],
+      countSearchFilter: 'subject',
+      imageFolder: 'sdg',
+      imagePrefix: 'sdg-',
+      codes: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17'],
+    },
+    ndp: {
+      enabled: false,
+      metadataFields: ['local.subject.visiongoal'],
+      countSearchFilter: 'visiongoal',
+      imageFolder: 'vision2040',
+      imagePrefix: '',
+      codes: ['OPP01', 'OPP02', 'OPP03', 'OPP04', 'OPP05', 'OPP06', 'OPP07', 'OPP08', 'OPP09', 'FUND01', 'FUND02', 'FUND03', 'FUND04', 'FUND05', 'FUND06', 'SOC01', 'SOC02', 'SOC03', 'SOC04', 'SOC05', 'SOC06', 'SOC07', 'SOC08', 'SOC09', 'GOV01', 'GOV02', 'GOV03', 'GOV04', 'GOV05', 'GOV06'],
+    },
+    agenda2063: {
+      enabled: false,
+      metadataFields: ['local.subject.agenda2063'],
+      countSearchFilter: 'agenda2063',
+      imageFolder: 'agenda2063',
+      imagePrefix: 'agenda-',
+      codes: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
+    },
   };
 
   // Item Config
