@@ -22,13 +22,13 @@ Use dedicated, controlled metadata fields for all three frameworks. This prevent
 | NDP | `local.subject.visiongoal` | `uganda-vision2040` | `visiongoal` |
 | Agenda 2063 | `local.subject.agenda2063` | `au-agenda2063` | `agenda2063` |
 
-The frontend configuration in this repository already uses this model:
+The frontend configuration in this repository already uses this model, with `dc.subject` retained as a temporary legacy display-only fallback:
 
 ```yaml
 goalBadges:
   sdg:
     enabled: true
-    metadataFields: [local.subject.sdg]
+    metadataFields: [local.subject.sdg, dc.subject]
     countSearchFilter: sdg
     imageFolder: sdg
     imagePrefix: 'sdg-'
@@ -72,6 +72,86 @@ sdg        -> local.subject.sdg
 visiongoal -> local.subject.visiongoal
 agenda2063 -> local.subject.agenda2063
 ```
+
+### Correct the supplied `discovery.xml` configuration
+
+The two anonymous `DiscoverySearchFilterFacet` beans currently near the top of the supplied file are not referenced by `defaultConfiguration`, so they are not exposed through `/server/api/discover/facets`. Remove those anonymous beans and add these **named** beans alongside the existing `searchFilterSubject` bean definitions:
+
+```xml
+<!-- Goal-framework Discovery facets. Bean IDs are referenced below. -->
+<bean id="searchFilterSDG" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <property name="indexFieldName" value="sdg"/>
+    <property name="metadataFields"><list><value>local.subject.sdg</value></list></property>
+    <property name="facetLimit" value="20"/>
+    <property name="sortOrderSidebar" value="COUNT"/>
+    <property name="sortOrderFilterPage" value="COUNT"/>
+    <property name="isOpenByDefault" value="false"/>
+    <property name="pageSize" value="20"/>
+</bean>
+<bean id="searchFilterVisionGoal" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <property name="indexFieldName" value="visiongoal"/>
+    <property name="metadataFields"><list><value>local.subject.visiongoal</value></list></property>
+    <property name="facetLimit" value="30"/>
+    <property name="sortOrderSidebar" value="COUNT"/>
+    <property name="sortOrderFilterPage" value="COUNT"/>
+    <property name="isOpenByDefault" value="false"/>
+    <property name="pageSize" value="30"/>
+</bean>
+<bean id="searchFilterAgenda2063" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+    <property name="indexFieldName" value="agenda2063"/>
+    <property name="metadataFields"><list><value>local.subject.agenda2063</value></list></property>
+    <property name="facetLimit" value="20"/>
+    <property name="sortOrderSidebar" value="COUNT"/>
+    <property name="sortOrderFilterPage" value="COUNT"/>
+    <property name="isOpenByDefault" value="false"/>
+    <property name="pageSize" value="20"/>
+</bean>
+```
+
+Inside the existing `defaultConfiguration` bean, add the three references to the existing `searchFilters` list. This is required for the REST facet endpoint and frontend count status to work:
+
+```xml
+<ref bean="searchFilterSDG" />
+<ref bean="searchFilterVisionGoal" />
+<ref bean="searchFilterAgenda2063" />
+```
+
+Add those same references to `sidebarFacets` only if they should also be visible in the standard search sidebar. Do not add them to every entity-specific configuration unless the facet is required there too.
+
+### Add metadata Browse indexes in `config/local.cfg`
+
+Discovery facets power counts and filtered search. Your supplied `local.cfg` uses DSpace's compact browse syntax. The literal keys `webui.browse.index.N` and `webui.browse.index.N+1` are invalid and must be removed. Add this exact replacement block at the end of `local.cfg`:
+
+```properties
+##### Goal-framework browse indexes #####
+# 1–9 are already used by the existing UCU browse menu; use 10–12.
+webui.browse.index.10 = sdg:metadata:local.subject.sdg:text
+webui.browse.index.11 = visiongoal:metadata:local.subject.visiongoal:text
+webui.browse.index.12 = agenda2063:metadata:local.subject.agenda2063:text
+```
+
+The names are deliberately lower-case: they must exactly match the frontend filters and routes. The resulting browse URLs are `/browse/sdg`, `/browse/visiongoal`, and `/browse/agenda2063`.
+
+### Add the Browse Repository menu entries
+
+If the generated browse menu does not show the new indexes after restart and reindexing, add links to the repository browse menu in the backend's menu configuration (commonly `config/menus.xml`, using the same XML pattern as existing `browse/subject` links):
+
+```xml
+<menu-item>
+  <text>By Sustainable Development Goal</text>
+  <link>/browse/sdg</link>
+</menu-item>
+<menu-item>
+  <text>By Vision 2040 Goal</text>
+  <link>/browse/visiongoal</link>
+</menu-item>
+<menu-item>
+  <text>By Agenda 2063 Goal</text>
+  <link>/browse/agenda2063</link>
+</menu-item>
+```
+
+Keep these links in the same `Browse Repository` submenu as Author, Title, and Subject. Some DSpace versions use JSON/YAML menu configuration instead of `menus.xml`; copy the existing subject menu item's structure and only change its label and path.
 
 For each field, add:
 
