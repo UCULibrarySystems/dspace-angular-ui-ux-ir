@@ -6,7 +6,7 @@ This guide describes **configuration-only** changes for a DSpace backend. It doe
 
 | Framework | Frontend expects | Backend evidence supplied | Result |
 | --- | --- | --- | --- |
-| SDG | `dc.subject` and Discovery filter `subject` | `sdg.xml` and `local.subject.sdg` exist; normal submission uses `dc.subject` with `srsc` vocabulary | **Mismatch**: SDG vocabulary entries are not currently selected through the normal item form, and `local.subject.sdg` is not the field read by the frontend. |
+| SDG | `local.subject.sdg` and Discovery filter `sdg`, with legacy `dc.subject` badge matching | `sdg.xml` and `local.subject.sdg` exist; normal submission uses `dc.subject` with `srsc` vocabulary | **Frontend aligned**: add the dedicated SDG field to the normal item form so new Items use the controlled vocabulary. |
 | NDP / Vision 2040 | `local.subject.visiongoal`, filter `visiongoal` | Registry field and `uganda-vision2040.xml` exist | **Partially ready**: add field to an item submission form and add a Discovery facet/filter. The supplied field is currently in `bitstream-metadata`, not the normal item form. |
 | Agenda 2063 | `local.subject.agenda2063`, filter `agenda2063` | Registry field and `au-agenda2063.xml` exist | **Partially ready**: same item-form and Discovery additions are required. |
 
@@ -22,7 +22,7 @@ Use dedicated, controlled metadata fields for all three frameworks. This prevent
 | NDP | `local.subject.visiongoal` | `uganda-vision2040` | `visiongoal` |
 | Agenda 2063 | `local.subject.agenda2063` | `au-agenda2063` | `agenda2063` |
 
-With this recommended model, update the frontend SDG block to match:
+The frontend configuration in this repository already uses this model:
 
 ```yaml
 goalBadges:

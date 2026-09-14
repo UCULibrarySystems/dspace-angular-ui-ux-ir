@@ -6,7 +6,7 @@ Item pages can show badges and repository-output counts for three goal framework
 
 | Set key | Framework | Item metadata | Discovery filter |
 | --- | --- | --- | --- |
-| `sdg` | UN Sustainable Development Goals | `dc.subject` | `subject` |
+| `sdg` | UN Sustainable Development Goals | `local.subject.sdg` (plus temporary legacy `dc.subject`) | `sdg` |
 | `ndp` | Uganda Vision 2040 / National Development Plan goals | `local.subject.visiongoal` | `visiongoal` |
 | `agenda2063` | African Union Agenda 2063 goals | `local.subject.agenda2063` | `agenda2063` |
 
@@ -22,8 +22,8 @@ The active production-style configuration is in `config/config.yml`; copy the sa
 goalBadges:
   sdg:
     enabled: true
-    metadataFields: [dc.subject]
-    countSearchFilter: subject
+    metadataFields: [local.subject.sdg, dc.subject]
+    countSearchFilter: sdg
     imageFolder: sdg
     imagePrefix: 'sdg-'
     codes: ['01', '02', '03'] # continue through '17'
@@ -43,7 +43,7 @@ goalBadges:
     codes: ['01', '02', '03'] # continue through '20'
 ```
 
-Set an individual framework's `enabled` value to `false` to hide it. `src/config/default-app-config.ts` provides disabled definitions for all three frameworks, so an incomplete local configuration hides badges instead of causing an application error.
+Set an individual framework's `enabled` value to `false` to hide it. `src/config/default-app-config.ts` provides disabled definitions for all three frameworks, so an incomplete local configuration hides badges instead of causing an application error. Remove legacy `dc.subject` from the SDG metadata fields after existing SDG-tagged items have been re-catalogued in `local.subject.sdg`.
 
 ## Value formats matched by the frontend
 
@@ -90,7 +90,7 @@ Image file names are lower-case because the component resolves every configured 
 
 ## Backend integration required for counts
 
-SDG works against standard DSpace `dc.subject` and its built-in `subject` filter. NDP and Agenda 2063 are frontend-configured, but their metadata values and live repository-wide counts require the DSpace backend to expose them.
+SDG uses the dedicated `local.subject.sdg` field and `sdg` Discovery filter. The temporary `dc.subject` fallback keeps older items visually tagged, but those legacy values are not included in the new SDG facet count until they are re-catalogued. NDP and Agenda 2063 likewise require their metadata values and Discovery filters to be exposed by the backend.
 
 1. Register `local.subject.visiongoal` and `local.subject.agenda2063` in the DSpace metadata registry.
 2. Add controlled vocabularies (for example, `uganda-vision2040.xml` and `au-agenda2063.xml`) and reference them in the required submission forms.
