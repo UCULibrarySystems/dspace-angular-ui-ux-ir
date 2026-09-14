@@ -3,6 +3,13 @@
     <div class="goal-badges__heading">
       <span class="goal-badges__eyebrow">Research impact</span>
       <h2 [id]="set + '-goal-badges-heading'">{{ title }}</h2>
+      @if (facetAvailable === true) {
+        <span class="goal-badges__status goal-badges__status--available"><i class="fas fa-circle-check" aria-hidden="true"></i> Live repository counts active</span>
+      } @else if (facetAvailable === false) {
+        <span class="goal-badges__status goal-badges__status--unavailable"><i class="fas fa-circle-exclamation" aria-hidden="true"></i> Counts unavailable: Discovery filter {{ config?.countSearchFilter }} is not available</span>
+      } @else {
+        <span class="goal-badges__status"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Checking repository counts</span>
+      }
     </div>
     <ul class="goal-badges__list" role="list">
       @for (badge of badges; track badge.code) {
@@ -14,7 +21,7 @@
               <span class="goal-badge__image-fallback" aria-hidden="true">{{ badge.code }}</span>
             }
             <span class="goal-badge__code">{{ badge.code }}</span>
-            <span class="goal-badge__count">{{ counts[badge.code] ?? 0 }} research outputs</span>
+            <span class="goal-badge__count">{{ facetAvailable === true ? (counts[badge.code] ?? 0) + ' research outputs' : 'Repository count unavailable' }}</span>
           </a>
         </li>
       }

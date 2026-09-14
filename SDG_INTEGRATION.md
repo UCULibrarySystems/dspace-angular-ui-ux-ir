@@ -12,6 +12,8 @@ Item pages can show badges and repository-output counts for three goal framework
 
 The browser matches item metadata to configured codes, renders only matching badges, and loads all counts for each displayed framework from one Discovery facet request. There is no classification service or custom frontend API.
 
+When metadata matches a configured code, its row is shown on the item page. Each row also reports **Live repository counts active** when its configured Discovery facet responds, or explains that its Discovery filter is unavailable instead of misleading users with zero counts.
+
 ## Frontend configuration
 
 The active production-style configuration is in `config/config.yml`; copy the same `goalBadges` block from `config/config.example.yml` when creating another deployment.

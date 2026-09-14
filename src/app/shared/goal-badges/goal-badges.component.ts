@@ -37,6 +37,11 @@ interface ItemGoalBadge {
   value: string;
 }
 
+interface GoalBadgeCountResult {
+  counts: Record<string, number>;
+  facetAvailable: boolean;
+}
+
 const SET_TITLES: Record<string, string> = {
   sdg: 'Sustainable Development Goals',
   ndp: 'Uganda Vision 2040 goals',
@@ -61,6 +66,8 @@ export class GoalBadgesComponent implements OnChanges {
   @Input() set = 'sdg';
 
   counts: Record<string, number> = {};
+  /** Null while checking; false when the configured Discovery facet is unavailable. */
+  facetAvailable: boolean | null = null;
   missingImages = new Set<string>();
 
   get config(): GoalBadgeSetConfig | undefined {
@@ -100,6 +107,7 @@ export class GoalBadgesComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.item || changes.set) {
       this.counts = {};
+      this.facetAvailable = null;
       this.missingImages = new Set<string>();
       this.loadCounts();
     }
@@ -133,7 +141,7 @@ export class GoalBadgesComponent implements OnChanges {
       switchMap((response) => {
         const facet = response.payload?.find((filterConfig) => filterConfig.name === config.countSearchFilter);
         if (!response.hasSucceeded || !facet) {
-          return of({} as Record<string, number>);
+          return of({ counts: {}, facetAvailable: false } as GoalBadgeCountResult);
         }
         const facetWithAllValues = Object.assign(new SearchFilterConfig(), facet, { pageSize: 100 });
         return this.searchService.getFacetValuesFor(facetWithAllValues, 1).pipe(
@@ -141,22 +149,24 @@ export class GoalBadgesComponent implements OnChanges {
           take(1),
           map((facetResponse) => {
             if (!facetResponse.hasSucceeded) {
-              return {} as Record<string, number>;
+              return { counts: {}, facetAvailable: false } as GoalBadgeCountResult;
             }
             const displayedCodes = new Set(badges.map((badge) => badge.code));
-            return (facetResponse.payload.page ?? []).reduce((counts, facetValue) => {
+            const counts = (facetResponse.payload.page ?? []).reduce((counts, facetValue) => {
               const code = matcher(facetValue.value);
               if (code && displayedCodes.has(code)) {
                 counts[code] = (counts[code] ?? 0) + facetValue.count;
               }
               return counts;
             }, {} as Record<string, number>);
+            return { counts, facetAvailable: true } as GoalBadgeCountResult;
           }),
         );
       }),
-      catchError(() => of({} as Record<string, number>)),
-    ).subscribe((counts) => {
-      this.counts = counts;
+      catchError(() => of({ counts: {}, facetAvailable: false } as GoalBadgeCountResult)),
+    ).subscribe((result) => {
+      this.counts = result.counts;
+      this.facetAvailable = result.facetAvailable;
       this.changeDetectorRef.markForCheck();
     });
   }
