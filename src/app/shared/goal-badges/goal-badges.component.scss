@@ -8,8 +8,8 @@
 .goal-badges__list { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); list-style: none; margin: 0; padding: 0; }
 .goal-badge { align-items: center; background: var(--bs-body-bg); border: 1px solid var(--bs-border-color); border-radius: .5rem; color: inherit; display: flex; flex-direction: column; gap: .35rem; height: 100%; justify-content: center; min-height: 10rem; padding: .75rem; text-align: center; text-decoration: none; transition: box-shadow .2s ease, transform .2s ease; }
 .goal-badge:hover, .goal-badge:focus-visible { box-shadow: 0 .35rem .8rem rgba(0, 0, 0, .14); color: inherit; transform: translateY(-2px); }
-.goal-badge img, .goal-badge__image-fallback { height: 5rem; max-width: 100%; object-fit: contain; }
+.goal-badge img, .goal-badge__image-fallback { aspect-ratio: 1; height: auto; max-width: 100%; object-fit: contain; width: min(100%, 7rem); }
 .goal-badge__image-fallback { align-items: center; background: var(--ucu-blue, var(--bs-primary)); border-radius: .35rem; color: #fff; display: inline-flex; font-size: 1.1rem; font-weight: 700; justify-content: center; padding: .5rem; width: 5rem; }
 .goal-badge__code { font-size: .8rem; font-weight: 700; }
-.goal-badge__count { color: var(--bs-secondary-color); font-size: .78rem; }
+.goal-badge__count { color: var(--bs-secondary-color); font-size: .78rem; font-weight: 600; }
 @media (max-width: 575.98px) { .goal-badges__list { gap: .5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); } .goal-badge { min-height: 8.5rem; padding: .5rem; } }

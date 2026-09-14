@@ -21,7 +21,13 @@
               <span class="goal-badge__image-fallback" aria-hidden="true">{{ badge.code }}</span>
             }
             <span class="goal-badge__code">{{ badge.code }}</span>
-            <span class="goal-badge__count">{{ facetAvailable === true ? (counts[badge.code] ?? 0) + ' research outputs' : 'Repository count unavailable' }}</span>
+            <span class="goal-badge__count">
+              @if (facetAvailable === true) {
+                {{ counts[badge.code] ?? 0 }} {{ (counts[badge.code] ?? 0) === 1 ? 'research output' : 'research outputs' }}
+              } @else {
+                Repository count unavailable
+              }
+            </span>
           </a>
         </li>
       }

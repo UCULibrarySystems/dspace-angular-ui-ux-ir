@@ -4,17 +4,17 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { BrowseByTaxonomyComponent as BaseComponent } from '../../../../../app/browse-by/browse-by-taxonomy/browse-by-taxonomy.component';
 import { VocabularyTreeviewComponent } from '../../../../../app/shared/form/vocabulary-treeview/vocabulary-treeview.component';
+import { SdgBrowseGridComponent } from './sdg-browse-grid.component';
 
 @Component({
   selector: 'ds-browse-by-taxonomy',
-  // templateUrl: './browse-by-taxonomy.component.html',
-  templateUrl: '../../../../../app/browse-by/browse-by-taxonomy/browse-by-taxonomy.component.html',
-  // styleUrls: ['./browse-by-taxonomy.component.scss'],
-  styleUrls: ['../../../../../app/browse-by/browse-by-taxonomy/browse-by-taxonomy.component.scss'],
+  templateUrl: './browse-by-taxonomy.component.html',
+  styleUrls: ['./browse-by-taxonomy.component.scss'],
   imports: [
     RouterLink,
     TranslatePipe,
     VocabularyTreeviewComponent,
+    SdgBrowseGridComponent,
   ],
 })
 export class BrowseByTaxonomyComponent extends BaseComponent {

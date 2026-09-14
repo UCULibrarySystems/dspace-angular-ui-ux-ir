@@ -1,0 +1,32 @@
+<section class="sdg-browse-grid" aria-labelledby="sdg-browse-heading">
+  <div class="sdg-browse-grid__intro">
+    <h2 id="sdg-browse-heading">Explore research by Sustainable Development Goal</h2>
+    <p>Choose a goal to view its related research outputs.</p>
+    @if (facetAvailable === true) {
+      <span class="sdg-browse-grid__status">Live repository counts</span>
+    } @else if (facetAvailable === false) {
+      <span class="sdg-browse-grid__status">Repository counts are temporarily unavailable</span>
+    }
+  </div>
+
+  <ul class="sdg-browse-grid__tiles" role="list">
+    @for (tile of tiles; track tile.code) {
+      <li>
+        <a [routerLink]="['/search']" [queryParams]="searchParams(tile.code)" [attr.aria-label]="'SDG ' + tile.code + ': ' + tile.title">
+          @if (!missingImages.has(tile.code)) {
+            <img [src]="'assets/images/sdg/sdg-' + tile.code + '.png'" [alt]="'SDG ' + tile.code + ': ' + tile.title" (error)="imageUnavailable(tile.code)">
+          } @else {
+            <span class="sdg-browse-grid__fallback">SDG {{ tile.code }}</span>
+          }
+          <span class="sdg-browse-grid__count">
+            @if (facetAvailable === true) {
+              {{ counts[tile.code] ?? 0 }} {{ (counts[tile.code] ?? 0) === 1 ? 'output' : 'outputs' }}
+            } @else {
+              View outputs
+            }
+          </span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>
