@@ -14,8 +14,11 @@ import {
 import { ServerResponseService } from '@dspace/core/services/server-response.service';
 import { isNotEmpty } from '@dspace/shared/utils/empty.util';
 import {
+  catchError,
   of,
   Subscription,
+  take,
+  timeout,
 } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -45,6 +48,10 @@ export class HomeCoarComponent implements OnInit, OnDestroy {
     // only if COAR configuration is enabled
     this.subs.push(this.notifyInfoService.isCoarConfigEnabled().pipe(
       switchMap((coarLdnEnabled: boolean) => coarLdnEnabled ? this.notifyInfoService.getCoarLdnLocalInboxUrls() : of([])),
+      // COAR Link headers enhance discovery but must never hold up page rendering.
+      timeout({ first: 1000 }),
+      catchError(() => of([])),
+      take(1),
     ).subscribe((coarRestApiUrls: string[]) => {
       if (coarRestApiUrls.length > 0) {
         this.initPageLinks(coarRestApiUrls);
@@ -81,7 +88,7 @@ export class HomeCoarComponent implements OnInit, OnDestroy {
       links = links + (isNotEmpty(links) ? ', ' : '') + `<${coarRestApiUrl}> ; rel="${rel}"`;
     });
 
-    if (isPlatformServer(this.platformId)) {
+    if (isPlatformServer(this.platformId) && !this.responseService.headersSent) {
       // Add link to response header
       this.responseService.setHeader('Link', links);
     }

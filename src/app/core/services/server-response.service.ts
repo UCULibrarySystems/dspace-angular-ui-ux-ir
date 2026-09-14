@@ -77,8 +77,13 @@ export class ServerResponseService {
    * @param content
    */
   setHeader(header: string, content: string) {
-    if (this.response) {
+    if (this.response && !this.response.headersSent) {
       this.response.setHeader(header, content);
     }
+  }
+
+  /** Whether Express has already committed the response headers. */
+  get headersSent(): boolean {
+    return this.response?.headersSent === true;
   }
 }
