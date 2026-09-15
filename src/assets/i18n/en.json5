@@ -1196,6 +1196,16 @@
   "browse.taxonomy.button": "Browse",
 
   "browse.title": "Browsing by {{ field }}{{ startsWith }} {{ value }}",
+  "browse.metadata.sdg": "Sustainable Development Goals (SDGs)",
+  "browse.metadata.sdg.tree.description": "Select one or more Sustainable Development Goals to find related research outputs.",
+  "browse.metadata.uganda-vision2040": "Uganda Vision 2040 Goals",
+  "browse.metadata.uganda-vision2040.tree.description": "Select one or more Uganda Vision 2040 goals to find related research outputs.",
+  "browse.metadata.visiongoal": "Uganda Vision 2040 Goals",
+  "browse.metadata.visiongoal.tree.description": "Select one or more Uganda Vision 2040 goals to find related research outputs.",
+  "browse.metadata.au-agenda2063": "African Union Agenda 2063 Goals",
+  "browse.metadata.au-agenda2063.tree.description": "Select one or more African Union Agenda 2063 goals to find related research outputs.",
+  "browse.metadata.agenda2063": "African Union Agenda 2063 Goals",
+  "browse.metadata.agenda2063.tree.description": "Select one or more African Union Agenda 2063 goals to find related research outputs.",
 
   "browse.taxonomy.show_next_results": "Show next results",
 
@@ -3771,6 +3781,11 @@
   "menu.section.browse_community_by_title": "By Title",
 
   "menu.section.browse_global": "Browse Repository",
+  "menu.section.browse_global_by_sdg": "By Sustainable Development Goal",
+  "menu.section.browse_global_by_uganda-vision2040": "By Uganda Vision 2040 Goal",
+  "menu.section.browse_global_by_visiongoal": "By Uganda Vision 2040 Goal",
+  "menu.section.browse_global_by_au-agenda2063": "By African Union Agenda 2063 Goal",
+  "menu.section.browse_global_by_agenda2063": "By African Union Agenda 2063 Goal",
 
   "menu.section.browse_global_by_author": "By Author",
 
@@ -3922,7 +3937,7 @@
 
   "metadata.security.level.title": "Metatada security level {{level}}",
 
-  "mydspace.breadcrumbs": "MyDSpace",
+  "mydspace.breadcrumbs": "My Workspace",
 
   "mydspace.description": "",
 
@@ -3976,7 +3991,7 @@
 
   "mydspace.results.no-uri": "No URI",
 
-  "mydspace.search-form.placeholder": "Search in MyDSpace...",
+  "mydspace.search-form.placeholder": "Search in My Workspace...",
 
   "mydspace.show.workflow": "Workflow tasks",
 
@@ -3986,7 +4001,7 @@
 
   "mydspace.show.supervisedWorkspace": "Supervised items",
 
-  "mydspace.status": "My DSpace status:",
+  "mydspace.status": "My Workspace status:",
 
   "mydspace.status.mydspaceArchived": "Archived",
 
@@ -3998,7 +4013,7 @@
 
   "mydspace.status.mydspaceWorkspace": "Workspace",
 
-  "mydspace.title": "MyDSpace",
+  "mydspace.title": "My Workspace",
 
   "mydspace.upload.upload-failed": "Error creating new workspace. Please verify the content uploaded before retry.",
 
@@ -4034,7 +4049,7 @@
 
   "nav.main.description": "Main navigation bar",
 
-  "nav.mydspace": "MyDSpace",
+  "nav.mydspace": "My Workspace",
 
   "nav.profile": "Profile",
 
@@ -5404,7 +5419,7 @@
 
   "submission.import-external.page.hint": "Enter a query above to find items from the web to import in to DSpace.",
 
-  "submission.import-external.back-to-my-dspace": "Back to MyDSpace",
+  "submission.import-external.back-to-my-dspace": "Back to My Workspace",
 
   "submission.import-external.search.placeholder": "Search the external source",
 

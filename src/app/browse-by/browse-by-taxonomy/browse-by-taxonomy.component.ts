@@ -29,6 +29,7 @@ import {
 import { map } from 'rxjs/operators';
 
 import { VocabularyTreeviewComponent } from '../../shared/form/vocabulary-treeview/vocabulary-treeview.component';
+import { SdgBrowseGridComponent } from '../../shared/goal-badges/sdg-browse-grid.component';
 import { rendersBrowseBy } from '../browse-by-switcher/browse-by-decorator';
 
 @Component({
@@ -39,6 +40,7 @@ import { rendersBrowseBy } from '../browse-by-switcher/browse-by-decorator';
     RouterLink,
     TranslatePipe,
     VocabularyTreeviewComponent,
+    SdgBrowseGridComponent,
   ],
 })
 /**
@@ -140,6 +142,11 @@ export class BrowseByTaxonomyComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(): void {
     this.scope$.next(this.scope);
+  }
+
+  /** Accommodates the configured SDG vocabulary aliases used by deployments. */
+  isSdgVocabulary(): boolean {
+    return ['sdg', 'sustainable-development-goals', 'sustainabledevelopmentgoals'].includes(this.vocabularyName?.toLowerCase());
   }
 
   /**

@@ -183,6 +183,30 @@ The supplied frontend has live status text on every displayed goal row. It chang
 7. Open the item page: the matching badge row should appear and say **Live repository counts active**.
 8. Open `/browse/sdg`, `/browse/visiongoal`, or `/browse/agenda2063`: the configured browse index should show the controlled values. The frontend Browse Repository menu should include the corresponding links.
 
+### Fast production checks
+
+Run these checks after the backend restart and Discovery re-index. Replace the hostname with the repository's public backend URL.
+
+```bash
+# The response must contain a filter named "sdg".
+curl -fsS https://repository.example.org/server/api/discover/search/objects | grep -o '"sdg"'
+
+# The SDG facet must return values such as "SDG01: No Poverty" and positive counts.
+curl -fsS 'https://repository.example.org/server/api/discover/facets/sdg' | grep -E 'SDG0[1-9]|SDG1[0-7]'
+
+# An exact filter request must return matching objects.
+curl -fsS 'https://repository.example.org/server/api/discover/search/objects?f.sdg=SDG01%3A%20No%20Poverty%2Cequals' | grep -o 'totalElements[^,]*'
+```
+
+The browser's SDG tiles load their image files from `/assets/images/sdg/sdg-01.png` through `sdg-17.png` and counts from the `sdg` Discovery facet. After deploying the frontend, verify both directly:
+
+```bash
+curl -fI https://repository.example.org/assets/images/sdg/sdg-01.png
+curl -fsS https://repository.example.org/assets/i18n/en.json | grep 'Sustainable Development Goals'
+```
+
+If either command returns an old or missing resource, PM2 is still serving an older `dist` release. Rebuild the UI with `npm run build:prod`, deploy the complete generated `dist` directory, then restart/reload the PM2 application. Do not deploy only `dist/browser` when the application uses SSR; deploy both `dist/browser` and `dist/server` from the same build.
+
 ## Frontend artwork
 
 SDG image files are already in the frontend at `src/assets/images/sdg/`. To match the visual browse/badge design, add the official artwork without changing application code:
