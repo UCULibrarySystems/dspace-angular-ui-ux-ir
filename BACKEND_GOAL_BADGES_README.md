@@ -41,6 +41,43 @@ If you intentionally keep SDGs in `dc.subject`, leave the current frontend setti
 
 Add the three fields to the form used for normal Item deposits, usually `traditionalpagetwo` in `config/submission-forms.xml`. Do not place them only in `bitstream-metadata`; that form describes an uploaded file, not the repository Item.
 
+### Why the fields do not appear in submission
+
+The Angular frontend does **not** create submission fields. It only reads metadata already saved on an Item and reads Discovery facets for counts. A goal field will be absent from the submission screen when any one of these backend conditions is true:
+
+1. The field was added to a submission form that is not assigned to the collection being tested.
+2. The field was added to `bitstream-metadata` instead of the Item's normal submission form.
+3. The `local.subject.sdg`, `local.subject.visiongoal`, or `local.subject.agenda2063` field is missing from the metadata registry, or the backend was not restarted after updating it.
+4. The controlled vocabulary file is missing, has an invalid name, or is not referenced by the field's `<vocabulary>` element.
+5. The collection uses a custom submission process whose form name is different from `traditionalpagetwo`.
+
+Verify the collection's active submission form first. In the backend `config/submission-forms.xml`, find the collection handle (or its mapped submission process) and identify the form actually used by that collection. Add the three goal rows to that form, then restart the backend. Adding the rows to an unused form has no visible effect.
+
+Use the following checks on the backend host before testing the browser:
+
+```bash
+# Each registry field must be present once.
+grep -n 'local.subject.sdg\|local.subject.visiongoal\|local.subject.agenda2063' \
+  [dspace]/config/registries/local-types.xml
+
+# Each controlled-vocabulary file must exist.
+ls [dspace]/config/controlled-vocabularies/sdg.xml \
+   [dspace]/config/controlled-vocabularies/uganda-vision2040.xml \
+   [dspace]/config/controlled-vocabularies/au-agenda2063.xml
+
+# The active submission form must contain the three fields and vocabulary names.
+grep -n 'subject.*sdg\|subject.*visiongoal\|subject.*agenda2063\|uganda-vision2040\|au-agenda2063' \
+  [dspace]/config/submission-forms.xml
+```
+
+After updating `local-types.xml`, load the metadata registry into DSpace before attempting a submission. Metadata fields are stored in DSpace's database-backed registry; changing the XML file and restarting alone does not create the fields used by the REST API.
+
+```bash
+[dspace]/bin/dspace registry-loader -m [dspace]/config/registries/local-types.xml
+```
+
+Remove duplicate `<dc-type>` definitions (in particular, retain only one `local.subject.visiongoal` entry) before running the loader. Then restart the backend and begin a **new** submission in the target collection; an already-open submission can retain the form definition loaded before the restart.
+
 ```xml
 <row><field>
   <dc-schema>local</dc-schema><dc-element>subject</dc-element><dc-qualifier>sdg</dc-qualifier>
@@ -60,6 +97,24 @@ Add the three fields to the form used for normal Item deposits, usually `traditi
 ```
 
 The values must use the code format expected by the frontend: `SDG01: ...`, `OPP01: ...`, and `01: ...` respectively.
+
+### Authority-control settings required by controlled vocabularies
+
+The vocabulary selector sends an authority value (for example, `sdg:SDG04`) with the selected label. DSpace rejects that value unless the corresponding metadata field is marked as authority controlled. Add the following to `config/local.cfg` (preferred, because it survives DSpace upgrades) or the active `config/modules/authority.cfg` override:
+
+```properties
+# Store and accept controlled-vocabulary authority identifiers for goal metadata.
+authority.controlled.local.subject.sdg = true
+authority.controlled.local.subject.visiongoal = true
+authority.controlled.local.subject.agenda2063 = true
+
+# Make authority storage explicit for these three controlled vocabularies.
+vocabulary.plugin.sdg.authority.store = true
+vocabulary.plugin.uganda-vision2040.authority.store = true
+vocabulary.plugin.au-agenda2063.authority.store = true
+```
+
+Restart the DSpace backend after this change. If the backend log contains `The metadata field "local_subject_sdg" is not authority controlled but authorities were provided`, these settings are missing or are not being loaded by the active configuration.
 
 ## Discovery filters and Browse by Goal
 
@@ -194,8 +249,8 @@ curl -fsS https://repository.example.org/server/api/discover/search/objects | gr
 # The SDG facet must return values such as "SDG01: No Poverty" and positive counts.
 curl -fsS 'https://repository.example.org/server/api/discover/facets/sdg' | grep -E 'SDG0[1-9]|SDG1[0-7]'
 
-# An exact filter request must return matching objects.
-curl -fsS 'https://repository.example.org/server/api/discover/search/objects?f.sdg=SDG01%3A%20No%20Poverty%2Cequals' | grep -o 'totalElements[^,]*'
+# Use the authority key and operator returned by the facet link. This must return matching objects.
+curl -fsS 'https://repository.example.org/server/api/discover/search/objects?f.sdg=sdg%3ASDG01%2Cauthority' | grep -o 'totalElements[^,]*'
 ```
 
 The browser's SDG tiles load their image files from `/assets/images/sdg/sdg-01.png` through `sdg-17.png` and counts from the `sdg` Discovery facet. After deploying the frontend, verify both directly:

@@ -98,7 +98,7 @@ SDG uses the dedicated `local.subject.sdg` field and `sdg` Discovery filter. The
 4. Re-index Discovery after the configuration change.
 5. Confirm `/server/api/discover/facets/visiongoal` and `/server/api/discover/facets/agenda2063` return the configured values.
 
-`countSearchFilter` is the backend Discovery filter name without the `f.` prefix. The component sends that filter in its search link and uses its facet response to populate the count. If a backend facet is absent, the badges still render from item metadata, but their counts remain zero and their search links cannot return filtered results.
+`countSearchFilter` is the backend Discovery filter name without the `f.` prefix. The component uses its facet response to populate the count. With controlled-vocabulary authority storage enabled, use the authority key and `authority` operator returned by the facet endpoint for a filtered search, for example `f.sdg=sdg:SDG01,authority`; do not derive an `equals` filter from the visible label. If a backend facet is absent, the badges still render from item metadata, but their counts remain unavailable and their filtered search links cannot be verified.
 
 ## Production check
 

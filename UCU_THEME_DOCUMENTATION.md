@@ -22,6 +22,7 @@ The current UCU UI/UX layer provides:
 - Repository-oriented SEO metadata, Dublin Core and citation metadata, Open Graph/Twitter metadata, geographic metadata, and JSON-LD descriptions.
 - Public sitemap and robots configuration that exposes repository content while excluding administrative and query-heavy routes.
 - UCU-adjusted repository information pages for deposit guidance, data reuse, service level, terms, preservation, notice and takedown, and quality assurance.
+- Metadata-driven goal badges and a visual SDG browse grid, backed by DSpace controlled vocabularies and Discovery counts.
 
 This document is the maintenance reference for these features and their source locations.
 
@@ -82,6 +83,7 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | UCU repository info pages | `src/app/info/<page>/` | `src/themes/custom/app/info/<page>/`, `src/app/info/info-routes.ts` |
 | Info page path constants | `src/app/core/router/info-routing-paths.ts` | Footer links and translation keys |
 | Item PDF preview | `src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/` | Simple/full file-section components and custom theme wrappers |
+| Goal badges and SDG browse grid | `src/app/shared/goal-badges/` | `config/config.yml`, `SDG_INTEGRATION.md`, `BACKEND_GOAL_BADGES_README.md` |
 | Default UI/runtime settings | `src/config/default-app-config.ts` | `src/environments/environment*.ts` |
 | SSR settings | `config/config.yml`, `src/environments/environment.ts` | `src/environments/environment.production.ts` |
 
@@ -850,9 +852,41 @@ src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf
 
 ### Metadata-driven goal badges
 
-- Item pages support three independent badge rows: **UN SDGs** (`sdg`), **Uganda Vision 2040/NDP** (`ndp`), and **AU Agenda 2063** (`agenda2063`). Each row is enabled and configured in the `goalBadges` block of `config/config.yml`.
-- The shared `ds-goal-badges` component reads only the configured item metadata, uses set-specific code matching, and batches live counts through that framework's Discovery facet. SDG uses the standard `dc.subject`/`subject` pair; NDP and Agenda 2063 require their backend metadata fields and Discovery facets.
-- See `SDG_INTEGRATION.md` for all codes, image naming, configuration, source paths, and backend deployment steps.
+The UCU theme exposes three independent research-goal frameworks on item pages and in the Browse Repository navigation. The frontend displays a badge only when the item has a recognised configured metadata value; it obtains output totals from DSpace Discovery. It does not classify research or write metadata.
+
+| Framework | Frontend set | Authoritative item metadata | DSpace vocabulary / authority prefix | Discovery facet and browse route |
+| --- | --- | --- | --- | --- |
+| UN Sustainable Development Goals | `sdg` | `local.subject.sdg` | `sdg` / `sdg:SDG01` | `sdg`, `/browse/sdg` |
+| Uganda Vision 2040 / NDP | `ndp` | `local.subject.visiongoal` | `uganda-vision2040` / `uganda-vision2040:OPP01` | `visiongoal`, `/browse/visiongoal` |
+| African Union Agenda 2063 | `agenda2063` | `local.subject.agenda2063` | `au-agenda2063` / `au-agenda2063:01` | `agenda2063`, `/browse/agenda2063` |
+
+`dc.subject` remains in the SDG frontend configuration solely as a legacy display fallback. New submissions must use `local.subject.sdg`, so their values are included in the controlled SDG facet and its count. The production i18n labels for the three browse links, page headings, descriptions, and **My Workspace** are in `src/assets/i18n/en.json5`.
+
+#### Frontend configuration and display
+
+`goalBadges` in `config/config.yml` is the runtime source of truth. `config/config.example.yml` mirrors it for deployments, while `src/config/default-app-config.ts` supplies disabled fallbacks for all three sets. Each set defines the metadata fields, Discovery facet name, artwork directory/prefix, and allowed codes. The shared matcher accepts leading numeric SDG/Agenda codes and alpha-numeric NDP codes; only configured codes render.
+
+The visual `/browse/sdg` grid uses the same `sdg` Discovery facet. It shows the supplied official SDG artwork and each goal's live output count. The badge rows and grid query the facet once per framework rather than once per tile.
+
+#### Backend contract and verified state
+
+The backend must register the three `local.subject.*` fields, expose them in the active item submission form, use the named controlled vocabularies, enable authority storage for each field, expose the three Discovery facets, and rebuild the Discovery index. The successful backend verification returned non-zero facet values for all three frameworks, including `SDG01`/`SDG03`/`SDG05`, Vision 2040 `OPP04`/`SOC02`, and Agenda 2063 `11`/`16`.
+
+Facet searches use the authority key and the `authority` operator supplied by DSpace, for example `f.sdg=sdg:SDG01,authority`. Do not construct a free-text `equals` filter from the label when authorities are enabled.
+
+#### Artwork and production deployment
+
+The repository includes all 17 SDG source images. NDP and Agenda 2063 are functional without images but intentionally show their code fallback until the official files are supplied. Required lower-case source paths are:
+
+```text
+src/assets/images/sdg/sdg-01.png ... sdg-17.png                 (present)
+src/assets/images/vision2040/opp01.png ... gov06.png            (add official artwork)
+src/assets/images/agenda2063/agenda-01.png ... agenda-20.png    (add official artwork)
+```
+
+Build with `npm run build:prod` and deploy both `dist/browser` and `dist/server` from that same build before reloading PM2. Verify `dist/browser/assets/config.json`, `dist/browser/assets/i18n/en.json`, and the image directories. A stale browser or server distribution is the usual cause of missing labels or image files in production.
+
+For complete configuration snippets, form/registry troubleshooting, and backend checks, use `SDG_INTEGRATION.md` and `BACKEND_GOAL_BADGES_README.md` together with this branding guide.
 
 ```text
 config/config.yml
@@ -864,9 +898,13 @@ src/app/shared/goal-badges/goal-code-matchers.ts
 src/app/shared/goal-badges/goal-badges.component.ts
 src/app/shared/goal-badges/goal-badges.component.html
 src/app/shared/goal-badges/goal-badges.component.scss
+src/app/shared/goal-badges/sdg-browse-grid.component.ts
+src/app/shared/goal-badges/sdg-browse-grid.component.html
+src/app/shared/goal-badges/sdg-browse-grid.component.scss
+src/app/browse-by/browse-by-taxonomy/browse-by-taxonomy.component.ts
+src/themes/custom/app/browse-by/browse-by-taxonomy/
+src/assets/i18n/en.json5
 src/assets/images/sdg/sdg-01.png through src/assets/images/sdg/sdg-17.png
-src/assets/images/vision2040/opp01.png through gov06.png
-src/assets/images/agenda2063/agenda-01.png through agenda-20.png
 src/themes/custom/app/item-page/simple/item-page.component.html
 src/themes/custom/app/item-page/simple/item-page.component.ts
 src/themes/custom/app/item-page/full/full-item-page.component.html

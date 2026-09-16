@@ -85,7 +85,7 @@ export class SdgBrowseGridComponent implements OnInit {
               const code = GOAL_CODE_MATCHERS.sdg(value.value);
               if (code) {
                 accumulator.counts[code] = (accumulator.counts[code] ?? 0) + value.count;
-                accumulator.values[code] ??= value.value;
+                accumulator.values[code] ??= value.authorityKey ?? value.value;
               }
               return accumulator;
             }, { counts: {} as Record<string, number>, values: {} as Record<string, string> });
@@ -108,6 +108,7 @@ export class SdgBrowseGridComponent implements OnInit {
   }
 
   searchParams(code: string): Record<string, string> {
-    return { [`f.${this.countSearchFilter}`]: `${this.facetValues[code] ?? `SDG${code}`},equals` };
+    const facetValue = this.facetValues[code];
+    return { [`f.${this.countSearchFilter}`]: facetValue?.startsWith('sdg:') ? `${facetValue},authority` : `${facetValue ?? `SDG${code}`},equals` };
   }
 }

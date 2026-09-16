@@ -14,7 +14,7 @@
     <ul class="goal-badges__list" role="list">
       @for (badge of badges; track badge.code) {
         <li>
-          <a class="goal-badge" [routerLink]="['/search']" [queryParams]="searchParams(badge.value)" [attr.aria-label]="badge.code + ': ' + (counts[badge.code] ?? 0) + ' research outputs'">
+          <a class="goal-badge" [routerLink]="['/search']" [queryParams]="searchParams(badge.code, badge.value)" [attr.aria-label]="badge.code + ': ' + (counts[badge.code] ?? 0) + ' research outputs'">
             @if (!missingImages.has(badge.code)) {
               <img [src]="imagePath(badge.code)" [alt]="title + ' ' + badge.code" (error)="imageUnavailable(badge.code)">
             } @else {

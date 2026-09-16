@@ -39,6 +39,7 @@ interface ItemGoalBadge {
 
 interface GoalBadgeCountResult {
   counts: Record<string, number>;
+  facetValues: Record<string, string>;
   facetAvailable: boolean;
 }
 
@@ -66,6 +67,8 @@ export class GoalBadgesComponent implements OnChanges {
   @Input() set = 'sdg';
 
   counts: Record<string, number> = {};
+  /** Authority keys returned by Discovery, used for accurate filtered-search links. */
+  facetValues: Record<string, string> = {};
   /** Null while checking; false when the configured Discovery facet is unavailable. */
   facetAvailable: boolean | null = null;
   missingImages = new Set<string>();
@@ -107,6 +110,7 @@ export class GoalBadgesComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.item || changes.set) {
       this.counts = {};
+      this.facetValues = {};
       this.facetAvailable = null;
       this.missingImages = new Set<string>();
       this.loadCounts();
@@ -123,8 +127,9 @@ export class GoalBadgesComponent implements OnChanges {
     this.changeDetectorRef.markForCheck();
   }
 
-  searchParams(value: string): Record<string, string> {
-    return { [`f.${this.config.countSearchFilter}`]: `${value},equals` };
+  searchParams(code: string, fallbackValue: string): Record<string, string> {
+    const facetValue = this.facetValues[code];
+    return { [`f.${this.config.countSearchFilter}`]: facetValue ? `${facetValue},authority` : `${fallbackValue},equals` };
   }
 
   private loadCounts(): void {
@@ -141,7 +146,7 @@ export class GoalBadgesComponent implements OnChanges {
       switchMap((response) => {
         const facet = response.payload?.find((filterConfig) => filterConfig.name === config.countSearchFilter);
         if (!response.hasSucceeded || !facet) {
-          return of({ counts: {}, facetAvailable: false } as GoalBadgeCountResult);
+          return of({ counts: {}, facetValues: {}, facetAvailable: false } as GoalBadgeCountResult);
         }
         const facetWithAllValues = Object.assign(new SearchFilterConfig(), facet, { pageSize: 100 });
         return this.searchService.getFacetValuesFor(facetWithAllValues, 1).pipe(
@@ -149,23 +154,27 @@ export class GoalBadgesComponent implements OnChanges {
           take(1),
           map((facetResponse) => {
             if (!facetResponse.hasSucceeded) {
-              return { counts: {}, facetAvailable: false } as GoalBadgeCountResult;
+              return { counts: {}, facetValues: {}, facetAvailable: false } as GoalBadgeCountResult;
             }
             const displayedCodes = new Set(badges.map((badge) => badge.code));
-            const counts = (facetResponse.payload.page ?? []).reduce((counts, facetValue) => {
+            const result = (facetResponse.payload.page ?? []).reduce((result, facetValue) => {
               const code = matcher(facetValue.value);
               if (code && displayedCodes.has(code)) {
-                counts[code] = (counts[code] ?? 0) + facetValue.count;
+                result.counts[code] = (result.counts[code] ?? 0) + facetValue.count;
+                if (facetValue.authorityKey) {
+                  result.facetValues[code] ??= facetValue.authorityKey;
+                }
               }
-              return counts;
-            }, {} as Record<string, number>);
-            return { counts, facetAvailable: true } as GoalBadgeCountResult;
+              return result;
+            }, { counts: {}, facetValues: {} } as Pick<GoalBadgeCountResult, 'counts' | 'facetValues'>);
+            return { ...result, facetAvailable: true } as GoalBadgeCountResult;
           }),
         );
       }),
-      catchError(() => of({ counts: {}, facetAvailable: false } as GoalBadgeCountResult)),
+      catchError(() => of({ counts: {}, facetValues: {}, facetAvailable: false } as GoalBadgeCountResult)),
     ).subscribe((result) => {
       this.counts = result.counts;
+      this.facetValues = result.facetValues;
       this.facetAvailable = result.facetAvailable;
       this.changeDetectorRef.markForCheck();
     });
