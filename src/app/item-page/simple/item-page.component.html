@@ -11,6 +11,9 @@
           <ds-item-versions-notice [item]="item"></ds-item-versions-notice>
           @if (!item.isWithdrawn || (isAdmin$|async)) {
             <ds-listable-object-component-loader [object]="item" [viewMode]="viewMode"></ds-listable-object-component-loader>
+            <ds-goal-badges [item]="item" set="sdg"></ds-goal-badges>
+            <ds-goal-badges [item]="item" set="ndp"></ds-goal-badges>
+            <ds-goal-badges [item]="item" set="agenda2063"></ds-goal-badges>
           }
           <ds-item-versions class="mt-2" [item]="item" [displayActions]="false"></ds-item-versions>
         </div>

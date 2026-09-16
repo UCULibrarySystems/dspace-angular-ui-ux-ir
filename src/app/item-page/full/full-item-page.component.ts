@@ -40,6 +40,7 @@ import {
 import { fadeInOut } from '../../shared/animations/fade';
 import { DsoEditMenuComponent } from '../../shared/dso-page/dso-edit-menu/dso-edit-menu.component';
 import { ErrorComponent } from '../../shared/error/error.component';
+import { GoalBadgesComponent } from '../../shared/goal-badges/goal-badges.component';
 import { ThemedLoadingComponent } from '../../shared/loading/themed-loading.component';
 import { VarDirective } from '../../shared/utils/var.directive';
 import { ThemedItemAlertsComponent } from '../alerts/themed-item-alerts.component';
@@ -66,6 +67,7 @@ import { ThemedFullFileSectionComponent } from './field-components/file-section/
     CollectionsComponent,
     DsoEditMenuComponent,
     ErrorComponent,
+    GoalBadgesComponent,
     ItemVersionsComponent,
     ItemVersionsNoticeComponent,
     KeyValuePipe,

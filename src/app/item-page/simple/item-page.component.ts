@@ -50,6 +50,7 @@ import { validate as uuidValidate } from 'uuid';
 
 import { fadeInOut } from '../../shared/animations/fade';
 import { ErrorComponent } from '../../shared/error/error.component';
+import { GoalBadgesComponent } from '../../shared/goal-badges/goal-badges.component';
 import { ThemedLoadingComponent } from '../../shared/loading/themed-loading.component';
 import { ListableObjectComponentLoaderComponent } from '../../shared/object-collection/shared/listable-object/listable-object-component-loader.component';
 import { VarDirective } from '../../shared/utils/var.directive';
@@ -78,6 +79,7 @@ import { QaEventNotificationComponent } from './qa-event-notification/qa-event-n
     CustomUrlConflictErrorComponent,
     CustomUrlConflictErrorComponent,
     ErrorComponent,
+    GoalBadgesComponent,
     ItemVersionsComponent,
     ItemVersionsNoticeComponent,
     ListableObjectComponentLoaderComponent,
