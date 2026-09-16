@@ -1197,14 +1197,19 @@
 
   "browse.title": "Browsing by {{ field }}{{ startsWith }} {{ value }}",
   "browse.metadata.sdg": "Sustainable Development Goals (SDGs)",
+  "browse.metadata.sdg.breadcrumbs": "Browse by Sustainable Development Goals",
   "browse.metadata.sdg.tree.description": "Select one or more Sustainable Development Goals to find related research outputs.",
   "browse.metadata.uganda-vision2040": "Uganda Vision 2040 Goals",
+  "browse.metadata.uganda-vision2040.breadcrumbs": "Browse by Uganda Vision 2040 Goals",
   "browse.metadata.uganda-vision2040.tree.description": "Select one or more Uganda Vision 2040 goals to find related research outputs.",
   "browse.metadata.visiongoal": "Uganda Vision 2040 Goals",
+  "browse.metadata.visiongoal.breadcrumbs": "Browse by Uganda Vision 2040 Goals",
   "browse.metadata.visiongoal.tree.description": "Select one or more Uganda Vision 2040 goals to find related research outputs.",
   "browse.metadata.au-agenda2063": "African Union Agenda 2063 Goals",
+  "browse.metadata.au-agenda2063.breadcrumbs": "Browse by African Union Agenda 2063 Goals",
   "browse.metadata.au-agenda2063.tree.description": "Select one or more African Union Agenda 2063 goals to find related research outputs.",
   "browse.metadata.agenda2063": "African Union Agenda 2063 Goals",
+  "browse.metadata.agenda2063.breadcrumbs": "Browse by African Union Agenda 2063 Goals",
   "browse.metadata.agenda2063.tree.description": "Select one or more African Union Agenda 2063 goals to find related research outputs.",
 
   "browse.taxonomy.show_next_results": "Show next results",
@@ -5154,6 +5159,18 @@
   "search.filters.filter.subject.placeholder": "Subject",
 
   "search.filters.filter.subject.label": "Search subject",
+
+  "search.filters.filter.sdg.head": "Sustainable Development Goals (SDGs)",
+  "search.filters.filter.sdg.placeholder": "Select Sustainable Development Goals",
+  "search.filters.filter.sdg.label": "Filter by Sustainable Development Goal",
+
+  "search.filters.filter.visiongoal.head": "Uganda Vision 2040 Goals",
+  "search.filters.filter.visiongoal.placeholder": "Select Uganda Vision 2040 goals",
+  "search.filters.filter.visiongoal.label": "Filter by Uganda Vision 2040 Goal",
+
+  "search.filters.filter.agenda2063.head": "African Union Agenda 2063 Goals",
+  "search.filters.filter.agenda2063.placeholder": "Select African Union Agenda 2063 goals",
+  "search.filters.filter.agenda2063.label": "Filter by African Union Agenda 2063 Goal",
 
   "search.filters.filter.submitter.head": "Submitter",
 
