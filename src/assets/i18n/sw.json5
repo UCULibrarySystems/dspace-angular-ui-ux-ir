@@ -4185,6 +4185,10 @@
   // TODO New key - Add a translation
   "footer.link.quality": "Quality assurance",
 
+  // "footer.link.curation": "Curation policy",
+  // TODO New key - Add a translation
+  "footer.link.curation": "Curation policy",
+
   // "footer.link.dspace": "UCU Libraries and Archives",
   // TODO New key - Add a translation
   "footer.link.dspace": "UCU Libraries and Archives",
@@ -4952,6 +4956,14 @@
   // "info.quality.title": "Quality assurance",
   // TODO New key - Add a translation
   "info.quality.title": "Quality assurance",
+
+  // "info.curation.breadcrumbs": "Curation policy",
+  // TODO New key - Add a translation
+  "info.curation.breadcrumbs": "Curation policy",
+
+  // "info.curation.title": "Repository curation policy",
+  // TODO New key - Add a translation
+  "info.curation.title": "Repository curation policy",
 
   // "info.feedback.breadcrumbs": "Feedback",
   // TODO New key - Add a translation

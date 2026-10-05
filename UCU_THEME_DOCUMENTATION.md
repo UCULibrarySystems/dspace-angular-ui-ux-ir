@@ -22,6 +22,7 @@ The current UCU UI/UX layer provides:
 - Repository-oriented SEO metadata, Dublin Core and citation metadata, Open Graph/Twitter metadata, geographic metadata, and JSON-LD descriptions.
 - Public sitemap and robots configuration that exposes repository content while excluding administrative and query-heavy routes.
 - UCU-adjusted repository information pages for deposit guidance, data reuse, service level, terms, preservation, notice and takedown, and quality assurance.
+- A UCU Libraries and Archives repository curation policy covering values, review, rights, ethical handling, metadata, accessibility, stewardship, and policy review.
 - Metadata-driven goal badges and a visual SDG browse grid, backed by DSpace controlled vocabularies and Discovery counts.
 
 This document is the maintenance reference for these features and their source locations.
@@ -512,7 +513,9 @@ Robots generation is handled by:
 src/robots.txt.ejs
 ```
 
-The generated sitemap and robots origin depend on the runtime `baseUrl` and correct reverse-proxy forwarding headers. The proxy should pass the public `Host`, `X-Forwarded-Host`, `X-Forwarded-Proto`, and related headers so generated links do not contain `localhost`.
+`config/config.yml` is the deployed source of truth for the public UI origin. It is set to `https://ucudir.ucu.ac.ug`; the robots template reads this configured value directly, so both sitemap declarations are emitted with that URL rather than `localhost`.
+
+Keep `ui.baseUrl` identical to `dspace.ui.url` in the DSpace backend. The reverse proxy should also pass the public `Host`, `X-Forwarded-Host`, `X-Forwarded-Proto`, and related headers so SSR and redirects continue to recognise the public HTTPS request.
 
 The SEO metadata improves discoverability but does not guarantee Google Scholar inclusion. Item-level indexing also depends on public DSpace item pages, complete backend metadata, valid URLs, sitemap availability, and SSR.
 
@@ -583,6 +586,7 @@ Current custom information pages:
 | `/info/preservation` | Preservation approach and access/dissemination notes | `src/app/info/preservation/` | `src/themes/custom/app/info/preservation/` |
 | `/info/notice` | Notice and takedown process | `src/app/info/notice/` | `src/themes/custom/app/info/notice/` |
 | `/info/quality` | Quality assurance and curation workflow | `src/app/info/quality/` | `src/themes/custom/app/info/quality/` |
+| `/info/curation` | UCU Libraries and Archives curation policy | `src/app/info/curation/` | `src/themes/custom/app/info/curation/` |
 
 ### Adding a New Info Page
 
@@ -624,6 +628,7 @@ Several repository policy pages were adapted from Cambridge Apollo-style referen
 - Replace `Apollo`, `University of Cambridge`, `Cambridge University Library`, Cambridge addresses, and Cambridge emails with UCU-specific wording.
 - Prefer `Uganda Christian University Digital Institutional Repository` on first mention and `the repository` afterwards.
 - Use internal links such as `/info/deposit`, `/info/data`, `/info/privacy`, `/info/notice`, `/info/quality`, and `/info/feedback`.
+- The curation policy is maintained in `src/app/info/curation/curation-content/curation-content.component.html`. Keep its commitments aligned with approved UCU Libraries and Archives processes; it describes a proportional review process and does not replace legal, ethics, or peer review decisions.
 - Do not invent legal contact details, DOIs, policy identifiers, or office addresses unless UCU has approved them.
 - Route contact prompts to the repository feedback form unless an approved UCU repository email is supplied.
 - Keep policy wording practical and institutional, but avoid claiming a service level, DOI workflow, preservation system, or takedown authority that UCU has not approved operationally.
@@ -648,6 +653,7 @@ info.terms.*
 info.preservation.*
 info.notice.*
 info.quality.*
+info.curation.*
 footer.link.deposit
 footer.link.data
 footer.link.service
@@ -655,6 +661,7 @@ footer.link.terms
 footer.link.preservation
 footer.link.notice
 footer.link.quality
+footer.link.curation
 ```
 
 Add English first in `src/assets/i18n/en.json5`, then add translated or TODO placeholder entries in active locale files. The current Kiswahili file keeps many English placeholders with TODO comments, so follow that local pattern until approved translations are available.

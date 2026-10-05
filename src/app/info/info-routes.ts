@@ -8,6 +8,7 @@ import { feedbackGuard } from '@dspace/core/feedback/feedback.guard';
 import {
   ACCESSIBILITY_SETTINGS_PATH,
   COAR_NOTIFY_SUPPORT,
+  CURATION_POLICY_PATH,
   DATA_REUSE_PATH,
   DEPOSIT_PATH,
   END_USER_AGREEMENT_PATH,
@@ -23,6 +24,7 @@ import { hasValue } from '@dspace/shared/utils/empty.util';
 
 import { environment } from '../../environments/environment';
 import { AccessibilitySettingsComponent } from './accessibility-settings/accessibility-settings.component';
+import { ThemedCurationComponent } from './curation/themed-curation.component';
 import { ThemedDataComponent } from './data/themed-data.component';
 import { ThemedDepositComponent } from './deposit/themed-deposit.component';
 import { ThemedEndUserAgreementComponent } from './end-user-agreement/themed-end-user-agreement.component';
@@ -85,6 +87,12 @@ export const ROUTES: Routes = [
     component: ThemedQualityComponent,
     resolve: { breadcrumb: i18nBreadcrumbResolver },
     data: { title: 'info.quality.title', breadcrumbKey: 'info.quality' },
+  },
+  {
+    path: CURATION_POLICY_PATH,
+    component: ThemedCurationComponent,
+    resolve: { breadcrumb: i18nBreadcrumbResolver },
+    data: { title: 'info.curation.title', breadcrumbKey: 'info.curation' },
   },
   {
     path: ACCESSIBILITY_SETTINGS_PATH,

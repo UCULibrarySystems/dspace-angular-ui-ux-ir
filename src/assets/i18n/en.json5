@@ -2137,6 +2137,7 @@
   "footer.link.notice": "Notice and takedown",
 
   "footer.link.quality": "Quality assurance",
+  "footer.link.curation": "Curation policy",
 
   "footer.link.dspace": "UCU Libraries and Archives",
 
@@ -2521,6 +2522,8 @@
   "info.quality.breadcrumbs": "Quality assurance",
 
   "info.quality.title": "Quality assurance",
+  "info.curation.breadcrumbs": "Curation policy",
+  "info.curation.title": "Repository curation policy",
 
   "info.feedback.breadcrumbs": "Feedback",
 
