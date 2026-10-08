@@ -589,6 +589,8 @@ Current custom information pages:
 | `/info/quality` | Quality assurance and curation workflow | `src/app/info/quality/` | `src/themes/custom/app/info/quality/` |
 | `/info/curation` | UCU Libraries and Archives curation policy | `src/app/info/curation/` | `src/themes/custom/app/info/curation/` |
 
+The illustrated UCUDIR deposit guide is maintained in `src/app/info/deposit/deposit-content/deposit-content.component.html`; its image asset is `src/assets/custom/images/ucu-deposit-instructions.png`. Keep the image instructions and the accessible three-step text together whenever either is revised.
+
 ### Adding a New Info Page
 
 Use the existing pages as templates. A new page named `example` should normally include:

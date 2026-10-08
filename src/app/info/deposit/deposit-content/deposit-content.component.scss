@@ -38,6 +38,32 @@
     padding: 1.4rem 0;
   }
 
+  .deposit-guide {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: minmax(0, 0.85fr) minmax(16rem, 0.7fr);
+    align-items: center;
+
+    figure {
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      height: auto;
+      margin: 0 auto;
+      max-width: 100%;
+      width: min(100%, 30rem);
+    }
+
+    figcaption {
+      color: #475569;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+  }
+
   h2 {
     color: #004b9b;
     font-size: clamp(1.25rem, 2vw, 1.65rem);
@@ -60,7 +86,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .ucu-deposit-page {
     padding-top: 0.75rem;
 
@@ -70,6 +96,10 @@
 
     .lead {
       font-size: 1rem;
+    }
+
+    .deposit-guide {
+      grid-template-columns: 1fr;
     }
   }
 }
