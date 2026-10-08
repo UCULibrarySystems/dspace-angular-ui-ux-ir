@@ -77,6 +77,7 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Compact logo | `src/assets/images/ucu-logo-mini.png` | Compact or fallback logo references |
 | Authenticated admin sidebar icon | `src/assets/images/favicon.png` | `src/app/admin/admin-sidebar/admin-sidebar.component.html` |
 | Favicon and app icons | `src/assets/custom/images/favicons/` | `config/config.yml`, `src/config/default-app-config.ts` |
+| Homepage hero image and expandable update panel | `src/assets/custom/images/ucu-hero-bishop-tucker.jpg` | `src/themes/custom/app/home-page/home-news/` |
 | SEO metadata | `src/index.html` | `src/config/default-app-config.ts`, `config/config.yml` |
 | Public repository generator metadata | `src/app/core/metadata/head-tag.service.ts` | Identifies UCUDIR without exposing the backend build version |
 | Robots and sitemap origin | `src/robots.txt.ejs` | `config/config.yml`, reverse proxy headers |
