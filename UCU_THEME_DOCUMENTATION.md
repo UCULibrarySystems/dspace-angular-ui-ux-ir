@@ -78,6 +78,7 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Authenticated admin sidebar icon | `src/assets/images/favicon.png` | `src/app/admin/admin-sidebar/admin-sidebar.component.html` |
 | Favicon and app icons | `src/assets/custom/images/favicons/` | `config/config.yml`, `src/config/default-app-config.ts` |
 | SEO metadata | `src/index.html` | `src/config/default-app-config.ts`, `config/config.yml` |
+| Public repository generator metadata | `src/app/core/metadata/head-tag.service.ts` | Identifies UCUDIR without exposing the backend build version |
 | Robots and sitemap origin | `src/robots.txt.ejs` | `config/config.yml`, reverse proxy headers |
 | Community heading and interface text | `src/assets/i18n/en.json5` | Other active locale files |
 | Privacy policy page | `src/app/info/privacy/privacy-content/privacy-content.component.html` | `src/assets/i18n/en.json5` |

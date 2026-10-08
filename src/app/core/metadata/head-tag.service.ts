@@ -51,7 +51,6 @@ import { AuthorizationDataService } from '../data/feature-authorization/authoriz
 import { FindListOptions } from '../data/find-list-options.model';
 import { PaginatedList } from '../data/paginated-list.model';
 import { RemoteData } from '../data/remote-data';
-import { RootDataService } from '../data/root-data.service';
 import { getBitstreamDownloadRoute } from '../router/utils/dso-route.utils';
 import { HardRedirectService } from '../services/hard-redirect.service';
 import { Bitstream } from '../shared/bitstream.model';
@@ -118,7 +117,6 @@ export class HeadTagService {
     protected title: Title,
     protected dsoNameService: DSONameService,
     protected bundleDataService: BundleDataService,
-    protected rootService: RootDataService,
     protected store: Store<CoreState>,
     protected hardRedirectService: HardRedirectService,
     @Inject(APP_CONFIG) protected appConfig: AppConfig,
@@ -470,12 +468,10 @@ export class HeadTagService {
   }
 
   /**
-   * Add <meta name="Generator" ... >  to the <head> containing the current DSpace version
+   * Identify the public repository without exposing the backend build version.
    */
   protected setGenerator(): void {
-    this.rootService.findRoot().pipe(getFirstSucceededRemoteDataPayload()).subscribe((root) => {
-      this.meta.addTag({ name: 'Generator', content: root.dspaceVersion });
-    });
+    this.meta.addTag({ name: 'Generator', content: 'Uganda Christian University Digital Institutional Repository' });
   }
 
   protected hasType(value: string): boolean {

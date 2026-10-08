@@ -2187,6 +2187,18 @@
   // TODO New key - Add a translation
   "browse.comcol.by.dateissued": "By Issue Date",
 
+  // "browse.comcol.by.sdg": "By Sustainable Development Goal",
+  // TODO New key - Add a translation
+  "browse.comcol.by.sdg": "By Sustainable Development Goal",
+
+  // "browse.comcol.by.uganda-vision2040": "By Uganda Vision 2040 Goal",
+  // TODO New key - Add a translation
+  "browse.comcol.by.uganda-vision2040": "By Uganda Vision 2040 Goal",
+
+  // "browse.comcol.by.au-agenda2063": "By African Union Agenda 2063 Goal",
+  // TODO New key - Add a translation
+  "browse.comcol.by.au-agenda2063": "By African Union Agenda 2063 Goal",
+
   // "browse.comcol.by.subject": "By Subject",
   // TODO New key - Add a translation
   "browse.comcol.by.subject": "By Subject",
