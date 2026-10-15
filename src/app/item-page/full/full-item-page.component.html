@@ -4,7 +4,6 @@
       @if (itemRD?.payload; as item) {
         <div>
           <ds-item-alerts [item]="item"></ds-item-alerts>
-              <ds-citation-generator [item]="item"></ds-citation-generator>
           <ds-item-versions-notice [item]="item"></ds-item-versions-notice>
           @if (!item.isWithdrawn || (isAdmin$|async)) {
             <div class="full-item-info">
@@ -38,6 +37,7 @@
               <ds-goal-badges [item]="item" set="ndp"></ds-goal-badges>
               <ds-goal-badges [item]="item" set="agenda2063"></ds-goal-badges>
               <ds-item-page-full-file-section [item]="item"></ds-item-page-full-file-section>
+              <ds-citation-generator [item]="item"></ds-citation-generator>
               <ds-item-page-collections [item]="item"></ds-item-page-collections>
               <ds-item-versions class="mt-2" [item]="item"></ds-item-versions>
               @if (fromSubmissionObject) {
