@@ -9,6 +9,9 @@
       <ds-pagination [hideGear]="true" [hidePagerWhenSinglePage]="true" [paginationOptions]="originalOptions"
         [collectionSize]="originals?.totalElements" [retainScrollPosition]="true">
         @for (file of originals?.page; track file) {
+        @let fileFormat = (file.format | async)?.payload;
+        @let fileName = dsoNameService.getName(file)?.toLowerCase() ?? '';
+        @let isPdf = fileFormat?.mimetype?.toLowerCase() === 'application/pdf' || fileName.endsWith('.pdf');
         <div class="file-section row mb-3">
           <div class="col-3">
             <ds-thumbnail [thumbnail]="(file.thumbnail | async)?.payload"></ds-thumbnail>
@@ -27,7 +30,7 @@
                 {{ "item.page.filesection.format" | translate }}
               </dt>
               <dd class="col-md-8">
-                {{ (file.format | async)?.payload?.description }}
+                {{ fileFormat?.description }}
               </dd>
               @if (file.hasMetadata('dc.description')) {
               <dt class="col-md-4">
@@ -38,16 +41,20 @@
               }
             </dl>
           </div>
-          <div class="col-2">
-            <ds-file-download-link [showIcon]="true" [bitstream]="file" [item]="item" cssClasses="btn btn-outline-primary btn-download">
+          @if (!isPdf) {
+            <div class="col-2">
+              <ds-file-download-link [showIcon]="true" [bitstream]="file" [item]="item" cssClasses="btn btn-outline-primary btn-download">
                 <span class="d-none d-md-inline">
                   {{ "item.page.filesection.download" | translate }}
                 </span>
-            </ds-file-download-link>
-          </div>
-          <div class="col-12">
-            <ds-pdf-bitstream-preview [bitstream]="file"></ds-pdf-bitstream-preview>
-          </div>
+              </ds-file-download-link>
+            </div>
+          }
+          @if (isPdf) {
+            <div class="col-12">
+              <ds-pdf-bitstream-preview [bitstream]="file"></ds-pdf-bitstream-preview>
+            </div>
+          }
         </div>
         }
       </ds-pagination>

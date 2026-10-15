@@ -3262,6 +3262,10 @@
 
   "item.page.bitstreams.view-more": "Show more",
 
+  "item.page.pdf-preview.loading": "Loading PDF preview...",
+
+  "item.page.pdf-preview.error": "The PDF preview could not be loaded.",
+
   "item.page.bitstreams.collapse": "Collapse",
 
   "item.page.bitstreams.primary": "Primary",

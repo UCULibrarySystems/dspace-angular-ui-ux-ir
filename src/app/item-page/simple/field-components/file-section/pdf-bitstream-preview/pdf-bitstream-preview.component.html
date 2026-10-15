@@ -4,6 +4,12 @@
       <span class="fas fa-file-pdf" aria-hidden="true"></span>
       <span>{{ preview.title }}</span>
     </div>
-    <iframe [src]="preview.url" [title]="preview.title" loading="lazy"></iframe>
+    @if (isLoading) {
+      <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.loading' | translate }}</p>
+    }
+    @if (previewError) {
+      <p class="pdf-preview-status" role="alert">{{ 'item.page.pdf-preview.error' | translate }}</p>
+    }
+    <div #pdfPages class="pdf-preview-pages" [attr.aria-label]="preview.title"></div>
   </section>
 }
