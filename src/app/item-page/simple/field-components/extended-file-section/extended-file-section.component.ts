@@ -30,6 +30,7 @@ import { ThemedFileDownloadLinkComponent } from '../../../../shared/file-downloa
 import { PaginationComponent } from '../../../../shared/pagination/pagination.component';
 import { FileSizePipe } from '../../../../shared/utils/file-size-pipe';
 import { VarDirective } from '../../../../shared/utils/var.directive';
+import { PdfBitstreamPreviewComponent } from '../file-section/pdf-bitstream-preview/pdf-bitstream-preview.component';
 
 @Component({
   selector: 'ds-extended-file-section',
@@ -37,6 +38,7 @@ import { VarDirective } from '../../../../shared/utils/var.directive';
     AsyncPipe,
     FileSizePipe,
     PaginationComponent,
+    PdfBitstreamPreviewComponent,
     ThemedFileDownloadLinkComponent,
     TranslateModule,
     VarDirective,

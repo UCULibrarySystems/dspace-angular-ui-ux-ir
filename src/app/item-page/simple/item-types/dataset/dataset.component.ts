@@ -21,6 +21,7 @@ import { ThemedItemPageTitleFieldComponent } from '../../field-components/specif
 import { ItemPageUriFieldComponent } from '../../field-components/specific-field/uri/item-page-uri-field.component';
 import { ThemedMetadataRepresentationListComponent } from '../../metadata-representation-list/themed-metadata-representation-list.component';
 import { RelatedItemsComponent } from '../../related-items/related-items-component';
+import { CitationGeneratorComponent } from '../../../citation-generator/citation-generator.component';
 import { ItemComponent } from '../shared/item.component';
 
 /**
@@ -33,6 +34,7 @@ import { ItemComponent } from '../shared/item.component';
   imports: [
     AsyncPipe,
     CollectionsComponent,
+    CitationGeneratorComponent,
     DsoEditMenuComponent,
     ExtendedFileSectionComponent,
     GenericItemPageFieldComponent,

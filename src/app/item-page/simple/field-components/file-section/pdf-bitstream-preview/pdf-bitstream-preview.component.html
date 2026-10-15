@@ -4,12 +4,24 @@
       <span class="fas fa-file-pdf" aria-hidden="true"></span>
       <span>{{ preview.title }}</span>
     </div>
-    @if (isLoading) {
-      <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.loading' | translate }}</p>
+    @if (preview.accessStatus?.status; as status) {
+      <span class="badge bg-secondary pdf-preview-access-status">
+        {{ getAccessStatusTranslationKey(status) | translate }}
+        @if (preview.accessStatus?.embargoDate) {
+          <span> ({{ preview.accessStatus.embargoDate }})</span>
+        }
+      </span>
     }
-    @if (previewError) {
-      <p class="pdf-preview-status" role="alert">{{ 'item.page.pdf-preview.error' | translate }}</p>
+    @if (!preview.canDownload) {
+      <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.restricted' | translate }}</p>
+    } @else {
+      @if (isLoading) {
+        <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.loading' | translate }}</p>
+      }
+      @if (previewError) {
+        <p class="pdf-preview-status" role="alert">{{ 'item.page.pdf-preview.error' | translate }}</p>
+      }
+      <div #pdfPages class="pdf-preview-pages" [attr.aria-label]="preview.title"></div>
     }
-    <div #pdfPages class="pdf-preview-pages" [attr.aria-label]="preview.title"></div>
   </section>
 }

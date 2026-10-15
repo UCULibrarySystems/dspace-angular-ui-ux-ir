@@ -2,7 +2,9 @@
   border: 1px solid #d8e0ea;
   border-radius: 0.4rem;
   margin: 0.65rem 0 1rem;
+  max-width: 100%;
   overflow: hidden;
+  width: 100%;
 }
 
 .pdf-preview-header {
@@ -21,6 +23,11 @@
   padding: 0.75rem;
 }
 
+.pdf-preview-access-status {
+  display: inline-block;
+  margin: 0.75rem 0 0 0.75rem;
+}
+
 .pdf-preview-pages {
   background: #e8eaed;
   display: grid;
@@ -29,6 +36,7 @@
   max-height: min(76vh, 56rem);
   overflow: auto;
   padding: 1rem;
+  width: 100%;
 }
 
 .pdf-preview-pages canvas {

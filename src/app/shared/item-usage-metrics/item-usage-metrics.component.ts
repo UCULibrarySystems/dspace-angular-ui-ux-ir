@@ -35,14 +35,14 @@ export class ItemUsageMetricsComponent implements OnChanges {
 
   @Input() itemUri: string;
 
-  metrics$: Observable<ItemUsageMetrics | null> = of(null);
+  metrics$: Observable<ItemUsageMetrics> = of({ views: null, downloads: null });
 
   constructor(private usageReportService: UsageReportDataService) {
   }
 
   ngOnChanges(): void {
     if (!this.itemUri) {
-      this.metrics$ = of(null);
+      this.metrics$ = of({ views: null, downloads: null });
       return;
     }
 
@@ -51,16 +51,12 @@ export class ItemUsageMetricsComponent implements OnChanges {
         const visitsReport = reports.find((report) => report.reportType === 'TotalVisits');
         const downloadsReport = reports.find((report) => report.reportType === 'TotalDownloads');
 
-        if (!visitsReport && !downloadsReport) {
-          return null;
-        }
-
         return {
           views: this.totalViews(visitsReport),
           downloads: this.totalViews(downloadsReport),
         };
       }),
-      catchError(() => of(null)),
+      catchError(() => of({ views: null, downloads: null })),
     );
   }
 

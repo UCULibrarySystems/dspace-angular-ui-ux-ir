@@ -27,6 +27,9 @@
             [retainScrollPosition]="true">
             <div class="entries">
               @for (file of bitstreamsRD?.payload?.page; track file) {
+                @let mimeType = (file.format | async)?.payload?.mimetype?.toLowerCase();
+                @let fileName = dsoNameService.getName(file)?.toLowerCase() ?? '';
+                @let isPdf = mimeType === 'application/pdf' || fileName.endsWith('.pdf');
                 <div class="row file-section-entry mx-0">
                   <div class="col-6">
                     <span [innerHTML]="dsoNameService.getName(file)"></span>
@@ -38,11 +41,16 @@
                     <span> {{ (file?.sizeBytes) | dsFileSize }}</span>
                   </div>
                   <div class="col-1 text-center">
-                    <ds-file-download-link [bitstream]="file" [item]="item">
-                      <i class="fa fa-download"></i>
-                    </ds-file-download-link>
+                    @if (!isPdf) {
+                      <ds-file-download-link [bitstream]="file" [item]="item">
+                        <i class="fa fa-download"></i>
+                      </ds-file-download-link>
+                    }
                   </div>
                 </div>
+                @if (isPdf) {
+                  <ds-pdf-bitstream-preview [bitstream]="file"></ds-pdf-bitstream-preview>
+                }
               }
             </div>
           </ds-pagination>

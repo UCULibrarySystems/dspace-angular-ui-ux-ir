@@ -17,6 +17,7 @@ import { APP_CONFIG, AppConfig } from '@dspace/config/app-config.interface';
 import { DSONameService } from '@dspace/core/breadcrumbs/dso-name.service';
 import { AuthorizationDataService } from '@dspace/core/data/feature-authorization/authorization-data.service';
 import { FeatureID } from '@dspace/core/data/feature-authorization/feature-id';
+import { AccessStatusObject } from '@dspace/core/shared/access-status.model';
 import { Bitstream } from '@dspace/core/shared/bitstream.model';
 import { RESTURLCombiner } from '@dspace/core/url-combiner/rest-url-combiner';
 import { TranslateModule } from '@ngx-translate/core';
@@ -33,7 +34,9 @@ import {
 
 interface PdfPreview {
   title: string;
-  url: string;
+  url?: string;
+  canDownload: boolean;
+  accessStatus?: AccessStatusObject;
 }
 
 @Component({
@@ -48,7 +51,7 @@ interface PdfPreview {
 export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
   @Input() bitstream: Bitstream;
 
-  preview$: Observable<PdfPreview>;
+  preview$: Observable<PdfPreview | undefined>;
 
   isLoading = false;
   previewError = false;
@@ -58,13 +61,27 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
   private previewSubscription?: Subscription;
   private fetchSubscription?: Subscription;
   private loadingTask?: import('pdfjs-dist/types/src/display/api').PDFDocumentLoadingTask;
+  private resizeObserver?: ResizeObserver;
+  private previousPagesWidth = 0;
   private renderId = 0;
   private readonly isBrowser: boolean;
 
   @ViewChild('pdfPages')
   set pdfPages(element: ElementRef<HTMLDivElement> | undefined) {
+    this.resizeObserver?.disconnect();
     this.pagesElement = element?.nativeElement;
-    if (this.pagesElement && this.activePreview) {
+    if (this.pagesElement && typeof ResizeObserver !== 'undefined') {
+      this.resizeObserver = new ResizeObserver((entries) => {
+        const width = entries[0]?.contentRect.width ?? 0;
+        const widthChanged = this.previousPagesWidth > 0 && Math.abs(width - this.previousPagesWidth) > 1;
+        this.previousPagesWidth = width;
+        if (widthChanged && this.activePreview?.url) {
+          void this.loadPreview(this.activePreview);
+        }
+      });
+      this.resizeObserver.observe(this.pagesElement);
+    }
+    if (this.pagesElement && this.activePreview?.url) {
       void this.loadPreview(this.activePreview);
     }
   }
@@ -88,21 +105,26 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
       FeatureID.CanDownload,
       this.bitstream?.self,
     );
+    const accessStatus$ = this.bitstream?.accessStatus?.pipe(
+      map((statusRD) => statusRD?.payload),
+    ) ?? of(undefined);
 
-    this.preview$ = combineLatest([format$, canDownload$]).pipe(
-      map(([format, canDownload]) => {
+    this.preview$ = combineLatest([format$, canDownload$, accessStatus$]).pipe(
+      map(([format, canDownload, accessStatus]) => {
         const mimetype = format?.mimetype?.toLowerCase();
         const name = this.dsoNameService.getName(this.bitstream);
         const isPdf = mimetype === 'application/pdf' || name?.toLowerCase().endsWith('.pdf');
         const contentUrl = this.getContentUrl();
 
-        if (!this.isBrowser || !canDownload || !isPdf || !contentUrl) {
+        if (!this.isBrowser || !isPdf || !contentUrl) {
           return undefined;
         }
 
         return {
           title: `PDF preview: ${name}`,
-          url: contentUrl,
+          url: canDownload ? contentUrl : undefined,
+          canDownload,
+          accessStatus,
         };
       }),
     );
@@ -111,7 +133,7 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
       distinctUntilChanged((previous, current) => previous?.url === current?.url),
     ).subscribe((preview) => {
       this.activePreview = preview;
-      if (!preview) {
+      if (!preview?.url) {
         this.clearPreview();
       } else if (this.pagesElement) {
         void this.loadPreview(preview);
@@ -121,6 +143,7 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.previewSubscription?.unsubscribe();
+    this.resizeObserver?.disconnect();
     this.clearPreview();
   }
 
@@ -135,6 +158,9 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
   }
 
   private loadPreview(preview: PdfPreview): void {
+    if (!preview.url) {
+      return;
+    }
     this.renderId++;
     const renderId = this.renderId;
     this.fetchSubscription?.unsubscribe();
@@ -164,7 +190,7 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
 
         const page = await pdf.getPage(pageNumber);
         const baseViewport = page.getViewport({ scale: 1 });
-        const scale = Math.min(1.5, (this.pagesElement.clientWidth || baseViewport.width) / baseViewport.width);
+        const scale = Math.min(3, (this.pagesElement.clientWidth || baseViewport.width) / baseViewport.width);
         const viewport = page.getViewport({ scale });
         const outputScale = window.devicePixelRatio || 1;
         const canvas = document.createElement('canvas');
@@ -204,6 +230,14 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
       this.previewError = true;
       this.isLoading = false;
     }
+  }
+
+  getAccessStatusTranslationKey(status: string): string {
+    const normalizedStatus = status.toLowerCase().replace(/[-_]/g, '.');
+    const displayStatus = normalizedStatus === 'closed' || normalizedStatus === 'closed.access'
+      ? 'restricted'
+      : normalizedStatus;
+    return `access-status.${displayStatus}.listelement.badge`;
   }
 
   private getContentUrl(): string {

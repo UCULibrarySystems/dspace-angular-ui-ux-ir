@@ -54,7 +54,6 @@ import { GoalBadgesComponent } from '../../shared/goal-badges/goal-badges.compon
 import { ThemedLoadingComponent } from '../../shared/loading/themed-loading.component';
 import { ListableObjectComponentLoaderComponent } from '../../shared/object-collection/shared/listable-object/listable-object-component-loader.component';
 import { VarDirective } from '../../shared/utils/var.directive';
-import { CitationGeneratorComponent } from '../citation-generator/citation-generator.component';
 import { ThemedItemAlertsComponent } from '../alerts/themed-item-alerts.component';
 import { ItemVersionsComponent } from '../versions/item-versions.component';
 import { ItemVersionsNoticeComponent } from '../versions/notice/item-versions-notice.component';
@@ -77,7 +76,6 @@ import { QaEventNotificationComponent } from './qa-event-notification/qa-event-n
   imports: [
     AccessByTokenNotificationComponent,
     AsyncPipe,
-    CitationGeneratorComponent,
     CustomUrlConflictErrorComponent,
     CustomUrlConflictErrorComponent,
     ErrorComponent,

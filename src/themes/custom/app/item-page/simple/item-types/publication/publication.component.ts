@@ -9,6 +9,7 @@ import { ViewMode } from '@dspace/core/shared/view-mode.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { ItemPageLicenseFieldComponent } from 'src/app/item-page/simple/field-components/specific-field/license/item-page-license-field.component';
 
+import { CitationGeneratorComponent } from '../../../../../../../app/item-page/citation-generator/citation-generator.component';
 import { CollectionsComponent } from '../../../../../../../app/item-page/field-components/collections/collections.component';
 import { ThemedMediaViewerComponent } from '../../../../../../../app/item-page/media-viewer/themed-media-viewer.component';
 import { MiradorViewerComponent } from '../../../../../../../app/item-page/mirador-viewer/mirador-viewer.component';
@@ -40,6 +41,7 @@ import { ThemedThumbnailComponent } from '../../../../../../../app/thumbnail/the
   imports: [
     AsyncPipe,
     AttachmentSectionComponent,
+    CitationGeneratorComponent,
     CollectionsComponent,
     DsoEditMenuComponent,
     GenericItemPageFieldComponent,

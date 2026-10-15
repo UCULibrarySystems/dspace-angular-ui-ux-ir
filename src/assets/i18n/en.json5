@@ -39,6 +39,8 @@
 
   "item.usage.downloads": "downloads",
 
+  "item.usage.unavailable": "Statistics unavailable",
+
   "access-status.embargo.listelement.badge": "Embargo",
 
   "access-status.metadata.only.listelement.badge": "Metadata only",
@@ -3281,6 +3283,8 @@
   "item.page.pdf-preview.loading": "Loading PDF preview...",
 
   "item.page.pdf-preview.error": "The PDF preview could not be loaded.",
+
+  "item.page.pdf-preview.restricted": "This file is restricted by its access policy and cannot be previewed.",
 
   "item.page.bitstreams.collapse": "Collapse",
 
