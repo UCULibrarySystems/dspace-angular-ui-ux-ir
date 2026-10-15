@@ -10,6 +10,7 @@ import { ViewMode } from '@dspace/core/shared/view-mode.model';
 
 import { MetadataDirective } from '../../../../../../../../../app/shared/metadata.directive';
 import { MetadataLinkViewComponent } from '../../../../../../../../../app/shared/metadata-link-view/metadata-link-view.component';
+import { ItemUsageMetricsComponent } from '../../../../../../../../../app/shared/item-usage-metrics/item-usage-metrics.component';
 import { ThemedBadgesComponent } from '../../../../../../../../../app/shared/object-collection/shared/badges/themed-badges.component';
 import { listableObjectComponent } from '../../../../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { ItemSearchResultListElementComponent as BaseComponent } from '../../../../../../../../../app/shared/object-list/search-result-list-element/item-search-result/item-types/item/item-search-result-list-element.component';
@@ -29,6 +30,7 @@ import { ThemedThumbnailComponent } from '../../../../../../../../../app/thumbna
     AsyncPipe,
     MetadataDirective,
     MetadataLinkViewComponent,
+    ItemUsageMetricsComponent,
     NgClass,
     RouterLink,
     ThemedBadgesComponent,
