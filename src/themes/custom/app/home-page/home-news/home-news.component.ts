@@ -48,7 +48,7 @@ interface HeroMessage {
 export class HomeNewsComponent extends BaseComponent implements OnInit, OnDestroy {
   activeSlideIndex = 0;
   homeNewsSlides$: Observable<HeroMessage[]>;
-  private carouselTimer?: ReturnType<typeof window.setInterval>;
+  private carouselTimer?: number;
   private slideSubscription?: Subscription;
 
   constructor(

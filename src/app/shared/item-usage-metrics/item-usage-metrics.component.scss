@@ -1,0 +1,14 @@
+.item-usage-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: 0.875rem;
+}
+
+.item-usage-metrics span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}

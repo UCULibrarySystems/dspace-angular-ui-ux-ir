@@ -35,6 +35,10 @@
 
   "listelement.badge.access-status": "Access status:",
 
+  "item.usage.views": "views",
+
+  "item.usage.downloads": "downloads",
+
   "access-status.embargo.listelement.badge": "Embargo",
 
   "access-status.metadata.only.listelement.badge": "Metadata only",
