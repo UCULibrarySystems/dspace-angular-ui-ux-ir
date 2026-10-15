@@ -1,0 +1,22 @@
+<section class="citation-generator" aria-labelledby="citation-generator-title">
+  <h2 id="citation-generator-title" class="h5">{{ 'item.citation-generator.title' | translate }}</h2>
+  <div class="citation-generator-controls">
+    <label for="citation-style">{{ 'item.citation-generator.style' | translate }}</label>
+    <select id="citation-style" class="form-select form-select-sm" [value]="style" (change)="changeStyle($event)">
+      <option value="apa">{{ 'item.citation-generator.apa' | translate }}</option>
+      <option value="mla">{{ 'item.citation-generator.mla' | translate }}</option>
+      <option value="chicago">{{ 'item.citation-generator.chicago' | translate }}</option>
+    </select>
+    <button class="btn btn-outline-primary btn-sm" type="button" (click)="copyCitation()">
+      <i class="fas fa-copy" aria-hidden="true"></i>
+      {{ 'item.citation-generator.copy' | translate }}
+    </button>
+  </div>
+  <p class="citation-generator-text" aria-live="polite">{{ citationText }}</p>
+  @if (copyResult === 'success') {
+    <p class="citation-generator-status text-success" role="status">{{ 'item.citation-generator.copied' | translate }}</p>
+  }
+  @if (copyResult === 'failure') {
+    <p class="citation-generator-status text-danger" role="alert">{{ 'item.citation-generator.copy-failed' | translate }}</p>
+  }
+</section>

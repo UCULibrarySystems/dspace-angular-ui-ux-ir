@@ -14,7 +14,7 @@ describe('ItemUsageMetricsComponent', () => {
   let usageReportService: jasmine.SpyObj<UsageReportDataService>;
 
   beforeEach(async () => {
-    usageReportService = jasmine.createSpyObj('UsageReportDataService', ['getStatistic']);
+    usageReportService = jasmine.createSpyObj('UsageReportDataService', ['searchStatistics']);
     await TestBed.configureTestingModule({
       imports: [
         ItemUsageMetricsComponent,
@@ -29,30 +29,40 @@ describe('ItemUsageMetricsComponent', () => {
   });
 
   it('shows per-item visit and download totals', async () => {
-    usageReportService.getStatistic.and.callFake((_itemId: string, type: string) => of({
-      points: [{ values: [{ views: type === 'TotalVisits' ? 3249 : 4 }] }],
-    } as UsageReport));
-    fixture.componentRef.setInput('itemId', 'item-uuid');
+    usageReportService.searchStatistics.and.returnValue(of([
+      Object.assign(new UsageReport(), {
+        reportType: 'TotalVisits',
+        points: [{ values: [{ views: 2406 }] }],
+      }),
+      Object.assign(new UsageReport(), {
+        reportType: 'TotalDownloads',
+        points: [
+          { values: [{ views: 285 }] },
+          { values: [{ views: 4 }] },
+          { values: [{ views: 2 }] },
+        ],
+      }),
+    ]));
+    fixture.componentRef.setInput('itemUri', 'https://rest.api/server/api/core/items/item-uuid');
 
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
 
     const text = fixture.nativeElement.textContent;
-    expect(text).toContain('3,249');
-    expect(text).toContain('4');
-    expect(usageReportService.getStatistic).toHaveBeenCalledWith('item-uuid', 'TotalVisits');
-    expect(usageReportService.getStatistic).toHaveBeenCalledWith('item-uuid', 'TotalDownloads');
+    expect(text).toContain('2,406');
+    expect(text).toContain('291');
+    expect(usageReportService.searchStatistics).toHaveBeenCalledWith('https://rest.api/server/api/core/items/item-uuid', 0, 10);
   });
 
   it('shows zero totals when reports are unavailable', async () => {
-    usageReportService.getStatistic.and.returnValue(throwError(() => new Error('Unavailable')));
-    fixture.componentRef.setInput('itemId', 'item-uuid');
+    usageReportService.searchStatistics.and.returnValue(throwError(() => new Error('Unavailable')));
+    fixture.componentRef.setInput('itemUri', 'https://rest.api/server/api/core/items/item-uuid');
 
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.textContent).toContain('0');
+    expect(fixture.nativeElement.textContent.trim()).toBe('');
   });
 });

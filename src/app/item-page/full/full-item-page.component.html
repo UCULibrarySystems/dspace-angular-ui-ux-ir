@@ -4,6 +4,7 @@
       @if (itemRD?.payload; as item) {
         <div>
           <ds-item-alerts [item]="item"></ds-item-alerts>
+              <ds-citation-generator [item]="item"></ds-citation-generator>
           <ds-item-versions-notice [item]="item"></ds-item-versions-notice>
           @if (!item.isWithdrawn || (isAdmin$|async)) {
             <div class="full-item-info">

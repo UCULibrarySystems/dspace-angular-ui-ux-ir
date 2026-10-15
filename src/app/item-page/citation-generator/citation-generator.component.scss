@@ -1,0 +1,35 @@
+.citation-generator {
+  border: 1px solid var(--bs-border-color, #d8e0ea);
+  border-radius: 4px;
+  margin: 1rem 0;
+  padding: 0.75rem;
+}
+
+.citation-generator h2 {
+  margin-bottom: 0.75rem;
+}
+
+.citation-generator-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.citation-generator-controls label {
+  margin: 0;
+}
+
+.citation-generator-controls select {
+  max-width: 10rem;
+}
+
+.citation-generator-text {
+  line-height: 1.5;
+  margin: 0.75rem 0 0;
+  overflow-wrap: anywhere;
+}
+
+.citation-generator-status {
+  margin: 0.5rem 0 0;
+}

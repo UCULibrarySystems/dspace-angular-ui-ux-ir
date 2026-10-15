@@ -1,12 +1,18 @@
 @if (metrics$ | async; as metrics) {
-  <div class="item-usage-metrics">
-    <span [attr.aria-label]="metrics.views + ' ' + ('item.usage.views' | translate)" [title]="'item.usage.views' | translate">
-      <i class="fa fa-eye" aria-hidden="true"></i>
-      {{ metrics.views | number }}
-    </span>
-    <span [attr.aria-label]="metrics.downloads + ' ' + ('item.usage.downloads' | translate)" [title]="'item.usage.downloads' | translate">
-      <i class="fas fa-download" aria-hidden="true"></i>
-      {{ metrics.downloads | number }}
-    </span>
-  </div>
+  @if (metrics) {
+    <div class="item-usage-metrics">
+      @if (metrics.views !== null) {
+        <span [attr.aria-label]="metrics.views + ' ' + ('item.usage.views' | translate)" [title]="'item.usage.views' | translate">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          {{ metrics.views | number }}
+        </span>
+      }
+      @if (metrics.downloads !== null) {
+        <span [attr.aria-label]="metrics.downloads + ' ' + ('item.usage.downloads' | translate)" [title]="'item.usage.downloads' | translate">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          {{ metrics.downloads | number }}
+        </span>
+      }
+    </div>
+  }
 }

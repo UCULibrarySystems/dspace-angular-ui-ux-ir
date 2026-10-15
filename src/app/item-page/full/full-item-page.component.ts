@@ -38,6 +38,7 @@ import {
 } from 'rxjs/operators';
 
 import { fadeInOut } from '../../shared/animations/fade';
+import { CitationGeneratorComponent } from '../citation-generator/citation-generator.component';
 import { DsoEditMenuComponent } from '../../shared/dso-page/dso-edit-menu/dso-edit-menu.component';
 import { ErrorComponent } from '../../shared/error/error.component';
 import { GoalBadgesComponent } from '../../shared/goal-badges/goal-badges.component';
@@ -64,6 +65,7 @@ import { ThemedFullFileSectionComponent } from './field-components/file-section/
   animations: [fadeInOut],
   imports: [
     AsyncPipe,
+    CitationGeneratorComponent,
     CollectionsComponent,
     DsoEditMenuComponent,
     ErrorComponent,

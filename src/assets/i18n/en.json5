@@ -3181,6 +3181,22 @@
 
   "item.page.citation": "Citation",
 
+  "item.citation-generator.title": "Create a citation",
+
+  "item.citation-generator.style": "Citation style",
+
+  "item.citation-generator.apa": "APA 7th",
+
+  "item.citation-generator.mla": "MLA 9th",
+
+  "item.citation-generator.chicago": "Chicago",
+
+  "item.citation-generator.copy": "Copy citation",
+
+  "item.citation-generator.copied": "Citation copied",
+
+  "item.citation-generator.copy-failed": "Could not copy citation",
+
   "item.page.collections": "Collections",
 
   "item.page.collections.loading": "Loading...",

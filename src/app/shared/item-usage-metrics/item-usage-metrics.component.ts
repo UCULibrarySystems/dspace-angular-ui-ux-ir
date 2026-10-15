@@ -10,19 +10,15 @@ import {
 import { UsageReport } from '@dspace/core/statistics/models/usage-report.model';
 import { UsageReportDataService } from '@dspace/core/statistics/usage-report-data.service';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  combineLatest,
-  Observable,
-  of,
-} from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
   catchError,
   map,
 } from 'rxjs/operators';
 
 interface ItemUsageMetrics {
-  views: number;
-  downloads: number;
+  views: number | null;
+  downloads: number | null;
 }
 
 @Component({
@@ -37,33 +33,42 @@ interface ItemUsageMetrics {
 })
 export class ItemUsageMetricsComponent implements OnChanges {
 
-  @Input() itemId: string;
+  @Input() itemUri: string;
 
-  metrics$: Observable<ItemUsageMetrics> = of({ views: 0, downloads: 0 });
+  metrics$: Observable<ItemUsageMetrics | null> = of(null);
 
   constructor(private usageReportService: UsageReportDataService) {
   }
 
   ngOnChanges(): void {
-    if (!this.itemId) {
-      this.metrics$ = of({ views: 0, downloads: 0 });
+    if (!this.itemUri) {
+      this.metrics$ = of(null);
       return;
     }
 
-    const views$ = this.usageReportService.getStatistic(this.itemId, 'TotalVisits').pipe(
-      map((report) => this.totalViews(report)),
-      catchError(() => of(0)),
-    );
-    const downloads$ = this.usageReportService.getStatistic(this.itemId, 'TotalDownloads').pipe(
-      map((report) => this.totalViews(report)),
-      catchError(() => of(0)),
-    );
-    this.metrics$ = combineLatest([views$, downloads$]).pipe(
-      map(([views, downloads]) => ({ views, downloads })),
+    this.metrics$ = this.usageReportService.searchStatistics(this.itemUri, 0, 10).pipe(
+      map((reports) => {
+        const visitsReport = reports.find((report) => report.reportType === 'TotalVisits');
+        const downloadsReport = reports.find((report) => report.reportType === 'TotalDownloads');
+
+        if (!visitsReport && !downloadsReport) {
+          return null;
+        }
+
+        return {
+          views: this.totalViews(visitsReport),
+          downloads: this.totalViews(downloadsReport),
+        };
+      }),
+      catchError(() => of(null)),
     );
   }
 
-  private totalViews(report: UsageReport): number {
-    return report.points.reduce((total, point) => total + point.values.reduce((sum, value) => sum + value.views, 0), 0);
+  private totalViews(report?: UsageReport): number | null {
+    if (!report) {
+      return null;
+    }
+
+    return (report.points ?? []).reduce((total, point) => total + point.values.reduce((sum, value) => sum + value.views, 0), 0);
   }
 }
