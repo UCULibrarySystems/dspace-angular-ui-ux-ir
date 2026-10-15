@@ -1,7 +1,14 @@
-import { readFileSync } from 'node:fs';
+import {
+  existsSync,
+  readFileSync,
+  readdirSync,
+  statSync,
+} from 'node:fs';
+import { join } from 'node:path';
 
 import { TransferState } from '@angular/core';
 import { TranslateLoader } from '@ngx-translate/core';
+import { parse } from 'json5';
 import {
   Observable,
   of,
@@ -31,14 +38,42 @@ export class TranslateServerLoader implements TranslateLoader {
    * @param lang the language code
    */
   public getTranslation(lang: string): Observable<any> {
-    const translationHash: string = (process.env.languageHashes as any)[lang + '.json5'];
-    // Retrieve the file for the given language, and parse it
-    const messages = JSON.parse(readFileSync(`${this.prefix}${lang}.${translationHash}${this.suffix}`, 'utf8'));
+    const translationHash: string | undefined = (process.env.languageHashes as any)?.[lang + '.json5'];
+    const translationPath = this.resolveTranslationPath(lang, translationHash);
+    const translationFile = readFileSync(translationPath, 'utf8');
+    const messages = translationPath.endsWith('.json5') ? parse(translationFile) : JSON.parse(translationFile);
     // Store the parsed messages in the transfer state so they'll be available immediately when the
     // app loads on the client
     this.storeInTransferState(lang, messages);
     // Return the parsed messages to translate things server side
     return of(messages);
+  }
+
+  private resolveTranslationPath(lang: string, translationHash?: string): string {
+    const expectedPath = translationHash
+      ? join(this.prefix, `${lang}.${translationHash}${this.suffix}`)
+      : undefined;
+
+    if (expectedPath && existsSync(expectedPath)) {
+      return expectedPath;
+    }
+
+    const localePrefix = `${lang}.`;
+    const currentLocaleFile = readdirSync(this.prefix)
+      .filter((file) => file.startsWith(localePrefix) && file.endsWith(this.suffix))
+      .map((file) => join(this.prefix, file))
+      .sort((left, right) => statSync(right).mtimeMs - statSync(left).mtimeMs)[0];
+
+    if (currentLocaleFile) {
+      return currentLocaleFile;
+    }
+
+    const sourceFile = join(this.prefix, `${lang}.json5`);
+    if (existsSync(sourceFile)) {
+      return sourceFile;
+    }
+
+    throw new Error(`No translation asset found for language '${lang}' in '${this.prefix}'`);
   }
 
   /**
