@@ -6,17 +6,41 @@
     width="2560"
     height="1388">
   <div class="container ucu-hero-layout">
-    <details class="ucu-hero-panel">
+    <details class="ucu-hero-panel" open>
       <summary>Research impact and repository updates</summary>
       <div class="ucu-hero-panel-content">
-        @if (homeNewsMetadataValue$ | async; as homeNewsMetadataValue) {
-          <ds-markdown-viewer [value]="homeNewsMetadataValue"></ds-markdown-viewer>
-        }
-        @else {
-          <h1>UCU Libraries and Archives</h1>
-          <p>
-            Uganda Christian University Digital Institutional Repository preserves and shares scholarly, archival, and research outputs.
-          </p>
+        @if (homeNewsSlides$ | async; as slides) {
+          <div class="ucu-hero-carousel" aria-live="polite">
+            <div class="ucu-hero-slides" [style.transform]="'translateX(-' + (activeSlideIndex * 100) + '%)'">
+              @for (slide of slides; track $index) {
+                <article class="ucu-hero-slide" [attr.aria-hidden]="$index !== activeSlideIndex">
+                  <h1>{{ slide.title }}</h1>
+                  <ds-markdown-viewer [value]="slide.message"></ds-markdown-viewer>
+                  @if (resourceLink(slide.link); as link) {
+                    <a
+                      class="btn ucu-hero-resource-link"
+                      [href]="link"
+                      [attr.target]="isExternalLink(link) ? '_blank' : null"
+                      [attr.rel]="isExternalLink(link) ? 'noopener noreferrer' : null">
+                      {{ slide.linkText }}
+                      <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                  }
+                </article>
+              }
+            </div>
+          </div>
+          @if (slides.length > 1) {
+            <div class="ucu-hero-carousel-controls" aria-label="Research impact messages">
+              <button type="button" class="btn" (click)="previousSlide(slides.length)" aria-label="Previous research impact message">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <span>{{ activeSlideIndex + 1 }} of {{ slides.length }}</span>
+              <button type="button" class="btn" (click)="nextSlide(slides.length)" aria-label="Next research impact message">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          }
         }
       </div>
     </details>

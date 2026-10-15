@@ -153,6 +153,22 @@ export class AdminEditCmsMetadataComponent implements OnInit {
   }
 
   /**
+   * Append an editable hero-message block to the selected language value.
+   */
+  addHeroMessage(language: string): void {
+    const currentValue = this.selectedMetadataValues.get(language)?.trim();
+    const template = [
+      '---',
+      'title: Research impact title',
+      'message: Brief description of the research impact or repository update.',
+      'link: /items/item-uuid-or-handle',
+      'linkText: Read more',
+    ].join('\n');
+
+    this.selectedMetadataValues.set(language, currentValue ? `${currentValue}\n\n${template}` : template);
+  }
+
+  /**
    * Create a list of operations to send to backend to edit selected metadata
    * @returns List of operations to send to backend to edit selected metadata
    */

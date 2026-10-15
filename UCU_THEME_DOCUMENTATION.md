@@ -195,12 +195,12 @@ When adding or renaming a footer link:
 3. Add matching placeholder or translated keys in active locale files such as `src/assets/i18n/sw.json5`.
 4. Confirm the footer still wraps cleanly at 320px, 390px, 768px, and desktop widths.
 
-## Homepage Research-Impact Slider
+## Homepage Research-Impact Carousel
 
-The compact homepage research-impact slider is rendered from site CMS metadata:
+The compact homepage research-impact carousel is rendered from site CMS metadata:
 
 ```text
-dspace.cms.home-header
+dspace.cms.home-news
 ```
 
 Site Administrators can update it from:
@@ -209,48 +209,40 @@ Site Administrators can update it from:
 /admin/edit-cms-metadata
 ```
 
-Select `dspace.cms.home-header`. The editor includes helper buttons to insert a slide template or upload a slide image. Uploaded images are inserted as data URLs into the CMS metadata field, which is convenient for small managed banners. For very large or frequently changed images, prefer uploading an optimized image asset to the repository deployment and referencing its URL in the `image:` field.
+Select `dspace.cms.home-news`. The hero message panel is open by default and displays one CMS message at a time. It automatically moves to the next message from right to left every eight seconds, while visitors can use the previous and next controls at any time. The fixed background image is maintained separately at `src/assets/custom/images/ucu-hero-bishop-tucker.jpg`.
 
-Each slide uses this editable block format:
+Use the **Add hero message** button to append a new message block for each active language. Each block uses this format:
 
 ```text
 ---
-kicker: UCU Research Impact
 title: Article title
-subtitle: Short article subtitle
-summary: One concise sentence about why this research matters.
-image: assets/images/ucu-logo-lib.png
-alt: Short description of the image
+message: One concise description of why this research or repository update matters.
 link: /items/item-uuid-or-handle
-button: Read more
-findings:
-- First research impact highlight
-- Second research impact highlight
-- Third research impact highlight
+linkText: Read more
 ```
 
-Use one `---` separated block per slide. The `link:` value should point to an item page or article detail route inside the same repository, so the `Read more` button keeps users in the system. External URLs are normalized to their path only; the slider is intended for repository content, not outside news pages.
+Use one `---`-separated block per message. `link:` accepts a repository-relative path such as `/items/<uuid>` or a full `https://` URL. The link is optional; omit it when no further resource should be shown. Keep messages concise because the hero is intentionally half-height and the open panel scrolls longer content within its fixed space.
 
-The slider parser and fallback slide are maintained in:
+The carousel parser, safe-link check, timer, and fallback message are maintained in:
 
 ```text
-src/app/home-page/home-page.component.ts
+src/themes/custom/app/home-page/home-news/home-news.component.ts
 ```
 
 The compact visual layout is maintained in:
 
 ```text
-src/app/home-page/home-page.component.html
-src/app/home-page/home-page.component.scss
+src/themes/custom/app/home-page/home-news/home-news.component.html
+src/themes/custom/app/home-page/home-news/home-news.component.scss
 ```
 
-The custom theme wrapper must import `RouterLink` because the base template uses Angular router links:
+The CMS editor helper is maintained in:
 
 ```text
-src/themes/custom/app/home-page/home-page.component.ts
+src/app/admin/admin-edit-cms-metadata/
 ```
 
-Keep the slider modest in height. It is designed as a homepage header highlight, not a full-screen hero. Check 320px, 390px, 768px, and desktop widths after changing image ratios, text length, or button labels.
+Keep the carousel compact. It is designed as a homepage header highlight, not a full-screen hero. Check 320px, 390px, 768px, and desktop widths after changing text length or button labels.
 
 ## Item PDF Preview
 

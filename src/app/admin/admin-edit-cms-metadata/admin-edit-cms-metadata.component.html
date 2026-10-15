@@ -35,6 +35,12 @@
         @for (lang of (languageMap | keyvalue); track lang.key) {
           <div class="form-group">
             <label>{{languageLabel(lang.value)}}</label>
+            @if (selectedMetadata === 'dspace.cms.home-news') {
+              <button type="button" class="btn btn-outline-primary btn-sm ms-2" (click)="addHeroMessage(lang.key)">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+                <span class="ms-1">Add hero message</span>
+              </button>
+            }
             <textarea class="col-md-12 m-2" [ngModel]="selectedMetadataValues.get(lang.key)" (ngModelChange)="selectedMetadataValues.set(lang.key, $event)" rows="10"></textarea>
           </div>
         }
