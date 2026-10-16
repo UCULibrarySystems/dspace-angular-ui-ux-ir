@@ -8,7 +8,7 @@ import { join } from 'node:path';
 
 import { TransferState } from '@angular/core';
 import { TranslateLoader } from '@ngx-translate/core';
-import { parse } from 'json5';
+import JSON5 from 'json5';
 import {
   Observable,
   of,
@@ -41,7 +41,7 @@ export class TranslateServerLoader implements TranslateLoader {
     const translationHash: string | undefined = (process.env.languageHashes as any)?.[lang + '.json5'];
     const translationPath = this.resolveTranslationPath(lang, translationHash);
     const translationFile = readFileSync(translationPath, 'utf8');
-    const messages = translationPath.endsWith('.json5') ? parse(translationFile) : JSON.parse(translationFile);
+    const messages = translationPath.endsWith('.json5') ? JSON5.parse(translationFile) : JSON.parse(translationFile);
     // Store the parsed messages in the transfer state so they'll be available immediately when the
     // app loads on the client
     this.storeInTransferState(lang, messages);
