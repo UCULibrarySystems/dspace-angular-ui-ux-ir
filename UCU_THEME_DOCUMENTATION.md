@@ -839,7 +839,7 @@ src/assets/animations/ucu-loader.json
 
 - The privacy policy uses the shared `ucu-info-page` hierarchy: eyebrow, hero, lead copy, section separators, and responsive typography.
 - The COAR Notify page uses the same information-page pattern. Its centered protocol infographic is the supplied PNG asset; do not reintroduce the previous SVG or embedded PDF representation.
-- PDF item previews use the configured REST base URL and bitstream UUID to create the canonical endpoint `/api/core/bitstreams/{uuid}/content`, falling back to the HAL content link only when necessary.
+- PDF item previews use the HAL bitstream content link first, preserving the repository's configured proxy, authentication, and delivery path; only then do they fall back to `/api/core/bitstreams/{uuid}/content`.
 
 ```text
 src/app/info/privacy/privacy-content/privacy-content.component.html
@@ -851,6 +851,29 @@ src/assets/images/coar-notify-protocol-infographic.pdf
 src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.ts
 src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.html
 src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.scss
+```
+
+### Automated access, copyright and incident handling
+
+`src/robots.txt.ejs` provides the public, machine-readable crawl policy. It keeps normal discovery routes available to compliant scholarly indexers while reserving AI-training and bulk-crawling access for the named user agents. `robots.txt` is advisory: it cannot stop a non-compliant client and it is not a substitute for server protection.
+
+The binding visitor rules are published in `/info/terms`; the `/info/notice` page accepts copyright, DMCA-style, privacy, and automated-access complaints. The policies are written to support Ugandan copyright and data-protection obligations and applicable international requirements. They do not promise an automatic lawsuit: UCU must assess evidence and obtain appropriate legal direction before making a referral or pursuing a remedy.
+
+For production, the UCU infrastructure owner must enforce this policy outside the Angular UI:
+
+1. Put the UI, REST API, Solr, and bitstream endpoints behind a reverse proxy or WAF.
+2. Apply rate limits separately to anonymous HTML requests, REST calls, search, downloads, authentication, and submissions; return `429 Too Many Requests` with a `Retry-After` header for excess traffic.
+3. Block or challenge bot traffic only after confirming the user agent and source IP against the provider's published verification method. User-agent text alone can be spoofed.
+4. Log request time, IP address, verified user-agent, path, response status, request volume, and rule action; protect logs under the privacy policy and retain them according to UCU's approved retention schedule.
+5. Alert the repository service owner and UCU information-security/legal contacts for suspected circumvention, restricted-content access, credential abuse, or sustained availability attacks. Preserve relevant evidence before changing or deleting it.
+6. Keep search-engine access deliberate. Do not broadly block Googlebot or Google Scholar if public repository discovery remains a requirement.
+
+```text
+src/robots.txt.ejs
+src/app/info/terms/terms-content/terms-content.component.html
+src/app/info/notice/notice-content/notice-content.component.html
+config/config.yml
+UCU_THEME_DOCUMENTATION.md
 ```
 
 ### Metadata-driven goal badges

@@ -50,6 +50,41 @@ Disallow: /
 
 # Crawlers that are kind enough to obey, but which we'd rather not have
 # unless they're feeding search engines.
+
+# UCU reserves automated collection and AI-training uses that are not explicitly
+# authorised. These directives do not replace rate limits, authentication, WAF
+# rules or legal enforcement, and they intentionally do not block public
+# scholarly indexing services such as Google Scholar.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
 User-agent: UbiCrawler
 Disallow: /
 
