@@ -30,10 +30,6 @@
     }
   }
 
-  .ucu-sticky-header-spacer.is-pinned {
-    height: var(--ds-header-height);
-  }
-
   #header-left {
     min-width: 0;
     gap: 0.5rem !important;
@@ -326,9 +322,6 @@
   }
 
   @include media-breakpoint-down(md) {
-    .ucu-sticky-header-spacer.is-pinned {
-      height: clamp(4.5rem, 15vw, var(--ds-header-height));
-    }
     #main-site-header {
       min-height: 48px;
     }
