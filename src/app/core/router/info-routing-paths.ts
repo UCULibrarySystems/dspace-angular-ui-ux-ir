@@ -8,6 +8,7 @@ export const PRESERVATION_PATH = 'preservation';
 export const NOTICE_TAKEDOWN_PATH = 'notice';
 export const QUALITY_ASSURANCE_PATH = 'quality';
 export const CURATION_POLICY_PATH = 'curation';
+export const REPOSITORY_POLICIES_PATH = 'policies';
 export const FEEDBACK_PATH = 'feedback';
 export const COAR_NOTIFY_SUPPORT = 'coar-notify-support';
 export const ACCESSIBILITY_SETTINGS_PATH = 'accessibility';
@@ -50,6 +51,10 @@ export function getQualityAssurancePath() {
 
 export function getCurationPolicyPath() {
   return getSubPath(CURATION_POLICY_PATH);
+}
+
+export function getRepositoryPoliciesPath() {
+  return getSubPath(REPOSITORY_POLICIES_PATH);
 }
 
 export function getFeedbackPath() {

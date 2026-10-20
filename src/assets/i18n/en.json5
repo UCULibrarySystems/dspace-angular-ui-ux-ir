@@ -2536,6 +2536,8 @@
   "info.quality.title": "Quality assurance",
   "info.curation.breadcrumbs": "Curation policy",
   "info.curation.title": "Repository curation policy",
+  "info.policies.breadcrumbs": "Repository policies",
+  "info.policies.title": "Repository policies",
 
   "info.feedback.breadcrumbs": "Feedback",
 

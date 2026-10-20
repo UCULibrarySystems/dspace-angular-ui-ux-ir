@@ -17,6 +17,7 @@ import {
   PRESERVATION_PATH,
   PRIVACY_PATH,
   QUALITY_ASSURANCE_PATH,
+  REPOSITORY_POLICIES_PATH,
   SERVICE_LEVEL_PATH,
   TERMS_PATH,
 } from '@dspace/core/router/info-routing-paths';
@@ -34,6 +35,7 @@ import { NotifyInfoComponent } from './notify-info/notify-info.component';
 import { ThemedPreservationComponent } from './preservation/themed-preservation.component';
 import { ThemedPrivacyComponent } from './privacy/themed-privacy.component';
 import { ThemedQualityComponent } from './quality/themed-quality.component';
+import { RepositoryPoliciesComponent } from './policies/policies.component';
 import { ThemedServiceComponent } from './service/themed-service.component';
 import { ThemedTermsComponent } from './terms/themed-terms.component';
 
@@ -93,6 +95,12 @@ export const ROUTES: Routes = [
     component: ThemedCurationComponent,
     resolve: { breadcrumb: i18nBreadcrumbResolver },
     data: { title: 'info.curation.title', breadcrumbKey: 'info.curation' },
+  },
+  {
+    path: REPOSITORY_POLICIES_PATH,
+    component: RepositoryPoliciesComponent,
+    resolve: { breadcrumb: i18nBreadcrumbResolver },
+    data: { title: 'info.policies.title', breadcrumbKey: 'info.policies' },
   },
   {
     path: ACCESSIBILITY_SETTINGS_PATH,

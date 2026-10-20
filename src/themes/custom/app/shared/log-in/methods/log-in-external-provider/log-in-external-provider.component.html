@@ -1,0 +1,10 @@
+<button
+  class="btn btn-lg btn-primary w-100 text-white"
+  [class.ucu-orcid-login]="isOrcidLogin()"
+  (click)="redirectToExternalProvider()"
+  type="button">
+  @if (isOrcidLogin()) {
+    <img class="ucu-orcid-login-logo" src="assets/custom/images/orcid-id.webp" alt="" aria-hidden="true">
+  }
+  <span>{{ getButtonLabel() | translate }}</span>
+</button>
