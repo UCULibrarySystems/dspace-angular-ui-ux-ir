@@ -241,11 +241,19 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
   }
 
   private getContentUrl(): string {
+    // Prefer the HAL link supplied with the bitstream. It preserves the API
+    // origin and path that granted access to this specific file, including
+    // https://demo.dspace.org/server/api/core/bitstreams/<uuid>/content.
+    const contentLink = this.bitstream?._links?.content?.href;
+    if (contentLink) {
+      return contentLink;
+    }
+
     const uuid = this.bitstream?.uuid;
     if (uuid && this.appConfig.rest?.baseUrl) {
       return new RESTURLCombiner(this.appConfig.rest.baseUrl, `/core/bitstreams/${uuid}/content`).toString();
     }
 
-    return this.bitstream?._links?.content?.href;
+    return undefined;
   }
 }

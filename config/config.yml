@@ -17,7 +17,10 @@ ssr:
 
 rest:
   ssl: true
-  host: sandbox.dspace.org
+  # The configured REST service must match the repository whose item links are
+  # rendered by this UI. The Demo REST API supplies the public bitstream content
+  # endpoint used by the PDF.js preview.
+  host: demo.dspace.org
   port: 443
   nameSpace: /server
 
