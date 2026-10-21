@@ -14,13 +14,14 @@
     }
     @if (!preview.canDownload) {
       <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.restricted' | translate }}</p>
-    } @else if (preview.safeUrl) {
-      <iframe
-        class="pdf-preview-frame"
-        [src]="preview.safeUrl"
-        [title]="preview.title"
-        loading="lazy">
-      </iframe>
+    } @else {
+      @if (isLoading) {
+        <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.loading' | translate }}</p>
+      }
+      @if (previewError) {
+        <p class="pdf-preview-status" role="alert">{{ 'item.page.pdf-preview.error' | translate }}</p>
+      }
+      <div #pdfPages class="pdf-preview-pages" [attr.aria-label]="preview.title"></div>
     }
   </section>
 }
