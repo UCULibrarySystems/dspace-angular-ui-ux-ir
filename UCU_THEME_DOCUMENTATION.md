@@ -838,12 +838,15 @@ src/assets/animations/ucu-loader.json
 ### Information pages and repository assets
 
 - The privacy policy uses the shared `ucu-info-page` hierarchy: eyebrow, hero, lead copy, section separators, and responsive typography.
+- `/info/policies` is the public repository-policy hub. It covers open access and deposit, CC0 metadata, FAIR interoperability, rights retention, research data and sensitive content, integrity and withdrawal, and preservation governance. Keep it aligned with formally approved UCU governance, law, funder requirements, and ethics procedures.
 - The COAR Notify page uses the same information-page pattern. Its centered protocol infographic is the supplied PNG asset; do not reintroduce the previous SVG or embedded PDF representation.
 - PDF item previews use the HAL bitstream content link first, preserving the repository's configured proxy, authentication, and delivery path; only then do they fall back to `/api/core/bitstreams/{uuid}/content`.
+- The ORCID login control uses `src/assets/custom/images/orcid-id.webp` only when the active authentication method is `orcid`. It is rendered by the shared external-provider template; do not reintroduce a theme-specific provider override because the generated login registry resolves the base provider last.
 
 ```text
 src/app/info/privacy/privacy-content/privacy-content.component.html
 src/app/info/privacy/privacy-content/privacy-content.component.scss
+src/app/info/policies/
 src/app/info/notify-info/notify-info.component.html
 src/app/info/notify-info/notify-info.component.scss
 src/assets/images/coar-notify-protocol-infographic.png
@@ -851,6 +854,8 @@ src/assets/images/coar-notify-protocol-infographic.pdf
 src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.ts
 src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.html
 src/app/item-page/simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component.scss
+src/app/shared/log-in/methods/log-in-external-provider/
+src/assets/custom/images/orcid-id.webp
 ```
 
 ### Automated access, copyright and incident handling
