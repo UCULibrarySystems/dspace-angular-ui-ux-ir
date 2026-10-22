@@ -4,10 +4,12 @@ import {
   isPlatformBrowser,
 } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   Inject,
   Input,
+  NgZone,
   OnDestroy,
   OnInit,
   PLATFORM_ID,
@@ -96,6 +98,8 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
     private authorizationService: AuthorizationDataService,
     private dsoNameService: DSONameService,
     private http: HttpClient,
+    private changeDetector: ChangeDetectorRef,
+    private zone: NgZone,
     @Inject(PLATFORM_ID) platformId: object,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -194,7 +198,8 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
 
         const page = await pdf.getPage(pageNumber);
         const baseViewport = page.getViewport({ scale: 1 });
-        const scale = Math.min(3, (this.pagesElement.clientWidth || baseViewport.width) / baseViewport.width);
+        const availableWidth = Math.max(1, this.pagesElement.clientWidth - 32);
+        const scale = Math.min(3, availableWidth / baseViewport.width);
         const viewport = page.getViewport({ scale });
         const outputScale = window.devicePixelRatio || 1;
         const canvas = document.createElement('canvas');
@@ -218,21 +223,28 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
 
         if (renderId === this.renderId) {
           this.pagesElement.appendChild(canvas);
+          this.zone.run(() => this.changeDetector.detectChanges());
         }
       }
     } catch {
       this.setPreviewError(renderId);
     } finally {
       if (renderId === this.renderId) {
-        this.isLoading = false;
+        this.zone.run(() => {
+          this.isLoading = false;
+          this.changeDetector.detectChanges();
+        });
       }
     }
   }
 
   private setPreviewError(renderId: number): void {
     if (renderId === this.renderId) {
-      this.previewError = true;
-      this.isLoading = false;
+      this.zone.run(() => {
+        this.previewError = true;
+        this.isLoading = false;
+        this.changeDetector.detectChanges();
+      });
     }
   }
 
