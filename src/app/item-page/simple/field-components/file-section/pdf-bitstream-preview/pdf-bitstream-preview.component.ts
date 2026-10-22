@@ -22,6 +22,11 @@ import { Bitstream } from '@dspace/core/shared/bitstream.model';
 import { RESTURLCombiner } from '@dspace/core/url-combiner/rest-url-combiner';
 import { TranslateModule } from '@ngx-translate/core';
 import {
+  getDocument,
+  GlobalWorkerOptions,
+  PDFDocumentLoadingTask,
+} from 'pdfjs-dist';
+import {
   combineLatest,
   Observable,
   of,
@@ -60,7 +65,7 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
   private activePreview?: PdfPreview;
   private previewSubscription?: Subscription;
   private fetchSubscription?: Subscription;
-  private loadingTask?: import('pdfjs-dist/types/src/display/api').PDFDocumentLoadingTask;
+  private loadingTask?: PDFDocumentLoadingTask;
   private resizeObserver?: ResizeObserver;
   private previousPagesWidth = 0;
   private renderId = 0;
@@ -178,9 +183,8 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
 
   private async renderPdf(data: ArrayBuffer, renderId: number): Promise<void> {
     try {
-      const pdfjs = await import('pdfjs-dist');
-      pdfjs.GlobalWorkerOptions.workerSrc = new URL('assets/pdfjs/pdf.worker.min.mjs', document.baseURI).toString();
-      this.loadingTask = pdfjs.getDocument({ data: new Uint8Array(data) });
+      GlobalWorkerOptions.workerSrc = new URL('assets/pdfjs/pdf.worker.min.mjs', document.baseURI).toString();
+      this.loadingTask = getDocument({ data: new Uint8Array(data) });
       const pdf = await this.loadingTask.promise;
 
       for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
