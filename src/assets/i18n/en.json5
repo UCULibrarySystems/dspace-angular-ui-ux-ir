@@ -5429,7 +5429,7 @@
 
   "submission.general.cannot_submit": "You don't have permission to make a new submission.",
 
-  "submission.general.deposit": "Deposit",
+  "submission.general.deposit": "Submit",
 
   "submission.general.discard.confirm.cancel": "Cancel",
 
@@ -5955,7 +5955,7 @@
 
   "submission.sections.general.invalid_state_error": "Cannot save current changes, mandatory fields are missing. Please resolve problems and save again later.",
 
-  "submission.sections.general.deposit_success_notice": "Submission deposited successfully.",
+  "submission.sections.general.deposit_success_notice": "Submission completed successfully.",
 
   "submission.sections.general.discard_error_notice": "There was an issue when discarding the item, please try again later.",
 
