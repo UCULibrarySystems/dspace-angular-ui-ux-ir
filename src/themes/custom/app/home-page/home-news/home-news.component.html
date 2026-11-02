@@ -6,8 +6,8 @@
     width="2560"
     height="1388">
   <div class="container ucu-hero-layout">
-    <details class="ucu-hero-panel" open>
-      <summary>Research impact and repository updates</summary>
+    <section class="ucu-hero-panel" aria-label="Research impact and repository updates">
+      <div class="ucu-hero-panel-heading">Research impact and repository updates</div>
       <div class="ucu-hero-panel-content">
         @if (homeNewsSlides$ | async; as slides) {
           <div class="ucu-hero-carousel" aria-live="polite">
@@ -43,7 +43,7 @@
           }
         }
       </div>
-    </details>
+    </section>
   </div>
 </section>
 

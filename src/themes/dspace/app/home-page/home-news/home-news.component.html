@@ -1,8 +1,8 @@
 <section class="ucu-hero" aria-label="Uganda Christian University Digital Institutional Repository">
   <img class="ucu-hero-image" src="assets/custom/images/ucu-hero-bishop-tucker.jpg" alt="Bishop Tucker Building at Uganda Christian University" width="2560" height="1388">
   <div class="container ucu-hero-layout">
-    <details class="ucu-hero-panel">
-      <summary>Research impact and repository updates</summary>
+    <section class="ucu-hero-panel" aria-label="Research impact and repository updates">
+      <div class="ucu-hero-panel-heading">Research impact and repository updates</div>
       <div class="ucu-hero-panel-content">
         @if (homeNewsMetadataValue$ | async; as homeNewsMetadataValue) {
           <ds-markdown-viewer [value]="homeNewsMetadataValue"></ds-markdown-viewer>
@@ -12,7 +12,7 @@
           <p>Uganda Christian University Digital Institutional Repository preserves and shares scholarly, archival, and research outputs.</p>
         }
       </div>
-    </details>
+    </section>
   </div>
 </section>
 
