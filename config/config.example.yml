@@ -591,6 +591,8 @@ info:
   enableCOARNotifySupport: true
   # Whether to show the cookie consent popup and the cookie settings footer link or not.
   enableCookieConsentPopup: true
+  # Enable only after the backend exposes the google.analytics.key configuration property.
+  enableGoogleAnalytics: false
 
 # Whether to enable Markdown (https://commonmark.org/) and MathJax (https://www.mathjax.org/)
 # display in supported metadata fields. By default, only dc.description.abstract is supported.

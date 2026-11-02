@@ -746,7 +746,7 @@ export class DefaultAppConfig implements AppConfig {
           tagName: 'meta',
           attributes: {
             property: 'og:image',
-            content: 'assets/images/ucu-logo-lib.png',
+            content: 'assets/images/veritus-logo.png',
           },
         },
         {
@@ -774,7 +774,7 @@ export class DefaultAppConfig implements AppConfig {
           tagName: 'meta',
           attributes: {
             name: 'twitter:image',
-            content: 'assets/images/ucu-logo-lib.png',
+            content: 'assets/images/veritus-logo.png',
           },
         },
         {
@@ -836,6 +836,7 @@ export class DefaultAppConfig implements AppConfig {
     enablePrivacyStatement: true,
     enableCOARNotifySupport: true,
     enableCookieConsentPopup: true,
+    enableGoogleAnalytics: false,
   };
 
   // Whether to enable Markdown (https://commonmark.org/) and MathJax (https://www.mathjax.org/)

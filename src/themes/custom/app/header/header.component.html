@@ -1,6 +1,9 @@
 <header id="main-site-header">
   <div class="ucu-utility-bar">
     <div class="container d-flex align-items-center justify-content-between gapx-3">
+      <a class="ucu-ribbon-brand" routerLink="/home" aria-label="Uganda Christian University Libraries and Archives Veritus">
+        <img src="assets/custom/images/veritus-crest.png" alt="" width="32" height="32">
+      </a>
       <a class="utility-update"
         [routerLink]="['/search']"
         [queryParams]="{ 'spc.page': 1, 'spc.sf': 'dc.date.accessioned', 'spc.sd': 'DESC' }"
@@ -39,7 +42,7 @@
       [attr.aria-label]="(isMobile$ | async) ? ('nav.main.description' | translate) : null"
          class="h-100 flex-fill d-flex flex-row flex-nowrap justify-content-start align-items-center gapx-3 flex-grow-1">
       <a class="d-block my-2 my-md-0" routerLink="/home" [attr.aria-label]="'home.title' | translate" role="button" tabindex="0">
-        <img id="header-logo" src="assets/images/ucu-logo-lib.png" [attr.alt]="'menu.header.image.logo' | translate"/>
+        <img id="header-logo" src="assets/images/veritus-logo.png" alt="Uganda Christian University Libraries and Archives Veritus"/>
       </a>
       @if ((isMobile$ | async) !== true) {
         <nav class="navbar navbar-expand p-0 align-items-center flex-grow-1 flex-shrink-1" id="desktop-navbar" [attr.aria-label]="'nav.main.description' | translate">

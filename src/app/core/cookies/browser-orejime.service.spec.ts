@@ -86,6 +86,7 @@ describe('BrowserOrejimeService', () => {
       info: {
         enablePrivacyStatement: true,
         enableCookieConsentPopup: true,
+        enableGoogleAnalytics: true,
       },
       fallbackLanguage: 'en',
     };

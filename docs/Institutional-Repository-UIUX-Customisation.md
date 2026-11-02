@@ -99,7 +99,7 @@ src/themes/custom/app/home-page/home-news/home-news.component.scss
 Brand assets currently live in:
 
 ```text
-src/assets/images/ucu-logo-lib.png
+src/assets/images/veritus-logo.png
 src/assets/images/ucu-logo-mini.png
 src/assets/images/favicon.png
 src/themes/dspace/assets/images/favicons/android-chrome-192x192.jpg
@@ -134,7 +134,7 @@ Replace DSpace logos and icons with UCU assets.
 Header logo:
 
 ```text
-assets/images/ucu-logo-lib.png
+assets/images/veritus-logo.png
 ```
 
 Compact/admin/sidebar logo:
@@ -425,7 +425,7 @@ Preserve login placement in the header. The auth menu is part of the standard DS
 Login and logout pages should use:
 
 ```text
-assets/images/ucu-logo-lib.png
+assets/images/veritus-logo.png
 ```
 
 Files:

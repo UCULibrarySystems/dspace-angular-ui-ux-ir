@@ -73,7 +73,8 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Cookie consent appearance | `src/styles/_global-styles.scss` | `src/app/core/cookies/browser-orejime.service.ts`, `src/app/core/cookies/orejime-configuration.ts` |
 | Cookie consent text | `src/assets/i18n/en.json5` | Active locale JSON5 files and privacy page |
 | Accessibility cursor assets | `src/assets/images/accessibility-cursor.svg` and `accessibility-pointer.svg` | Accessibility global styles |
-| Main repository logo | `src/assets/images/ucu-logo-lib.png` | `src/index.html`, runtime head tags |
+| Main repository logo | `src/assets/images/veritus-logo.png` | Header, login/logout, `src/index.html`, runtime head tags |
+| Ribbon crest | `src/assets/custom/images/veritus-crest.png` | Custom and fallback header utility ribbons |
 | Compact logo | `src/assets/images/ucu-logo-mini.png` | Compact or fallback logo references |
 | Authenticated admin sidebar icon | `src/assets/images/favicon.png` | `src/app/admin/admin-sidebar/admin-sidebar.component.html` |
 | Favicon and app icons | `src/assets/custom/images/favicons/` | `config/config.yml`, `src/config/default-app-config.ts` |
@@ -398,6 +399,10 @@ The current consent presentation includes:
 
 Do not edit Orejime under `node_modules`. Authenticated consent settings are synchronized by `BrowserOrejimeService` into the DSpace user metadata field `dspace.agreements.cookies`. Anonymous and user-specific browser storage use the `orejime-anonymous` and `orejime-<uuid>` naming patterns.
 
+Google Analytics consent is opt-in through `info.enableGoogleAnalytics` in the UI config and defaults to `false`. Leave it disabled unless the DSpace backend exposes a valid `google.analytics.key` property; otherwise the UI will make a request that returns 404. Re-enable it only after configuring that backend property and verifying consent-gated tracking. Browser-console warnings from extension scripts such as `contentscript.js`/`detector.js`, or external scripts failing while DevTools is set to Offline, do not originate in the repository frontend.
+
+The AddToAny widget is disabled in `src/environments/environment.ts` and `src/environments/environment.production.ts`; institutional social links are rendered directly in the custom header, so this third-party script is not needed. Keep it disabled unless repository pages intentionally reintroduce AddToAny share buttons.
+
 ## UCU Design System
 
 The shared UCU tokens are declared in:
@@ -432,10 +437,16 @@ Shared behavior belongs in `src/styles/_global-styles.scss`. Use a component or 
 
 ### Logos
 
-Replace the main wide logo in:
+The main wide Veritus logo is used throughout the frontend from:
 
 ```text
-src/assets/images/ucu-logo-lib.png
+src/assets/images/veritus-logo.png
+```
+
+The blue top ribbon uses the compact crest cropped from the same supplied artwork:
+
+```text
+src/assets/custom/images/veritus-crest.png
 ```
 
 The compact logo asset is:

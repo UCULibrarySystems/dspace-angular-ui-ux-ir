@@ -2,6 +2,14 @@ import { BuildConfig } from '@dspace/config/build-config.interface';
 
 export const environment: Partial<BuildConfig> = {
   production: true,
+  addToAnyPlugin: {
+    socialNetworksEnabled: false,
+    scriptUrl: 'https://static.addtoany.com/menu/page.js',
+    buttons: [],
+    showPlusButton: false,
+    showCounters: false,
+    title: 'Uganda Christian University Digital Institutional Repository',
+  },
 
   // Angular SSR (Server Side Rendering) settings
   ssr: {

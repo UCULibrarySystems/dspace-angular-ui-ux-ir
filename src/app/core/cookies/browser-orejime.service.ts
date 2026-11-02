@@ -128,10 +128,12 @@ export class BrowserOrejimeService extends OrejimeService {
       this.orejimeConfig.translations.zz.consentModal.privacyPolicy.text = 'cookies.consent.content-modal.no-privacy-policy.text';
     }
 
-    const hideGoogleAnalytics$ = this.configService.findByPropertyName(this.GOOGLE_ANALYTICS_KEY).pipe(
-      getFirstCompletedRemoteData(),
-      map(remoteData => !remoteData.hasSucceeded || !remoteData.payload || isEmpty(remoteData.payload.values)),
-    );
+    const hideGoogleAnalytics$ = this.appConfig.info?.enableGoogleAnalytics === true
+      ? this.configService.findByPropertyName(this.GOOGLE_ANALYTICS_KEY).pipe(
+        getFirstCompletedRemoteData(),
+        map(remoteData => !remoteData.hasSucceeded || !remoteData.payload || isEmpty(remoteData.payload.values)),
+      )
+      : of(true);
 
     const hideRegistrationVerification$ = this.configService.findByPropertyName(this.REGISTRATION_VERIFICATION_ENABLED_KEY).pipe(
       getFirstCompletedRemoteData(),
