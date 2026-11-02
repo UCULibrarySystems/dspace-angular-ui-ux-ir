@@ -74,7 +74,7 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Cookie consent text | `src/assets/i18n/en.json5` | Active locale JSON5 files and privacy page |
 | Accessibility cursor assets | `src/assets/images/accessibility-cursor.svg` and `accessibility-pointer.svg` | Accessibility global styles |
 | Main repository logo | `src/assets/images/veritus-logo.png` | Header, login/logout, `src/index.html`, runtime head tags |
-| Ribbon crest | `src/assets/custom/images/veritus-crest.png` | Custom and fallback header utility ribbons |
+| Ribbon Veritus wordmark | `src/assets/custom/images/veritus-ribbon-logo.png` | Custom and fallback header utility ribbons |
 | Compact logo | `src/assets/images/ucu-logo-mini.png` | Compact or fallback logo references |
 | Authenticated admin sidebar icon | `src/assets/images/favicon.png` | `src/app/admin/admin-sidebar/admin-sidebar.component.html` |
 | Favicon and app icons | `src/assets/custom/images/favicons/` | `config/config.yml`, `src/config/default-app-config.ts` |
@@ -443,10 +443,10 @@ The main wide Veritus logo is used throughout the frontend from:
 src/assets/images/veritus-logo.png
 ```
 
-The blue top ribbon uses the compact crest cropped from the same supplied artwork:
+The blue top ribbon uses the supplied transparent white Veritus wordmark as-is. Its display frame crops only the file's transparent padding:
 
 ```text
-src/assets/custom/images/veritus-crest.png
+src/assets/custom/images/veritus-ribbon-logo.png
 ```
 
 The compact logo asset is:
@@ -797,7 +797,7 @@ For SDG setup, backend integration, and production-output checks, see `SDG_INTEG
 
 ### Header, navigation, and homepage
 
-- The utility ribbon label is **"Click to check latest research"** and links to repository records sorted by `dc.date.accessioned` descending. The main navigation and login row become a scroll-activated fixed top row after the ribbon scrolls away; a dynamic spacer prevents page-content jumps. This is applied in both the custom and production DSpace fallback headers.
+- The utility ribbon logo and **"Click to check latest research"** link are grouped side by side; the link follows immediately after the logo and routes to page-one records sorted by `dc.date.accessioned` descending. The main navigation and login row become a scroll-activated fixed top row after the ribbon scrolls away; a dynamic spacer prevents page-content jumps. This is applied in both the custom and production DSpace fallback headers.
 - The desktop navigation is rendered inline with the UCU logo and login controls. Its dropdown menus use a translucent, blurred surface. The production DSpace fallback header mirrors these settings.
 - At laptop widths from 1025px through 1440px, the custom header removes fixed navigation offsets, keeps the logo flush left, and uses responsive spacing and compact navigation typography so the menu, account actions, and logo share one row. Maintain this breakpoint in `src/themes/custom/app/header/header.component.scss` when changing desktop header dimensions.
 - Mobile navigation remains available from the header hamburger control. The custom wrapper avoids rendering a duplicate desktop navigation row.

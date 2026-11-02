@@ -1,16 +1,18 @@
 <header id="main-site-header">
   <div class="ucu-utility-bar">
     <div class="container d-flex align-items-center justify-content-between gapx-3">
-      <a class="ucu-ribbon-brand" routerLink="/home" aria-label="Uganda Christian University Libraries and Archives Veritus">
-        <img src="assets/custom/images/veritus-crest.png" alt="" width="32" height="32">
-      </a>
-      <a class="utility-update"
-        [routerLink]="['/search']"
-        [queryParams]="{ 'spc.page': 1, 'spc.sf': 'dc.date.accessioned', 'spc.sd': 'DESC' }"
-        title="View the latest repository additions">
-        <span aria-hidden="true"></span>
-        Click to check latest research
-      </a>
+      <div class="ucu-ribbon-brand-group">
+        <a class="ucu-ribbon-logo" routerLink="/home" aria-label="Uganda Christian University Libraries and Archives Veritus">
+          <img src="assets/custom/images/veritus-ribbon-logo.png" alt="Uganda Christian University Libraries and Archives Veritus" width="1920" height="1080">
+        </a>
+        <a class="utility-update"
+          [routerLink]="['/search']"
+          [queryParams]="{ 'spc.page': 1, 'spc.sf': 'dc.date.accessioned', 'spc.sd': 'DESC' }"
+          title="View the latest repository additions">
+          <span aria-hidden="true"></span>
+          Click to check latest research
+        </a>
+      </div>
       <nav class="social-links" aria-label="Uganda Christian University social media">
         <a href="https://www.linkedin.com/company/uganda-christian-university-mukono" target="_blank" rel="noopener noreferrer" aria-label="Uganda Christian University on LinkedIn" title="LinkedIn">
           <i class="fab fa-linkedin-in" aria-hidden="true"></i>
