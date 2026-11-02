@@ -77,6 +77,7 @@ const normalizeHostname = (hostname: string): string => hostname
   .toLowerCase()
   .replace(/^\[(.*)]$/, '$1')
   .replace(/\.$/, '');
+const isTestHostname = (hostname: string): boolean => /(^|[.-])(test|staging|dev)([.-]|$)/i.test(normalizeHostname(hostname));
 const allowedUiHostnames = new Set([
   new URL(appConfig.ui.baseUrl).hostname,
   appConfig.ui.host,
@@ -160,6 +161,13 @@ export function app() {
    */
   server.use(rejectUnsupportedRequestProbe);
 
+  server.use((req, res, next) => {
+    if (isTestHostname(req.hostname) || isTestHostname(new URL(appConfig.ui.baseUrl).hostname)) {
+      res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+    }
+    next();
+  });
+
   /*
    * Reject forged or raw-IP Host headers before SSR. Angular performs the same
    * validation internally, but handling it here avoids a noisy SSR exception
@@ -194,6 +202,7 @@ export function app() {
     res.setHeader('content-type', 'text/plain');
     res.render('assets/robots.txt.ejs', {
       'origin': environment.ui.baseUrl,
+      'noIndex': isTestHostname(req.hostname) || isTestHostname(new URL(appConfig.ui.baseUrl).hostname),
     });
   });
 

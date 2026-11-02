@@ -1,6 +1,8 @@
+import { DOCUMENT } from '@angular/common';
 import {
   Inject,
   Injectable,
+  Optional,
 } from '@angular/core';
 import {
   Meta,
@@ -17,7 +19,6 @@ import {
   AppConfig,
 } from '@dspace/config/app-config.interface';
 import {
-  hasNoValue,
   hasValue,
   isNotEmpty,
 } from '@dspace/shared/utils/empty.util';
@@ -121,6 +122,7 @@ export class HeadTagService {
     protected hardRedirectService: HardRedirectService,
     @Inject(APP_CONFIG) protected appConfig: AppConfig,
     protected authorizationService: AuthorizationDataService,
+    @Optional() @Inject(DOCUMENT) protected document?: Document,
   ) {
   }
 
@@ -141,10 +143,14 @@ export class HeadTagService {
 
   protected processRouteChange(routeInfo: any): void {
     this.clearMetaTags();
+    this.setCanonicalUrl();
 
     if (hasValue(routeInfo.data.value.dso) && hasValue(routeInfo.data.value.dso.payload)) {
       this.currentObject.next(routeInfo.data.value.dso.payload);
       this.setDSOMetaTags();
+    } else {
+      this.currentObject.next(undefined);
+      this.removeItemStructuredData();
     }
 
     if (routeInfo.data.value.title) {
@@ -153,11 +159,15 @@ export class HeadTagService {
       combineLatest([titlePrefix, title]).pipe(take(1)).subscribe(([translatedTitlePrefix, translatedTitle]: [string, string]) => {
         this.addMetaTag('title', translatedTitlePrefix + translatedTitle);
         this.title.setTitle(translatedTitlePrefix + translatedTitle);
+        this.meta.updateTag({ property: 'og:title', content: translatedTitlePrefix + translatedTitle });
+        this.meta.updateTag({ name: 'twitter:title', content: translatedTitlePrefix + translatedTitle });
       });
     }
     if (routeInfo.data.value.description) {
       this.translate.get(routeInfo.data.value.description).pipe(take(1)).subscribe((translatedDescription: string) => {
         this.addMetaTag('description', translatedDescription);
+        this.meta.updateTag({ property: 'og:description', content: translatedDescription });
+        this.meta.updateTag({ name: 'twitter:description', content: translatedDescription });
       });
     }
   }
@@ -189,6 +199,8 @@ export class HeadTagService {
     this.setCitationDoiTag();
     this.setCitationPdfUrlTag();
     this.setCitationPublisherTag();
+    this.setCitationFullTextUrlTag();
+    this.setItemStructuredData();
 
     if (this.isDissertation()) {
       this.setCitationDissertationNameTag();
@@ -226,6 +238,9 @@ export class HeadTagService {
     const value = this.dsoNameService.getName(this.currentObject.getValue());
     this.addMetaTag('title', value);
     this.title.setTitle(value);
+    this.meta.updateTag({ property: 'og:title', content: value });
+    this.meta.updateTag({ name: 'twitter:title', content: value });
+    this.meta.updateTag({ property: 'og:type', content: this.currentObject.value instanceof Item ? 'article' : 'website' });
   }
 
   /**
@@ -235,6 +250,10 @@ export class HeadTagService {
     // TODO: truncate abstract
     const value = this.getMetaTagValue('dc.description.abstract');
     this.addMetaTag('description', value);
+    if (value) {
+      this.meta.updateTag({ property: 'og:description', content: value });
+      this.meta.updateTag({ name: 'twitter:description', content: value });
+    }
   }
 
   /**
@@ -257,7 +276,7 @@ export class HeadTagService {
    * Add <meta name="citation_publication_date" ... >  to the <head>
    */
   protected setCitationPublicationDateTag(): void {
-    const value = this.getFirstMetaTagValue(['dc.date.copyright', 'dc.date.issued', 'dc.date.available', 'dc.date.accessioned']);
+    const value = this.getMetaTagValue('dc.date.issued');
     this.addMetaTag('citation_publication_date', value);
   }
 
@@ -320,12 +339,82 @@ export class HeadTagService {
    */
   protected setCitationAbstractUrlTag(): void {
     if (this.currentObject.value instanceof Item) {
-      let url = this.getMetaTagValue('dc.identifier.uri');
-      if (hasNoValue(url)) {
-        url = new URLCombiner(this.hardRedirectService.getBaseUrl(), this.router.url).toString();
-      }
-      this.addMetaTag('citation_abstract_html_url', url);
+      this.addMetaTag('citation_abstract_html_url', this.getItemPageUrl());
     }
+  }
+
+  protected setCitationFullTextUrlTag(): void {
+    if (this.currentObject.value instanceof Item) {
+      this.addMetaTag('citation_fulltext_html_url', this.getItemPageUrl());
+    }
+  }
+
+  private getItemPageUrl(): string {
+    const path = this.router.url.split(/[?#]/, 1)[0] || '/';
+    return new URLCombiner(this.hardRedirectService.getBaseUrl(), path).toString();
+  }
+
+  private setCanonicalUrl(): void {
+    if (!this.document) {
+      return;
+    }
+    const canonicalUrl = this.getItemPageUrl();
+    let canonicalLink = this.document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = this.document.createElement('link');
+      canonicalLink.rel = 'canonical';
+      this.document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = canonicalUrl;
+    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+  }
+
+  private setItemStructuredData(): void {
+    if (!this.document || !(this.currentObject.value instanceof Item)) {
+      return;
+    }
+
+    const title = this.getMetaTagValue('dc.title');
+    const authors = this.getMetaTagValues(['dc.author', 'dc.contributor.author', 'dc.creator']);
+    const itemTypes = this.getMetaTagValues(['dc.type']).join(' ').toLowerCase();
+    const schemaType = itemTypes.includes('dataset') ? 'Dataset'
+      : /article|paper|publication/.test(itemTypes) ? 'ScholarlyArticle'
+        : 'CreativeWork';
+    const schema: Record<string, unknown> = {
+      '@context': 'https://schema.org',
+      '@type': schemaType,
+      '@id': this.getItemPageUrl(),
+      url: this.getItemPageUrl(),
+      name: title,
+      headline: title,
+      author: authors.map((name) => ({ '@type': 'Person', name })),
+      publisher: this.getMetaTagValue('dc.publisher') || 'Uganda Christian University',
+      inLanguage: this.getFirstMetaTagValue(['dc.language.iso', 'dc.language']),
+    };
+    const abstract = this.getMetaTagValue('dc.description.abstract');
+    const publicationDate = this.getMetaTagValue('dc.date.issued');
+    const doi = this.getMetaTagValue('dc.identifier.doi');
+    if (abstract) {
+      schema.description = abstract;
+    }
+    if (publicationDate) {
+      schema.datePublished = publicationDate;
+    }
+    if (doi) {
+      schema.identifier = doi;
+    }
+
+    this.document.getElementById('ucu-item-structured-data')?.remove();
+    const script = this.document.createElement('script');
+    script.id = 'ucu-item-structured-data';
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    this.document.head.appendChild(script);
+  }
+
+  private removeItemStructuredData(): void {
+    this.document?.getElementById('ucu-item-structured-data')?.remove();
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
   }
 
   /**

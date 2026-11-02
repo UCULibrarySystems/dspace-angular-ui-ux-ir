@@ -1,3 +1,7 @@
+<% if (noIndex) { %>
+User-agent: *
+Disallow:
+<% } else { %>
 # The URL to the DSpace sitemaps
 # XML sitemap is listed first as it is preferred by most search engines
 Sitemap: <%= origin %>/sitemap_index.xml
@@ -189,3 +193,4 @@ Disallow: /
 # http://www.webreaper.net/
 User-agent: WebReaper
 Disallow: /
+<% } %>

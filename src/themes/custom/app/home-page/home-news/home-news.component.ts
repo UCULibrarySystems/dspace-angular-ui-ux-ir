@@ -10,6 +10,7 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { APP_CONFIG, AppConfig } from '@dspace/config/app-config.interface';
 import { LocaleService } from '@dspace/core/locale/locale.service';
 import { Site } from '@dspace/core/shared/site.model';
 import { RouterLink } from '@angular/router';
@@ -52,11 +53,12 @@ export class HomeNewsComponent extends BaseComponent implements OnInit, OnDestro
   private slideSubscription?: Subscription;
 
   constructor(
+    @Inject(APP_CONFIG) appConfig: AppConfig,
     route: ActivatedRoute,
     private readonly localeService: LocaleService,
     @Inject(PLATFORM_ID) private readonly platformId: object,
   ) {
-    super(route, localeService);
+    super(appConfig, route, localeService);
   }
 
   ngOnInit(): void {
@@ -149,8 +151,8 @@ export class HomeNewsComponent extends BaseComponent implements OnInit, OnDestro
 
   private defaultMessage(): HeroMessage {
     return {
-      title: 'UCU Libraries and Archives',
-      message: 'Uganda Christian University Digital Institutional Repository preserves and shares scholarly, archival, and research outputs.',
+      title: 'Uganda Christian University Digital Institutional Repository',
+      message: 'UCUDIR preserves and shares UCU scholarship in support of open access, Christian scholarship, and knowledge that serves Uganda and the wider world.',
       linkText: 'Read more',
     };
   }

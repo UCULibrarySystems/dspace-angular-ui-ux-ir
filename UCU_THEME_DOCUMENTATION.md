@@ -486,7 +486,7 @@ The global document head is maintained in:
 src/index.html
 ```
 
-It contains the repository title, canonical URL, description, robots directives, Dublin Core metadata, citation metadata, Open Graph metadata, Twitter metadata, geographic metadata, and JSON-LD structured data.
+It contains repository-wide title, canonical URL, description, robots directives, Open Graph and Twitter defaults, and institutional/repository JSON-LD. Scholarly `citation_*` metadata belongs on individual item pages and is generated at runtime; do not add article or PDF citation tags to the home-page shell.
 
 Theme-specific head tags and runtime SEO values are maintained in:
 
@@ -511,7 +511,15 @@ src/robots.txt.ejs
 
 Keep `ui.baseUrl` identical to `dspace.ui.url` in the DSpace backend. The reverse proxy should also pass the public `Host`, `X-Forwarded-Host`, `X-Forwarded-Proto`, and related headers so SSR and redirects continue to recognise the public HTTPS request.
 
-The SEO metadata improves discoverability but does not guarantee Google Scholar inclusion. Item-level indexing also depends on public DSpace item pages, complete backend metadata, valid URLs, sitemap availability, and SSR.
+`src/app/core/metadata/head-tag.service.ts` maintains route canonical URLs, Open Graph/Twitter title and description, item-level Google Scholar citation tags, and item JSON-LD (`ScholarlyArticle`, `Dataset`, or `CreativeWork`). Citation publication dates use `dc.date.issued` only; do not substitute repository accession/availability dates. The citation PDF URL is exposed only when the item has an accessible downloadable bitstream. Item records should contain an accurate title, author, abstract, publication date and public item URL, with the abstract visible on the item page.
+
+The initial canonical and social URLs in `src/index.html` are production defaults. During navigation, the head service replaces the canonical URL and `og:url` with the current route using the configured public UI origin. At cutover, confirm `ui.baseUrl` in the active UI configuration and `dspace.ui.url` in the backend both use `https://ucudir.ucu.ac.ug`; verify sitemap entries and `robots.txt` from the deployed host. Test/staging/development hostnames receive `X-Robots-Tag: noindex, nofollow`, and their robots response omits the sitemap while allowing crawlers to read the noindex header. Keep test deployments off public indexing until the production hostname is serving the production stack.
+
+The home-page fallback copy is in `src/app/home-page/home-news/home-news.component.html` and the themed CMS fallback is in `src/themes/custom/app/home-page/home-news/home-news.component.ts`. Keep both specific to UCU's open access and Christian scholarship mission; do not describe DSpace platform features as the institution's purpose. The active hero message remains CMS-controlled through `dspace.cms.home-news`. Deposit guidance in `src/app/info/deposit/deposit-content/deposit-content.component.html` asks for accurate publication dates and searchable/OCR text where possible. The frontend cannot implement backend 301 redirects, repair scanned files, guarantee Google Scholar inclusion, configure Google Search Console, or set reverse-proxy headers; those require repository operations and infrastructure work. Treat file-size limits as operational guidance rather than an invented repository rule.
+
+Repository policy pages are drafts until reviewed and approved by the University Librarian and any other required UCU governance authority. Do not describe a draft as an official approved policy or imply that frontend publication itself constitutes institutional approval.
+
+These changes follow Google's published requirements, but metadata alone does not guarantee Google Scholar inclusion. See [Google Scholar inclusion guidelines](https://scholar.google.com/intl/en/scholar/inclusion.html) and [Google Search supported meta tags](https://developers.google.com/search/docs/crawling-indexing/special-tags).
 
 SSR is controlled by:
 
