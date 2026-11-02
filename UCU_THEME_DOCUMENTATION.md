@@ -788,6 +788,7 @@ For SDG setup, backend integration, and production-output checks, see `SDG_INTEG
 
 - The utility ribbon label is **"Click to check latest research"** and links to repository records sorted by `dc.date.accessioned` descending. The main navigation and login row become a scroll-activated fixed top row after the ribbon scrolls away; a dynamic spacer prevents page-content jumps. This is applied in both the custom and production DSpace fallback headers.
 - The desktop navigation is rendered inline with the UCU logo and login controls. Its dropdown menus use a translucent, blurred surface. The production DSpace fallback header mirrors these settings.
+- At laptop widths from 1025px through 1440px, the custom header removes fixed navigation offsets, keeps the logo flush left, and uses responsive spacing and compact navigation typography so the menu, account actions, and logo share one row. Maintain this breakpoint in `src/themes/custom/app/header/header.component.scss` when changing desktop header dimensions.
 - Mobile navigation remains available from the header hamburger control. The custom wrapper avoids rendering a duplicate desktop navigation row.
 - The guidance cards and repository search field appear directly below the homepage image-slider hero, not inside the global header. The same placement is implemented in the DSpace fallback theme used by production.
 - The homepage no longer renders the top-level community list. The recent-items heading is **"Latest research outputs"**.
