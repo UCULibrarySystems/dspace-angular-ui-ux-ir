@@ -178,11 +178,11 @@ The current footer contains:
 - Send feedback.
 - COAR Notify support when enabled.
 
-The lower footer section is intentionally UCU maroon:
+The lower footer section is UCU blue with white text:
 
 ```scss
 .bottom-footer {
-  background: var(--ucu-maroon);
+  background: var(--ucu-blue);
   border-top: 4px solid var(--ucu-yellow);
 }
 ```
@@ -820,7 +820,7 @@ src/assets/i18n/en.json5
 
 ### Footer, consent, and accessibility
 
-- The primary footer surface is UCU blue. Its lower policy-link strip is UCU green, and its individual links have compact UCU-blue backgrounds.
+- The lower footer policy-link strip is UCU blue with white text. Shared policy/info page headings and hero accents use UCU green. Footer and policy/info-page colors are maintained in `src/app/footer/footer.component.scss` and `src/app/info/service/service-content/service-content.component.scss`.
 - On mobile, the footer starts collapsed and exposes a chevron control to expand or minimize the footer links.
 - Cookie-notice actions are equal-width, compact buttons that remain side by side. Do not apply a viewport-only rule: the notice can be narrow even on a desktop browser.
 - Mobile tabs wrap instead of causing horizontal scrolling. Thumbnail dimensions use the global values `--ds-thumbnail-max-width: 250px` and `--ds-card-thumbnail-height: 480px`.
