@@ -26,6 +26,7 @@
       border-top: 4px solid var(--ucu-yellow);
       color: #fff;
       padding: 0.7rem 1rem;
+      row-gap: 0.5rem;
 
       .footer-toggle {
         display: none;
@@ -58,10 +59,10 @@
         }
       }
       ul {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 0.25rem;
         max-width: 100%;
-        overflow-x: clip;
+        overflow: visible;
 
         li {
           align-items: center;
@@ -93,6 +94,23 @@
             }
           }
 
+        }
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .bottom-footer {
+        flex-wrap: wrap;
+
+        .content-container {
+          max-width: 100%;
+          overflow-wrap: anywhere;
+        }
+
+        .notify-enabled {
+          position: static;
+          align-self: center !important;
+          margin: 0.25rem auto 0;
         }
       }
     }

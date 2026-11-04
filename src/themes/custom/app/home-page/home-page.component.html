@@ -1,0 +1,28 @@
+<ds-home-coar></ds-home-coar>
+<ds-home-news></ds-home-news>
+
+@if (showDiscoverFilters) {
+  <div data-ucu-tour="discovery">
+    <ds-configuration-search-page
+      [sideBarWidth]="3"
+      [showViewModes]="false"
+      [searchEnabled]="false"
+      [inPlaceSearch]="false"
+      [showScopeSelector]="false">
+      <ng-container searchContentTop *ngTemplateOutlet="homeContent"></ng-container>
+    </ds-configuration-search-page>
+  </div>
+}
+@if (!showDiscoverFilters) {
+  <div class="container" data-ucu-tour="discovery">
+    <ng-container *ngTemplateOutlet="homeContent"></ng-container>
+  </div>
+}
+<ds-suggestions-popup></ds-suggestions-popup>
+<ds-home-page-tour></ds-home-page-tour>
+
+<ng-template #homeContent>
+  @if (recentSubmissionspageSize > 0) {
+    <ds-recent-item-list data-ucu-tour="recent"></ds-recent-item-list>
+  }
+</ng-template>

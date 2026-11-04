@@ -4,18 +4,18 @@ import { Component } from '@angular/core';
 import { HomeCoarComponent } from '../../../../app/home-page/home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from '../../../../app/home-page/home-news/themed-home-news.component';
 import { HomePageComponent as BaseComponent } from '../../../../app/home-page/home-page.component';
+import { HomePageTourComponent } from '../../../../app/home-page/home-page-tour/home-page-tour.component';
 import { RecentItemListComponent } from '../../../../app/home-page/recent-item-list/recent-item-list.component';
 import { SuggestionsPopupComponent } from '../../../../app/notifications/suggestions/popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../../../../app/search-page/themed-configuration-search-page.component';
 
 @Component({
   selector: 'ds-themed-home-page',
-  // styleUrls: ['./home-page.component.scss'],
-  styleUrls: ['../../../../app/home-page/home-page.component.scss'],
-  // templateUrl: './home-page.component.html'
-  templateUrl: '../../../../app/home-page/home-page.component.html',
+  styleUrls: ['../../../../app/home-page/home-page.component.scss', './home-page.component.scss'],
+  templateUrl: './home-page.component.html',
   imports: [
     HomeCoarComponent,
+    HomePageTourComponent,
     NgTemplateOutlet,
     RecentItemListComponent,
     SuggestionsPopupComponent,

@@ -821,10 +821,12 @@ src/assets/i18n/en.json5
 ### Footer, consent, and accessibility
 
 - The lower footer policy-link strip is UCU blue with white text. Shared policy/info page headings and hero accents use UCU green. Footer and policy/info-page colors are maintained in `src/app/footer/footer.component.scss` and `src/app/info/service/service-content/service-content.component.scss`.
+- Footer copyright appears before the Libraries and Archives name. Hyperlinks use green hover color without default underlines, and community, collection, and browse counts use green badges. Accessibility contrast filters are scoped to `#main-content` to preserve sticky navigation and the floating accessibility controls.
 - On mobile, the footer starts collapsed and exposes a chevron control to expand or minimize the footer links.
 - Cookie-notice actions are equal-width, compact buttons that remain side by side. Do not apply a viewport-only rule: the notice can be narrow even on a desktop browser.
 - Mobile tabs wrap instead of causing horizontal scrolling. Thumbnail dimensions use the global values `--ds-thumbnail-max-width: 250px` and `--ds-card-thumbnail-height: 480px`.
 - The accessibility launcher and panel are compact on phones. Selecting a preference closes the panel immediately on mobile and after 2.5 seconds on larger screens.
+- Login methods are labeled in `src/app/shared/log-in/log-in.component.html`: ORCID is presented as researcher login, and password authentication as management login with an authorized-role tooltip. The homepage guided tour lives in `src/app/home-page/home-page-tour/`, is automatically shown once per browser, advances through six homepage points in about 30 seconds, and can be replayed with its persistent Site tour control.
 
 ```text
 src/app/footer/footer.component.html

@@ -4,6 +4,19 @@
 @if ((loading | async) !== true && (isAuthenticated | async) !== true) {
   <div class="px-4 py-3 mx-auto login-container">
     @for (authMethod of (authMethods | async); track authMethod; let last = $last) {
+      @if (authMethod.authMethodType === 'orcid') {
+        <h2 class="login-method-heading">Researcher login</h2>
+        <p class="login-method-description">Sign in with your ORCID iD to access your researcher account.</p>
+      }
+      @if (authMethod.authMethodType === 'password') {
+        <div class="login-method-heading-row">
+          <h2 class="login-method-heading">Management login</h2>
+          <span class="login-info-trigger" tabindex="0" aria-describedby="management-login-info" aria-label="Who can use management login?" title="Who can use management login?">
+            <i class="fas fa-circle-info" aria-hidden="true"></i>
+            <span class="login-info-tooltip" id="management-login-info" role="tooltip">For authorized reviewers, workflow managers, collection administrators, and community administrators.</span>
+          </span>
+        </div>
+      }
       <ds-log-in-container [authMethod]="authMethod" [isStandalonePage]="isStandalonePage"></ds-log-in-container>
       @if (!last) {
         <div class="dropdown-divider my-2"></div>
