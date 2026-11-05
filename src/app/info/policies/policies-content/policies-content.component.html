@@ -5,6 +5,7 @@
     <p class="lead">
       These policies integrate the Uganda Christian University Digital Institutional Repository into responsible research practice, academic recognition, open scholarship, and long-term stewardship.
     </p>
+    <p class="policy-meta"><strong>Policy status:</strong> Draft for review and approval by the University Librarian, UCU Legal Counsel, the Data Protection Officer, and relevant research-governance authorities. This page is not an approved institutional policy until formally adopted.</p>
   </header>
 
   <section>
@@ -33,23 +34,71 @@
   <section>
     <h2>Open metadata and interoperability policy</h2>
     <p>
-      Accurate repository metadata is a public scholarly infrastructure. Unless a record contains personal, confidential, security-sensitive, third-party, or otherwise restricted information, UCU releases the rights it holds in original descriptive metadata under the <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0 Universal Public Domain Dedication</a>. This dedication applies to metadata only; it does not licence item files, images, data, software, or other content described by the metadata.
+      Veritus distinguishes bibliographic metadata from the research outputs described by that metadata. For descriptive metadata that UCU owns or is authorised to release, UCU dedicates applicable rights to the public domain using <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0 Universal</a>, to the extent permitted by law. CC0 is not a blanket waiver of privacy, confidentiality, moral, personality, trademark, cultural, contractual, or third-party rights. A record is not made public under this policy if disclosure would be unlawful, ethically unsafe, or outside UCU's authority.
     </p>
     <p>
-      Records should expose persistent identifiers and machine-readable metadata through appropriate open standards and protocols, including Dublin Core, OAI-PMH, persistent URLs, controlled vocabularies, and identifiers such as DOI, Handle, ORCID, ROR, or funder identifiers where assigned. Metadata should make clear the resource type, version, contributors, dates, licence, rights statement, access status, relationship to other outputs, and recommended citation.
+      CC0 applies to the record's descriptive metadata only; it does not license an attached article, thesis, dataset, image, recording, software, or other deposited file. It also does not authorise disclosure or reuse of personal data. Public metadata should exclude private email addresses, usernames, authentication data, workflow notes, confidential reviewer or administrative comments, security details, and sensitive personal information. Author names, affiliations, ORCID iDs, acknowledgements, and other potentially identifying details are published only where there is an appropriate lawful basis and repository purpose. Where needed, staff must redact, minimise, restrict, or remove affected fields before public exposure or harvesting.
     </p>
     <p>
-      The repository follows the FAIR principle of being as open as possible and as closed as necessary. It seeks interoperability with scholarly discovery services and repository networks while preserving UCU's authority to correct metadata, protect sensitive information, and apply appropriate access controls.
+      Metadata should be human-readable and machine-readable and, where supported by the production system, exposed through the public search interface, stable item landing pages, sitemaps, and standards-based harvesting interfaces such as OAI-PMH. Dublin Core is the minimum crosswalk; richer schemas and controlled vocabularies should be used where they improve description, multilingual discovery, or disciplinary and regional context. Records should identify the resource type, creators and contributors, dates, version, affiliation, funder and grant where known, persistent identifiers, rights and access status, related outputs, provenance, and citation information. Identifiers such as DOI, Handle, ORCID, ROR, and funder identifiers must be used only when verified or formally assigned.
+    </p>
+    <p>
+      UCU will document available endpoint URLs, supported metadata formats, selective-harvest sets, update/deletion behaviour, contact details, and any operational limits before registering or promoting an interface to external aggregators. Public records should be checked with the relevant repository validator when available. Harvesting services may cache records; the repository should communicate corrections, withdrawal tombstones, and changed access states through supported protocol mechanisms. Persistent identifiers should resolve to a landing page, including where a file is withdrawn, rather than silently reassigning the identifier.
+    </p>
+    <p>
+      Public metadata may be harvested, copied, indexed, linked, and reused under CC0, including by scholarly discovery services and research systems, subject to applicable law and the exclusions above. Harvesters must preserve source attribution and provenance as good scholarly practice, must not misrepresent authorship or institutional endorsement, and must not use exposed personal data to identify, profile, contact, or make decisions about individuals. CC0 does not itself grant permission to reuse linked files or override item-level licence, privacy, ethics, or access conditions.
+    </p>
+    <p>
+      The repository follows an “as open as possible, as closed as necessary” approach informed by FAIR and CARE principles, Uganda's <a href="https://nru.uncst.go.ug/handle/123456789/11853" target="_blank" rel="noopener noreferrer">UNCST Open Science Policy (2025)</a>, the <a href="https://coar-repositories.org/tools-and-resources/coar-community-framework-for-good-practices-in-repositories/discoverability-good-practices-for-repositories/" target="_blank" rel="noopener noreferrer">COAR repository discoverability practices</a>, and applicable funder and community requirements. Openness must not override privacy, community governance, research ethics, benefit-sharing, or legal protections.
+    </p>
+  </section>
+
+  <section>
+    <h2>Harvesting, APIs, web systems, and responsible machine access</h2>
+    <p>
+      Veritus supports lawful discovery and interoperability. Public metadata interfaces are intended for human users and responsible institutional, national, African, and international discovery services. Where OAI-PMH or another harvesting interface is enabled, its published endpoint, metadata formats, sets, and usage instructions govern machine access. Harvesters should use selective sets where offered, identify their service, use incremental harvesting and back-off when requested, and avoid unnecessary repeated full harvests.
+    </p>
+    <ul>
+      <li>Harvest only publicly exposed records and fields; authentication, embargo, restricted-access, and administrative endpoints are not made public by this policy.</li>
+      <li>Respect item-level rights, access status, robots directives for web crawling, documented API terms, rate limits, security controls, and applicable data-protection and copyright law.</li>
+      <li>Do not bypass authentication or technical protections, probe for hidden files, collect credentials or personal contact data, impair service availability, or republish restricted files as if they were open.</li>
+      <li>Where records or files are corrected, withdrawn, embargoed, or access-restricted, use the interface's supported update, deletion, or tombstone behaviour; do not retain and redistribute a stale copy in a way that defeats the restriction or applicable law.</li>
+      <li>For bulk research, text and data mining, API integrations, or high-volume requests that are not covered by a published interface, contact repository support to agree a lawful, proportionate method. This is not a blanket prohibition on permitted mining or research reuse.</li>
+    </ul>
+    <p>
+      UCU may use proportionate rate limiting or security controls to protect availability, personal data, and restricted material. Such controls must not purport to revoke permissions already granted under an item licence or prevent ordinary compliant harvesting of public metadata. The repository does not guarantee uninterrupted interfaces or acceptance by any particular search engine or aggregator.
     </p>
   </section>
 
   <section>
     <h2>Rights retention, copyright and licensing policy</h2>
     <p>
-      Authors retain copyright unless they have assigned it elsewhere. By depositing material, a depositor grants UCU a non-exclusive, worldwide permission to store, preserve, reproduce for preservation and access, and make the material available under the selected access conditions. The depositor confirms that they have authority to grant that permission.
+      Copyright and neighbouring rights in a deposited output remain with the rights holder unless assigned or otherwise transferred. A depositor may select or request a public licence only if they own the relevant rights or have authority from every relevant rights holder. Deposit gives UCU the non-exclusive permissions needed to ingest, describe, store, preserve, migrate formats for preservation, and provide access according to the item's selected access conditions and licence. The deposit permission is not a transfer of copyright.
     </p>
     <p>
-      Researchers should retain sufficient rights to meet UCU, funder, and open-access requirements before signing publishing agreements. UCU Libraries and Archives provides practical guidance on licences, accepted manuscripts, embargoes, permissions, and rights statements, but cannot provide legal advice or override a publisher agreement.
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0 International</a> is the University's recommended permissive option for a work when the rights holder has affirmatively chosen it and has authority to grant it. It allows sharing and adaptation, including commercial reuse, provided reusers give appropriate credit, link to the licence, indicate changes, and do not imply endorsement or impose additional legal or technological restrictions. The Creative Commons deed is a summary; the <a href="https://creativecommons.org/licenses/by/4.0/legalcode.en" target="_blank" rel="noopener noreferrer">CC BY 4.0 legal code</a> governs. The licence does not grant privacy, publicity, patent, trademark, or other rights that the licensor does not control.
+    </p>
+    <p>
+      CC BY 4.0 is a recommendation, not an automatic default and not a condition of depositing eligible scholarship. The repository must display the licence actually selected or verified for each file. Publisher-permitted versions, funder rules, co-author agreements, third-party content, confidentiality, research ethics, and community or participant conditions may require a different licence, an embargo, restricted access, or no open file. CC BY-NC, CC BY-ND, CC BY-SA, other licences, and “all rights reserved” may be recorded where the rights holder or governing agreement requires them. Public visibility or download access alone does not grant a reuse licence.
+    </p>
+    <p>
+      Depositors should retain sufficient rights to meet UCU, funder, and open-access requirements before signing publishing agreements. UCU Libraries and Archives can provide repository guidance on versions, licences, embargoes, permissions, and rights statements, but cannot provide legal advice, grant rights on another party's behalf, or override a publisher or co-author agreement.
+    </p>
+  </section>
+
+  <section>
+    <h2>Eligible outputs, metadata-only records, and material outside scope</h2>
+    <p>
+      The output examples elsewhere in this framework are illustrative, not exhaustive. An output not named on a deposit page may still be considered if it has a clear UCU research, teaching, scholarly, or institutional connection and meets legal, ethical, quality, collection, and technical requirements. Depositors should ask the Repository team before submitting an unfamiliar format or content type.
+    </p>
+    <p>
+      A bibliographic or metadata-only record may be created when the output is eligible but its file cannot lawfully or safely be deposited, is held in another trusted repository, remains under embargo, is available only by controlled request, exceeds current preservation capacity, or has been withdrawn. The record should state the access status accurately and link to an authorised external copy where possible. A metadata record must not imply that UCU holds or endorses a file it does not hold.
+    </p>
+    <p>
+      Material may be declined, referred to another UCU service, or accepted only with restrictions where it lacks a UCU connection; is outside the repository's collection mandate or technical capacity; contains malware; is unlawful, defamatory, deceptive, or spam; creates unresolved copyright, neighbouring-rights, privacy, confidentiality, security, research-integrity, ethics, cultural-heritage, or contractual concerns; or lacks the permissions needed for deposit. These examples do not replace case-by-case review. Non-acceptance of a file does not automatically prevent a lawful metadata record or external link.
+    </p>
+    <p>
+      A metadata-only record, closed file, embargo, withdrawal, or rejection decision must not be described as open access to the underlying output. Repository staff should record the reason and review date for temporary restrictions where it is safe and appropriate to do so.
     </p>
   </section>
 
@@ -60,6 +109,9 @@
     </p>
     <p>
       Personal data, human-participant data, confidential information, protected community or cultural knowledge, commercially sensitive material, and security-sensitive content must not be made openly available without a lawful basis, appropriate consent, and any required ethics, contractual, or community approvals. Metadata and access conditions may be published while files are restricted, embargoed, anonymised, or deposited elsewhere under controlled access.
+    </p>
+    <p>
+      CC0 does not waive data-protection obligations. Handling of personal data must follow the <a href="https://ulii.org/en/akn/ug/act/2019/9/eng@2023-12-31" target="_blank" rel="noopener noreferrer">Uganda Data Protection and Privacy Act, 2019</a> and applicable regulations, including purpose limitation, data minimisation, security, lawful processing, data-subject rights, and cross-border transfer requirements where relevant. Research involving people must also follow current UNCST and UCU ethics approvals and consent conditions.
     </p>
   </section>
 
@@ -93,5 +145,19 @@
       <li><a [routerLink]="['/info/privacy']">Privacy policy</a></li>
       <li><a [routerLink]="['/info/feedback']">Contact repository support</a></li>
     </ul>
+  </section>
+
+  <section>
+    <h2>Legal and standards references</h2>
+    <ul>
+      <li><a href="https://ulii.org/en/akn/ug/act/2006/19/eng@2026-05-22" target="_blank" rel="noopener noreferrer">Uganda Copyright and Neighbouring Rights Act, Cap. 222, as amended</a></li>
+      <li><a href="https://ulii.org/en/akn/ug/act/2019/9/eng@2023-12-31" target="_blank" rel="noopener noreferrer">Uganda Data Protection and Privacy Act, 2019</a></li>
+      <li><a href="https://nru.uncst.go.ug/handle/123456789/11853" target="_blank" rel="noopener noreferrer">UNCST Open Science Policy (2025)</a></li>
+      <li><a href="https://www.au.int/sites/default/files/documents/45087-doc-AU_STISA_2025-2034_Strategy_ENGLISH.pdf" target="_blank" rel="noopener noreferrer">African Union Science, Technology and Innovation Strategy for Africa 2034</a></li>
+      <li><a href="https://www.unesco.org/en/legal-affairs/recommendation-open-science" target="_blank" rel="noopener noreferrer">UNESCO Recommendation on Open Science</a></li>
+      <li><a href="https://www.openaire.eu/making-your-repository-open" target="_blank" rel="noopener noreferrer">OpenAIRE repository licensing guidance</a> and <a href="https://guidelines.openaire.eu/en/latest/literature/use_of_oai_pmh.html" target="_blank" rel="noopener noreferrer">OAI-PMH guidance</a></li>
+      <li><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0 deed</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode.en" target="_blank" rel="noopener noreferrer">CC0 legal code</a>, and <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0 deed and legal code</a></li>
+    </ul>
+    <p>These references inform repository practice; they do not replace the laws, funder conditions, rights agreements, or institutional approvals applicable to a particular item. This draft requires legal and governance review before formal adoption.</p>
   </section>
 </article>

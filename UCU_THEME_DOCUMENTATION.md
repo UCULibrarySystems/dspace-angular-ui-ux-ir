@@ -22,6 +22,7 @@ The current UCU UI/UX layer provides:
 - Repository-oriented SEO metadata, Dublin Core and citation metadata, Open Graph/Twitter metadata, geographic metadata, and JSON-LD descriptions.
 - Public sitemap and robots configuration that exposes repository content while excluding administrative and query-heavy routes.
 - UCU-adjusted repository information pages for deposit guidance, data reuse, service level, terms, preservation, notice and takedown, and quality assurance.
+- Repository metadata openness and interoperability guidance covering CC0-bounded metadata, per-item CC BY licensing, metadata harvesting, APIs, restricted data, and metadata-only records.
 - A UCU Libraries and Archives repository curation policy covering values, review, rights, ethical handling, metadata, accessibility, stewardship, and policy review.
 - Metadata-driven goal badges and a visual SDG browse grid, backed by DSpace controlled vocabularies and Discovery counts.
 
@@ -529,6 +530,22 @@ The initial canonical and social URLs in `src/index.html` are production default
 The home-page fallback copy is in `src/app/home-page/home-news/home-news.component.html` and the themed CMS fallback is in `src/themes/custom/app/home-page/home-news/home-news.component.ts`. Keep both specific to UCU's open access and Christian scholarship mission; do not describe DSpace platform features as the institution's purpose. The active hero message remains CMS-controlled through `dspace.cms.home-news`. Deposit guidance in `src/app/info/deposit/deposit-content/deposit-content.component.html` asks for accurate publication dates and searchable/OCR text where possible. The frontend cannot implement backend 301 redirects, repair scanned files, guarantee Google Scholar inclusion, configure Google Search Console, or set reverse-proxy headers; those require repository operations and infrastructure work. Treat file-size limits as operational guidance rather than an invented repository rule.
 
 Repository policy pages are drafts until reviewed and approved by the University Librarian and any other required UCU governance authority. Do not describe a draft as an official approved policy or imply that frontend publication itself constitutes institutional approval.
+
+The repository policy and licensing language is maintained in:
+
+```text
+src/app/info/policies/policies-content/policies-content.component.html
+src/app/info/terms/terms-content/terms-content.component.html
+src/app/info/end-user-agreement/end-user-agreement-content/end-user-agreement-content.component.html
+```
+
+The metadata policy dedicates only UCU-controlled/authorised descriptive metadata to CC0 1.0, subject to applicable rights and data-protection limits. CC0 metadata does not license the described files or erase privacy, confidentiality, moral, personality, community, or third-party rights. CC BY 4.0 is recommended for an eligible file only where the rights holder affirmatively selects it and has authority; never silently apply it as a deposit default. The licence shown on each item is the source of truth. “Publicly accessible” is not equivalent to “openly licensed.”
+
+Policies should describe current interfaces conditionally: do not claim that OAI-PMH, a schema, a registry, an endpoint, a rate-limit process, or a harvester integration is operational until repository staff verify the production backend. Publish harvesting endpoint/format/set/update details from the real deployment. Keep private user, workflow, reviewer, audit, embargo, and restricted-file data out of public feeds. Preserve withdrawn-record tombstones and persistent landing pages where lawful and safe. If an output file is out of scope, rights-restricted, sensitive, or held elsewhere, staff may consider a lawful metadata-only record or link; such a record must not imply that the file is held or openly reusable.
+
+The end-user agreement fallback is in the third file above, but the frontend may instead render the `dc.rights` value configured in DSpace Site metadata. Review both sources when changing the agreement. Before publishing any legal-policy revision, obtain review from the University Librarian, UCU Legal Counsel, the Data Protection Officer, research ethics/governance stakeholders, and any relevant records or IT owners. The page itself flags draft approval status; do not remove that notice until formal adoption and version/date details are recorded.
+
+Policy references include the [UNCST Open Science Policy (2025)](https://nru.uncst.go.ug/handle/123456789/11853), Uganda's [Data Protection and Privacy Act](https://ulii.org/en/akn/ug/act/2019/9/eng@2023-12-31), the [Copyright and Neighbouring Rights Act as amended](https://ulii.org/en/akn/ug/act/2006/19/eng@2026-05-22), [COAR discoverability practices](https://coar-repositories.org/tools-and-resources/coar-community-framework-for-good-practices-in-repositories/discoverability-good-practices-for-repositories/), and [OpenAIRE OAI-PMH guidance](https://guidelines.openaire.eu/en/latest/literature/use_of_oai_pmh.html). Treat these as references for local policy design, not as legal advice or proof of institutional approval.
 
 Do not add generic keyword, revisit, or fictional AI/GEO meta tags. Use accurate visible page content, crawlable links, canonical URLs, useful structured data, and real geography in the institution entity. Metadata alone does not guarantee search or Google Scholar inclusion. See [Google Scholar inclusion guidelines](https://scholar.google.com/intl/en/scholar/inclusion.html), [Google Search supported meta tags](https://developers.google.com/search/docs/crawling-indexing/special-tags), [Google site names](https://developers.google.com/search/docs/appearance/site-names), and [Google's guide to generative AI search](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide).
 
