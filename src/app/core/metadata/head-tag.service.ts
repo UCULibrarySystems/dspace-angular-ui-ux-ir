@@ -186,24 +186,26 @@ export class HeadTagService {
     this.setTitleTag();
     this.setDescriptionTag();
 
-    this.setCitationTitleTag();
-    this.setCitationAuthorTags();
-    this.setCitationPublicationDateTag();
-    this.setCitationISSNTag();
-    this.setCitationISBNTag();
+    if (this.currentObject.value instanceof Item && this.currentObject.value.isDiscoverable !== false) {
+      this.setCitationTitleTag();
+      this.setCitationAuthorTags();
+      this.setCitationPublicationDateTag();
+      this.setCitationISSNTag();
+      this.setCitationISBNTag();
+      this.setCitationLanguageTag();
+      this.setCitationKeywordsTag();
+      this.setCitationAbstractUrlTag();
+      this.setCitationDoiTag();
+      this.setCitationPdfUrlTag();
+      this.setCitationPublisherTag();
+      this.setCitationFullTextUrlTag();
+      this.setItemStructuredData();
 
-    this.setCitationLanguageTag();
-    this.setCitationKeywordsTag();
-
-    this.setCitationAbstractUrlTag();
-    this.setCitationDoiTag();
-    this.setCitationPdfUrlTag();
-    this.setCitationPublisherTag();
-    this.setCitationFullTextUrlTag();
-    this.setItemStructuredData();
-
-    if (this.isDissertation()) {
-      this.setCitationDissertationNameTag();
+      if (this.isDissertation()) {
+        this.setCitationDissertationNameTag();
+      }
+    } else {
+      this.removeItemStructuredData();
     }
 
     // this.setCitationJournalTitleTag();
@@ -385,12 +387,18 @@ export class HeadTagService {
       '@type': schemaType,
       '@id': this.getItemPageUrl(),
       url: this.getItemPageUrl(),
+      mainEntityOfPage: this.getItemPageUrl(),
+      isPartOf: { '@id': 'https://ucudir.ucu.ac.ug/#website' },
       name: title,
       headline: title,
       author: authors.map((name) => ({ '@type': 'Person', name })),
-      publisher: this.getMetaTagValue('dc.publisher') || 'Uganda Christian University',
+      publisher: this.getMetaTagValue('dc.publisher') || { '@id': 'https://ucu.ac.ug/#organization' },
       inLanguage: this.getFirstMetaTagValue(['dc.language.iso', 'dc.language']),
     };
+    const keywords = this.getMetaTagValues(['dc.subject']);
+    if (keywords.length > 0) {
+      schema.keywords = keywords;
+    }
     const abstract = this.getMetaTagValue('dc.description.abstract');
     const publicationDate = this.getMetaTagValue('dc.date.issued');
     const doi = this.getMetaTagValue('dc.identifier.doi');

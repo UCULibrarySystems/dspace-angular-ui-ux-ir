@@ -497,7 +497,7 @@ The global document head is maintained in:
 src/index.html
 ```
 
-It contains repository-wide title, canonical URL, description, robots directives, Open Graph and Twitter defaults, and institutional/repository JSON-LD. Scholarly `citation_*` metadata belongs on individual item pages and is generated at runtime; do not add article or PDF citation tags to the home-page shell.
+It contains the Veritus repository-wide title, canonical URL, description, robots directives, Open Graph and Twitter defaults, and institutional/repository JSON-LD. The public product name is **Veritus**; Uganda Christian University remains the institution and publisher. Keep geographic structured data factual (Mukono, Uganda and the university's coordinates), not as invented `geo.*` meta tags. Scholarly `citation_*` metadata belongs only on discoverable individual item pages and is generated at runtime; do not add article or PDF citation tags to the home-page shell or non-item pages.
 
 Theme-specific head tags and runtime SEO values are maintained in:
 
@@ -522,7 +522,7 @@ src/robots.txt.ejs
 
 Keep `ui.baseUrl` identical to `dspace.ui.url` in the DSpace backend. The reverse proxy should also pass the public `Host`, `X-Forwarded-Host`, `X-Forwarded-Proto`, and related headers so SSR and redirects continue to recognise the public HTTPS request.
 
-`src/app/core/metadata/head-tag.service.ts` maintains route canonical URLs, Open Graph/Twitter title and description, item-level Google Scholar citation tags, and item JSON-LD (`ScholarlyArticle`, `Dataset`, or `CreativeWork`). Citation publication dates use `dc.date.issued` only; do not substitute repository accession/availability dates. The citation PDF URL is exposed only when the item has an accessible downloadable bitstream. Item records should contain an accurate title, author, abstract, publication date and public item URL, with the abstract visible on the item page.
+`src/app/core/metadata/head-tag.service.ts` maintains route canonical URLs, Open Graph/Twitter title and description, discoverable-item Google Scholar citation tags, and item JSON-LD (`ScholarlyArticle`, `Dataset`, or `CreativeWork`) linked to the repository and UCU publisher entities. Citation publication dates use `dc.date.issued` only; do not substitute repository accession/availability dates. The citation PDF URL is exposed only when the item has an accessible downloadable bitstream. Item records should contain accurate title, author, abstract, publication date and public item URL, with the abstract visible on the item page. The English browser title prefix and short repository label are in `src/assets/i18n/en.json5` under `repository.title.prefix` and `repository.title`.
 
 The initial canonical and social URLs in `src/index.html` are production defaults. During navigation, the head service replaces the canonical URL and `og:url` with the current route using the configured public UI origin. At cutover, confirm `ui.baseUrl` in the active UI configuration and `dspace.ui.url` in the backend both use `https://ucudir.ucu.ac.ug`; verify sitemap entries and `robots.txt` from the deployed host. Test/staging/development hostnames receive `X-Robots-Tag: noindex, nofollow`, and their robots response omits the sitemap while allowing crawlers to read the noindex header. Keep test deployments off public indexing until the production hostname is serving the production stack.
 
@@ -530,7 +530,7 @@ The home-page fallback copy is in `src/app/home-page/home-news/home-news.compone
 
 Repository policy pages are drafts until reviewed and approved by the University Librarian and any other required UCU governance authority. Do not describe a draft as an official approved policy or imply that frontend publication itself constitutes institutional approval.
 
-These changes follow Google's published requirements, but metadata alone does not guarantee Google Scholar inclusion. See [Google Scholar inclusion guidelines](https://scholar.google.com/intl/en/scholar/inclusion.html) and [Google Search supported meta tags](https://developers.google.com/search/docs/crawling-indexing/special-tags).
+Do not add generic keyword, revisit, or fictional AI/GEO meta tags. Use accurate visible page content, crawlable links, canonical URLs, useful structured data, and real geography in the institution entity. Metadata alone does not guarantee search or Google Scholar inclusion. See [Google Scholar inclusion guidelines](https://scholar.google.com/intl/en/scholar/inclusion.html), [Google Search supported meta tags](https://developers.google.com/search/docs/crawling-indexing/special-tags), [Google site names](https://developers.google.com/search/docs/appearance/site-names), and [Google's guide to generative AI search](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide).
 
 SSR is controlled by:
 
