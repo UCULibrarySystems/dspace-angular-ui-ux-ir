@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import {
   AsyncPipe,
   isPlatformBrowser,
@@ -21,12 +20,15 @@ import { AuthorizationDataService } from '@dspace/core/data/feature-authorizatio
 import { FeatureID } from '@dspace/core/data/feature-authorization/feature-id';
 import { AccessStatusObject } from '@dspace/core/shared/access-status.model';
 import { Bitstream } from '@dspace/core/shared/bitstream.model';
+import { FileService } from '@dspace/core/shared/file.service';
 import { RESTURLCombiner } from '@dspace/core/url-combiner/rest-url-combiner';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   getDocument,
   GlobalWorkerOptions,
   PDFDocumentLoadingTask,
+  PDFDocumentProxy,
+  RenderTask,
 } from 'pdfjs-dist';
 import {
   combineLatest,
@@ -37,6 +39,7 @@ import {
 import {
   distinctUntilChanged,
   map,
+  switchMap,
 } from 'rxjs/operators';
 
 interface PdfPreview {
@@ -62,12 +65,15 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
 
   isLoading = false;
   previewError = false;
+  currentPageNumber = 1;
+  totalPages = 0;
 
   private pagesElement?: HTMLDivElement;
   private activePreview?: PdfPreview;
   private previewSubscription?: Subscription;
-  private fetchSubscription?: Subscription;
   private loadingTask?: PDFDocumentLoadingTask;
+  private pdfDocument?: PDFDocumentProxy;
+  private pageRenderTask?: RenderTask;
   private resizeObserver?: ResizeObserver;
   private previousPagesWidth = 0;
   private renderId = 0;
@@ -97,7 +103,7 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
     @Inject(APP_CONFIG) private appConfig: AppConfig,
     private authorizationService: AuthorizationDataService,
     private dsoNameService: DSONameService,
-    private http: HttpClient,
+    private fileService: FileService,
     private changeDetector: ChangeDetectorRef,
     private zone: NgZone,
     @Inject(PLATFORM_ID) platformId: object,
@@ -119,22 +125,32 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
     ) ?? of(undefined);
 
     this.preview$ = combineLatest([format$, canDownload$, accessStatus$]).pipe(
-      map(([format, canDownload, accessStatus]) => {
+      switchMap(([format, canDownload, accessStatus]) => {
         const mimetype = format?.mimetype?.toLowerCase();
         const name = this.dsoNameService.getName(this.bitstream);
         const isPdf = mimetype === 'application/pdf' || name?.toLowerCase().endsWith('.pdf');
         const contentUrl = this.getContentUrl();
 
         if (!this.isBrowser || !isPdf || !contentUrl) {
-          return undefined;
+          return of(undefined);
         }
 
-        return {
+        const preview: PdfPreview = {
           title: `PDF preview: ${name}`,
-          url: canDownload ? contentUrl : undefined,
+          url: undefined,
           canDownload,
           accessStatus,
         };
+
+        if (!canDownload) {
+          return of(preview);
+        }
+
+        // Use DSpace's short-lived link for authenticated files; PDF.js can then
+        // make range requests directly to the configured REST server.
+        return this.fileService.retrieveFileDownloadLink(contentUrl).pipe(
+          map((url) => ({ ...preview, url })),
+        );
       }),
     );
 
@@ -158,78 +174,123 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
 
   private clearPreview(): void {
     this.renderId++;
-    this.fetchSubscription?.unsubscribe();
-    this.fetchSubscription = undefined;
     void this.loadingTask?.destroy();
     this.loadingTask = undefined;
+    this.pageRenderTask?.cancel();
+    this.pageRenderTask = undefined;
+    this.pdfDocument = undefined;
     this.pagesElement?.replaceChildren();
     this.isLoading = false;
+    this.currentPageNumber = 1;
+    this.totalPages = 0;
   }
 
-  private loadPreview(preview: PdfPreview): void {
+  private async loadPreview(preview: PdfPreview): Promise<void> {
     if (!preview.url) {
       return;
     }
     this.renderId++;
     const renderId = this.renderId;
-    this.fetchSubscription?.unsubscribe();
     void this.loadingTask?.destroy();
     this.loadingTask = undefined;
+    this.pageRenderTask?.cancel();
+    this.pageRenderTask = undefined;
+    this.pdfDocument = undefined;
+    this.totalPages = 0;
     this.pagesElement?.replaceChildren();
     this.previewError = false;
     this.isLoading = true;
 
-    this.fetchSubscription = this.http.get(preview.url, { responseType: 'arraybuffer' }).subscribe({
-      next: (data) => void this.renderPdf(data, renderId),
-      error: () => this.setPreviewError(renderId),
-    });
+    await this.renderPdf(preview.url, renderId);
   }
 
-  private async renderPdf(data: ArrayBuffer, renderId: number): Promise<void> {
+  private async renderPdf(url: string, renderId: number): Promise<void> {
     try {
       GlobalWorkerOptions.workerSrc = new URL('assets/pdfjs/pdf.worker.min.mjs', document.baseURI).toString();
-      this.loadingTask = getDocument({ data: new Uint8Array(data) });
-      const pdf = await this.loadingTask.promise;
-
-      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-        if (renderId !== this.renderId || !this.pagesElement) {
-          return;
-        }
-
-        const page = await pdf.getPage(pageNumber);
-        const baseViewport = page.getViewport({ scale: 1 });
-        const availableWidth = Math.max(1, this.pagesElement.clientWidth - 32);
-        const scale = Math.min(3, availableWidth / baseViewport.width);
-        const viewport = page.getViewport({ scale });
-        const outputScale = window.devicePixelRatio || 1;
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-
-        if (!context) {
-          throw new Error('Unable to create a PDF canvas context');
-        }
-
-        canvas.width = Math.floor(viewport.width * outputScale);
-        canvas.height = Math.floor(viewport.height * outputScale);
-        canvas.style.width = `${viewport.width}px`;
-        canvas.style.height = `${viewport.height}px`;
-        canvas.setAttribute('aria-label', `PDF page ${pageNumber}`);
-
-        await page.render({
-          canvasContext: context,
-          viewport,
-          transform: outputScale === 1 ? undefined : [outputScale, 0, 0, outputScale, 0, 0],
-        }).promise;
-
-        if (renderId === this.renderId) {
-          this.pagesElement.appendChild(canvas);
-          this.zone.run(() => this.changeDetector.detectChanges());
-        }
+      this.loadingTask = getDocument({
+        url,
+        withCredentials: false,
+        disableRange: false,
+        disableStream: true,
+        disableAutoFetch: true,
+        rangeChunkSize: 65536,
+      });
+      this.pdfDocument = await this.loadingTask.promise;
+      this.totalPages = this.pdfDocument.numPages;
+      this.currentPageNumber = Math.min(this.currentPageNumber, this.totalPages);
+      if (renderId === this.renderId) {
+        await this.renderPage(this.currentPageNumber, renderId);
       }
     } catch {
       this.setPreviewError(renderId);
     } finally {
       if (renderId === this.renderId) {
+        this.zone.run(() => {
+          this.isLoading = false;
+          this.changeDetector.detectChanges();
+        });
+      }
+    }
+  }
+
+  changePage(offset: number): void {
+    const nextPage = this.currentPageNumber + offset;
+    if (!this.pdfDocument || nextPage < 1 || nextPage > this.totalPages) {
+      return;
+    }
+
+    this.currentPageNumber = nextPage;
+    this.renderId++;
+    this.pageRenderTask?.cancel();
+    this.pageRenderTask = undefined;
+    this.pagesElement?.replaceChildren();
+    this.isLoading = true;
+    this.previewError = false;
+    void this.renderPage(nextPage, this.renderId);
+  }
+
+  private async renderPage(pageNumber: number, renderId: number): Promise<void> {
+    try {
+      if (!this.pdfDocument || !this.pagesElement) {
+        return;
+      }
+      const page = await this.pdfDocument.getPage(pageNumber);
+      if (renderId !== this.renderId || !this.pagesElement) {
+        return;
+      }
+
+      const baseViewport = page.getViewport({ scale: 1 });
+      const availableWidth = Math.max(1, this.pagesElement.clientWidth - 32);
+      const scale = Math.min(2, availableWidth / baseViewport.width);
+      const viewport = page.getViewport({ scale });
+      const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      if (!context) {
+        throw new Error('Unable to create a PDF canvas context');
+      }
+
+      canvas.width = Math.floor(viewport.width * outputScale);
+      canvas.height = Math.floor(viewport.height * outputScale);
+      canvas.style.width = `${viewport.width}px`;
+      canvas.style.height = `${viewport.height}px`;
+      canvas.setAttribute('aria-label', `PDF page ${pageNumber}`);
+
+      this.pageRenderTask = page.render({
+        canvasContext: context,
+        viewport,
+        transform: outputScale === 1 ? undefined : [outputScale, 0, 0, outputScale, 0, 0],
+      });
+      await this.pageRenderTask.promise;
+
+      if (renderId === this.renderId && this.pagesElement) {
+        this.pagesElement.appendChild(canvas);
+      }
+    } catch {
+      this.setPreviewError(renderId);
+    } finally {
+      if (renderId === this.renderId) {
+        this.pageRenderTask = undefined;
         this.zone.run(() => {
           this.isLoading = false;
           this.changeDetector.detectChanges();
@@ -257,9 +318,7 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
   }
 
   private getContentUrl(): string {
-    // Prefer the HAL link supplied with the bitstream. It preserves the API
-    // origin and path that granted access to this specific file, including
-    // https://demo.dspace.org/server/api/core/bitstreams/<uuid>/content.
+    // The REST API supplies this URL for the specific backend and bitstream.
     const contentLink = this.bitstream?._links?.content?.href;
     if (contentLink) {
       return contentLink;

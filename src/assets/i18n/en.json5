@@ -3286,6 +3286,14 @@
 
   "item.page.pdf-preview.loading": "Loading PDF preview...",
 
+  "item.page.pdf-preview.navigation": "PDF page navigation",
+
+  "item.page.pdf-preview.previous": "Previous page",
+
+  "item.page.pdf-preview.next": "Next page",
+
+  "item.page.pdf-preview.page-count": "Page {{current}} of {{total}}",
+
   "item.page.pdf-preview.error": "The PDF preview could not be loaded.",
 
   "item.page.pdf-preview.restricted": "This file is restricted by its access policy and cannot be previewed.",

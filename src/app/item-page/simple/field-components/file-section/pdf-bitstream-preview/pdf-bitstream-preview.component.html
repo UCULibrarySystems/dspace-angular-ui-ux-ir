@@ -15,6 +15,21 @@
     @if (!preview.canDownload) {
       <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.restricted' | translate }}</p>
     } @else {
+      @if (totalPages > 0) {
+        <nav class="pdf-preview-navigation" [attr.aria-label]="'item.page.pdf-preview.navigation' | translate">
+          <button type="button" class="btn btn-outline-primary btn-sm" [disabled]="currentPageNumber <= 1" (click)="changePage(-1)">
+            <span class="fas fa-chevron-left" aria-hidden="true"></span>
+            {{ 'item.page.pdf-preview.previous' | translate }}
+          </button>
+          <span class="pdf-preview-page-count" aria-live="polite">
+            {{ 'item.page.pdf-preview.page-count' | translate: { current: currentPageNumber, total: totalPages } }}
+          </span>
+          <button type="button" class="btn btn-outline-primary btn-sm" [disabled]="currentPageNumber >= totalPages" (click)="changePage(1)">
+            {{ 'item.page.pdf-preview.next' | translate }}
+            <span class="fas fa-chevron-right" aria-hidden="true"></span>
+          </button>
+        </nav>
+      }
       @if (isLoading) {
         <p class="pdf-preview-status" role="status">{{ 'item.page.pdf-preview.loading' | translate }}</p>
       }
