@@ -77,4 +77,12 @@ describe('EndUserAgreementContentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show the UCU agreement when the site has no agreement text', () => {
+    component.userAgreementText$.next('');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('About this agreement');
+    expect(fixture.nativeElement.textContent).toContain('Data Protection and Privacy Act, 2019');
+  });
 });

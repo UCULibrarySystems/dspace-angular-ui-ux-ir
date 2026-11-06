@@ -34,6 +34,8 @@ import { MarkdownViewerComponent } from 'src/app/shared/markdown-viewer/markdown
 export class EndUserAgreementContentComponent implements OnInit, OnDestroy {
 
   USER_AGREEMENT_TEXT_METADATA = 'dc.rights';
+  // Site-level dc.rights may contain a short label (for example, "Library").
+  private readonly minimumAgreementLength = 500;
 
   subs: Subscription[] = [];
 
@@ -53,7 +55,10 @@ export class EndUserAgreementContentComponent implements OnInit, OnDestroy {
    * @returns True if the metadata is for the user agreement text and matches the language code, false otherwise
    */
   private filterMetadata(metadata: MetadatumViewModel, langCode: string) {
-    return metadata.key === this.USER_AGREEMENT_TEXT_METADATA && metadata.language === langCode && isNotEmpty(metadata.value);
+    return metadata.key === this.USER_AGREEMENT_TEXT_METADATA
+      && metadata.language === langCode
+      && isNotEmpty(metadata.value)
+      && metadata.value.trim().length >= this.minimumAgreementLength;
   }
 
   ngOnInit(): void {
