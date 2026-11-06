@@ -48,7 +48,7 @@ dspace-angular connects to your DSpace installation by using its REST endpoint. 
 ```yaml
 rest:
   ssl: true
-  host: demo.dspace.org
+  host: ucudir.ucu.ac.ug
   port: 443
   nameSpace: /server
 }
@@ -57,7 +57,7 @@ rest:
 Alternately you can set the following environment variables. If any of these are set, it will override all configuration files:
 ```
   DSPACE_REST_SSL=true
-  DSPACE_REST_HOST=demo.dspace.org
+  DSPACE_REST_HOST=ucudir.ucu.ac.ug
   DSPACE_REST_PORT=443
   DSPACE_REST_NAMESPACE=/server
 ```

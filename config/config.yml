@@ -17,10 +17,8 @@ ssr:
 
 rest:
   ssl: true
-  # The configured REST service must match the repository whose item links are
-  # rendered by this UI. The Demo REST API supplies the public bitstream content
-  # endpoint used by the PDF.js preview.
-  host: demo.dspace.org
+  # Keep the UI and REST API on the Uganda Christian University repository.
+  host: ucudir.ucu.ac.ug
   port: 443
   nameSpace: /server
 
