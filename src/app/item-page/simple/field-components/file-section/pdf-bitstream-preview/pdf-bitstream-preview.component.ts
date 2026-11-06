@@ -88,8 +88,8 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
         const width = entries[0]?.contentRect.width ?? 0;
         const widthChanged = this.previousPagesWidth > 0 && Math.abs(width - this.previousPagesWidth) > 1;
         this.previousPagesWidth = width;
-        if (widthChanged && this.activePreview?.url) {
-          void this.loadPreview(this.activePreview);
+        if (widthChanged && this.pdfDocument && width > 0) {
+          this.rerenderCurrentPage();
         }
       });
       this.resizeObserver.observe(this.pagesElement);
@@ -249,6 +249,16 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
     void this.renderPage(nextPage, this.renderId);
   }
 
+  private rerenderCurrentPage(): void {
+    this.renderId++;
+    this.pageRenderTask?.cancel();
+    this.pageRenderTask = undefined;
+    this.pagesElement?.replaceChildren();
+    this.isLoading = true;
+    this.previewError = false;
+    void this.renderPage(this.currentPageNumber, this.renderId);
+  }
+
   private async renderPage(pageNumber: number, renderId: number): Promise<void> {
     try {
       if (!this.pdfDocument || !this.pagesElement) {
@@ -263,7 +273,10 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
       const availableWidth = Math.max(1, this.pagesElement.clientWidth - 32);
       const scale = Math.min(2, availableWidth / baseViewport.width);
       const viewport = page.getViewport({ scale });
-      const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+      const deviceScale = Math.min(window.devicePixelRatio || 1, 1.5);
+      const maxCanvasPixels = 8_000_000;
+      const pixelScale = Math.sqrt(maxCanvasPixels / (viewport.width * viewport.height));
+      const outputScale = Math.min(deviceScale, pixelScale);
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
       if (!context) {
@@ -273,7 +286,8 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
       canvas.width = Math.floor(viewport.width * outputScale);
       canvas.height = Math.floor(viewport.height * outputScale);
       canvas.style.width = `${viewport.width}px`;
-      canvas.style.height = `${viewport.height}px`;
+      canvas.style.height = 'auto';
+      canvas.style.maxWidth = '100%';
       canvas.setAttribute('aria-label', `PDF page ${pageNumber}`);
 
       this.pageRenderTask = page.render({
