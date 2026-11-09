@@ -133,8 +133,7 @@
         }
 
         &.footer-collapsed {
-          .content-container,
-          .notify-enabled {
+          .content-container {
             display: none;
           }
         }
