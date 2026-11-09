@@ -13,6 +13,7 @@ import { LocaleService } from '@dspace/core/locale/locale.service';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../../../environments/environment';
+import { HomePageTourService } from '../../home-page/home-page-tour/home-page-tour.service';
 
 type ColorMode = 'normal' | 'dark' | 'light' | 'high' | 'high-saturation' | 'low-saturation' | 'monochrome';
 
@@ -94,6 +95,7 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
     private localeService: LocaleService,
     private router: Router,
     private translateService: TranslateService,
+    private homePageTour: HomePageTourService,
   ) {
   }
 
@@ -281,10 +283,12 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
 
   startTour(): void {
     this.panelOpen = false;
-    const mainContent = this.document.querySelector<HTMLElement>('#main-content');
-    mainContent?.setAttribute('tabindex', '-1');
-    mainContent?.focus({ preventScroll: false });
-    this.statusMessage = 'Main repository content selected. Use Tab to move through links and controls.';
+    this.statusMessage = 'Starting the repository tour.';
+    if (this.router.url === '/') {
+      this.homePageTour.requestStart();
+      return;
+    }
+    void this.router.navigateByUrl('/').then(() => this.homePageTour.requestStart());
   }
 
   resetAll(): void {

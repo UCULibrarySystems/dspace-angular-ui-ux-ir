@@ -7,6 +7,9 @@ import {
   Inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Subscription } from 'rxjs';
+
+import { HomePageTourService } from './home-page-tour.service';
 
 interface TourStep {
   target: string;
@@ -59,11 +62,15 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
 
   private readonly storageKey = 'ucudir-home-tour-seen-v1';
   private readonly isBrowser: boolean;
+  private tourRequestSubscription?: Subscription;
   private startupTimer?: number;
   private advanceTimer?: number;
   private positionTimer?: number;
 
-  constructor(@Inject(PLATFORM_ID) platformId: object) {
+  constructor(
+    @Inject(PLATFORM_ID) platformId: object,
+    private tourService: HomePageTourService,
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -71,6 +78,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     if (!this.isBrowser) {
       return;
     }
+    this.tourRequestSubscription = this.tourService.startRequests$.subscribe(() => this.startTour());
     try {
       if (localStorage.getItem(this.storageKey) !== 'true') {
         this.startupTimer = window.setTimeout(() => this.startTour(true), 900);
@@ -83,6 +91,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.clearTimers();
     this.clearStartupTimer();
+    this.tourRequestSubscription?.unsubscribe();
   }
 
   startTour(firstVisit = false): void {
