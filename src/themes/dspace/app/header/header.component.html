@@ -3,7 +3,7 @@
     <div class="container d-flex align-items-center justify-content-between gapx-3">
       <div class="ucu-ribbon-brand-group">
         <a class="ucu-ribbon-logo" routerLink="/home" aria-label="Uganda Christian University Libraries and Archives Veritus">
-          <img src="assets/custom/images/veritus-ribbon-logo.png" alt="Uganda Christian University Libraries and Archives Veritus" width="1920" height="1080">
+          <img src="assets/images/veritas-logo-white.png" alt="Uganda Christian University Libraries and Archives Veritas" width="1920" height="1080">
         </a>
         <a class="utility-update"
           [routerLink]="['/search']"
@@ -44,7 +44,7 @@
       [attr.aria-label]="(isMobile$ | async) ? ('nav.main.description' | translate) : null"
          class="h-100 flex-fill d-flex flex-row flex-nowrap justify-content-start align-items-center gapx-3 flex-grow-1">
       <a class="d-block my-2 my-md-0" routerLink="/home" [attr.aria-label]="'home.title' | translate" role="button" tabindex="0">
-        <img id="header-logo" src="assets/images/veritus-logo.png" alt="Uganda Christian University Libraries and Archives Veritus"/>
+        <img id="header-logo" src="assets/images/library-repository-logo.png" alt="Uganda Christian University Libraries and Archives Veritas"/>
       </a>
       @if ((isMobile$ | async) !== true) {
         <nav class="navbar navbar-expand p-0 align-items-center flex-grow-1 flex-shrink-1" id="desktop-navbar" [attr.aria-label]="'nav.main.description' | translate">

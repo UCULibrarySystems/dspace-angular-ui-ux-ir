@@ -746,7 +746,7 @@ export class DefaultAppConfig implements AppConfig {
           tagName: 'meta',
           attributes: {
             property: 'og:image',
-            content: 'assets/images/veritus-logo.png',
+            content: 'assets/images/library-repository-logo.png',
           },
         },
         {
@@ -774,7 +774,7 @@ export class DefaultAppConfig implements AppConfig {
           tagName: 'meta',
           attributes: {
             name: 'twitter:image',
-            content: 'assets/images/veritus-logo.png',
+            content: 'assets/images/library-repository-logo.png',
           },
         },
         {
