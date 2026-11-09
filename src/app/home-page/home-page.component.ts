@@ -1,5 +1,4 @@
 import {
-  AsyncPipe,
   NgTemplateOutlet,
 } from '@angular/common';
 import {
@@ -26,12 +25,9 @@ import {
 
 import { SuggestionsPopupComponent } from '../notifications/suggestions/popup/suggestions-popup.component';
 import { ThemedConfigurationSearchPageComponent } from '../search-page/themed-configuration-search-page.component';
-import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
-import { ThemedSearchFormComponent } from '../shared/search-form/themed-search-form.component';
 import { HomeCoarComponent } from './home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from './home-news/themed-home-news.component';
 import { RecentItemListComponent } from './recent-item-list/recent-item-list.component';
-import { ThemedTopLevelCommunityListComponent } from './top-level-community-list/themed-top-level-community-list.component';
 
 @Component({
   selector: 'ds-base-home-page',
@@ -39,15 +35,11 @@ import { ThemedTopLevelCommunityListComponent } from './top-level-community-list
   templateUrl: './home-page.component.html',
   imports: [
     HomeCoarComponent,
-    AsyncPipe,
-    MarkdownViewerComponent,
     NgTemplateOutlet,
     RecentItemListComponent,
     SuggestionsPopupComponent,
     ThemedConfigurationSearchPageComponent,
     ThemedHomeNewsComponent,
-    ThemedSearchFormComponent,
-    ThemedTopLevelCommunityListComponent,
     TranslateModule,
   ],
 })
