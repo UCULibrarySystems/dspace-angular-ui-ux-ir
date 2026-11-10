@@ -10,6 +10,8 @@
   }
   @if (isSdgVocabulary()) {
     <ds-sdg-browse-grid></ds-sdg-browse-grid>
+  } @else if (isNdpVocabulary()) {
+    <ds-ndp-browse-grid></ds-ndp-browse-grid>
   } @else {
     <div class="mb-3">
       <ds-vocabulary-treeview [description]="description"

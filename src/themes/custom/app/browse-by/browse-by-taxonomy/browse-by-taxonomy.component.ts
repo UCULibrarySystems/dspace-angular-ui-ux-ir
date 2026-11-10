@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { BrowseByTaxonomyComponent as BaseComponent } from '../../../../../app/browse-by/browse-by-taxonomy/browse-by-taxonomy.component';
 import { VocabularyTreeviewComponent } from '../../../../../app/shared/form/vocabulary-treeview/vocabulary-treeview.component';
+import { NdpBrowseGridComponent } from '../../../../../app/shared/goal-badges/ndp-browse-grid.component';
 import { SdgBrowseGridComponent } from './sdg-browse-grid.component';
 
 @Component({
@@ -14,6 +15,7 @@ import { SdgBrowseGridComponent } from './sdg-browse-grid.component';
     RouterLink,
     TranslatePipe,
     VocabularyTreeviewComponent,
+    NdpBrowseGridComponent,
     SdgBrowseGridComponent,
   ],
 })
