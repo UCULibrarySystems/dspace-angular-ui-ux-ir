@@ -154,6 +154,16 @@
 
 <button
   type="button"
+  class="site-tour-launcher"
+  aria-label="Start the repository site tour"
+  title="Site tour"
+  (click)="startTour()">
+  <i class="fas fa-compass" aria-hidden="true"></i>
+  <span>Site tour</span>
+</button>
+
+<button
+  type="button"
   class="accessibility-launcher"
   lang="en"
   [class.open]="panelOpen"

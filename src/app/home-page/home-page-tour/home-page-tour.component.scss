@@ -2,7 +2,6 @@
   font-family: var(--bs-font-sans-serif), Arial, sans-serif;
 }
 
-.tour-launcher,
 .tour-card button {
   align-items: center;
   border: 1px solid transparent;
@@ -15,21 +14,6 @@
   justify-content: center;
   min-height: 2.5rem;
   padding: 0.5rem 0.75rem;
-}
-
-.tour-launcher {
-  background: var(--ucu-blue, #0b3d91);
-  bottom: 1rem;
-  box-shadow: 0 0.2rem 0.65rem rgba(0, 0, 0, 0.22);
-  color: #fff;
-  left: 1rem;
-  position: fixed;
-  z-index: 2100;
-}
-
-.tour-launcher:hover,
-.tour-launcher:focus-visible {
-  background: var(--ucu-green, #007931);
 }
 
 .tour-shade {
@@ -135,20 +119,12 @@
   opacity: 0.5;
 }
 
-.tour-card button:focus-visible,
-.tour-launcher:focus-visible {
+.tour-card button:focus-visible {
   outline: 3px solid #ffc928;
   outline-offset: 2px;
 }
 
 @media (max-width: 480px) {
-  .tour-launcher {
-    bottom: 0.75rem;
-    left: 0.65rem;
-    min-height: 2.3rem;
-    padding: 0.4rem 0.6rem;
-  }
-
   .tour-card {
     bottom: 0.5rem;
     padding: 0.75rem;

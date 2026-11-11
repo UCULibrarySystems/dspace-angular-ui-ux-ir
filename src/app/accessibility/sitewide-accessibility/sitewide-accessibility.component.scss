@@ -54,6 +54,31 @@ summary:focus-visible {
   }
 }
 
+.site-tour-launcher {
+  position: fixed;
+  left: clamp(0.65rem, 2vw, 1rem);
+  bottom: clamp(0.65rem, 2vw, 1rem);
+  z-index: 2142;
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0.3rem;
+  color: #fff;
+  background: var(--ucu-blue, #154ca3);
+  box-shadow: 0 4px 15px rgba(16, 31, 54, 0.35);
+  cursor: pointer;
+  font-weight: 700;
+
+  &:hover,
+  &:focus-visible {
+    background: #007931;
+  }
+}
+
 .accessibility-panel {
   position: fixed;
   right: clamp(0.65rem, 2vw, 1rem);
