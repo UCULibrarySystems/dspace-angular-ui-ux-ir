@@ -4,6 +4,18 @@
   text-align: left;
 }
 
+.notification.alert-success {
+  background-color: var(--ucu-green, #007931);
+  border-color: var(--ucu-green, #007931);
+  color: #fff;
+}
+
+.notification.alert-danger {
+  background-color: var(--ucu-maroon, #d7014d);
+  border-color: var(--ucu-maroon, #d7014d);
+  color: #fff;
+}
+
 .btn-close {
   outline: none !important;
   opacity: 0.8;
@@ -20,10 +32,10 @@
 }
 
 .alert-success .notification-progress-loader span {
-  background: var(--ds-notification-bg-success);
+  background: rgba(255, 255, 255, 0.8);
 }
 .alert-danger .notification-progress-loader span {
-  background: var(--ds-notification-bg-danger);
+  background: rgba(255, 255, 255, 0.8);
 }
 .alert-info .notification-progress-loader span {
   background: var(--ds-notification-bg-info);
