@@ -18,7 +18,7 @@ ssr:
 rest:
   ssl: true
   # Keep the UI and REST API on the Uganda Christian University repository.
-  host: ucudir.ucu.ac.ug
+  host: demo.dspace.org
   port: 443
   nameSpace: /server
 
