@@ -1,7 +1,7 @@
 <section class="ucu-hero" aria-label="Uganda Christian University Digital Institutional Repository">
   <img class="ucu-hero-image" src="assets/custom/images/ucu-hero-bishop-tucker.jpg" alt="Bishop Tucker Building at Uganda Christian University" width="2560" height="1388">
   <div class="container ucu-hero-layout">
-    <section class="ucu-hero-panel" aria-label="Research impact and repository updates">
+    <section class="ucu-hero-panel" aria-label="Research impact and repository updates" data-ucu-tour="updates">
       <div class="ucu-hero-panel-heading">Research impact and repository updates</div>
       <div class="ucu-hero-panel-content">
         @if (homeNewsMetadataValue$ | async; as homeNewsMetadataValue) {
@@ -20,7 +20,7 @@
 
 <section class="ucu-discovery-section" aria-label="Repository guidance and search">
   <div class="container">
-    <nav class="ucu-guide-tabs" aria-label="Repository guidance">
+    <nav class="ucu-guide-tabs" aria-label="Repository guidance" data-ucu-tour="guidance">
       <a class="ucu-guide-tab" [routerLink]="['/info/deposit']">
         <span class="ucu-guide-tab-title">How to deposit</span>
         <span class="ucu-guide-tab-copy">Deposit processes and eligibility</span>
@@ -34,7 +34,7 @@
         <span class="ucu-guide-tab-copy">Repository governance and policies</span>
       </a>
     </nav>
-    <form class="ucu-discovery-search" action="/search" method="get" role="search">
+    <form class="ucu-discovery-search" action="/search" method="get" role="search" data-ucu-tour="search">
       <label class="visually-hidden" for="ucu-home-search-query">Search the repository</label>
       <input id="ucu-home-search-query" class="form-control" type="search" name="query" placeholder="Search the repository ...">
       <button class="btn" type="submit"><i class="fas fa-search" aria-hidden="true"></i><span>Search</span></button>

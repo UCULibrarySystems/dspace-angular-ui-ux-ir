@@ -47,6 +47,7 @@ import {
 
 import { environment } from '../environments/environment';
 import { SitewideAccessibilityComponent } from './accessibility/sitewide-accessibility/sitewide-accessibility.component';
+import { HomePageTourComponent } from './home-page/home-page-tour/home-page-tour.component';
 import { ThemedRootComponent } from './root/themed-root.component';
 import { HostWindowResizeAction } from './shared/host-window.actions';
 import { IdleModalComponent } from './shared/idle-modal/idle-modal.component';
@@ -63,6 +64,7 @@ import { SocialService } from './social/social.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AsyncPipe,
+    HomePageTourComponent,
     SitewideAccessibilityComponent,
     SocialComponent,
     ThemedRootComponent,

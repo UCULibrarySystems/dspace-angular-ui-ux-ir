@@ -22,7 +22,6 @@ import { DSONameService } from '../breadcrumbs/dso-name.service';
 import { AuthorizationDataService } from '../data/feature-authorization/authorization-data.service';
 import { PaginatedList } from '../data/paginated-list.model';
 import { RemoteData } from '../data/remote-data';
-import { RootDataService } from '../data/root-data.service';
 import { HardRedirectService } from '../services/hard-redirect.service';
 import { Bitstream } from '../shared/bitstream.model';
 import { Bundle } from '../shared/bundle.model';
@@ -57,7 +56,6 @@ describe('HeadTagService', () => {
   let dsoNameService: DSONameService;
 
   let bundleDataService;
-  let rootService: RootDataService;
   let translateService: TranslateService;
   let hardRedirectService: HardRedirectService;
   let authorizationService: AuthorizationDataService;
@@ -71,9 +69,6 @@ describe('HeadTagService', () => {
 
 
   beforeEach(() => {
-    rootService = jasmine.createSpyObj({
-      findRoot: createSuccessfulRemoteDataObject$({ dspaceVersion: 'mock-dspace-version' }),
-    });
     bundleDataService = jasmine.createSpyObj({
       findByItemAndName: mockBundleRD$([MockBitstream3]),
     });
@@ -120,7 +115,6 @@ describe('HeadTagService', () => {
       title,
       dsoNameService,
       bundleDataService,
-      rootService,
       store,
       hardRedirectService,
       appConfig,

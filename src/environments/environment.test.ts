@@ -2,6 +2,7 @@
 import { AdvancedAttachmentElementType } from '@dspace/config/advanced-attachment-rendering.config';
 import { NotificationAnimationsType } from '@dspace/config/notifications-config.interfaces';
 import { RestRequestMethod } from '@dspace/config/rest-request-method';
+import { DefaultAppConfig } from '../config/default-app-config';
 import { BuildConfig } from 'src/config/build-config.interface';
 
 export const environment: BuildConfig = {
@@ -387,6 +388,7 @@ export const environment: BuildConfig = {
     image: true,
     video: true,
   },
+  goalBadges: new DefaultAppConfig().goalBadges,
   info: {
     enableEndUserAgreement: true,
     enablePrivacyStatement: true,

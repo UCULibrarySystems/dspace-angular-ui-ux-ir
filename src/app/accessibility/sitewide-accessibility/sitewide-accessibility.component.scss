@@ -96,6 +96,10 @@ summary:focus-visible {
   box-shadow: 0 14px 38px rgba(15, 28, 48, 0.3);
 }
 
+.accessibility-panel[hidden] {
+  display: none;
+}
+
 .panel-header {
   display: flex;
   min-height: 3.35rem;

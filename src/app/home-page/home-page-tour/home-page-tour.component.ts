@@ -1,11 +1,14 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   HostListener,
   OnDestroy,
   PLATFORM_ID,
   Inject,
+  ViewChild,
 } from '@angular/core';
+import { PRIMARY_OUTLET, Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -64,12 +67,16 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
   private readonly isBrowser: boolean;
   private tourRequestSubscription?: Subscription;
   private startupTimer?: number;
-  private advanceTimer?: number;
   private positionTimer?: number;
+  private focusTimer?: number;
+
+  @ViewChild('tourCard')
+  private tourCard?: ElementRef<HTMLElement>;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: object,
     private tourService: HomePageTourService,
+    private router: Router,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -81,16 +88,25 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.tourRequestSubscription = this.tourService.startRequests$.subscribe(() => this.startTour());
     try {
       if (localStorage.getItem(this.storageKey) !== 'true') {
-        this.startupTimer = window.setTimeout(() => this.startTour(true), 900);
+        this.startupTimer = window.setTimeout(() => {
+          if (this.isHomePage() && document.querySelector(this.steps[0].target)) {
+            this.startTour(true);
+          }
+        }, 900);
       }
     } catch {
-      this.startupTimer = window.setTimeout(() => this.startTour(true), 900);
+      this.startupTimer = window.setTimeout(() => {
+        if (this.isHomePage() && document.querySelector(this.steps[0].target)) {
+          this.startTour(true);
+        }
+      }, 900);
     }
   }
 
   ngOnDestroy(): void {
-    this.clearTimers();
     this.clearStartupTimer();
+    this.clearPositionTimer();
+    this.clearFocusTimer();
     this.tourRequestSubscription?.unsubscribe();
   }
 
@@ -102,7 +118,8 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
       this.rememberVisit();
     }
     this.showCurrentStep();
-    this.scheduleAdvance();
+    this.clearFocusTimer();
+    this.focusTimer = window.setTimeout(() => this.tourCard?.nativeElement.focus(), 0);
   }
 
   next(): void {
@@ -112,7 +129,6 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
     this.activeIndex += 1;
     this.showCurrentStep();
-    this.scheduleAdvance();
   }
 
   previous(): void {
@@ -121,12 +137,12 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
     this.activeIndex -= 1;
     this.showCurrentStep();
-    this.scheduleAdvance();
   }
 
   closeTour(): void {
     this.isOpen = false;
-    this.clearTimers();
+    this.clearPositionTimer();
+    this.clearFocusTimer();
     this.rememberVisit();
   }
 
@@ -145,11 +161,15 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private showCurrentStep(scrollToTarget = true): void {
+  private showCurrentStep(scrollToTarget = true, attempts = 0): void {
     this.clearPositionTimer();
     const target = document.querySelector<HTMLElement>(this.steps[this.activeIndex].target);
     if (!target) {
-      this.highlight = { top: 8, left: 8, width: Math.max(0, window.innerWidth - 16), height: 1 };
+      if (attempts < 20) {
+        this.positionTimer = window.setTimeout(() => this.showCurrentStep(scrollToTarget, attempts + 1), 100);
+      } else {
+        this.highlight = { top: 0, left: 0, width: 0, height: 0 };
+      }
       return;
     }
     if (scrollToTarget) {
@@ -158,18 +178,25 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
     this.positionTimer = window.setTimeout(() => {
       const rect = target.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) {
+        this.highlight = { top: 0, left: 0, width: 0, height: 0 };
+        return;
+      }
+
+      const left = Math.min(Math.max(4, rect.left - 6), Math.max(4, window.innerWidth - 4));
+      const top = Math.max(4, rect.top - 6);
       this.highlight = {
-        top: Math.max(4, rect.top - 6),
-        left: Math.max(4, rect.left - 6),
-        width: Math.min(rect.width + 12, window.innerWidth - Math.max(8, rect.left)),
-        height: rect.height + 12,
+        top,
+        left,
+        width: Math.max(0, Math.min(rect.width + 12, window.innerWidth - left - 4)),
+        height: Math.max(0, Math.min(rect.height + 12, window.innerHeight - top - 4)),
       };
     }, scrollToTarget ? 350 : 0);
   }
 
-  private scheduleAdvance(): void {
-    this.clearAdvanceTimer();
-    this.advanceTimer = window.setTimeout(() => this.next(), 5000);
+  private isHomePage(): boolean {
+    const segments = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET]?.segments;
+    return segments?.[0]?.path === 'home';
   }
 
   private rememberVisit(): void {
@@ -180,11 +207,6 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private clearTimers(): void {
-    this.clearAdvanceTimer();
-    this.clearPositionTimer();
-  }
-
   private clearStartupTimer(): void {
     if (this.startupTimer !== undefined) {
       window.clearTimeout(this.startupTimer);
@@ -192,17 +214,17 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private clearAdvanceTimer(): void {
-    if (this.advanceTimer !== undefined) {
-      window.clearTimeout(this.advanceTimer);
-      this.advanceTimer = undefined;
-    }
-  }
-
   private clearPositionTimer(): void {
     if (this.positionTimer !== undefined) {
       window.clearTimeout(this.positionTimer);
       this.positionTimer = undefined;
+    }
+  }
+
+  private clearFocusTimer(): void {
+    if (this.focusTimer !== undefined) {
+      window.clearTimeout(this.focusTimer);
+      this.focusTimer = undefined;
     }
   }
 }

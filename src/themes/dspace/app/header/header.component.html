@@ -37,7 +37,7 @@
   </div>
  </header>
   <div class="ucu-sticky-header" [class.is-pinned]="isPinned">
-  <div class="container d-flex flex-row align-items-center justify-content-between gapx-3 gapy-2" id="main-site-header-container">
+  <div class="container d-flex flex-row align-items-center justify-content-between gapx-3 gapy-2" id="main-site-header-container" data-ucu-tour="navigation">
     <!-- Logo and navbar wrapper -->
     <div id="header-left"
       [attr.role]="(isMobile$ | async) ? 'navigation' : 'presentation'"
@@ -58,7 +58,7 @@
         <ds-lang-switch></ds-lang-switch>
         <ds-context-help-toggle></ds-context-help-toggle>
         <ds-impersonate-navbar></ds-impersonate-navbar>
-        <ds-auth-nav-menu></ds-auth-nav-menu>
+        <ds-auth-nav-menu data-ucu-tour="login"></ds-auth-nav-menu>
       </div>
       @if ((isMobile$ | async)) {
         <div id="mobile-navbar-toggler" class="d-block d-lg-none ms-3">

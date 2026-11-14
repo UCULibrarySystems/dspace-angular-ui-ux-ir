@@ -16,6 +16,11 @@ import { environment } from '../../../environments/environment';
 import { HomePageTourService } from '../../home-page/home-page-tour/home-page-tour.service';
 
 type ColorMode = 'normal' | 'dark' | 'light' | 'high' | 'high-saturation' | 'low-saturation' | 'monochrome';
+const COLOR_MODES: readonly string[] = ['normal', 'dark', 'light', 'high', 'high-saturation', 'low-saturation', 'monochrome'];
+
+function isColorMode(value: unknown): value is ColorMode {
+  return typeof value === 'string' && COLOR_MODES.includes(value);
+}
 
 type TogglePreference =
   'highlightTitles' |
@@ -88,7 +93,6 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
 
   private lastSpokenText = '';
   private voiceListener: () => void;
-  private closeTimer: ReturnType<typeof setTimeout>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -112,7 +116,6 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    clearTimeout(this.closeTimer);
     if (this.voiceListener && 'speechSynthesis' in window) {
       window.speechSynthesis.removeEventListener('voiceschanged', this.voiceListener);
     }
@@ -134,7 +137,6 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   }
 
   togglePanel(): void {
-    clearTimeout(this.closeTimer);
     this.panelOpen = !this.panelOpen;
     this.statusMessage = `Accessibility menu ${this.panelOpen ? 'opened' : 'closed'}.`;
   }
@@ -284,11 +286,19 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   startTour(): void {
     this.panelOpen = false;
     this.statusMessage = 'Starting the repository tour.';
-    if (this.router.url === '/') {
+    if (this.router.url.startsWith('/home')) {
       this.homePageTour.requestStart();
       return;
     }
-    void this.router.navigateByUrl('/').then(() => this.homePageTour.requestStart());
+    void this.router.navigateByUrl('/home').then((navigated) => {
+      if (navigated) {
+        this.homePageTour.requestStart();
+      } else {
+        this.statusMessage = 'Could not open the home page tour.';
+      }
+    }).catch(() => {
+      this.statusMessage = 'Could not open the home page tour.';
+    });
   }
 
   resetAll(): void {
@@ -311,33 +321,43 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
       // Keep the setting active for this page when browser storage is unavailable.
     }
     this.statusMessage = message;
-    this.closeAfterSelection();
-  }
-
-  private closeAfterSelection(): void {
-    if (!this.panelOpen) {
-      return;
-    }
-
-    clearTimeout(this.closeTimer);
-    if (window.innerWidth <= 768) {
-      this.panelOpen = false;
-      return;
-    }
-
-    this.closeTimer = setTimeout(() => {
-      this.panelOpen = false;
-      this.statusMessage = 'Accessibility menu closed.';
-    }, 2500);
   }
 
   private restorePreferences(): void {
     try {
-      const stored = JSON.parse(localStorage.getItem(this.storageKey));
-      this.preferences = { ...DEFAULT_PREFERENCES, ...stored };
+      const stored: unknown = JSON.parse(localStorage.getItem(this.storageKey) || 'null');
+      if (typeof stored !== 'object' || stored === null || Array.isArray(stored)) {
+        this.preferences = { ...DEFAULT_PREFERENCES };
+        return;
+      }
+
+      const saved = stored as Partial<SitewideAccessibilityPreferences>;
+      this.preferences = {
+        fontSize: this.validNumber(saved.fontSize, 80, 150, DEFAULT_PREFERENCES.fontSize),
+        readingSpeed: this.validNumber(saved.readingSpeed, 0.5, 2, DEFAULT_PREFERENCES.readingSpeed),
+        voiceURI: typeof saved.voiceURI === 'string' ? saved.voiceURI : DEFAULT_PREFERENCES.voiceURI,
+        colorMode: isColorMode(saved.colorMode) ? saved.colorMode : DEFAULT_PREFERENCES.colorMode,
+        highlightTitles: saved.highlightTitles === true,
+        highlightLinks: saved.highlightLinks === true,
+        dyslexiaFont: saved.dyslexiaFont === true,
+        letterSpacing: saved.letterSpacing === true,
+        lineHeight: saved.lineHeight === true,
+        fontWeight: saved.fontWeight === true,
+        alignLeft: saved.alignLeft === true,
+        readingGuide: saved.readingGuide === true,
+        stopAnimations: saved.stopAnimations === true,
+        bigCursor: saved.bigCursor === true,
+        focusHighlight: saved.focusHighlight === true,
+      };
     } catch {
       this.preferences = { ...DEFAULT_PREFERENCES };
     }
+  }
+
+  private validNumber(value: unknown, min: number, max: number, fallback: number): number {
+    return typeof value === 'number' && Number.isFinite(value)
+      ? Math.min(max, Math.max(min, value))
+      : fallback;
   }
 
   private applyPreferences(): void {

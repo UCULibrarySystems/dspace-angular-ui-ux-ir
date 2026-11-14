@@ -8,15 +8,15 @@
     [style.width.px]="highlight.width"
     [style.height.px]="highlight.height">
   </div>
-  <section class="tour-card" role="dialog" aria-modal="false" aria-labelledby="tour-title" aria-describedby="tour-description">
+  <section #tourCard class="tour-card" role="dialog" aria-modal="false" aria-labelledby="tour-title" aria-describedby="tour-description" tabindex="-1">
     <header class="tour-card-header">
       <span>UCUDIR site tour</span>
       <button type="button" class="tour-close" (click)="closeTour()" aria-label="Cancel site tour" title="Cancel tour">
         <i class="fas fa-times" aria-hidden="true"></i>
       </button>
     </header>
-    <p class="tour-progress">Stop {{ activeIndex + 1 }} of {{ steps.length }} · about 30 seconds</p>
-    <h2 id="tour-title">{{ steps[activeIndex].title }}</h2>
+    <p class="tour-progress">Stop {{ activeIndex + 1 }} of {{ steps.length }}</p>
+    <h2 id="tour-title" aria-live="polite">{{ steps[activeIndex].title }}</h2>
     <p id="tour-description">{{ steps[activeIndex].description }}</p>
     <div class="tour-controls">
       <button type="button" class="tour-secondary" (click)="previous()" [disabled]="activeIndex === 0">

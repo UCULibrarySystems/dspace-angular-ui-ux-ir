@@ -4,16 +4,16 @@
   <div class="reading-guide" [style.top.px]="guideY" aria-hidden="true"></div>
 }
 
-@if (panelOpen) {
-  <section
-    cdkTrapFocus
-    [cdkTrapFocusAutoCapture]="true"
-    class="accessibility-panel"
-    id="ucu-accessibility-panel"
-    lang="en"
-    role="dialog"
-    aria-modal="false"
-    aria-labelledby="ucu-accessibility-title">
+<section
+  [cdkTrapFocus]="panelOpen"
+  [cdkTrapFocusAutoCapture]="panelOpen"
+  [hidden]="!panelOpen"
+  class="accessibility-panel"
+  id="ucu-accessibility-panel"
+  lang="en"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="ucu-accessibility-title">
     <header class="panel-header">
       <h2 id="ucu-accessibility-title">
         <i class="fas fa-universal-access" aria-hidden="true"></i>
@@ -149,8 +149,7 @@
 
       <button type="button" class="reset-button" (click)="resetAll()">Reset all settings</button>
     </div>
-  </section>
-}
+</section>
 
 <button
   type="button"

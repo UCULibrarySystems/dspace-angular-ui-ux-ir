@@ -83,32 +83,32 @@ html.ucu-a11y-focus-highlight ds-root *:focus-visible {
     box-shadow: 0 0 0 2px #111 !important;
 }
 
-html.ucu-a11y-dark ds-root #main-content {
+html.ucu-a11y-dark ds-root .outer-wrapper {
     filter: invert(0.92) hue-rotate(180deg);
     background: #111;
 }
 
-html.ucu-a11y-dark ds-root #main-content :is(img, video, canvas, svg, picture) {
+html.ucu-a11y-dark ds-root .outer-wrapper :is(img, video, canvas, svg, picture) {
     filter: invert(1) hue-rotate(180deg);
 }
 
-html.ucu-a11y-light ds-root #main-content {
+html.ucu-a11y-light ds-root .outer-wrapper {
     filter: brightness(1.08) contrast(0.9);
 }
 
-html.ucu-a11y-high ds-root #main-content {
+html.ucu-a11y-high ds-root .outer-wrapper {
     filter: contrast(1.45) saturate(1.15);
 }
 
-html.ucu-a11y-high-saturation ds-root #main-content {
+html.ucu-a11y-high-saturation ds-root .outer-wrapper {
     filter: saturate(1.8);
 }
 
-html.ucu-a11y-low-saturation ds-root #main-content {
+html.ucu-a11y-low-saturation ds-root .outer-wrapper {
     filter: saturate(0.45);
 }
 
-html.ucu-a11y-monochrome ds-root #main-content {
+html.ucu-a11y-monochrome ds-root .outer-wrapper {
     filter: grayscale(1);
 }
 

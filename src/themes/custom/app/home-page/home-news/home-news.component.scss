@@ -63,6 +63,22 @@
       color: inherit;
     }
 
+    .ucu-hero-panel-content a:not(.btn) {
+      border: 1px solid var(--ucu-yellow);
+      border-radius: 0;
+      color: #fff;
+      display: inline-flex;
+      font-weight: 700;
+      margin-top: 0.35rem;
+      padding: 0.35rem 0.75rem;
+
+      &:hover,
+      &:focus {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+    }
+
     h1 {
       color: #fff;
       font-size: 1.45rem;
