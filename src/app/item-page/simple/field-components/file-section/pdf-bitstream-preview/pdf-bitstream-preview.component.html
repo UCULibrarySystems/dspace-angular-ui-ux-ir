@@ -1,8 +1,21 @@
 @if (preview$ | async; as preview) {
   <section class="pdf-preview" [attr.aria-label]="preview.title">
     <div class="pdf-preview-header">
-      <span class="fas fa-file-pdf" aria-hidden="true"></span>
-      <span>{{ preview.title }}</span>
+      <div class="pdf-preview-heading">
+        <span class="fas fa-file-pdf" aria-hidden="true"></span>
+        <span>{{ preview.title }}</span>
+      </div>
+      @if (preview.canDownload) {
+        <ds-file-download-link
+          [bitstream]="bitstream"
+          [item]="item"
+          [showIcon]="true"
+          [showAccessStatusBadge]="false"
+          [enableRequestACopy]="false"
+          cssClasses="btn btn-primary btn-sm pdf-preview-download">
+          {{ 'file-download-link.download' | translate }}PDF
+        </ds-file-download-link>
+      }
     </div>
     @if (preview.accessStatus?.status; as status) {
       <span class="badge bg-secondary pdf-preview-access-status">

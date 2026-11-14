@@ -21,6 +21,7 @@ import { FeatureID } from '@dspace/core/data/feature-authorization/feature-id';
 import { AccessStatusObject } from '@dspace/core/shared/access-status.model';
 import { Bitstream } from '@dspace/core/shared/bitstream.model';
 import { FileService } from '@dspace/core/shared/file.service';
+import { Item } from '@dspace/core/shared/item.model';
 import { RESTURLCombiner } from '@dspace/core/url-combiner/rest-url-combiner';
 import { TranslateModule } from '@ngx-translate/core';
 import {
@@ -42,6 +43,8 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
+import { ThemedFileDownloadLinkComponent } from '../../../../../shared/file-download-link/themed-file-download-link.component';
+
 interface PdfPreview {
   title: string;
   url?: string;
@@ -55,11 +58,13 @@ interface PdfPreview {
   styleUrls: ['./pdf-bitstream-preview.component.scss'],
   imports: [
     AsyncPipe,
+    ThemedFileDownloadLinkComponent,
     TranslateModule,
   ],
 })
 export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
   @Input() bitstream: Bitstream;
+  @Input() item: Item;
 
   preview$: Observable<PdfPreview | undefined>;
 

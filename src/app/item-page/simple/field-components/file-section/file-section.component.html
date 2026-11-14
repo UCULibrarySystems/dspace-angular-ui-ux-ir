@@ -26,7 +26,7 @@
             <div class="pdf-file-summary">
               <ng-container *ngTemplateOutlet="fileContent"></ng-container>
             </div>
-            <ds-pdf-bitstream-preview [bitstream]="file"></ds-pdf-bitstream-preview>
+            <ds-pdf-bitstream-preview [bitstream]="file" [item]="item"></ds-pdf-bitstream-preview>
           } @else {
             <ds-file-download-link
               [bitstream]="file"
