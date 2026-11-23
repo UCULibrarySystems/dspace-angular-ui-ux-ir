@@ -72,11 +72,16 @@ describe('PdfBitstreamPreviewComponent', () => {
   });
 
   it('shows the authorized PDF download link for the displayed bitstream', () => {
-    component.preview$ = of({ title: 'PDF preview: document.pdf', canDownload: true });
+    component.preview$ = of({
+      title: 'PDF preview: document.pdf',
+      url: 'https://demo.dspace.org/server/api/core/bitstreams/a1eb3f03-cab6-4503-8528-d4f4fc55ccf7/content',
+      canDownload: true,
+    });
     fixture.detectChanges();
 
     const downloadLink = fixture.debugElement.query(By.directive(MockFileDownloadLinkComponent))
       .componentInstance as MockFileDownloadLinkComponent;
+    const viewLink = fixture.debugElement.query(By.css('.pdf-preview-view')).nativeElement as HTMLAnchorElement;
 
     expect(downloadLink.bitstream).toBe(bitstream);
     expect(downloadLink.item).toBe(item);
@@ -84,6 +89,9 @@ describe('PdfBitstreamPreviewComponent', () => {
     expect(downloadLink.showAccessStatusBadge).toBeFalse();
     expect(downloadLink.enableRequestACopy).toBeFalse();
     expect(downloadLink.cssClasses).toContain('btn');
+    expect(viewLink.getAttribute('href')).toBe('https://demo.dspace.org/server/api/core/bitstreams/a1eb3f03-cab6-4503-8528-d4f4fc55ccf7/content');
+    expect(viewLink.target).toBe('_blank');
+    expect(viewLink.rel).toBe('noopener noreferrer');
   });
 
   it('does not show the download link when downloading is not authorized', () => {
@@ -91,5 +99,6 @@ describe('PdfBitstreamPreviewComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.directive(MockFileDownloadLinkComponent))).toBeNull();
+    expect(fixture.debugElement.query(By.css('.pdf-preview-view'))).toBeNull();
   });
 });

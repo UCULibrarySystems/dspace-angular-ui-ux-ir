@@ -30,8 +30,18 @@
   overflow-wrap: anywhere;
 }
 
-.pdf-preview-download {
+.pdf-preview-actions {
+  align-items: center;
+  display: flex;
   flex: 0 0 auto;
+  gap: 0.5rem;
+}
+
+.pdf-preview-download {
+  white-space: nowrap;
+}
+
+.pdf-preview-view {
   white-space: nowrap;
 }
 

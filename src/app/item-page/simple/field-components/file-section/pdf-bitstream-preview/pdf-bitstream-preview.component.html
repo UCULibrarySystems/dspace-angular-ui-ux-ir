@@ -5,17 +5,28 @@
         <span class="fas fa-file-pdf" aria-hidden="true"></span>
         <span>{{ preview.title }}</span>
       </div>
-      @if (preview.canDownload) {
-        <ds-file-download-link
-          [bitstream]="bitstream"
-          [item]="item"
-          [showIcon]="true"
-          [showAccessStatusBadge]="false"
-          [enableRequestACopy]="false"
-          cssClasses="btn btn-primary btn-sm pdf-preview-download">
-          {{ 'file-download-link.download' | translate }}PDF
-        </ds-file-download-link>
-      }
+      <div class="pdf-preview-actions">
+        @if (preview.url) {
+          <a
+            class="btn btn-outline-primary btn-sm pdf-preview-view"
+            [href]="preview.url"
+            target="_blank"
+            rel="noopener noreferrer">
+            {{ 'item.page.pdf-preview.view' | translate }}
+          </a>
+        }
+        @if (preview.canDownload) {
+          <ds-file-download-link
+            [bitstream]="bitstream"
+            [item]="item"
+            [showIcon]="true"
+            [showAccessStatusBadge]="false"
+            [enableRequestACopy]="false"
+            cssClasses="btn btn-primary btn-sm pdf-preview-download">
+            {{ 'file-download-link.download' | translate }}PDF
+          </ds-file-download-link>
+        }
+      </div>
     </div>
     @if (preview.accessStatus?.status; as status) {
       <span class="badge bg-secondary pdf-preview-access-status">
