@@ -64,11 +64,13 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
   highlight = { top: 0, left: 0, width: 0, height: 0 };
 
   private readonly storageKey = 'ucudir-home-tour-seen-v1';
+  private readonly maxTourDuration = 20_000;
   private readonly isBrowser: boolean;
   private tourRequestSubscription?: Subscription;
   private startupTimer?: number;
   private positionTimer?: number;
   private focusTimer?: number;
+  private tourTimer?: number;
 
   @ViewChild('tourCard')
   private tourCard?: ElementRef<HTMLElement>;
@@ -107,13 +109,16 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.clearStartupTimer();
     this.clearPositionTimer();
     this.clearFocusTimer();
+    this.clearTourTimer();
     this.tourRequestSubscription?.unsubscribe();
   }
 
   startTour(firstVisit = false): void {
     this.clearStartupTimer();
+    this.clearTourTimer();
     this.isOpen = true;
     this.activeIndex = 0;
+    this.tourTimer = window.setTimeout(() => this.closeTour(), this.maxTourDuration);
     if (firstVisit) {
       this.rememberVisit();
     }
@@ -143,6 +148,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.isOpen = false;
     this.clearPositionTimer();
     this.clearFocusTimer();
+    this.clearTourTimer();
     this.rememberVisit();
   }
 
@@ -225,6 +231,13 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     if (this.focusTimer !== undefined) {
       window.clearTimeout(this.focusTimer);
       this.focusTimer = undefined;
+    }
+  }
+
+  private clearTourTimer(): void {
+    if (this.tourTimer !== undefined) {
+      window.clearTimeout(this.tourTimer);
+      this.tourTimer = undefined;
     }
   }
 }

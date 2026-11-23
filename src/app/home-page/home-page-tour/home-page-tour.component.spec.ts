@@ -36,15 +36,13 @@ describe('HomePageTourComponent', () => {
     localStorage.removeItem('ucudir-home-tour-seen-v1');
   });
 
-  it('keeps the active step until the user chooses to continue', fakeAsync(() => {
+  it('automatically closes the tour after 20 seconds', fakeAsync(() => {
     fixture.componentInstance.startTour();
     fixture.detectChanges();
-    tick(6000);
+    tick(19_999);
 
     expect(fixture.componentInstance.isOpen).toBeTrue();
-    expect(fixture.componentInstance.activeIndex).toBe(0);
-
-    fixture.componentInstance.next();
-    expect(fixture.componentInstance.activeIndex).toBe(1);
+    tick(1);
+    expect(fixture.componentInstance.isOpen).toBeFalse();
   }));
 });
