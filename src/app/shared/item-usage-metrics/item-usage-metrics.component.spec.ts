@@ -52,10 +52,10 @@ describe('ItemUsageMetricsComponent', () => {
     const text = fixture.nativeElement.textContent;
     expect(text).toContain('2,406');
     expect(text).toContain('291');
-    expect(usageReportService.searchStatistics).toHaveBeenCalledWith('https://rest.api/server/api/core/items/item-uuid', 0, 10);
+    expect(usageReportService.searchStatistics).toHaveBeenCalledWith('https://rest.api/server/api/core/items/item-uuid', 0, 10, false);
   });
 
-  it('shows zero totals when reports are unavailable', async () => {
+  it('shows unavailable markers when a usage report request fails', async () => {
     usageReportService.searchStatistics.and.returnValue(throwError(() => new Error('Unavailable')));
     fixture.componentRef.setInput('itemUri', 'https://rest.api/server/api/core/items/item-uuid');
 
@@ -63,6 +63,7 @@ describe('ItemUsageMetricsComponent', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.textContent.trim()).toBe('');
+    expect(fixture.nativeElement.textContent).toContain('—  —');
+    expect(usageReportService.searchStatistics).toHaveBeenCalledWith('https://rest.api/server/api/core/items/item-uuid', 0, 10, false);
   });
 });

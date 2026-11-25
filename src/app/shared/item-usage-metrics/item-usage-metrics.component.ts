@@ -46,7 +46,7 @@ export class ItemUsageMetricsComponent implements OnChanges {
       return;
     }
 
-    this.metrics$ = this.usageReportService.searchStatistics(this.itemUri, 0, 10).pipe(
+    this.metrics$ = this.usageReportService.searchStatistics(this.itemUri, 0, 10, false).pipe(
       map((reports) => {
         const visitsReport = reports.find((report) => report.reportType === 'TotalVisits');
         const downloadsReport = reports.find((report) => report.reportType === 'TotalDownloads');

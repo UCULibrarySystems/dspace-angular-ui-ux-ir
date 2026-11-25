@@ -118,6 +118,10 @@ The guidance tabs and repository search are intentionally part of the shared hea
 
 The mobile guidance icons are stored in `src/assets/custom/images/guidance-deposit.png`, `guidance-data-reuse.png`, and `guidance-governance.png`. Their markup lives in `src/themes/custom/app/home-page/home-news/home-news.component.html`; phone layout rules are in its stylesheet. The English submission page title and breadcrumb are in `src/assets/i18n/en.json5`.
 
+These are compiled frontend assets: changing source files does not update an already deployed production server. Rebuild and deploy the production output (`npm run build:prod` or rebuild the image with `docker build -f Dockerfile.dist ...`), then verify the deployed bundle contains all three `assets/custom/images/guidance-*.png` files. Browser/CDN caches may also need to be invalidated if the deployment serves old HTML.
+
+The view and download counters on search results are loaded per item from DSpace's `usagereports` REST endpoint. The frontend bypasses its response cache when loading these counts. Their freshness is still limited by the backend's statistics event collection and aggregation/indexing schedule; JavaScript in one user's browser cannot count activity from other users or provide authoritative live totals. Real-time totals require a backend event stream or synchronous statistics service and appropriate privacy/abuse controls.
+
 The former `Apply Now` admissions button was intentionally removed from both active header templates. This repository header should point users toward repository discovery and account actions, not undergraduate admissions. If an admissions link is ever reintroduced, it should be discussed with the repository team and added to both header templates with responsive behavior verified.
 
 ### Latest Repository Additions Link

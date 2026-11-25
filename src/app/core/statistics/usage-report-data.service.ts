@@ -50,14 +50,14 @@ export class UsageReportDataService extends IdentifiableDataService<UsageReport>
     );
   }
 
-  searchStatistics(uri: string, page: number, size: number): Observable<UsageReport[]> {
+  searchStatistics(uri: string, page: number, size: number, useCachedVersionIfAvailable = true): Observable<UsageReport[]> {
     return this.searchBy('object', {
       searchParams: [
         new RequestParam('uri', uri),
       ],
       currentPage: page,
       elementsPerPage: size,
-    }, true, false).pipe(
+    }, useCachedVersionIfAvailable, false).pipe(
       getFirstSucceededRemoteData(),
       getRemoteDataPayload(),
       map((list) => list.page),

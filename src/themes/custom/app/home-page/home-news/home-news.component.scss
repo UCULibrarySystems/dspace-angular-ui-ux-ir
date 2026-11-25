@@ -455,7 +455,7 @@
     }
   }
 
-  @include media-breakpoint-down(sm) {
+  @media (max-width: 575.98px) {
     .ucu-guide-tabs {
       display: grid;
       gap: 0.6rem;
