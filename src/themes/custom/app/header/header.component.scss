@@ -516,6 +516,7 @@
   @media (min-width: 769px) and (max-width: 1024px) {
     #main-site-header-container {
       gap: 0.75rem !important;
+      padding-right: 0.75rem !important;
     }
 
     img#header-logo {
@@ -523,11 +524,22 @@
     }
 
     #desktop-navbar {
+      margin-left: clamp(0.5rem, 2vw, 1.25rem);
+
       ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
         font-size: 0.72rem;
         padding-right: 0.12rem;
         padding-left: 0.12rem;
       }
+    }
+
+    #header-right {
+      margin-right: 0;
+    }
+
+    .ucu-ribbon-logo {
+      flex-basis: 10.5rem;
+      width: 10.5rem;
     }
   }
 
@@ -543,6 +555,7 @@
 
     #header-left > a {
       left: 0;
+      position: static;
     }
 
     img#header-logo {
@@ -550,20 +563,20 @@
     }
 
     #header-right {
-      margin-right: 1rem;
+      margin-right: 0;
       gap: 0.3rem;
     }
 
     #desktop-navbar {
       flex: 1 1 auto;
-      margin-left: 0;
+      margin-left: clamp(0.5rem, 1.5vw, 1.25rem);
 
       ::ng-deep .navbar-nav {
-        gap: clamp(0.5rem, 0.8vw, 0.9rem) !important;
+        gap: clamp(0.35rem, 0.65vw, 0.75rem) !important;
       }
 
       ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
-        font-size: clamp(0.68rem, 0.72vw, 0.8rem);
+        font-size: clamp(0.66rem, 0.68vw, 0.76rem);
         padding-right: 0.1rem;
         padding-left: 0.1rem;
       }
@@ -572,16 +585,8 @@
 
   @media (min-width: 1025px) {
     #header-left > a {
-      left: 2rem;
-      position: relative;
-    }
-
-    #header-right {
-      margin-right: 3rem;
-    }
-
-    #desktop-navbar {
-      margin-left: 22rem;
+      left: 0;
+      position: static;
     }
   }
 

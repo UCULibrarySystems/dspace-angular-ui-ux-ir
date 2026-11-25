@@ -397,4 +397,51 @@
       }
     }
   }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .ucu-hero {
+      min-height: 20rem;
+    }
+
+    .ucu-hero-layout {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+
+    .ucu-hero-panel {
+      max-height: 18rem;
+    }
+
+    .ucu-discovery-section {
+      padding: 0.85rem 0 1rem;
+
+      > .container {
+        max-width: none;
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+    }
+
+    .ucu-guide-tabs {
+      gap: 0.65rem;
+    }
+
+    .ucu-guide-tab {
+      min-height: 5.25rem;
+      padding: 0.75rem 0.85rem;
+    }
+  }
+
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    .ucu-hero-layout {
+      padding-right: 1.25rem;
+      padding-left: 1.25rem;
+    }
+
+    .ucu-discovery-section {
+      > .container {
+        max-width: min(960px, calc(100% - 2.5rem));
+      }
+    }
+  }
 }
