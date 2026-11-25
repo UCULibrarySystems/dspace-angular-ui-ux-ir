@@ -226,8 +226,11 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
       if (renderId === this.renderId) {
         await this.renderPage(this.currentPageNumber, renderId);
       }
-    } catch {
-      this.setPreviewError(renderId);
+    } catch (error) {
+      if (renderId === this.renderId) {
+        this.logPreviewError('document', error);
+        this.setPreviewError(renderId);
+      }
     } finally {
       if (renderId === this.renderId) {
         this.zone.run(() => {
@@ -305,8 +308,11 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
       if (renderId === this.renderId && this.pagesElement) {
         this.pagesElement.appendChild(canvas);
       }
-    } catch {
-      this.setPreviewError(renderId);
+    } catch (error) {
+      if (renderId === this.renderId) {
+        this.logPreviewError('page', error);
+        this.setPreviewError(renderId);
+      }
     } finally {
       if (renderId === this.renderId) {
         this.pageRenderTask = undefined;
@@ -326,6 +332,13 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
         this.changeDetector.detectChanges();
       });
     }
+  }
+
+  private logPreviewError(stage: 'document' | 'page', error: unknown): void {
+    const message = error instanceof Error
+      ? `${error.name}: ${error.message.replace(/https?:\/\/[^\s"'<>]+/gi, '[redacted URL]')}`
+      : 'Unknown error';
+    console.error(`PDF preview ${stage} load failed`, message);
   }
 
   getAccessStatusTranslationKey(status: string): string {

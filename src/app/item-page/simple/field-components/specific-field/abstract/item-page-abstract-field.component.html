@@ -1,0 +1,24 @@
+<ds-metadata-field-wrapper [label]="label | translate">
+  <div class="ucu-abstract-content">
+    @for (paragraph of abstractParagraphs; track $index; let first = $first; let index = $index) {
+      @if (first || isExpanded || index === 1) {
+        <div
+          class="ucu-abstract-paragraph"
+          [class.ucu-abstract-teaser]="index === 1 && !isExpanded"
+          [dsMarkdown]="paragraph.value"
+          [attr.lang]="paragraph.language | dsNormalizeLanguageCode">
+        </div>
+      }
+    }
+  </div>
+  @if (abstractParagraphs.length > 1) {
+    <button
+      class="btn btn-link p-0 ucu-abstract-toggle"
+      type="button"
+      [attr.aria-expanded]="isExpanded"
+      (click)="toggleExpanded()">
+      <i class="fas" [class.fa-angle-up]="isExpanded" [class.fa-angle-down]="!isExpanded" aria-hidden="true"></i>
+      <span>{{ 'item.truncatable-part.show-' + (isExpanded ? 'less' : 'more') | translate }}</span>
+    </button>
+  }
+</ds-metadata-field-wrapper>

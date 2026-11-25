@@ -15,6 +15,8 @@ import { VocabularyService } from '@dspace/core/submission/vocabularies/vocabula
 import { BrowseDefinitionDataServiceStub } from '@dspace/core/testing/browse-definition-data-service.stub';
 import { BrowseServiceStub } from '@dspace/core/testing/browse-service.stub';
 import { TranslateLoaderMock } from '@dspace/core/testing/translate-loader.mock';
+import { Item } from '@dspace/core/shared/item.model';
+import { MetadataValue } from '@dspace/core/shared/metadata.models';
 import {
   TranslateLoader,
   TranslateModule,
@@ -60,7 +62,44 @@ describe('ItemPageAbstractFieldComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should render a ds-metadata-values', () => {
-    expect(fixture.debugElement.query(By.css('ds-metadata-values'))).not.toBeNull();
+  it('renders abstracts as justified content with a faded second paragraph and an expand control', () => {
+    const item = new Item();
+    spyOn(item, 'allMetadata').and.returnValue([
+      Object.assign(new MetadataValue(), {
+        language: 'en',
+        value: 'First paragraph.\n\nSecond paragraph.',
+      }),
+    ]);
+    fixture.componentRef.setInput('item', item);
+    fixture.detectChanges();
+
+    expect(comp.abstractParagraphs.map((paragraph) => paragraph.value)).toEqual([
+      'First paragraph.',
+      'Second paragraph.',
+    ]);
+    expect(fixture.debugElement.query(By.css('.ucu-abstract-content'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('.ucu-abstract-teaser'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('.ucu-abstract-toggle')).nativeElement.getAttribute('aria-expanded')).toBe('false');
+
+    fixture.debugElement.query(By.css('.ucu-abstract-toggle')).nativeElement.click();
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('.ucu-abstract-teaser'))).toBeNull();
+    expect(fixture.debugElement.query(By.css('.ucu-abstract-toggle')).nativeElement.getAttribute('aria-expanded')).toBe('true');
+  });
+
+  it('does not add an expand control when an abstract has only one paragraph', () => {
+    const item = new Item();
+    spyOn(item, 'allMetadata').and.returnValue([
+      Object.assign(new MetadataValue(), {
+        language: 'en',
+        value: 'A single paragraph.',
+      }),
+    ]);
+    fixture.componentRef.setInput('item', item);
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('.ucu-abstract-teaser'))).toBeNull();
+    expect(fixture.debugElement.query(By.css('.ucu-abstract-toggle'))).toBeNull();
   });
 });

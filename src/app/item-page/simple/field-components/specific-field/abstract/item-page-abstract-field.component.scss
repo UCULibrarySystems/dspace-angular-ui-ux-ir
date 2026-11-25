@@ -1,0 +1,38 @@
+.ucu-abstract-paragraph,
+.ucu-abstract-paragraph :is(p, li, blockquote) {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.ucu-abstract-paragraph:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.ucu-abstract-teaser {
+  max-height: 4.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.ucu-abstract-teaser::after {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 10%, rgba(255, 255, 255, 0.88) 100%);
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.ucu-abstract-toggle {
+  align-items: center;
+  color: var(--ucu-blue);
+  display: inline-flex;
+  gap: 0.35rem;
+  text-decoration: none;
+}
+
+.ucu-abstract-toggle:hover,
+.ucu-abstract-toggle:focus {
+  color: var(--ucu-maroon);
+  text-decoration: underline;
+}
