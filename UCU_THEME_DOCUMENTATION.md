@@ -114,7 +114,9 @@ The header contains:
 - Language, authentication, and context controls.
 - The mobile hamburger trigger.
 
-The guidance tabs and repository search are intentionally part of the shared header, so they remain available away from the home page. The home-page search form is omitted to avoid presenting the same search control twice. On narrow screens, the guidance tabs become a horizontally scrollable row and the search button uses its icon-only treatment.
+The guidance tabs and repository search are intentionally part of the shared header, so they remain available away from the home page. The home-page search form is omitted to avoid presenting the same search control twice. On tablet widths, guidance tabs remain horizontally scrollable; on phone widths (up to 575px), they stack vertically with the locally stored deposit, data reuse, and governance icons. The search button uses its icon-only treatment on narrow screens. The submission page title and breadcrumb use “Deposit (Submit)” in English so the two terms remain together.
+
+The mobile guidance icons are stored in `src/assets/custom/images/guidance-deposit.png`, `guidance-data-reuse.png`, and `guidance-governance.png`. Their markup lives in `src/themes/custom/app/home-page/home-news/home-news.component.html`; phone layout rules are in its stylesheet. The English submission page title and breadcrumb are in `src/assets/i18n/en.json5`.
 
 The former `Apply Now` admissions button was intentionally removed from both active header templates. This repository header should point users toward repository discovery and account actions, not undergraduate admissions. If an admissions link is ever reintroduced, it should be discussed with the repository team and added to both header templates with responsive behavior verified.
 
