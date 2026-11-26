@@ -54,6 +54,32 @@ summary:focus-visible {
   }
 }
 
+.selection-reader-button {
+  position: fixed;
+  z-index: 2143;
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  padding: 0;
+  color: #fff;
+  background: var(--a11y-pink);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 12px rgba(16, 31, 54, 0.35);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--a11y-blue);
+  }
+
+  &:focus-visible {
+    outline: 3px solid #ffbf47;
+    outline-offset: 2px;
+  }
+}
+
 .site-tour-launcher {
   position: fixed;
   left: clamp(0.65rem, 2vw, 1rem);

@@ -74,9 +74,16 @@ export class EndUserAgreementContentComponent implements OnInit, OnDestroy {
         );
 
         const value = textArray[0]?.value || fallbackTextArray[0]?.value || '';
-        this.userAgreementText$.next(value);
+        this.userAgreementText$.next(this.removeLegacyApprovalNotice(value));
       }),
     );
+  }
+
+  private removeLegacyApprovalNotice(text: string): string {
+    return text
+      .replace(/<p\b[^>]*>\s*<strong>\s*Draft for institutional review\.\s*<\/strong>[\s\S]*?<\/p>\s*/i, '')
+      .replace(/<p\b[^>]*>\s*<strong>\s*Last reviewed for this draft:\s*<\/strong>[\s\S]*?<\/p>\s*/i, '')
+      .trim();
   }
 
   ngOnDestroy(): void {

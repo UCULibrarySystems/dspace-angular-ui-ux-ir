@@ -89,6 +89,10 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   guideY = 0;
   statusMessage = '';
   currentLanguage = 'en';
+  selectedText = '';
+  selectionReaderVisible = false;
+  selectionReaderLeft = 0;
+  selectionReaderTop = 0;
   readonly languages = environment.languages.filter(language => language.active);
 
   private lastSpokenText = '';
@@ -134,6 +138,38 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
     if (this.preferences.readingGuide) {
       this.guideY = event.clientY;
     }
+  }
+
+  @HostListener('document:selectionchange')
+  updateSelectionReader(): void {
+    const selection = this.document.getSelection();
+    const text = selection?.toString().trim() || '';
+
+    if (!text || this.isWithinAccessibilityWidget(selection.anchorNode) || this.isWithinAccessibilityWidget(selection.focusNode) || selection.rangeCount === 0) {
+      this.hideSelectionReader();
+      return;
+    }
+
+    const bounds = selection.getRangeAt(0).getBoundingClientRect();
+    if (bounds.width === 0 && bounds.height === 0) {
+      this.hideSelectionReader();
+      return;
+    }
+
+    const buttonSize = 40;
+    const gap = 8;
+    const margin = 8;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    this.selectedText = text.slice(0, 30000);
+    this.selectionReaderLeft = Math.min(
+      Math.max(bounds.left + bounds.width / 2 - buttonSize / 2, margin),
+      viewportWidth - buttonSize - margin,
+    );
+    this.selectionReaderTop = bounds.top >= buttonSize + gap
+      ? bounds.top - buttonSize - gap
+      : Math.min(bounds.bottom + gap, viewportHeight - buttonSize - margin);
+    this.selectionReaderVisible = true;
   }
 
   togglePanel(): void {
@@ -249,6 +285,24 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.speakText(text, replay ? 'Replaying page content.' : 'Reading page content.', 'Page reader finished.');
+  }
+
+  readSelectedText(): void {
+    if (!this.selectedText) {
+      this.statusMessage = 'Select text before starting the reader.';
+      return;
+    }
+
+    this.speakText(this.selectedText, 'Reading selected text.', 'Selected text reading finished.');
+  }
+
+  private speakText(text: string, startMessage: string, endMessage: string): void {
+    if (!('speechSynthesis' in window)) {
+      this.statusMessage = 'Text-to-speech is not supported by this browser.';
+      return;
+    }
+
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = this.preferences.readingSpeed;
@@ -260,11 +314,21 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
       utterance.lang = selectedVoice.lang;
     }
 
-    utterance.onend = () => this.statusMessage = 'Page reader finished.';
-    utterance.onerror = () => this.statusMessage = 'The page reader could not finish reading.';
+    utterance.onend = () => this.statusMessage = endMessage;
+    utterance.onerror = () => this.statusMessage = 'Text-to-speech could not finish reading.';
     this.lastSpokenText = text;
     window.speechSynthesis.speak(utterance);
-    this.statusMessage = replay ? 'Replaying page content.' : 'Reading page content.';
+    this.statusMessage = startMessage;
+  }
+
+  private isWithinAccessibilityWidget(node: Node | null): boolean {
+    const element = node?.nodeType === 1 ? node as Element : node?.parentElement;
+    return !!element?.closest('ds-sitewide-accessibility');
+  }
+
+  private hideSelectionReader(): void {
+    this.selectedText = '';
+    this.selectionReaderVisible = false;
   }
 
   stopReader(): void {

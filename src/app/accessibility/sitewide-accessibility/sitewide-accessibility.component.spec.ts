@@ -49,6 +49,34 @@ describe('SitewideAccessibilityComponent', () => {
 
     fixture.destroy();
   });
+
+  it('shows a floating reader button for selected page text', async () => {
+    const fixture = await createFixture();
+    const { componentInstance: component, nativeElement } = fixture;
+    const range = document.createRange();
+    spyOn(range, 'getBoundingClientRect').and.returnValue(new DOMRect(80, 100, 120, 18));
+    const selectedNode = document.createTextNode('Selected repository text');
+    const selection = jasmine.createSpyObj<Selection>('Selection', ['toString', 'getRangeAt']);
+    Object.assign(selection, {
+      anchorNode: selectedNode,
+      focusNode: selectedNode,
+      rangeCount: 1,
+    });
+    selection.toString.and.returnValue('Selected repository text');
+    selection.getRangeAt.and.returnValue(range);
+    spyOn(document, 'getSelection').and.returnValue(selection);
+
+    component.updateSelectionReader();
+    fixture.detectChanges();
+
+    const readerButton = nativeElement.querySelector('.selection-reader-button') as HTMLButtonElement;
+    expect(readerButton).not.toBeNull();
+    expect(readerButton.getAttribute('aria-label')).toBe('Read selected text aloud');
+    expect(component.selectedText).toBe('Selected repository text');
+    expect(component.selectionReaderVisible).toBeTrue();
+
+    fixture.destroy();
+  });
 });
 
 async function createFixture(): Promise<ComponentFixture<SitewideAccessibilityComponent>> {

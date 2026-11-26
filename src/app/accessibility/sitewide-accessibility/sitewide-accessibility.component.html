@@ -1,5 +1,19 @@
 <div class="visually-hidden" aria-live="polite" aria-atomic="true">{{ statusMessage }}</div>
 
+@if (selectionReaderVisible) {
+  <button
+    type="button"
+    class="selection-reader-button"
+    [style.left.px]="selectionReaderLeft"
+    [style.top.px]="selectionReaderTop"
+    aria-label="Read selected text aloud"
+    title="Read selected text aloud"
+    (mousedown)="$event.preventDefault()"
+    (click)="readSelectedText()">
+    <i class="fas fa-volume-high" aria-hidden="true"></i>
+  </button>
+}
+
 @if (preferences.readingGuide) {
   <div class="reading-guide" [style.top.px]="guideY" aria-hidden="true"></div>
 }

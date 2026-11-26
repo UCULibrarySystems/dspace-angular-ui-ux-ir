@@ -103,6 +103,8 @@ src/themes/dspace/app/header/header.component.html
 src/themes/dspace/app/header/header.component.scss
 ```
 
+At desktop widths from 1025px, the header uses balanced left-brand, centered-navigation, and right-controls grid tracks. Both theme stylesheets must preserve this layout and avoid fixed offsets that can push the navigation into the account controls. Verify the header at approximately 1025px, 1260px, and 1440px or wider.
+
 The header contains:
 
 - UCU utility bar and official social-media links.
@@ -350,6 +352,7 @@ The widget provides:
 - Font-size changes from 80% to 150%.
 - Reading speed and browser text-to-speech voice selection.
 - Start, replay, and stop page reading controls.
+- A floating audio button for reading selected text on any website page, using the configured speech rate and voice.
 - Title and link highlighting.
 - Dyslexia-friendly font fallback.
 - Letter spacing, line height, font weight, and left alignment controls.
@@ -377,7 +380,7 @@ src/app/info/accessibility-settings/
 
 The widget stores preferences under `ucu-sitewide-accessibility-v1` in browser storage. It applies state to the document root through classes such as `ucu-a11y-highlight-titles`, `ucu-a11y-highlight-links`, `ucu-a11y-dyslexia-font`, `ucu-a11y-letter-spacing`, `ucu-a11y-line-height`, `ucu-a11y-font-weight`, `ucu-a11y-align-left`, `ucu-a11y-stop-animations`, `ucu-a11y-big-cursor`, `ucu-a11y-focus-highlight`, `ucu-a11y-dark`, `ucu-a11y-light`, `ucu-a11y-high`, `ucu-a11y-high-saturation`, `ucu-a11y-low-saturation`, and `ucu-a11y-monochrome`.
 
-Font size is stored as `--ucu-a11y-font-size` and ranges from 80% to 150%. Reading uses the browser Web Speech API, so the selected voice must always have a browser-default fallback.
+Font size is stored as `--ucu-a11y-font-size` and ranges from 80% to 150%. Page and selected-text reading use the browser Web Speech API, so the selected voice must always have a browser-default fallback. Selecting visible page text positions a compact reader button beside the selection; the selection can be read without opening the accessibility panel.
 
 When changing the widget, preserve real buttons, `aria-pressed` state for toggles, the CDK focus trap, the `aria-live` status region, Escape-to-close behavior, and visible `:focus-visible` styling. Test at 320px wide before increasing panel dimensions or grid columns.
 
@@ -541,7 +544,7 @@ The initial canonical and social URLs in `src/index.html` are production default
 
 The home-page fallback copy is in `src/app/home-page/home-news/home-news.component.html` and the themed CMS fallback is in `src/themes/custom/app/home-page/home-news/home-news.component.ts`. Keep both specific to UCU's open access and Christian scholarship mission; do not describe DSpace platform features as the institution's purpose. The active hero message remains CMS-controlled through `dspace.cms.home-news`. Deposit guidance in `src/app/info/deposit/deposit-content/deposit-content.component.html` asks for accurate publication dates and searchable/OCR text where possible. The frontend cannot implement backend 301 redirects, repair scanned files, guarantee Google Scholar inclusion, configure Google Search Console, or set reverse-proxy headers; those require repository operations and infrastructure work. Treat file-size limits as operational guidance rather than an invented repository rule.
 
-Repository policy pages are drafts until reviewed and approved by the University Librarian and any other required UCU governance authority. Do not describe a draft as an official approved policy or imply that frontend publication itself constitutes institutional approval.
+Repository policy pages are approved for implementation by Uganda Christian University. Preserve that approved status in the policies, terms, and end-user agreement pages unless UCU directs a change.
 
 The repository policy and licensing language is maintained in:
 
@@ -555,9 +558,9 @@ The metadata policy dedicates only UCU-controlled/authorised descriptive metadat
 
 Policies should describe current interfaces conditionally: do not claim that OAI-PMH, a schema, a registry, an endpoint, a rate-limit process, or a harvester integration is operational until repository staff verify the production backend. Publish harvesting endpoint/format/set/update details from the real deployment. Keep private user, workflow, reviewer, audit, embargo, and restricted-file data out of public feeds. Preserve withdrawn-record tombstones and persistent landing pages where lawful and safe. If an output file is out of scope, rights-restricted, sensitive, or held elsewhere, staff may consider a lawful metadata-only record or link; such a record must not imply that the file is held or openly reusable.
 
-The end-user agreement fallback is in the third file above. The component may render `dc.rights` from DSpace Site metadata only when it contains at least 500 characters; short labels such as `Library` are not agreement text and must not replace the full UCU fallback. Review both the fallback and any administrator-configured agreement when making changes. Before publishing any legal-policy revision, obtain review from the University Librarian, UCU Legal Counsel, the Data Protection Officer, research ethics/governance stakeholders, and any relevant records or IT owners. The page itself flags draft approval status; do not remove that notice until formal adoption and version/date details are recorded.
+The end-user agreement fallback is in the third file above. The component may render `dc.rights` from DSpace Site metadata only when it contains at least 500 characters; short labels such as `Library` are not agreement text and must not replace the full UCU fallback. Review both the fallback and any administrator-configured agreement when making changes. Policy owners should coordinate revisions with the relevant UCU legal, privacy, research, records, or IT stakeholders.
 
-Policy references include the [UNCST Open Science Policy (2025)](https://nru.uncst.go.ug/handle/123456789/11853), Uganda's [Data Protection and Privacy Act](https://ulii.org/en/akn/ug/act/2019/9/eng@2023-12-31), the [Copyright and Neighbouring Rights Act as amended](https://ulii.org/en/akn/ug/act/2006/19/eng@2026-05-22), [COAR discoverability practices](https://coar-repositories.org/tools-and-resources/coar-community-framework-for-good-practices-in-repositories/discoverability-good-practices-for-repositories/), and [OpenAIRE OAI-PMH guidance](https://guidelines.openaire.eu/en/latest/literature/use_of_oai_pmh.html). Treat these as references for local policy design, not as legal advice or proof of institutional approval.
+Policy references include the [UNCST Open Science Policy (2025)](https://nru.uncst.go.ug/handle/123456789/11853), Uganda's [Data Protection and Privacy Act](https://ulii.org/en/akn/ug/act/2019/9/eng@2023-12-31), the [Copyright and Neighbouring Rights Act as amended](https://ulii.org/en/akn/ug/act/2006/19/eng@2026-05-22), [COAR discoverability practices](https://coar-repositories.org/tools-and-resources/coar-community-framework-for-good-practices-in-repositories/discoverability-good-practices-for-repositories/), and [OpenAIRE OAI-PMH guidance](https://guidelines.openaire.eu/en/latest/literature/use_of_oai_pmh.html). These references inform UCU policy implementation alongside applicable law and institutional procedures.
 
 Do not add generic keyword, revisit, or fictional AI/GEO meta tags. Use accurate visible page content, crawlable links, canonical URLs, useful structured data, and real geography in the institution entity. Metadata alone does not guarantee search or Google Scholar inclusion. See [Google Scholar inclusion guidelines](https://scholar.google.com/intl/en/scholar/inclusion.html), [Google Search supported meta tags](https://developers.google.com/search/docs/crawling-indexing/special-tags), [Google site names](https://developers.google.com/search/docs/appearance/site-names), and [Google's guide to generative AI search](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide).
 
