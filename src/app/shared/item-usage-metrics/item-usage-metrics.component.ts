@@ -65,6 +65,9 @@ export class ItemUsageMetricsComponent implements OnChanges {
       return null;
     }
 
-    return (report.points ?? []).reduce((total, point) => total + point.values.reduce((sum, value) => sum + value.views, 0), 0);
+    return (report.points ?? []).reduce((total, point) => {
+      const values = Array.isArray(point.values) ? point.values : [point.values];
+      return total + values.reduce((sum, value) => sum + value.views, 0);
+    }, 0);
   }
 }

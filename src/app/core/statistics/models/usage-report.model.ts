@@ -50,7 +50,5 @@ export interface Point {
   id: string;
   label: string;
   type: string;
-  values: {
-    views: number;
-  }[];
+  values: { views: number } | { views: number }[];
 }

@@ -32,14 +32,14 @@ describe('ItemUsageMetricsComponent', () => {
     usageReportService.searchStatistics.and.returnValue(of([
       Object.assign(new UsageReport(), {
         reportType: 'TotalVisits',
-        points: [{ values: [{ views: 2406 }] }],
+        points: [{ values: { views: 2406 } }],
       }),
       Object.assign(new UsageReport(), {
         reportType: 'TotalDownloads',
         points: [
-          { values: [{ views: 285 }] },
-          { values: [{ views: 4 }] },
-          { values: [{ views: 2 }] },
+          { values: { views: 285 } },
+          { values: { views: 4 } },
+          { values: { views: 2 } },
         ],
       }),
     ]));
@@ -53,6 +53,28 @@ describe('ItemUsageMetricsComponent', () => {
     expect(text).toContain('2,406');
     expect(text).toContain('291');
     expect(usageReportService.searchStatistics).toHaveBeenCalledWith('https://rest.api/server/api/core/items/item-uuid', 0, 10, false);
+  });
+
+  it('continues to sum usage reports that return values as arrays', async () => {
+    usageReportService.searchStatistics.and.returnValue(of([
+      Object.assign(new UsageReport(), {
+        reportType: 'TotalVisits',
+        points: [{ values: [{ views: 8 }, { views: 3 }] }],
+      }),
+      Object.assign(new UsageReport(), {
+        reportType: 'TotalDownloads',
+        points: [{ values: [{ views: 2 }, { views: 1 }] }],
+      }),
+    ]));
+    fixture.componentRef.setInput('itemUri', 'https://rest.api/server/api/core/items/item-uuid');
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const text = fixture.nativeElement.textContent;
+    expect(text).toContain('11');
+    expect(text).toContain('3');
   });
 
   it('shows unavailable markers when a usage report request fails', async () => {
