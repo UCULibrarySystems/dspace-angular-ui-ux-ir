@@ -3,7 +3,11 @@ import { Component } from '@angular/core';
 import { SiteDataService } from '@dspace/core/data/site-data.service';
 import { Site } from '@dspace/core/shared/site.model';
 import { TranslateModule } from '@ngx-translate/core';
-import { switchMap } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
+import {
+  map,
+  switchMap,
+} from 'rxjs/operators';
 
 import { ThemedLoadingComponent } from '../../shared/loading/themed-loading.component';
 import { VarDirective } from '../../shared/utils/var.directive';
@@ -45,7 +49,15 @@ export class SiteStatisticsPageComponent extends StatisticsPageDirective<Site> {
   protected getReports$() {
     return this.scope$.pipe(
       switchMap((scope) =>
-        this.usageReportService.searchStatistics(scope._links.self.href, 0, 10),
+        combineLatest({
+          reports: this.usageReportService.searchStatistics(scope._links.self.href, 0, 10),
+          monthlyReport: this.usageReportService.getStatistic(scope.id, 'TotalVisitsPerMonth'),
+        }).pipe(
+          map(({ reports, monthlyReport }) => [
+            ...reports.filter((report) => report.reportType !== monthlyReport.reportType),
+            monthlyReport,
+          ]),
+        ),
       ),
     );
   }

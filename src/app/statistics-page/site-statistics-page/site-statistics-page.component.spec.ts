@@ -28,6 +28,8 @@ describe('SiteStatisticsPageComponent', () => {
   let component: SiteStatisticsPageComponent;
   let de: DebugElement;
   let fixture: ComponentFixture<SiteStatisticsPageComponent>;
+  let searchStatisticsSpy: jasmine.Spy;
+  let getStatisticSpy: jasmine.Spy;
 
   beforeEach(waitForAsync(() => {
 
@@ -37,15 +39,38 @@ describe('SiteStatisticsPageComponent', () => {
     const router = {
     };
 
-    const usageReportService = {
-      searchStatistics: () => of([
+    searchStatisticsSpy = jasmine.createSpy('searchStatistics').and.returnValue(of([
         Object.assign(
           new UsageReport(), {
             id: `site_id-TotalVisits-report`,
+            reportType: 'TotalVisits',
             points: [],
           },
         ),
-      ]),
+      ]));
+    getStatisticSpy = jasmine.createSpy('getStatistic').and.returnValue(of(
+      Object.assign(new UsageReport(), {
+        id: 'site_id-TotalVisitsPerMonth-report',
+        reportType: 'TotalVisitsPerMonth',
+        points: [
+          {
+            id: 'May_2026',
+            label: 'May 2026',
+            type: 'date',
+            values: { views: 4 },
+          },
+          {
+            id: 'November_2026',
+            label: 'November 2026',
+            type: 'date',
+            values: { views: 8 },
+          },
+        ],
+      }),
+    ));
+    const usageReportService = {
+      searchStatistics: searchStatisticsSpy,
+      getStatistic: getStatisticSpy,
     };
 
     const nameService = {
@@ -107,5 +132,14 @@ describe('SiteStatisticsPageComponent', () => {
   it('should show a statistics table for each usage report', () => {
     expect(de.query(By.css('ds-statistics-table.site_id-TotalVisits-report')).nativeElement)
       .toBeTruthy();
+  });
+
+  it('should keep monthly statistics visible with month and year labels', () => {
+    const monthlyTable = de.query(By.css('ds-statistics-table.site_id-TotalVisitsPerMonth-report'));
+
+    expect(monthlyTable.nativeElement.textContent).toContain('May 2026');
+    expect(monthlyTable.nativeElement.textContent).toContain('November 2026');
+    expect(searchStatisticsSpy).toHaveBeenCalledTimes(1);
+    expect(getStatisticSpy).toHaveBeenCalledWith('site_id', 'TotalVisitsPerMonth');
   });
 });

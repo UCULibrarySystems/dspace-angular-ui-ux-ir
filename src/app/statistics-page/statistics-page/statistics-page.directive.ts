@@ -24,6 +24,7 @@ import {
 } from 'rxjs';
 import {
   map,
+  shareReplay,
   switchMap,
 } from 'rxjs/operators';
 
@@ -58,7 +59,9 @@ export abstract class StatisticsPageDirective<T extends DSpaceObject> implements
 
   ngOnInit(): void {
     this.scope$ = this.getScope$();
-    this.reports$ = this.getReports$();
+    this.reports$ = this.getReports$().pipe(
+      shareReplay({ bufferSize: 1, refCount: true }),
+    );
     this.hasData$ = this.reports$.pipe(
       map((reports) => reports.some(
         (report) => report.points.length > 0,

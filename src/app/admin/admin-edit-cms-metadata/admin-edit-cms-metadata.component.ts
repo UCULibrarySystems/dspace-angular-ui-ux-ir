@@ -165,8 +165,8 @@ export class AdminEditCmsMetadataComponent implements OnInit {
     const currentValue = this.selectedMetadataValues.get(language)?.trim();
     const template = [
       '---',
-      'title: Research impact title',
-      'message: Brief description of the research impact or repository update.',
+      'title: News story title',
+      'message: Briefly describe the research, event, or repository update.',
       'link: /items/item-uuid-or-handle',
       'linkText: Read more',
     ].join('\n');

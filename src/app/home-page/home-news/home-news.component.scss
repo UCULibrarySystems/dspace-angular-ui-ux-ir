@@ -2,6 +2,157 @@
     display: block;
 }
 
+.ucu-hero {
+  background: #0b3d91;
+  isolation: isolate;
+  min-height: 22rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.ucu-hero::after {
+  background: linear-gradient(90deg, rgba(11, 61, 145, .08), rgba(11, 61, 145, .32));
+  content: '';
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.ucu-hero-image {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  z-index: -2;
+}
+
+.ucu-hero-layout {
+  align-items: flex-end;
+  display: flex;
+  min-height: inherit;
+  padding: .75rem 1rem;
+}
+
+.ucu-hero-panel {
+  background: rgba(11, 61, 145, .85);
+  color: #fff;
+  max-height: 20rem;
+  overflow: auto;
+  width: 100%;
+}
+
+.ucu-hero-panel-heading {
+  border-bottom: 1px solid rgba(255, 255, 255, .24);
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding: .85rem 1rem;
+}
+
+.ucu-hero-panel-content {
+  padding: 1rem;
+}
+
+.ucu-hero-panel-content :is(h1, h2, h3, p, ul, ol) {
+  color: inherit;
+}
+
+.ucu-hero-carousel {
+  overflow: hidden;
+}
+
+.ucu-hero-slides {
+  display: flex;
+  transition: transform 400ms ease;
+}
+
+.ucu-hero-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.ucu-hero-resource-link {
+  color: #fff;
+  font-weight: 700;
+}
+
+.ucu-hero-carousel-controls {
+  align-items: center;
+  display: flex;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+
+.ucu-discovery-section {
+  padding: 1rem;
+}
+
+.ucu-guide-tabs {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.ucu-guide-tab {
+  align-items: center;
+  display: flex;
+  gap: .75rem;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.ucu-guide-tab-icon {
+  flex: 0 0 3rem;
+  height: 3rem;
+  object-fit: contain;
+  width: 3rem;
+}
+
+.ucu-guide-tab-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ucu-guide-tab-title {
+  font-weight: 800;
+}
+
+.ucu-discovery-search {
+  display: flex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ucu-hero-slides {
+    transition: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ucu-guide-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .ucu-hero {
+    min-height: 17.5rem;
+  }
+
+  .ucu-hero::after {
+    background: linear-gradient(180deg, rgba(11, 61, 145, .08), rgba(11, 61, 145, .4));
+  }
+
+  .ucu-hero-panel {
+    max-height: none;
+  }
+
+  .ucu-guide-tabs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .display-3 {
     word-break: break-word;
 }

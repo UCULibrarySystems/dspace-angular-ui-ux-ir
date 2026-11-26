@@ -14,6 +14,19 @@
   .ucu-hero-panel-content a:not(.btn) { border: 1px solid var(--ucu-yellow); border-radius: 0; color: #fff; display: inline-flex; font-weight: 700; margin-top: .35rem; padding: .35rem .75rem; }
   .ucu-hero-panel-content a:not(.btn):hover,
   .ucu-hero-panel-content a:not(.btn):focus { background: rgba(255, 255, 255, .12); color: #fff; }
+  .ucu-hero-carousel { overflow: hidden; }
+  .ucu-hero-slides { display: flex; transition: transform 400ms ease; }
+  .ucu-hero-slide { flex: 0 0 100%; min-width: 0; }
+  .ucu-hero-resource-link { align-items: center; background: var(--ucu-blue); color: #fff; display: inline-flex; font-size: .9rem; font-weight: 700; gap: .4rem; margin-top: .35rem; padding: .35rem .6rem; }
+  .ucu-hero-resource-link:hover,
+  .ucu-hero-resource-link:focus { background: var(--ucu-maroon); color: #fff; }
+  .ucu-hero-carousel-controls { align-items: center; color: #fff; display: flex; font-size: .82rem; gap: .35rem; margin-top: .55rem; }
+  .ucu-hero-carousel-controls .btn { align-items: center; border: 1px solid rgba(255, 255, 255, .7); color: #fff; display: inline-flex; height: 2rem; justify-content: center; padding: 0; width: 2rem; }
+  .ucu-hero-carousel-controls .btn:hover,
+  .ucu-hero-carousel-controls .btn:focus { background: rgba(255, 255, 255, .16); }
+  @media (prefers-reduced-motion: reduce) {
+    .ucu-hero-slides { transition: none; }
+  }
 
   div.background-image-container {
     color: white;

@@ -124,6 +124,8 @@ These are compiled frontend assets: changing source files does not update an alr
 
 The view and download counters on search results are loaded per item from DSpace's `usagereports` REST endpoint. The frontend bypasses its response cache when loading these counts and sums report point values whether the backend returns each point's `values` as an object or an array. Their freshness is still limited by the backend's statistics event collection and aggregation/indexing schedule; JavaScript in one user's browser cannot count activity from other users or provide authoritative live totals. Real-time totals require a backend event stream or synchronous statistics service and appropriate privacy/abuse controls.
 
+The site statistics page loads the `TotalVisitsPerMonth` usage report directly in addition to the site's top-visited items. DSpace supplies the available month/year labels and counts; the statistics page shares the report stream between its table and no-data check to avoid duplicate requests and inconsistent display. The month/year history shown is limited to the data returned by the DSpace statistics API.
+
 ### Repository Policy Framework
 
 The `/info/policies` page incorporates the five institutional repository policy areas adapted from the supplied templates: governance and strategy; content and submission; metadata, quality and interoperability; access, rights and legal; and preservation and technical management. It identifies the policies as approved for implementation by Uganda Christian University, links relevant repository guidance and Ugandan legal references, and assigns policy ownership to UCU Libraries and Archives.
@@ -223,9 +225,9 @@ Site Administrators can update it from:
 /admin/edit-cms-metadata
 ```
 
-Select `dspace.cms.home-news`. The hero message panel is always expanded and is not a collapsible disclosure; it displays one CMS message at a time. It automatically moves to the next message from right to left every eight seconds, while visitors can use the previous and next controls at any time. Keep the always-visible panel in both the custom and DSpace fallback templates. The fixed background image is maintained separately at `src/assets/custom/images/ucu-hero-bishop-tucker.jpg`.
+Select `dspace.cms.home-news`. The hero message panel is always expanded and is not a collapsible disclosure; it displays one CMS news story at a time. It automatically moves to the next story from right to left every eight seconds, while visitors can use the previous and next controls at any time. Keep the carousel in the base, custom, and DSpace fallback templates so the feature works regardless of the active theme. The fixed background image is maintained separately at `src/assets/custom/images/ucu-hero-bishop-tucker.jpg`.
 
-Use the **Add hero message** button to append a new message block for each active language. Each block uses this format:
+Use the **Add news story** button to append a new story block for each active language. Each block uses this format:
 
 ```text
 ---
@@ -237,15 +239,18 @@ linkText: Read more
 
 Use one `---`-separated block per message. `link:` accepts a repository-relative path such as `/items/<uuid>` or a full `https://` URL. The link is optional; omit it when no further resource should be shown. Keep messages concise because the hero is intentionally half-height and the open panel scrolls longer content within its fixed space.
 
-The carousel parser, safe-link check, timer, and fallback message are maintained in:
+The shared carousel parser, safe-link check, timer, and fallback message are maintained in:
 
 ```text
-src/themes/custom/app/home-page/home-news/home-news.component.ts
+src/app/home-page/home-news/home-news.component.ts
 ```
 
-The compact visual layout is maintained in:
+Theme templates and styles are maintained in:
 
 ```text
+src/app/home-page/home-news/
+src/themes/dspace/app/home-page/home-news/
+src/themes/custom/app/home-page/home-news/home-news.component.ts
 src/themes/custom/app/home-page/home-news/home-news.component.html
 src/themes/custom/app/home-page/home-news/home-news.component.scss
 ```
