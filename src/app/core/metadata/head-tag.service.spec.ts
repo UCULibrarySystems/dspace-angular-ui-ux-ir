@@ -75,6 +75,7 @@ describe('HeadTagService', () => {
     translateService = getMockTranslateService();
     meta = jasmine.createSpyObj('meta', {
       addTag: {},
+      updateTag: {},
       removeTag: {},
     });
     title = jasmine.createSpyObj({
@@ -132,7 +133,7 @@ describe('HeadTagService', () => {
         },
       });
       tick();
-      expect(meta.addTag).toHaveBeenCalledWith({
+      expect(meta.updateTag).toHaveBeenCalledWith({
         name: 'robots',
         content: 'noindex',
       });
@@ -166,6 +167,10 @@ describe('HeadTagService', () => {
     expect(meta.addTag).toHaveBeenCalledWith({
       name: 'citation_title',
       content: 'Test PowerPoint Document',
+    });
+    expect(meta.updateTag).toHaveBeenCalledWith({
+      name: 'description',
+      content: ItemMock.firstMetadataValue('dc.description.abstract'),
     });
     expect(meta.addTag).toHaveBeenCalledWith({ name: 'citation_author', content: 'Doe, Jane' });
     expect(meta.addTag).toHaveBeenCalledWith({

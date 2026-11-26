@@ -165,9 +165,10 @@ export class HeadTagService {
     }
     if (routeInfo.data.value.description) {
       this.translate.get(routeInfo.data.value.description).pipe(take(1)).subscribe((translatedDescription: string) => {
-        this.addMetaTag('description', translatedDescription);
-        this.meta.updateTag({ property: 'og:description', content: translatedDescription });
-        this.meta.updateTag({ name: 'twitter:description', content: translatedDescription });
+      const description = this.normalizeDescription(translatedDescription);
+      this.updateNamedMetaTag('description', description);
+      this.meta.updateTag({ property: 'og:description', content: description });
+      this.meta.updateTag({ name: 'twitter:description', content: description });
       });
     }
   }
@@ -229,7 +230,7 @@ export class HeadTagService {
    */
   protected setNoIndexTag(): void {
     if (this.currentObject.value instanceof Item && this.currentObject.value.isDiscoverable === false) {
-      this.addMetaTag('robots', 'noindex');
+      this.updateNamedMetaTag('robots', 'noindex');
     }
   }
 
@@ -249,13 +250,36 @@ export class HeadTagService {
    * Add <meta name="description" ... >  to the <head>
    */
   protected setDescriptionTag(): void {
-    // TODO: truncate abstract
-    const value = this.getMetaTagValue('dc.description.abstract');
-    this.addMetaTag('description', value);
-    if (value) {
-      this.meta.updateTag({ property: 'og:description', content: value });
-      this.meta.updateTag({ name: 'twitter:description', content: value });
+    const value = this.getFirstMetaTagValue(['dc.description.abstract', 'dc.description']) || this.getMetaTagValue('dc.title');
+    const description = this.normalizeDescription(value);
+    if (description) {
+      this.updateNamedMetaTag('description', description);
+      this.meta.updateTag({ property: 'og:description', content: description });
+      this.meta.updateTag({ name: 'twitter:description', content: description });
     }
+  }
+
+  private updateNamedMetaTag(name: string, content: string): void {
+    if (content) {
+      this.meta.updateTag({ name, content });
+      this.storeTag(name);
+    }
+  }
+
+  private normalizeDescription(value: string): string {
+    const text = value
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/&nbsp;|&#160;|&#xA0;/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (text.length <= 300) {
+      return text;
+    }
+
+    const truncated = text.slice(0, 297);
+    const wordBoundary = truncated.lastIndexOf(' ');
+    return `${truncated.slice(0, wordBoundary > 0 ? wordBoundary : truncated.length).trimEnd()}...`;
   }
 
   /**
