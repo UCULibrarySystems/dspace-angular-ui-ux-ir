@@ -370,6 +370,7 @@ src/styles/_global-styles.scss
 ```
 
 The widget itself remains above repository filters so the controls do not become unusable when a contrast or saturation mode is active.
+Color filters are scoped to `#main-content`, rather than `.outer-wrapper`, so they do not create a filtered containing block around the sticky header.
 
 The existing DSpace accessibility settings page is separate and should remain synchronized when changing timeout or live-region behavior:
 
@@ -384,7 +385,9 @@ The widget stores preferences under `ucu-sitewide-accessibility-v1` in browser s
 
 Font size is stored as `--ucu-a11y-font-size` and ranges from 80% to 150%. Page and selected-text reading use the browser Web Speech API, so the selected voice must always have a browser-default fallback. Selecting visible page text positions a compact reader button beside the selection; the selection can be read without opening the accessibility panel.
 
-When changing the widget, preserve real buttons, `aria-pressed` state for toggles, the CDK focus trap, the `aria-live` status region, Escape-to-close behavior, and visible `:focus-visible` styling. Test at 320px wide before increasing panel dimensions or grid columns.
+The accessibility panel closes on outside click, Escape, or after five seconds without interaction. Clicks, pointer activity, input changes, and keyboard use inside the panel reset the inactivity timer. It stays open while preferences are changed. Clear the timer on any explicit close or component destruction.
+
+When changing the widget, preserve real buttons, `aria-pressed` state for toggles, the CDK focus trap, the `aria-live` status region, close behavior, and visible `:focus-visible` styling. Test at 320px wide before increasing panel dimensions or grid columns.
 
 ## Cookie Consent
 
@@ -859,8 +862,8 @@ src/assets/i18n/en.json5
 - On mobile, the footer starts collapsed and exposes a chevron control to expand or minimize the footer links.
 - Cookie-notice actions are equal-width, compact buttons that remain side by side. Do not apply a viewport-only rule: the notice can be narrow even on a desktop browser.
 - Mobile tabs wrap instead of causing horizontal scrolling. Thumbnail dimensions use the global values `--ds-thumbnail-max-width: 250px` and `--ds-card-thumbnail-height: 480px`.
-- The accessibility launcher and panel are compact on phones. Selecting a preference closes the panel immediately on mobile and after 2.5 seconds on larger screens.
-- Login methods are labeled in `src/app/shared/log-in/log-in.component.html`: ORCID is presented as researcher login, and password authentication as management login with an authorized-role tooltip. The homepage guided tour lives in `src/app/home-page/home-page-tour/`, is automatically shown once per browser, advances through six homepage points in about 30 seconds, and can be replayed with its persistent Site tour control.
+- The accessibility launcher and panel are compact on phones. The panel closes on outside click, Escape, or five seconds of inactivity, with the timer reset by user interaction.
+- Login methods are labeled in `src/app/shared/log-in/log-in.component.html`: ORCID is presented as researcher login, and password authentication as management login with an authorized-role tooltip. The homepage guided tour lives in `src/app/home-page/home-page-tour/`, is automatically shown once per browser, displays a 20-second countdown, highlights each selected section against a blurred backdrop, and can be replayed with its persistent Site tour control.
 
 ```text
 src/app/footer/footer.component.html

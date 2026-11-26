@@ -149,6 +149,13 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('document:input', ['$event'])
+  resetPanelTimerOnInput(event: Event): void {
+    if (this.panelOpen && this.isPanelInteraction(event.target)) {
+      this.resetPanelInactivityTimer();
+    }
+  }
+
   @HostListener('document:keydown', ['$event'])
   handlePanelKeydown(event: KeyboardEvent): void {
     if (!this.panelOpen) {
@@ -400,7 +407,7 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   }
 
   navigate(path: string): void {
-    this.panelOpen = false;
+    this.closePanel();
     void this.router.navigateByUrl(path);
   }
 
@@ -409,7 +416,7 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   }
 
   startTour(): void {
-    this.panelOpen = false;
+    this.closePanel();
     this.statusMessage = 'Starting the repository tour.';
     if (this.router.url.startsWith('/home')) {
       this.homePageTour.requestStart();

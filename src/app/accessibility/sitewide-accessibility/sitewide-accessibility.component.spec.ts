@@ -31,6 +31,43 @@ describe('SitewideAccessibilityComponent', () => {
     fixture.destroy();
   });
 
+  it('closes the settings panel on outside click and Escape', async () => {
+    const fixture = await createFixture();
+    const component = fixture.componentInstance;
+
+    component.togglePanel();
+    document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(component.panelOpen).toBeFalse();
+
+    component.togglePanel();
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    expect(component.panelOpen).toBeFalse();
+
+    fixture.destroy();
+  });
+
+  it('closes after five seconds of inactivity and resets the timer on panel interaction', async () => {
+    const fixture = await createFixture();
+    const component = fixture.componentInstance;
+    const timeoutSpy = spyOn(window, 'setTimeout').and.callThrough();
+
+    component.togglePanel();
+    const panel = fixture.nativeElement.querySelector('#ucu-accessibility-panel') as HTMLElement;
+    panel.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+    const inactivityTimers = timeoutSpy.calls.allArgs().filter(([, delay]) => delay === 5000);
+    expect(inactivityTimers.length).toBe(2);
+    expect(component.panelOpen).toBeTrue();
+
+    const timeoutCallback = inactivityTimers.at(-1)?.[0];
+    if (typeof timeoutCallback === 'function') {
+      timeoutCallback();
+    }
+    expect(component.panelOpen).toBeFalse();
+
+    fixture.destroy();
+  });
+
   it('sanitizes invalid saved preferences before applying them', async () => {
     localStorage.setItem('ucu-sitewide-accessibility-v1', JSON.stringify({
       fontSize: 999,
