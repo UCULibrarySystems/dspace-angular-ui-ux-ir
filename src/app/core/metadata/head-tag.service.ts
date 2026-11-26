@@ -95,6 +95,7 @@ const tagsInUseSelector =
 export class HeadTagService {
 
   private currentObject: BehaviorSubject<DSpaceObject> = new BehaviorSubject<DSpaceObject>(undefined);
+  private defaultDescription = '';
 
   /**
    * When generating the citation_pdf_url meta tag for Items with more than one Bitstream (and no primary Bitstream),
@@ -124,6 +125,7 @@ export class HeadTagService {
     protected authorizationService: AuthorizationDataService,
     @Optional() @Inject(DOCUMENT) protected document?: Document,
   ) {
+    this.defaultDescription = this.document?.head.querySelector<HTMLMetaElement>('meta[name="description"]')?.content || '';
   }
 
   public listenForRouteChange(): void {
@@ -145,8 +147,9 @@ export class HeadTagService {
     this.clearMetaTags();
     this.setCanonicalUrl();
 
-    if (hasValue(routeInfo.data.value.dso) && hasValue(routeInfo.data.value.dso.payload)) {
-      this.currentObject.next(routeInfo.data.value.dso.payload);
+    const dso = routeInfo.data.value.dso?.payload;
+    if (hasValue(dso)) {
+      this.currentObject.next(dso);
       this.setDSOMetaTags();
     } else {
       this.currentObject.next(undefined);
@@ -165,11 +168,10 @@ export class HeadTagService {
     }
     if (routeInfo.data.value.description) {
       this.translate.get(routeInfo.data.value.description).pipe(take(1)).subscribe((translatedDescription: string) => {
-      const description = this.normalizeDescription(translatedDescription);
-      this.updateNamedMetaTag('description', description);
-      this.meta.updateTag({ property: 'og:description', content: description });
-      this.meta.updateTag({ name: 'twitter:description', content: description });
+        this.setDescriptionMetadata(translatedDescription);
       });
+    } else if (!hasValue(dso)) {
+      this.setDescriptionMetadata(this.defaultDescription);
     }
   }
 
@@ -226,7 +228,7 @@ export class HeadTagService {
   }
 
   /**
-   * Add <meta name="robots" content="noindex">  to the <head> if non-discoverable item
+   * Set <meta name="robots" content="noindex"> for non-discoverable items.
    */
   protected setNoIndexTag(): void {
     if (this.currentObject.value instanceof Item && this.currentObject.value.isDiscoverable === false) {
@@ -247,10 +249,14 @@ export class HeadTagService {
   }
 
   /**
-   * Add <meta name="description" ... >  to the <head>
+   * Set a concise description from the object's public metadata.
    */
   protected setDescriptionTag(): void {
     const value = this.getFirstMetaTagValue(['dc.description.abstract', 'dc.description']) || this.getMetaTagValue('dc.title');
+    this.setDescriptionMetadata(value);
+  }
+
+  private setDescriptionMetadata(value: string): void {
     const description = this.normalizeDescription(value);
     if (description) {
       this.updateNamedMetaTag('description', description);

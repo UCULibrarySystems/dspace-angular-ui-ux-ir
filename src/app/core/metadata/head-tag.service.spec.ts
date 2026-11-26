@@ -185,6 +185,27 @@ describe('HeadTagService', () => {
     });
   }));
 
+  it('uses a plain-text, concise metadata description for long item abstracts', fakeAsync(() => {
+    const item = new Item();
+    item.setMetadata('dc.title', undefined, 'SEO record');
+    item.setMetadata('dc.description.abstract', 'en', `<p>${'Useful research details. '.repeat(24)}</p>`);
+
+    (headTagService as any).processRouteChange({
+      data: {
+        value: {
+          dso: createSuccessfulRemoteDataObject(item),
+        },
+      },
+    });
+    tick();
+
+    const descriptionTag = (meta.updateTag as jasmine.Spy).calls.allArgs()
+      .map(args => args[0])
+      .find(tag => tag.name === 'description');
+    expect(descriptionTag.content.length).toBeLessThanOrEqual(300);
+    expect(descriptionTag.content).not.toContain('<p>');
+  }));
+
   it('items page should set meta tags as published Thesis', fakeAsync(() => {
     (headTagService as any).processRouteChange({
       data: {
@@ -235,7 +256,7 @@ describe('HeadTagService', () => {
     expect((title.setTitle as jasmine.Spy).calls.argsFor(1)).toEqual(['DSpace :: Translated Route Title']);
   }));
 
-  it('other navigation should add title and description', fakeAsync(() => {
+  it('other navigation should set title and description metadata', fakeAsync(() => {
     (translateService.get as jasmine.Spy).and.returnValues(of('DSpace :: '), of('Dummy Title'), of('This is a dummy item component for testing!'));
     (headTagService as any).processRouteChange({
       data: {
@@ -251,7 +272,7 @@ describe('HeadTagService', () => {
       name: 'title',
       content: 'DSpace :: Dummy Title',
     });
-    expect(meta.addTag).toHaveBeenCalledWith({
+    expect(meta.updateTag).toHaveBeenCalledWith({
       name: 'description',
       content: 'This is a dummy item component for testing!',
     });
@@ -270,13 +291,13 @@ describe('HeadTagService', () => {
       tick();
       expect(meta.addTag).toHaveBeenCalledWith({
         name: 'Generator',
-        content: 'mock-dspace-version',
+        content: 'Uganda Christian University Digital Institutional Repository',
       });
     }));
   });
 
   describe('citation_abstract_html_url', () => {
-    it('should use dc.identifier.uri if available', fakeAsync(() => {
+    it('should use the canonical repository route instead of a legacy metadata URL', fakeAsync(() => {
       (headTagService as any).processRouteChange({
         data: {
           value: {
@@ -287,7 +308,7 @@ describe('HeadTagService', () => {
       tick();
       expect(meta.addTag).toHaveBeenCalledWith({
         name: 'citation_abstract_html_url',
-        content: 'https://ddg.gg',
+        content: 'https://request.org/items/0ec7ff22-f211-40ab-a69e-c819b0b1f357',
       });
     }));
 
