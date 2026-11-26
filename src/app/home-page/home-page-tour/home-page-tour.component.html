@@ -1,4 +1,14 @@
 @if (isOpen) {
+  @for (panel of backdropPanels; track $index) {
+    <div
+      class="tour-backdrop-panel"
+      aria-hidden="true"
+      [style.top.px]="panel.top"
+      [style.left.px]="panel.left"
+      [style.width.px]="panel.width"
+      [style.height.px]="panel.height">
+    </div>
+  }
   <div
     class="tour-highlight"
     aria-hidden="true"
@@ -14,7 +24,12 @@
         <i class="fas fa-times" aria-hidden="true"></i>
       </button>
     </header>
-    <p class="tour-progress">Stop {{ activeIndex + 1 }} of {{ steps.length }}</p>
+    <p class="tour-progress">
+      <span>Step {{ activeIndex + 1 }} of {{ steps.length }}</span>
+      <span class="tour-countdown" role="timer" [attr.aria-label]="'Tour automatically closes in ' + secondsRemaining + ' seconds">
+        {{ secondsRemaining }}s left
+      </span>
+    </p>
     <h2 id="tour-title" aria-live="polite">{{ steps[activeIndex].title }}</h2>
     <p id="tour-description">{{ steps[activeIndex].description }}</p>
     <div class="tour-controls">

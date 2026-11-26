@@ -82,6 +82,7 @@ const DEFAULT_PREFERENCES: SitewideAccessibilityPreferences = {
 })
 export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   private readonly storageKey = 'ucu-sitewide-accessibility-v1';
+  private readonly panelInactivityTimeout = 5000;
 
   panelOpen = false;
   preferences: SitewideAccessibilityPreferences = { ...DEFAULT_PREFERENCES };
@@ -97,6 +98,7 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
 
   private lastSpokenText = '';
   private voiceListener: () => void;
+  private panelInactivityTimer?: number;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -120,16 +122,42 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.clearPanelInactivityTimer();
     if (this.voiceListener && 'speechSynthesis' in window) {
       window.speechSynthesis.removeEventListener('voiceschanged', this.voiceListener);
     }
   }
 
-  @HostListener('document:keydown.escape')
-  closeOnEscape(): void {
-    if (this.panelOpen) {
-      this.panelOpen = false;
-      this.statusMessage = 'Accessibility menu closed.';
+  @HostListener('document:click', ['$event'])
+  closeOnOutsideClick(event: MouseEvent): void {
+    if (!this.panelOpen) {
+      return;
+    }
+
+    if (this.isPanelInteraction(event.target)) {
+      this.resetPanelInactivityTimer();
+      return;
+    }
+
+    this.closePanel();
+  }
+
+  @HostListener('document:pointerdown', ['$event'])
+  resetPanelTimerOnPointerDown(event: PointerEvent): void {
+    if (this.panelOpen && this.isPanelInteraction(event.target)) {
+      this.resetPanelInactivityTimer();
+    }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handlePanelKeydown(event: KeyboardEvent): void {
+    if (!this.panelOpen) {
+      return;
+    }
+    if (event.key === 'Escape') {
+      this.closePanel();
+    } else {
+      this.resetPanelInactivityTimer();
     }
   }
 
@@ -174,7 +202,40 @@ export class SitewideAccessibilityComponent implements OnInit, OnDestroy {
 
   togglePanel(): void {
     this.panelOpen = !this.panelOpen;
+    if (this.panelOpen) {
+      this.resetPanelInactivityTimer();
+    } else {
+      this.clearPanelInactivityTimer();
+    }
     this.statusMessage = `Accessibility menu ${this.panelOpen ? 'opened' : 'closed'}.`;
+  }
+
+  private closePanel(): void {
+    this.panelOpen = false;
+    this.clearPanelInactivityTimer();
+    this.statusMessage = 'Accessibility menu closed.';
+  }
+
+  private isPanelInteraction(target: EventTarget | null): boolean {
+    if (!(target instanceof Node)) {
+      return false;
+    }
+
+    const panel = this.document.getElementById('ucu-accessibility-panel');
+    const launcher = this.document.querySelector('.accessibility-launcher');
+    return !!panel?.contains(target) || !!launcher?.contains(target);
+  }
+
+  private resetPanelInactivityTimer(): void {
+    this.clearPanelInactivityTimer();
+    this.panelInactivityTimer = window.setTimeout(() => this.closePanel(), this.panelInactivityTimeout);
+  }
+
+  private clearPanelInactivityTimer(): void {
+    if (this.panelInactivityTimer !== undefined) {
+      window.clearTimeout(this.panelInactivityTimer);
+      this.panelInactivityTimer = undefined;
+    }
   }
 
   toggle(preference: TogglePreference): void {

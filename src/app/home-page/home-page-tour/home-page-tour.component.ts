@@ -20,6 +20,13 @@ interface TourStep {
   description: string;
 }
 
+interface TourBackdropPanel {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
 @Component({
   selector: 'ds-home-page-tour',
   templateUrl: './home-page-tour.component.html',
@@ -29,39 +36,41 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
   readonly steps: TourStep[] = [
     {
       target: '[data-ucu-tour="navigation"]',
-      title: 'Explore the repository',
-      description: 'Use the main navigation to browse repository communities, collections, and research records.',
+      title: 'Browse repository sections',
+      description: 'Use this navigation to browse communities and collections, explore repository lists, and open statistics.',
     },
     {
       target: '[data-ucu-tour="login"]',
-      title: 'Choose how to sign in',
-      description: 'Researchers can sign in with ORCID. Authorized reviewers and repository managers use management login.',
+      title: 'Account access',
+      description: 'Use these account controls to sign in, register, or access researcher login options. Available choices depend on your account.',
     },
     {
       target: '[data-ucu-tour="updates"]',
       title: 'Research impact and updates',
-      description: 'Read featured UCU research updates. Use a resource link or the arrows to explore more stories.',
+      description: 'Use this panel to read featured research and repository updates, and follow its links or controls to explore more.',
     },
     {
       target: '[data-ucu-tour="guidance"]',
-      title: 'Guides and policies',
-      description: 'Open deposit instructions, learn about data reuse, or review repository governance information.',
+      title: 'Repository guidance',
+      description: 'Choose Deposit guidance, Data reuse, or Governance to learn about submitting work, reusing data, and repository policies.',
     },
     {
       target: '[data-ucu-tour="search"]',
-      title: 'Search the collection',
-      description: 'Search for publications, theses, datasets, authors, and other scholarly work held in UCUDIR.',
+      title: 'Search repository records',
+      description: 'Enter keywords to find repository records. Use filters on the results page to narrow your matches.',
     },
     {
       target: '[data-ucu-tour="recent"]',
-      title: 'Recently added research',
-      description: 'Browse the latest items added to the repository, then open any record for its full details and files.',
+      title: 'Recently added records',
+      description: 'Browse recently added records. Open an item to read its metadata and abstract and access any available files.',
     },
   ];
 
   isOpen = false;
   activeIndex = 0;
+  secondsRemaining = 20;
   highlight = { top: 0, left: 0, width: 0, height: 0 };
+  backdropPanels: TourBackdropPanel[] = [];
 
   private readonly storageKey = 'ucudir-home-tour-seen-v1';
   private readonly maxTourDuration = 20_000;
@@ -70,7 +79,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
   private startupTimer?: number;
   private positionTimer?: number;
   private focusTimer?: number;
-  private tourTimer?: number;
+  private countdownTimer?: number;
 
   @ViewChild('tourCard')
   private tourCard?: ElementRef<HTMLElement>;
@@ -109,16 +118,23 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.clearStartupTimer();
     this.clearPositionTimer();
     this.clearFocusTimer();
-    this.clearTourTimer();
+    this.clearCountdownTimer();
     this.tourRequestSubscription?.unsubscribe();
   }
 
   startTour(firstVisit = false): void {
     this.clearStartupTimer();
-    this.clearTourTimer();
+    this.clearCountdownTimer();
     this.isOpen = true;
     this.activeIndex = 0;
-    this.tourTimer = window.setTimeout(() => this.closeTour(), this.maxTourDuration);
+    this.secondsRemaining = Math.ceil(this.maxTourDuration / 1000);
+    this.resetHighlight();
+    this.countdownTimer = window.setInterval(() => {
+      this.secondsRemaining = Math.max(0, this.secondsRemaining - 1);
+      if (this.secondsRemaining === 0) {
+        this.closeTour();
+      }
+    }, 1000);
     if (firstVisit) {
       this.rememberVisit();
     }
@@ -133,6 +149,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
       return;
     }
     this.activeIndex += 1;
+    this.resetHighlight();
     this.showCurrentStep();
   }
 
@@ -141,6 +158,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
       return;
     }
     this.activeIndex -= 1;
+    this.resetHighlight();
     this.showCurrentStep();
   }
 
@@ -148,7 +166,8 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.isOpen = false;
     this.clearPositionTimer();
     this.clearFocusTimer();
-    this.clearTourTimer();
+    this.clearCountdownTimer();
+    this.resetHighlight();
     this.rememberVisit();
   }
 
@@ -174,7 +193,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
       if (attempts < 20) {
         this.positionTimer = window.setTimeout(() => this.showCurrentStep(scrollToTarget, attempts + 1), 100);
       } else {
-        this.highlight = { top: 0, left: 0, width: 0, height: 0 };
+        this.resetHighlight();
       }
       return;
     }
@@ -185,17 +204,26 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.positionTimer = window.setTimeout(() => {
       const rect = target.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) {
-        this.highlight = { top: 0, left: 0, width: 0, height: 0 };
+        this.resetHighlight();
         return;
       }
 
-      const left = Math.min(Math.max(4, rect.left - 6), Math.max(4, window.innerWidth - 4));
-      const top = Math.max(4, rect.top - 6);
+      const padding = 8;
+      const left = Math.min(window.innerWidth, Math.max(0, rect.left - padding));
+      const top = Math.min(window.innerHeight, Math.max(0, rect.top - padding));
+      const right = Math.min(window.innerWidth, Math.max(left, rect.right + padding));
+      const bottom = Math.min(window.innerHeight, Math.max(top, rect.bottom + padding));
       this.highlight = {
         top,
         left,
-        width: Math.max(0, Math.min(rect.width + 12, window.innerWidth - left - 4)),
-        height: Math.max(0, Math.min(rect.height + 12, window.innerHeight - top - 4)),
+        width: Math.max(0, right - left),
+        height: Math.max(0, bottom - top),
+      };
+      this.backdropPanels = [
+        { top: 0, left: 0, width: window.innerWidth, height: top },
+        { top, left: 0, width: left, height: bottom - top },
+        { top, left: right, width: window.innerWidth - right, height: bottom - top },
+        { top: bottom, left: 0, width: window.innerWidth, height: window.innerHeight - bottom },
       };
     }, scrollToTarget ? 350 : 0);
   }
@@ -211,6 +239,11 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     } catch {
       // Tour completion still works when browser storage is restricted.
     }
+  }
+
+  private resetHighlight(): void {
+    this.highlight = { top: 0, left: 0, width: 0, height: 0 };
+    this.backdropPanels = [];
   }
 
   private clearStartupTimer(): void {
@@ -234,10 +267,10 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private clearTourTimer(): void {
-    if (this.tourTimer !== undefined) {
-      window.clearTimeout(this.tourTimer);
-      this.tourTimer = undefined;
+  private clearCountdownTimer(): void {
+    if (this.countdownTimer !== undefined) {
+      window.clearInterval(this.countdownTimer);
+      this.countdownTimer = undefined;
     }
   }
 }

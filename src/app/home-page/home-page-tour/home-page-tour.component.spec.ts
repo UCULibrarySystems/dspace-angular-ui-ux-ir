@@ -39,10 +39,16 @@ describe('HomePageTourComponent', () => {
   it('automatically closes the tour after 20 seconds', fakeAsync(() => {
     fixture.componentInstance.startTour();
     fixture.detectChanges();
-    tick(19_999);
+    expect(fixture.componentInstance.secondsRemaining).toBe(20);
+
+    tick(5_000);
+    expect(fixture.componentInstance.secondsRemaining).toBe(15);
+
+    tick(14_999);
 
     expect(fixture.componentInstance.isOpen).toBeTrue();
     tick(1);
     expect(fixture.componentInstance.isOpen).toBeFalse();
+    expect(fixture.componentInstance.secondsRemaining).toBe(0);
   }));
 });

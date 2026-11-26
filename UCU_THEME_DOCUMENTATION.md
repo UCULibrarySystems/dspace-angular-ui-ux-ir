@@ -18,6 +18,7 @@ The current UCU UI/UX layer provides:
 - A compact homepage research-impact slider managed by Site Administrators through CMS metadata.
 - In-browser PDF previews on item pages for accessible open-access PDF bitstreams.
 - A sitewide accessibility menu with profiles, reader controls, content controls, color modes, navigation controls, language selection, and persistent preferences.
+- A first-visit home tour with a 20-second countdown, a clear spotlight on each section, and a blurred, dimmed backdrop.
 - UCU-branded Orejime cookie consent notice and settings modal with responsive layout and keyboard focus states.
 - Repository-oriented SEO metadata, Dublin Core and citation metadata, Open Graph/Twitter metadata, geographic metadata, and JSON-LD descriptions.
 - Public sitemap and robots configuration that exposes repository content while excluding administrative and query-heavy routes.
@@ -68,7 +69,8 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Homepage research-impact slider | `src/app/home-page/home-page.component.*` | `src/themes/custom/app/home-page/home-page.component.ts` |
 | Site admin CMS editor helper | `src/app/admin/admin-edit-cms-metadata/` | `src/config/default-app-config.ts` CMS metadata list |
 | Footer markup and info links | `src/app/footer/footer.component.html` | `src/app/footer/footer.component.ts` |
-| Footer maroon strip styling | `src/app/footer/footer.component.scss` | `src/styles/_custom_variables.scss` |
+| Responsive footer grid, COAR Notify logo, and widget clearance | `src/app/footer/footer.component.scss` | `src/app/footer/footer.component.html` |
+| Home tour descriptions, countdown, and spotlight overlay | `src/app/home-page/home-page-tour/` | Homepage `data-ucu-tour` selectors |
 | Sitewide accessibility launcher and panel | `src/app/accessibility/sitewide-accessibility/` | `src/app/app.component.html`, `src/app/app.component.ts` |
 | Accessibility preference effects | `src/styles/_global-styles.scss` | `src/app/accessibility/sitewide-accessibility/sitewide-accessibility.component.scss` |
 | Cookie consent appearance | `src/styles/_global-styles.scss` | `src/app/core/cookies/browser-orejime.service.ts`, `src/app/core/cookies/orejime-configuration.ts` |
