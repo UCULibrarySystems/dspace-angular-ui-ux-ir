@@ -574,4 +574,57 @@
       max-width: min(30vw, 24rem);
     }
   }
+
+  @media (min-width: 1025px) {
+    #main-site-header-container {
+      display: grid !important;
+      gap: clamp(0.75rem, 1.8vw, 1.5rem) !important;
+      grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+      padding: 0 clamp(1rem, 3vw, 2.5rem) !important;
+    }
+
+    #header-left {
+      display: contents !important;
+    }
+
+    #header-left > a {
+      grid-column: 1;
+      justify-self: start;
+      left: auto;
+      position: static;
+    }
+
+    img#header-logo {
+      height: auto;
+      max-height: calc(var(--ds-header-height) - 0.75rem);
+      max-width: 100%;
+      width: clamp(14rem, 27vw, 24rem);
+    }
+
+    #desktop-navbar {
+      flex: 0 1 auto !important;
+      grid-column: 2;
+      justify-self: center;
+      margin: 0 !important;
+      width: max-content;
+
+      ::ng-deep #main-site-navigation,
+      ::ng-deep .navbar-nav {
+        justify-content: center;
+        gap: clamp(0.45rem, 1vw, 1rem) !important;
+      }
+
+      ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
+        font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+        padding-right: 0.1rem;
+        padding-left: 0.1rem;
+      }
+    }
+
+    #header-right {
+      grid-column: 3;
+      justify-self: end;
+      margin-right: 0 !important;
+    }
+  }
 }

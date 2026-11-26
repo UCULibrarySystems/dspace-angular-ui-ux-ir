@@ -124,7 +124,7 @@ The view and download counters on search results are loaded per item from DSpace
 
 ### Repository Policy Framework
 
-The `/info/policies` page incorporates the five institutional repository policy areas adapted from the supplied templates: governance and strategy; content and submission; metadata, quality and interoperability; access, rights and legal; and preservation and technical management. It links relevant repository guidance and Uganda legal references, including copyright and data protection legislation. The page is explicitly marked as a draft for UCU review: formal approval authority, effective date, operational service levels, backup targets, and named governance roles must not be presented as approved until confirmed by the University.
+The `/info/policies` page incorporates the five institutional repository policy areas adapted from the supplied templates: governance and strategy; content and submission; metadata, quality and interoperability; access, rights and legal; and preservation and technical management. It identifies the policies as approved for implementation by Uganda Christian University, links relevant repository guidance and Ugandan legal references, and assigns policy ownership to UCU Libraries and Archives.
 
 The former `Apply Now` admissions button was intentionally removed from both active header templates. This repository header should point users toward repository discovery and account actions, not undergraduate admissions. If an admissions link is ever reintroduced, it should be discussed with the repository team and added to both header templates with responsive behavior verified.
 
