@@ -224,7 +224,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
         { top, left: 0, width: left, height: bottom - top },
         { top, left: right, width: window.innerWidth - right, height: bottom - top },
         { top: bottom, left: 0, width: window.innerWidth, height: window.innerHeight - bottom },
-      };
+      ];
     }, scrollToTarget ? 350 : 0);
   }
 
