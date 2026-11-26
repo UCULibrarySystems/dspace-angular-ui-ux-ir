@@ -101,7 +101,7 @@ describe('EndUserAgreementContentComponent', () => {
   it('removes obsolete draft notices from the stored agreement metadata', () => {
     const agreement = new MetadataValue();
     agreement.language = 'en';
-    agreement.value = '<p class="alert alert-warning" role="note"><strong>Draft for institutional review.</strong> This proposed End User Agreement has not been formally approved.</p><p><strong>Last reviewed for this draft:</strong> 6 November 2026</p><h2>1. About this agreement</h2>';
+    agreement.value = '<p class="alert alert-warning" role="note"><strong>Draft for institutional review.</strong> This proposed End User Agreement has not been formally approved.</p><p><strong>Last reviewed for this draft:</strong> 6 November 2026</p><h2>1. About this agreement</h2><p>' + 'Approved agreement terms. '.repeat(25) + '</p>';
     const site = new Site();
     site.metadata = { 'dc.rights': [agreement] };
 
