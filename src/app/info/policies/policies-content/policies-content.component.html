@@ -8,10 +8,21 @@
     <p class="policy-meta"><strong>Policy status:</strong> Draft for review and approval by the University Librarian, UCU Legal Counsel, the Data Protection Officer, and relevant research-governance authorities. This page is not an approved institutional policy until formally adopted.</p>
   </header>
 
+  <nav aria-label="Repository policy documents">
+    <h2>Policy documents</h2>
+    <ol>
+      <li><a href="#governance-strategy-policy">Governance and strategy</a></li>
+      <li><a href="#content-submission-policy">Content and submission</a></li>
+      <li><a href="#metadata-quality-interoperability-policy">Metadata, quality and interoperability</a></li>
+      <li><a href="#access-rights-legal-policy">Access, rights and legal</a></li>
+      <li><a href="#preservation-technical-policy">Preservation and technical</a></li>
+    </ol>
+  </nav>
+
   <section>
     <h2>Purpose, scope and compliance</h2>
     <p>
-      This framework applies to research outputs, theses and dissertations, research data, software, learning resources, creative works, and approved institutional records deposited in the repository. It is read with UCU statutes, research-integrity and ethics processes, the <a [routerLink]="['/info/terms']">repository terms of use</a>, and the conditions displayed on each repository item.
+      This framework applies to research outputs, theses and dissertations, research data, software, learning resources, creative works, and approved institutional records deposited in the <a href="https://ucu.ac.ug/" target="_blank" rel="noopener noreferrer">Uganda Christian University (UCU) Digital Institutional Repository</a>. It is read with UCU statutes, research-integrity and ethics processes, the <a [routerLink]="['/info/terms']">repository terms of use</a>, and the conditions displayed on each repository item.
     </p>
     <p>
       UCU Libraries and Archives applies these policies in a manner consistent with applicable Ugandan law, including copyright and data-protection law, national research-ethics guidance, funder and publisher conditions, and relevant international commitments and standards. Where obligations conflict, the stricter lawful requirement and a documented case-by-case assessment apply.
@@ -19,7 +30,10 @@
   </section>
 
   <section>
-    <h2>Open access and deposit policy</h2>
+    <h2 id="content-submission-policy">Content and submission policy</h2>
+    <p>
+      This policy applies to scholarly and approved institutional content connected to Uganda Christian University (UCU), including work by UCU staff and students, work produced through UCU-supported research, and outputs of UCU projects or collaborations. The Repository Management Unit may refer content outside the Repository's scope to another service or decline it with an explanation.
+    </p>
     <p>
       UCU supports open access to research as widely as lawfully, ethically, and practically possible. Researchers, postgraduate students, and responsible UCU units must deposit eligible research outputs and the associated metadata through approved workflows as soon as practical after acceptance, award, completion, or publication.
     </p>
@@ -27,12 +41,12 @@
       For output types identified by UCU research and academic governance, repository deposit is the authoritative institutional record for research reporting, assessment, promotion, performance review, accreditation evidence, and public dissemination. Deposit requirements do not replace academic peer review, ethics approval, or publisher obligations.
     </p>
     <p>
-      The preferred deposit version is the publisher-permitted version, such as the accepted manuscript where the published version cannot be made openly available. Embargoes are recorded and managed so that metadata remains discoverable and files are released when lawful and appropriate.
+      The Repository uses a hybrid submission approach: repository staff provide mediated deposit and review, while users specifically authorised for a collection may submit directly under its workflow. The preferred deposit version is the publisher-permitted version, such as the accepted manuscript where the published version cannot be made openly available. Embargoes are recorded and managed so that metadata remains discoverable and files are released when lawful and appropriate.
     </p>
   </section>
 
   <section>
-    <h2>Open metadata and interoperability policy</h2>
+    <h2 id="metadata-quality-interoperability-policy">Metadata, quality and interoperability policy</h2>
     <p>
       Veritus distinguishes bibliographic metadata from the research outputs described by that metadata. For descriptive metadata that UCU owns or is authorised to release, UCU dedicates applicable rights to the public domain using <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0 Universal</a>, to the extent permitted by law. CC0 is not a blanket waiver of privacy, confidentiality, moral, personality, trademark, cultural, contractual, or third-party rights. A record is not made public under this policy if disclosure would be unlawful, ethically unsafe, or outside UCU's authority.
     </p>
@@ -41,6 +55,12 @@
     </p>
     <p>
       Metadata should be human-readable and machine-readable and, where supported by the production system, exposed through the public search interface, stable item landing pages, sitemaps, and standards-based harvesting interfaces such as OAI-PMH. Dublin Core is the minimum crosswalk; richer schemas and controlled vocabularies should be used where they improve description, multilingual discovery, or disciplinary and regional context. Records should identify the resource type, creators and contributors, dates, version, affiliation, funder and grant where known, persistent identifiers, rights and access status, related outputs, provenance, and citation information. Identifiers such as DOI, Handle, ORCID, ROR, and funder identifiers must be used only when verified or formally assigned.
+    </p>
+    <p>
+      UCU Libraries and Archives maintains the repository metadata schema, definitions, required fields, controlled terms and documented extensions. The DSpace submission form and applicable metadata crosswalk determine the fields required for each collection and content type. Before publication, staff or authorised reviewers check that required fields are present and intelligible, names and dates are consistently recorded, files match their descriptions, and rights, access, privacy and ethics conditions are represented correctly. Records needing correction may be returned to the depositor or held from publication. Periodic sampling and correction of existing records form part of ongoing quality assurance; see the <a [routerLink]="['/info/quality']">quality assurance procedures</a>.
+    </p>
+    <p>
+      Creator names should be recorded consistently; ORCID iDs and other authority identifiers may be included when verified and supplied or assigned. UCU organisational names and commonly used subjects should follow maintained local authority lists or recognised vocabularies where practical. The repository will document metadata-field changes and update export mappings when changes are approved.
     </p>
     <p>
       UCU will document available endpoint URLs, supported metadata formats, selective-harvest sets, update/deletion behaviour, contact details, and any operational limits before registering or promoting an interface to external aggregators. Public records should be checked with the relevant repository validator when available. Harvesting services may cache records; the repository should communicate corrections, withdrawal tombstones, and changed access states through supported protocol mechanisms. Persistent identifiers should resolve to a landing page, including where a file is withdrawn, rather than silently reassigning the identifier.
@@ -71,7 +91,10 @@
   </section>
 
   <section>
-    <h2>Rights retention, copyright and licensing policy</h2>
+    <h2 id="access-rights-legal-policy">Access, rights and legal policy</h2>
+    <p>
+      Repository items may be openly accessible, restricted to authorised users, or embargoed until a recorded release date. The applicable access level is set for the item or file during review and must reflect rights-holder permissions, publisher or funder conditions, contractual obligations, privacy, confidentiality, research ethics and other legal requirements. Metadata remains publicly discoverable where lawful and safe; it may also be restricted when disclosure itself would create a legal, privacy or safety risk.
+    </p>
     <p>
       Copyright and neighbouring rights in a deposited output remain with the rights holder unless assigned or otherwise transferred. A depositor may select or request a public licence only if they own the relevant rights or have authority from every relevant rights holder. Deposit gives UCU the non-exclusive permissions needed to ingest, describe, store, preserve, migrate formats for preservation, and provide access according to the item's selected access conditions and licence. The deposit permission is not a transfer of copyright.
     </p>
@@ -89,13 +112,16 @@
   <section>
     <h2>Eligible outputs, metadata-only records, and material outside scope</h2>
     <p>
-      The output examples elsewhere in this framework are illustrative, not exhaustive. An output not named on a deposit page may still be considered if it has a clear UCU research, teaching, scholarly, or institutional connection and meets legal, ethical, quality, collection, and technical requirements. Depositors should ask the Repository team before submitting an unfamiliar format or content type.
+      Eligible content may include UCU theses and dissertations, journal articles and permitted manuscripts, conference papers, books and chapters where rights allow, reports, working papers, policy briefs, research data, software, learning resources, and approved institutional publications or records. These examples are not exhaustive. Each deposit must have a clear UCU research, teaching, scholarly, or institutional connection and meet legal, ethical, quality, collection, and technical requirements. Depositors should ask the Repository team before submitting an unfamiliar format or content type.
     </p>
     <p>
       A bibliographic or metadata-only record may be created when the output is eligible but its file cannot lawfully or safely be deposited, is held in another trusted repository, remains under embargo, is available only by controlled request, exceeds current preservation capacity, or has been withdrawn. The record should state the access status accurately and link to an authorised external copy where possible. A metadata record must not imply that UCU holds or endorses a file it does not hold.
     </p>
     <p>
       Material may be declined, referred to another UCU service, or accepted only with restrictions where it lacks a UCU connection; is outside the repository's collection mandate or technical capacity; contains malware; is unlawful, defamatory, deceptive, or spam; creates unresolved copyright, neighbouring-rights, privacy, confidentiality, security, research-integrity, ethics, cultural-heritage, or contractual concerns; or lacks the permissions needed for deposit. These examples do not replace case-by-case review. Non-acceptance of a file does not automatically prevent a lawful metadata record or external link.
+    </p>
+    <p>
+      Submissions should include a complete, readable file in an accepted format, accurate descriptive metadata, and confirmation of the depositor's authority to deposit. Repository review is administrative and curatorial; it does not certify the scholarly validity of a work or replace peer review, research ethics review, or legal advice. Staff may return incomplete submissions for correction, request evidence of rights or approvals, or decline publication where a material concern remains unresolved.
     </p>
     <p>
       A metadata-only record, closed file, embargo, withdrawal, or rejection decision must not be described as open access to the underlying output. Repository staff should record the reason and review date for temporary restrictions where it is safe and appropriate to do so.
@@ -126,12 +152,31 @@
   </section>
 
   <section>
-    <h2>Preservation, governance and review policy</h2>
+    <h2 id="governance-strategy-policy">Governance and strategy policy</h2>
     <p>
-      UCU Libraries and Archives is responsible for repository stewardship within approved resources and infrastructure. Preservation activities include curation, metadata management, integrity monitoring, format-risk review, backups, controlled access, and preservation planning as set out in the <a [routerLink]="['/info/preservation']">preservation policy</a>.
+      The Uganda Christian University Digital Institutional Repository is an institutional service supporting research, teaching, scholarship, knowledge sharing and the stewardship of UCU's intellectual outputs. UCU Libraries and Archives coordinates day-to-day repository operations and policy implementation, subject to the University's approved governance and delegations. The repository does not replace formal research, ethics, academic records, or publication systems.
     </p>
     <p>
-      Repository policy is governed collaboratively by UCU Libraries and Archives with relevant academic, research, information-technology, legal, records, ethics, and data-protection stakeholders. Policies are reviewed at least every three years, or earlier when legislation, UCU governance, funder conditions, technology, or material risks change.
+      Repository governance should include the Library, ICT, research administration, academic units and, when relevant, legal, records, research ethics and data-protection representatives. The responsible University authority approves policy and major changes under UCU's established governance process. This page does not represent that a particular committee, officer, budget or service-level commitment has already been formally appointed or approved.
+    </p>
+    <p>
+      Strategic priorities are to improve the discoverability and responsible reuse of UCU scholarship; preserve the University's research and institutional record; support lawful open access and applicable funder requirements; and connect repository workflows with approved thesis, research reporting and publication processes. UCU Libraries and Archives should report periodically to the designated governance authority on submissions, metadata and access quality, use, preservation risks, service availability and improvement actions. Resource commitments and operational responsibilities between UCU ICT and any hosting provider must be documented through approved plans and agreements.
+    </p>
+    <p>
+      These policies are drafts for institutional review, not a statement of formal approval. The review cycle is proposed as at least once every three years and earlier when law, UCU governance, research practice, technology or material risks change. Approval authority, effective date, named policy owner and review schedule must be confirmed through UCU's formal process before adoption.
+    </p>
+  </section>
+
+  <section>
+    <h2 id="preservation-technical-policy">Preservation and technical policy</h2>
+    <p>
+      UCU Libraries and Archives coordinates content curation and preservation requirements. UCU ICT and any contracted hosting or infrastructure provider are responsible for technical services assigned to them under approved operating arrangements. Those arrangements should document secure storage, backup frequency and retention, recovery targets, incident escalation, system monitoring, maintenance and responsibility for restoring service; this draft does not claim that a particular backup schedule or recovery target is currently in force.
+    </p>
+    <p>
+      Preservation should prioritise the authenticity, integrity, retrievability and usability of deposited content. The Repository should retain original deposited files, record available provenance and preservation metadata, use fixity checks where supported, monitor format risks, and document any preservation copy or migration. Contributors should be encouraged to use widely supported formats such as PDF/A for documents, CSV for tabular data, and TIFF or other agreed preservation formats for images. Acceptance of a format does not guarantee that it will remain usable indefinitely, and conversion must not silently replace the deposited original.
+    </p>
+    <p>
+      Administrative access must be limited to authorised personnel. ICT or the contracted provider should maintain supported software, apply security updates, monitor service health, protect backups, test restoration, and maintain a documented incident and continuity procedure. Repository changes and upgrades should be tested before production release, with a rollback or recovery plan appropriate to the change. See the <a [routerLink]="['/info/preservation']">preservation guidance</a> for current user-facing information.
     </p>
   </section>
 
@@ -143,6 +188,7 @@
       <li><a [routerLink]="['/info/quality']">Quality assurance</a></li>
       <li><a [routerLink]="['/info/data']">Data reuse guidance</a></li>
       <li><a [routerLink]="['/info/privacy']">Privacy policy</a></li>
+      <li><a [routerLink]="['/info/notice']">Notice and takedown policy</a></li>
       <li><a [routerLink]="['/info/feedback']">Contact repository support</a></li>
     </ul>
   </section>

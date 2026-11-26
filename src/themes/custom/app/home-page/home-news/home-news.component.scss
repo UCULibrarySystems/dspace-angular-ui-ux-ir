@@ -244,12 +244,14 @@
   }
 
   .ucu-guide-tab {
+    align-items: center;
     background: #fff;
     border: 1px solid #d8dde5;
     border-radius: 0.25rem;
     color: #252525;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 0.85rem;
     min-height: 5.75rem;
     padding: 0.9rem 1rem;
     text-decoration: none;
@@ -270,15 +272,19 @@
     }
   }
 
+  .ucu-guide-tab-icon {
+    display: block;
+    flex: 0 0 3rem;
+    height: 3rem;
+    object-fit: contain;
+    width: 3rem;
+  }
+
   .ucu-guide-tab-title {
     font-size: 1.05rem;
     font-weight: 800;
     line-height: 1.25;
     margin-bottom: 0.35rem;
-  }
-
-  .ucu-guide-tab-icon {
-    display: none;
   }
 
   .ucu-guide-tab-content {
@@ -466,18 +472,14 @@
 
     .ucu-guide-tab {
       align-items: center;
-      flex-direction: row;
-      gap: 0.85rem;
       min-height: 4.5rem;
       padding: 0.7rem 0.8rem;
     }
 
     .ucu-guide-tab-icon {
-      display: block;
-      flex: 0 0 3rem;
-      height: 3rem;
-      object-fit: contain;
-      width: 3rem;
+      flex-basis: 2.6rem;
+      height: 2.6rem;
+      width: 2.6rem;
     }
 
     .ucu-guide-tab-title {
