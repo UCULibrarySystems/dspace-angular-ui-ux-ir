@@ -607,7 +607,7 @@
     #main-site-header-container {
       display: grid !important;
       gap: clamp(0.75rem, 1.8vw, 1.5rem) !important;
-      grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+      grid-template-columns: minmax(14rem, 1fr) max-content minmax(14rem, 1fr);
       padding: 0 clamp(1rem, 3vw, 2.5rem) !important;
     }
 
