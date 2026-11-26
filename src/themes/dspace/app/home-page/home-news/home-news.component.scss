@@ -88,8 +88,10 @@
   .ucu-discovery-section { background: #fff; border-bottom: 1px solid rgba(11, 61, 145, .14); padding: 1rem 0 1.15rem; }
   .ucu-discovery-section > .container { max-width: 960px; }
   .ucu-guide-tabs { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1rem; }
-  .ucu-guide-tab { background: #fff; border: 1px solid #d8dde5; border-radius: .25rem; color: #252525; display: flex; flex-direction: column; min-height: 5.75rem; padding: .9rem 1rem; text-decoration: none; }
+  .ucu-guide-tab { align-items: center; background: #fff; border: 1px solid #d8dde5; border-radius: .25rem; color: #252525; display: flex; flex-direction: row; gap: .75rem; min-height: 5.75rem; padding: .9rem 1rem; text-decoration: none; }
   .ucu-guide-tab:hover, .ucu-guide-tab:focus { border-color: var(--ucu-blue); box-shadow: 0 .25rem .7rem rgba(11, 61, 145, .14); color: var(--ucu-blue); text-decoration: none; }
+  .ucu-guide-tab-icon { display: block; flex: 0 0 3rem; height: 3rem; object-fit: contain; width: 3rem; }
+  .ucu-guide-tab-content { display: flex; flex-direction: column; min-width: 0; }
   .ucu-guide-tab-title { font-size: 1.05rem; font-weight: 800; line-height: 1.25; margin-bottom: .35rem; }
   .ucu-guide-tab-copy { color: #4c5561; font-size: .86rem; line-height: 1.35; }
   .ucu-discovery-search { display: flex; }
@@ -98,10 +100,15 @@
 
   @include media-breakpoint-down(md) {
     .ucu-discovery-section { padding: .75rem 0 .85rem; }
-    .ucu-guide-tabs { display: flex; gap: .55rem; margin-bottom: .75rem; overflow-x: auto; padding: .15rem .15rem .45rem; }
-    .ucu-guide-tab { flex: 0 0 min(76vw, 15rem); min-height: 4.75rem; padding: .7rem .8rem; }
+    .ucu-guide-tabs { display: grid; gap: .55rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: .75rem; overflow: visible; padding: .15rem; }
+    .ucu-guide-tab { min-width: 0; min-height: 4.75rem; padding: .7rem .8rem; }
+    .ucu-guide-tab-icon { flex-basis: 2.6rem; height: 2.6rem; width: 2.6rem; }
     .ucu-discovery-search .btn { min-width: 3rem; padding-left: .75rem; padding-right: .75rem; }
     .ucu-discovery-search .btn span { display: none; }
+  }
+
+  @media (max-width: 575.98px) {
+    .ucu-guide-tabs { grid-template-columns: minmax(0, 1fr); }
   }
 
   a {

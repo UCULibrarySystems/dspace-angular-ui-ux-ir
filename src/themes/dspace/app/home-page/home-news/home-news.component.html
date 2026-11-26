@@ -22,16 +22,25 @@
   <div class="container">
     <nav class="ucu-guide-tabs" aria-label="Repository guidance" data-ucu-tour="guidance">
       <a class="ucu-guide-tab" [routerLink]="['/info/deposit']">
-        <span class="ucu-guide-tab-title">How to deposit</span>
-        <span class="ucu-guide-tab-copy">Deposit processes and eligibility</span>
+        <img class="ucu-guide-tab-icon" src="assets/custom/images/guidance-deposit.png" alt="" aria-hidden="true">
+        <span class="ucu-guide-tab-content">
+          <span class="ucu-guide-tab-title">How to deposit</span>
+          <span class="ucu-guide-tab-copy">Deposit processes and eligibility</span>
+        </span>
       </a>
       <a class="ucu-guide-tab" [routerLink]="['/info/data']">
-        <span class="ucu-guide-tab-title">Data reuse</span>
-        <span class="ucu-guide-tab-copy">Discover, reuse and cite repository data</span>
+        <img class="ucu-guide-tab-icon" src="assets/custom/images/guidance-data-reuse.png" alt="" aria-hidden="true">
+        <span class="ucu-guide-tab-content">
+          <span class="ucu-guide-tab-title">Data reuse</span>
+          <span class="ucu-guide-tab-copy">Discover, reuse and cite repository data</span>
+        </span>
       </a>
       <a class="ucu-guide-tab" [routerLink]="['/info/quality']">
-        <span class="ucu-guide-tab-title">Governance</span>
-        <span class="ucu-guide-tab-copy">Repository governance and policies</span>
+        <img class="ucu-guide-tab-icon" src="assets/custom/images/guidance-governance.png" alt="" aria-hidden="true">
+        <span class="ucu-guide-tab-content">
+          <span class="ucu-guide-tab-title">Governance</span>
+          <span class="ucu-guide-tab-copy">Repository governance and policies</span>
+        </span>
       </a>
     </nav>
     <form class="ucu-discovery-search" action="/search" method="get" role="search" data-ucu-tour="search">

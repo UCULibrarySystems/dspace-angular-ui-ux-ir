@@ -103,14 +103,14 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
           if (this.isHomePage() && document.querySelector(this.steps[0].target)) {
             this.startTour(true);
           }
-        }, 900);
+        }, 400);
       }
     } catch {
       this.startupTimer = window.setTimeout(() => {
         if (this.isHomePage() && document.querySelector(this.steps[0].target)) {
           this.startTour(true);
         }
-      }, 900);
+      }, 400);
     }
   }
 
@@ -190,16 +190,15 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.clearPositionTimer();
     const target = document.querySelector<HTMLElement>(this.steps[this.activeIndex].target);
     if (!target) {
-      if (attempts < 20) {
-        this.positionTimer = window.setTimeout(() => this.showCurrentStep(scrollToTarget, attempts + 1), 100);
+      if (attempts < 10) {
+        this.positionTimer = window.setTimeout(() => this.showCurrentStep(scrollToTarget, attempts + 1), 50);
       } else {
         this.resetHighlight();
       }
       return;
     }
     if (scrollToTarget) {
-      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-      target.scrollIntoView({ behavior, block: 'center', inline: 'nearest' });
+      target.scrollIntoView({ behavior: 'auto', block: 'center', inline: 'nearest' });
     }
     this.positionTimer = window.setTimeout(() => {
       const rect = target.getBoundingClientRect();
@@ -225,7 +224,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
         { top, left: right, width: window.innerWidth - right, height: bottom - top },
         { top: bottom, left: 0, width: window.innerWidth, height: window.innerHeight - bottom },
       ];
-    }, scrollToTarget ? 350 : 0);
+    }, 0);
   }
 
   private isHomePage(): boolean {

@@ -51,4 +51,19 @@ describe('HomePageTourComponent', () => {
     expect(fixture.componentInstance.isOpen).toBeFalse();
     expect(fixture.componentInstance.secondsRemaining).toBe(0);
   }));
+
+  it('positions the tour spotlight immediately without smooth scrolling', fakeAsync(() => {
+    const target = document.querySelector<HTMLElement>('[data-ucu-tour="navigation"]');
+    if (!target) {
+      throw new Error('Expected the navigation tour target to exist.');
+    }
+    spyOn(target, 'getBoundingClientRect').and.returnValue(new DOMRect(100, 100, 200, 50));
+    const scrollIntoView = spyOn(target, 'scrollIntoView');
+
+    fixture.componentInstance.startTour();
+    tick(0);
+
+    expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'auto', block: 'center', inline: 'nearest' });
+    expect(fixture.componentInstance.highlight.width).toBeGreaterThan(0);
+  }));
 });

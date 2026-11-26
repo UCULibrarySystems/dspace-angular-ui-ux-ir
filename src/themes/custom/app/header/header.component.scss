@@ -288,7 +288,8 @@
 
     ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
       padding: 0.3rem 0.2rem;
-      font-size: calc(clamp(0.74rem, 0.8vw, 0.92rem) + 2px);
+      font-size: calc(clamp(0.74rem, 0.8vw, 0.92rem) + 3px);
+      font-weight: 700;
       line-height: 1.15;
     }
   }
@@ -527,7 +528,8 @@
       margin-left: clamp(0.5rem, 2vw, 1.25rem);
 
       ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
-        font-size: 0.72rem;
+        font-size: calc(0.72rem + 3px);
+        font-weight: 700;
         padding-right: 0.12rem;
         padding-left: 0.12rem;
       }
@@ -641,7 +643,8 @@
       }
 
       ::ng-deep .ds-menu-item:not(.dropdown-menu .ds-menu-item) {
-        font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+        font-size: calc(clamp(0.75rem, 0.9vw, 0.9rem) + 3px);
+        font-weight: 700;
         padding-right: 0.1rem;
         padding-left: 0.1rem;
       }
