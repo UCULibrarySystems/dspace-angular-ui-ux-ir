@@ -13,9 +13,9 @@ import { DSONameService } from '@dspace/core/breadcrumbs/dso-name.service';
 import { Collection } from '@dspace/core/shared/collection.model';
 import { ActivatedRouteStub } from '@dspace/core/testing/active-router.stub';
 import { DSONameServiceMock } from '@dspace/core/testing/dso-name.service.mock';
-import { SearchService } from '@dspace/shared/search/search.service';
 import { of } from 'rxjs';
 
+import { SearchService } from '../../search/search.service';
 import { CollectionListElementComponent } from './collection-list-element.component';
 
 let collectionListElementComponent: CollectionListElementComponent;

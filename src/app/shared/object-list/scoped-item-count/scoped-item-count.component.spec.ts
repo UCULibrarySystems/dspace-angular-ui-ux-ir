@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DSpaceObjectType } from '@dspace/core/shared/dspace-object-type.model';
-import { SearchService } from '@dspace/shared/search/search.service';
 import { of } from 'rxjs';
 
+import { SearchService } from '../../search/search.service';
 import { ScopedItemCountComponent } from './scoped-item-count.component';
 
 describe('ScopedItemCountComponent', () => {
