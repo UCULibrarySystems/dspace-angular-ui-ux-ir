@@ -76,14 +76,14 @@ Do not create a separate copy of the custom theme for ordinary branding changes.
 | Cookie consent appearance | `src/styles/_global-styles.scss` | `src/app/core/cookies/browser-orejime.service.ts`, `src/app/core/cookies/orejime-configuration.ts` |
 | Cookie consent text | `src/assets/i18n/en.json5` | Active locale JSON5 files and privacy page |
 | Accessibility cursor assets | `src/assets/images/accessibility-cursor.svg` and `accessibility-pointer.svg` | Accessibility global styles |
-| Main repository logo | `src/assets/images/veritus-logo.png` | Header, login/logout, `src/index.html`, runtime head tags |
-| Ribbon Veritus wordmark | `src/assets/custom/images/veritus-ribbon-logo.png` | Custom and fallback header utility ribbons |
+| Main repository logo | `src/assets/images/library-repository-logo.png` | Header, login/logout, `src/index.html`, runtime head tags |
+| Ribbon Scholar wordmark | `src/assets/images/library-repository-logo.png` | Custom and fallback header utility ribbons |
 | Compact logo | `src/assets/images/ucu-logo-mini.png` | Compact or fallback logo references |
 | Authenticated admin sidebar icon | `src/assets/images/favicon.png` | `src/app/admin/admin-sidebar/admin-sidebar.component.html` |
 | Favicon and app icons | `src/assets/custom/images/favicons/` | `config/config.yml`, `src/config/default-app-config.ts` |
 | Homepage hero image and always-expanded update panel | `src/assets/custom/images/ucu-hero-bishop-tucker.jpg` | `src/themes/custom/app/home-page/home-news/` |
 | SEO metadata | `src/index.html` | `src/config/default-app-config.ts`, `config/config.yml` |
-| Public repository generator metadata | `src/app/core/metadata/head-tag.service.ts` | Identifies UCUDIR without exposing the backend build version |
+| Public repository generator metadata | `src/app/core/metadata/head-tag.service.ts` | Identifies Scholar without exposing the backend build version |
 | Robots and sitemap origin | `src/robots.txt.ejs` | `config/config.yml`, reverse proxy headers |
 | Community heading and interface text | `src/assets/i18n/en.json5` | Other active locale files |
 | Privacy policy page | `src/app/info/privacy/privacy-content/privacy-content.component.html` | `src/assets/i18n/en.json5` |
@@ -463,16 +463,16 @@ Shared behavior belongs in `src/styles/_global-styles.scss`. Use a component or 
 
 ### Logos
 
-The main wide Veritus logo is used throughout the frontend from:
+The main wide Scholar logo is used throughout the frontend from:
 
 ```text
-src/assets/images/veritus-logo.png
+src/assets/images/library-repository-logo.png
 ```
 
-The blue top ribbon uses the supplied transparent white Veritus wordmark as-is. Its display frame crops only the file's transparent padding:
+The blue top ribbon uses the supplied transparent white Scholar wordmark as-is. Its display frame crops only the file's transparent padding:
 
 ```text
-src/assets/custom/images/veritus-ribbon-logo.png
+src/assets/images/library-repository-logo.png
 ```
 
 The compact logo asset is:
@@ -523,7 +523,7 @@ The global document head is maintained in:
 src/index.html
 ```
 
-It contains the Veritus repository-wide title, canonical URL, description, robots directives, Open Graph and Twitter defaults, and institutional/repository JSON-LD. The public product name is **Veritus**; Uganda Christian University remains the institution and publisher. Keep geographic structured data factual (Mukono, Uganda and the university's coordinates), not as invented `geo.*` meta tags. Scholarly `citation_*` metadata belongs only on discoverable individual item pages and is generated at runtime; do not add article or PDF citation tags to the home-page shell or non-item pages.
+It contains the Scholar repository-wide title, canonical URL, description, robots directives, Open Graph and Twitter defaults, and institutional/repository JSON-LD. The public product name is **Scholar**; Uganda Christian University remains the institution and publisher. Keep geographic structured data factual (Mukono, Uganda and the university's coordinates), not as invented `geo.*` meta tags. Scholarly `citation_*` metadata belongs only on discoverable individual item pages and is generated at runtime; do not add article or PDF citation tags to the home-page shell or non-item pages.
 
 Theme-specific head tags and runtime SEO values are maintained in:
 
@@ -535,7 +535,7 @@ src/config/default-app-config.ts
 The production repository URL must be consistent in all relevant locations:
 
 ```text
-https://ucudir.ucu.ac.ug
+https://scholar.ucu.ac.ug
 ```
 
 Robots generation is handled by:
@@ -544,13 +544,13 @@ Robots generation is handled by:
 src/robots.txt.ejs
 ```
 
-`config/config.yml` is the deployed source of truth for the public UI origin. It is set to `https://ucudir.ucu.ac.ug`; the robots template reads this configured value directly, so both sitemap declarations are emitted with that URL rather than `localhost`.
+`config/config.yml` is the deployed source of truth for the public UI origin. It is set to `https://scholar.ucu.ac.ug`; the robots template reads this configured value directly, so both sitemap declarations are emitted with that URL rather than `localhost`.
 
 Keep `ui.baseUrl` identical to `dspace.ui.url` in the DSpace backend. The reverse proxy should also pass the public `Host`, `X-Forwarded-Host`, `X-Forwarded-Proto`, and related headers so SSR and redirects continue to recognise the public HTTPS request.
 
 `src/app/core/metadata/head-tag.service.ts` maintains route canonical URLs, Open Graph/Twitter title and description, discoverable-item Google Scholar citation tags, and item JSON-LD (`ScholarlyArticle`, `Dataset`, or `CreativeWork`) linked to the repository and UCU publisher entities. Dynamic descriptions update the initial HTML description tag, use public object descriptions or abstracts, strip markup, and are capped at 300 characters; non-discoverable items replace the initial robots directive with `noindex`. Citation publication dates use `dc.date.issued` only; do not substitute repository accession/availability dates. The citation PDF URL is exposed only when the item has an accessible downloadable bitstream. Item records should contain accurate title, author, abstract, publication date and public item URL, with the abstract visible on the item page. The English browser title prefix and short repository label are in `src/assets/i18n/en.json5` under `repository.title.prefix` and `repository.title`.
 
-The initial canonical and social URLs in `src/index.html` are production defaults. During navigation, the head service replaces the canonical URL and `og:url` with the current route using the configured public UI origin. At cutover, confirm `ui.baseUrl` in the active UI configuration and `dspace.ui.url` in the backend both use `https://ucudir.ucu.ac.ug`; verify sitemap entries and `robots.txt` from the deployed host. Test/staging/development hostnames receive `X-Robots-Tag: noindex, nofollow`, and their robots response omits the sitemap while allowing crawlers to read the noindex header. Keep test deployments off public indexing until the production hostname is serving the production stack.
+The initial canonical and social URLs in `src/index.html` are production defaults. During navigation, the head service replaces the canonical URL and `og:url` with the current route using the configured public UI origin. At cutover, confirm `ui.baseUrl` in the active UI configuration and `dspace.ui.url` in the backend both use `https://scholar.ucu.ac.ug`; verify sitemap entries and `robots.txt` from the deployed host. Test/staging/development hostnames receive `X-Robots-Tag: noindex, nofollow`, and their robots response omits the sitemap while allowing crawlers to read the noindex header. Keep test deployments off public indexing until the production hostname is serving the production stack.
 
 The home-page fallback copy is in `src/app/home-page/home-news/home-news.component.html` and the themed CMS fallback is in `src/themes/custom/app/home-page/home-news/home-news.component.ts`. Keep both specific to UCU's open access and Christian scholarship mission; do not describe DSpace platform features as the institution's purpose. The active hero message remains CMS-controlled through `dspace.cms.home-news`. Deposit guidance in `src/app/info/deposit/deposit-content/deposit-content.component.html` asks for accurate publication dates and searchable/OCR text where possible. The frontend cannot implement backend 301 redirects, repair scanned files, guarantee Google Scholar inclusion, configure Google Search Console, or set reverse-proxy headers; those require repository operations and infrastructure work. Treat file-size limits as operational guidance rather than an invented repository rule.
 
@@ -643,7 +643,7 @@ Current custom information pages:
 | `/info/quality` | Quality assurance and curation workflow | `src/app/info/quality/` | `src/themes/custom/app/info/quality/` |
 | `/info/curation` | UCU Libraries and Archives curation policy | `src/app/info/curation/` | `src/themes/custom/app/info/curation/` |
 
-The illustrated UCUDIR deposit guide is maintained in `src/app/info/deposit/deposit-content/deposit-content.component.html`; its image asset is `src/assets/custom/images/ucu-deposit-instructions.png`. Keep the image instructions and the accessible three-step text together whenever either is revised.
+The illustrated Scholar deposit guide is maintained in `src/app/info/deposit/deposit-content/deposit-content.component.html`; its image asset is `src/assets/custom/images/ucu-deposit-instructions.png`. Keep the image instructions and the accessible three-step text together whenever either is revised.
 
 ### Adding a New Info Page
 
@@ -905,7 +905,7 @@ src/assets/animations/ucu-loader.json
 - `/info/policies` is the public repository-policy hub. It covers open access and deposit, CC0 metadata, FAIR interoperability, rights retention, research data and sensitive content, integrity and withdrawal, and preservation governance. Keep it aligned with formally approved UCU governance, law, funder requirements, and ethics procedures.
 - The COAR Notify page uses the same information-page pattern. Its centered protocol infographic is the supplied PNG asset; do not reintroduce the previous SVG or embedded PDF representation.
 - PDF item previews use PDF.js to render the authorised bitstream into a single browser canvas at a time, with accessible previous/next page controls. The preview uses the bitstream HAL `content.href` and falls back to `/api/core/bitstreams/{uuid}/content` built from the configured REST base URL. For the Demo item `bb3eb3d2-9796-4a6b-b08e-af914e2438a9`, the content endpoint is `https://demo.dspace.org/server/api/core/bitstreams/4dc2f775-e81a-4128-be2f-a7cfbe982812/content`. Authenticated previews use DSpace's short-lived download link; PDF.js requests byte ranges and the loading indicator clears after the selected page renders. Keep PDF.js range loading enabled and avoid downloading the full file into an `ArrayBuffer` or retaining canvases for every page; that creates high latency and memory pressure on desktop. Do not replace this with an iframe: DSpace deployments commonly send `X-Frame-Options: DENY`, which prevents embedded PDF responses from loading.
-- PDF.js fetches the content endpoint from the user's browser, so backend CORS must allow the exact public UI origin. Configure DSpace `rest.cors.allowed-origins` to include the production Veritus UI origin (for example `https://ucudir.ucu.ac.ug`) and restart the REST servlet after changes. The UI cannot repair a missing `Access-Control-Allow-Origin` header. Verify an anonymous open-access file and an authenticated restricted file in browser devtools; confirm the worker request succeeds with a JavaScript MIME type, the content endpoint returns PDF bytes and supports byte-range responses, and the required range headers are exposed to the UI origin. Production API origin comes from the deployed `rest` settings in `config/config.yml`, not a hardcoded demo URL. Rebuild and redeploy the production UI image after frontend changes; rebuilding the UI alone does not change backend CORS configuration.
+- PDF.js fetches the content endpoint from the user's browser, so backend CORS must allow the exact public UI origin. Configure DSpace `rest.cors.allowed-origins` to include the production Scholar UI origin (for example `https://scholar.ucu.ac.ug`) and restart the REST servlet after changes. The UI cannot repair a missing `Access-Control-Allow-Origin` header. Verify an anonymous open-access file and an authenticated restricted file in browser devtools; confirm the worker request succeeds with a JavaScript MIME type, the content endpoint returns PDF bytes and supports byte-range responses, and the required range headers are exposed to the UI origin. Production API origin comes from the deployed `rest` settings in `config/config.yml`, not a hardcoded demo URL. Rebuild and redeploy the production UI image after frontend changes; rebuilding the UI alone does not change backend CORS configuration.
 - The ORCID login control uses `src/assets/custom/images/orcid-id.webp` only when the active authentication method is `orcid`. It is rendered by the shared external-provider template; do not reintroduce a theme-specific provider override because the generated login registry resolves the base provider last.
 
 ```text

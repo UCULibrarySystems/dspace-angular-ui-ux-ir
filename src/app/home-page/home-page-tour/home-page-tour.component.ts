@@ -72,7 +72,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
   highlight = { top: 0, left: 0, width: 0, height: 0 };
   backdropPanels: TourBackdropPanel[] = [];
 
-  private readonly storageKey = 'ucudir-home-tour-seen-v1';
+  private readonly storageKey = 'scholar-home-tour-seen-v1';
   private readonly maxTourDuration = 20_000;
   private readonly isBrowser: boolean;
   private tourRequestSubscription?: Subscription;

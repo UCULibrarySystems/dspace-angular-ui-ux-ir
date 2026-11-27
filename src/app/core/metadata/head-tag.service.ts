@@ -418,7 +418,7 @@ export class HeadTagService {
       '@id': this.getItemPageUrl(),
       url: this.getItemPageUrl(),
       mainEntityOfPage: this.getItemPageUrl(),
-      isPartOf: { '@id': 'https://ucudir.ucu.ac.ug/#website' },
+      isPartOf: { '@id': 'https://scholar.ucu.ac.ug/#website' },
       name: title,
       headline: title,
       author: authors.map((name) => ({ '@type': 'Person', name })),

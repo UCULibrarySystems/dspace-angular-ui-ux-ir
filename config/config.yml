@@ -4,7 +4,7 @@ ui:
   port: 4000
   # Public canonical UI origin. This must match dspace.ui.url in the DSpace backend.
   # robots.txt, sitemap links, canonical URLs, redirects, and SSR host validation use this value.
-  baseUrl: https://ucudir.ucu.ac.ug
+  baseUrl: https://scholar.ucu.ac.ug
   nameSpace: /
   useProxies: true
 

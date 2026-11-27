@@ -58,7 +58,7 @@ export class DefaultAppConfig implements AppConfig {
     nameSpace: '/',
     // Specify the public URL that this user interface responds to. This corresponds to the "dspace.ui.url" property in your backend's local.cfg.
     // SSR is only enabled when the client's "Host" HTTP header matches this baseUrl. The baseUrl is also used for redirects and SEO links (in robots.txt).
-    baseUrl: 'https://ucudir.ucu.ac.ug',
+    baseUrl: 'https://scholar.ucu.ac.ug',
 
     // The rateLimiter settings limit each IP to a 'limit' of 500 requests per 'windowMs' (1 minute).
     rateLimiter: {

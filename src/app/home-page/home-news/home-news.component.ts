@@ -159,7 +159,7 @@ export class HomeNewsComponent implements OnInit, OnDestroy {
   private defaultMessage(): HeroMessage {
     return {
       title: 'Uganda Christian University Digital Institutional Repository',
-      message: 'UCUDIR preserves and shares UCU scholarship in support of open access, Christian scholarship, and knowledge that serves Uganda and the wider world.',
+      message: 'Scholar preserves and shares UCU scholarship in support of open access, Christian scholarship, and knowledge that serves Uganda and the wider world.',
       linkText: 'Read more',
     };
   }

@@ -14,7 +14,7 @@ describe('HomePageTourComponent', () => {
   let fixture: ComponentFixture<HomePageTourComponent>;
 
   beforeEach(async () => {
-    localStorage.removeItem('ucudir-home-tour-seen-v1');
+    localStorage.removeItem('scholar-home-tour-seen-v1');
     document.body.insertAdjacentHTML('beforeend', '<div data-ucu-tour="navigation"></div>');
 
     await TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('HomePageTourComponent', () => {
   afterEach(() => {
     fixture.destroy();
     document.querySelector('[data-ucu-tour="navigation"]')?.remove();
-    localStorage.removeItem('ucudir-home-tour-seen-v1');
+    localStorage.removeItem('scholar-home-tour-seen-v1');
   });
 
   it('automatically closes the tour after 20 seconds', fakeAsync(() => {
