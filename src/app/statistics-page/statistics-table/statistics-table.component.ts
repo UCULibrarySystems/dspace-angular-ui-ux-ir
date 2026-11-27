@@ -8,6 +8,8 @@ import { DSpaceObjectDataService } from '@dspace/core/data/dspace-object-data.se
 import { UsageReport } from '@dspace/core/statistics/models/usage-report.model';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { StatisticsChartComponent } from '../statistics-chart/statistics-chart.component';
+
 /**
  * Component representing a statistics table for a given usage report.
  */
@@ -16,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './statistics-table.component.html',
   styleUrls: ['./statistics-table.component.scss'],
   imports: [
+    StatisticsChartComponent,
     TranslateModule,
   ],
 })

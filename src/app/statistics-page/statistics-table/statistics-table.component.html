@@ -4,6 +4,7 @@
     <h2 class="m-1">
       {{ 'statistics.table.title.' + report.reportType | translate }}
     </h2>
+    <ds-statistics-chart [report]="report"></ds-statistics-chart>
     <table class="table table-striped" [attr.data-test]="report.reportType">
       <tbody>
         <tr>

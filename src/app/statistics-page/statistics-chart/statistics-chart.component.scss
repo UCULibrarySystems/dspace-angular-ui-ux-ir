@@ -1,0 +1,9 @@
+.statistics-chart { background: #fff; border: 1px solid #d9e1ea; border-radius: .4rem; margin: 0 0 1rem; padding: 1rem; }
+.statistics-chart__toolbar { align-items: center; display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; margin-bottom: 1rem; }
+.statistics-chart__modes { display: inline-flex; flex-wrap: wrap; gap: .4rem; }
+button { background: #fff; border: 1px solid #9eb2c9; border-radius: .25rem; color: #0b3d91; cursor: pointer; font-weight: 600; padding: .45rem .7rem; }
+button:hover, button:focus-visible, button.active { background: #0b3d91; border-color: #0b3d91; color: #fff; }
+.statistics-chart__download { background: #d93c72; border-color: #d93c72; color: #fff; }
+.statistics-chart__canvas { max-width: 100%; overflow-x: auto; }
+canvas { display: block; max-width: 100%; }
+@media (max-width: 575.98px) { .statistics-chart__toolbar { align-items: stretch; flex-direction: column; } .statistics-chart__download { align-self: flex-start; } }
