@@ -1,0 +1,11 @@
+<section class="statistics-chart" aria-label="Statistics chart">
+  <div class="statistics-chart__toolbar">
+    <div class="statistics-chart__modes" role="group" aria-label="Chart type">
+      <button type="button" [class.active]="mode === 'bar'" (click)="setMode('bar')"><i class="fas fa-chart-bar" aria-hidden="true"></i> Bar</button>
+      <button type="button" [class.active]="mode === 'line'" (click)="setMode('line')"><i class="fas fa-chart-line" aria-hidden="true"></i> Line</button>
+      <button type="button" [class.active]="mode === 'pie'" (click)="setMode('pie')"><i class="fas fa-chart-pie" aria-hidden="true"></i> Pie</button>
+    </div>
+    <button class="statistics-chart__download" type="button" (click)="downloadPng()"><i class="fas fa-download" aria-hidden="true"></i> Download PNG</button>
+  </div>
+  <div class="statistics-chart__canvas"><canvas #chartCanvas></canvas></div>
+</section>
