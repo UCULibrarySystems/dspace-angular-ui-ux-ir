@@ -1,148 +1,25 @@
-<footer>
-  @if (showTopFooter) {
-    <div class="top-footer">
-      @if (footerMetadataValue$ | async; as footerMetadataValue) {
-        <ds-markdown-viewer [value]="footerMetadataValue"></ds-markdown-viewer>
-      }
-      @else {
-        <!-- Grid container -->
-        <div class=" container p-4">
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-              <h5 class="text-uppercase">Footer Content</h5>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a routerLink="./" class="">Lorem ipsum</a>
-                </li>
-                <li>
-                  <a routerLink="./" class="">Ut facilisis</a>
-                </li>
-                <li>
-                  <a routerLink="./" class="">Aenean sit</a>
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-              <h5 class="text-uppercase">Footer Content</h5>
-              <ul class="list-unstyled mb-0">
-                <li>
-                  <a routerLink="./" class="" role="link" tabindex="0">Suspendisse potenti</a>
-                </li>
-              </ul>
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Footer Content</h5>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                voluptatem veniam, est atque cumque eum delectus sint!
-              </p>
-            </div>
-            <!--Grid column-->
-          </div>
-          <!--Grid row-->
-        </div>
-      }
-    </div>
-  }
-  <!-- Grid container -->
-
-  <!-- Copyright -->
-  <div class="bottom-footer d-flex flex-column flex-md-row justify-content-center align-items-center text-white" [class.footer-collapsed]="footerCollapsed">
-    <button class="footer-toggle" type="button" (click)="toggleFooter()" [attr.aria-expanded]="!footerCollapsed" aria-controls="footer-content">
-      <span>{{ footerCollapsed ? 'Show footer links' : 'Hide footer links' }}</span>
-      <i class="fas" [class.fa-chevron-down]="footerCollapsed" [class.fa-chevron-up]="!footerCollapsed" aria-hidden="true"></i>
-    </button>
-    <div id="footer-content" class="content-container align-self-center">
-      <p class="m-0 fw-bold">
-        {{ 'footer.copyright' | translate:{year: copyrightYear} }}
-        {{ 'footer.ucu.name' | translate }}
-      </p>
-      <p class="footer-license m-0">
-        {{ 'footer.ucu.license' | translate }}
-      </p>
-      <ul class="footer-info list-unstyled d-flex justify-content-center align-items-center mb-0">
-        @if (showCookieSettings) {
-        <li>
-          <button class="btn btn-link text-white" type="button" (click)="openCookieSettings()" role="button" tabindex="0">
-            {{ 'footer.link.cookies' | translate}}
-          </button>
-        </li>
-        }
-        <li>
-          <a class="btn text-white"
-             routerLink="info/accessibility" role="link" tabindex="0">{{ 'footer.link.accessibility' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/deposit" role="link" tabindex="0">{{ 'footer.link.deposit' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/data" role="link" tabindex="0">{{ 'footer.link.data' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/service" role="link" tabindex="0">{{ 'footer.link.service' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/terms" role="link" tabindex="0">{{ 'footer.link.terms' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/preservation" role="link" tabindex="0">{{ 'footer.link.preservation' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/notice" role="link" tabindex="0">{{ 'footer.link.notice' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/quality" role="link" tabindex="0">{{ 'footer.link.quality' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/curation" role="link" tabindex="0">{{ 'footer.link.curation' | translate }}</a>
-        </li>
-        <li>
-          <a class="btn text-white"
-             routerLink="info/policies" role="link" tabindex="0">{{ 'footer.link.policies' | translate }}</a>
-        </li>
-        @if (showPrivacyPolicy) {
-          <li>
-            <a class="btn text-white"
-            routerLink="info/privacy" role="link" tabindex="0">{{ 'footer.link.privacy-policy' | translate}}</a>
-          </li>
-        }
-        @if (showEndUserAgreement) {
-          <li>
-            <a class="btn text-white"
-            routerLink="info/end-user-agreement" role="link" tabindex="0">{{ 'footer.link.end-user-agreement' | translate}}</a>
-          </li>
-        }
-        @if (showSendFeedback$ | async) {
-          <li>
-            <a class="btn text-white"
-            routerLink="info/feedback" role="link" tabindex="0">{{ 'footer.link.feedback' | translate}}</a>
-          </li>
-        }
-      </ul>
-    </div>
-    @if (coarLdnEnabled$ | async) {
-      <div class="notify-enabled text-white">
-        <a class="coar-notify-support-route" routerLink="info/coar-notify-support" role="link" tabindex="0">
-          <img class="n-coar" src="assets/images/n-coar.svg" [attr.alt]="'menu.header.image.logo' | translate" />
-          {{ 'footer.link.coar-notify-support' | translate }}
-        </a>
+<footer class="scholar-footer">
+  <div class="scholar-footer-main">
+    <div class="scholar-footer-brand">
+      <a routerLink="/home" aria-label="Scholar home"><img src="assets/images/scholar-logo.png" alt="Uganda Christian University Scholar"></a>
+      <p>A complete education for a complete person.<br>Rooted in faith. Inspired by possibility.</p>
+      <div class="scholar-footer-social" aria-label="Uganda Christian University social media">
+        <a href="https://www.facebook.com/UgandaChristianUniversity" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/ucuniversity_official/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/company/uganda-christian-university-mukono" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
-    }
+    </div>
+    <nav class="scholar-footer-links" aria-label="Discover UCU">
+      <h2>Discover UCU</h2>
+      <a href="https://ucu.ac.ug/about-us/" target="_blank" rel="noopener noreferrer">About the university</a><a href="https://ucu.ac.ug/campuses/" target="_blank" rel="noopener noreferrer">Our campuses</a><a href="https://ucu.ac.ug/life-at-ucu/" target="_blank" rel="noopener noreferrer">Life at UCU</a><a href="https://ucu.ac.ug/research/" target="_blank" rel="noopener noreferrer">Research &amp; innovation</a><a href="https://ucu.ac.ug/news/" target="_blank" rel="noopener noreferrer">News &amp; stories</a><a href="https://ucu.ac.ug/university-resources/" target="_blank" rel="noopener noreferrer">University resources</a><a href="https://ucu.ac.ug/careers/" target="_blank" rel="noopener noreferrer">Careers</a>
+    </nav>
+    <nav class="scholar-footer-links" aria-label="Your next chapter">
+      <h2>Your next chapter</h2>
+      <a href="https://ucu.ac.ug/programmes/" target="_blank" rel="noopener noreferrer">Find a programme</a><a href="https://ucu.ac.ug/admissions/" target="_blank" rel="noopener noreferrer">Admissions</a><a href="https://ucu.ac.ug/schools-faculties/" target="_blank" rel="noopener noreferrer">Schools &amp; faculties</a><a href="https://ucu.ac.ug/fees-financial-support/" target="_blank" rel="noopener noreferrer">Fees &amp; financial support</a><a href="https://library.ucu.ac.ug/" target="_blank" rel="noopener noreferrer">Hamu Mukasa Library</a><a href="https://elearning.ucu.ac.ug/" target="_blank" rel="noopener noreferrer">eLearning</a>
+    </nav>
+    <section class="scholar-footer-contact" aria-labelledby="footer-contact-heading">
+      <h2 id="footer-contact-heading">Let's connect</h2><address>Bishop Tucker Road, Mukono Hill<br>P.O. Box 4, Mukono, Uganda</address><a href="tel:+256312350800">+256 312 350 800</a><a href="mailto:info@ucu.ac.ug">info@ucu.ac.ug</a><a class="visit-link" href="https://ucu.ac.ug/contact-us/" target="_blank" rel="noopener noreferrer">Plan your visit</a>
+    </section>
   </div>
-  <!-- Copyright -->
+  <div class="scholar-footer-bottom"><span>© {{ copyrightYear }} Uganda Christian University.</span><span>Founded by the Church of Uganda · Established 1997</span><a routerLink="info/privacy">Privacy policy</a></div>
 </footer>
