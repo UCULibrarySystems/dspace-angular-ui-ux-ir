@@ -18,6 +18,7 @@ import { buildPaginatedList } from '@dspace/core/data/paginated-list.model';
 import { Collection } from '@dspace/core/shared/collection.model';
 import { Community } from '@dspace/core/shared/community.model';
 import { PageInfo } from '@dspace/core/shared/page-info.model';
+import { SearchService } from '@dspace/shared/search/search.service';
 import { TranslateLoaderMock } from '@dspace/core/testing/translate-loader.mock';
 import { createSuccessfulRemoteDataObject$ } from '@dspace/core/utilities/remote-data.utils';
 import {
@@ -222,8 +223,11 @@ describe('CommunityListComponent', () => {
         RouterLinkWithHref,
         CommunityListComponent,
       ],
-      providers: [CommunityListComponent,
-        { provide: CommunityListService, useValue: communityListServiceStub }],
+      providers: [
+        CommunityListComponent,
+        { provide: CommunityListService, useValue: communityListServiceStub },
+        { provide: SearchService, useValue: { search: () => of({ hasCompleted: true, hasSucceeded: true, payload: { pageInfo: { totalElements: 0 } } }) } },
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
       .overrideComponent(CommunityListComponent, {

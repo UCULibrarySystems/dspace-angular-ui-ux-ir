@@ -6,6 +6,7 @@ import { ViewMode } from '@dspace/core/shared/view-mode.model';
 
 import { listableObjectComponent } from '../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { CollectionListElementComponent as BaseComponent } from '../../../../../../app/shared/object-list/collection-list-element/collection-list-element.component';
+import { ScopedItemCountComponent } from '../../../../../../app/shared/object-list/scoped-item-count/scoped-item-count.component';
 
 @Component({
   selector: 'ds-collection-list-element',
@@ -15,6 +16,7 @@ import { CollectionListElementComponent as BaseComponent } from '../../../../../
   templateUrl: '../../../../../../app/shared/object-list/collection-list-element/collection-list-element.component.html',
   imports: [
     RouterLink,
+    ScopedItemCountComponent,
   ],
 })
 @listableObjectComponent(Collection, ViewMode.ListElement, Context.Any, 'custom')

@@ -13,6 +13,8 @@ import { DSONameService } from '@dspace/core/breadcrumbs/dso-name.service';
 import { Collection } from '@dspace/core/shared/collection.model';
 import { ActivatedRouteStub } from '@dspace/core/testing/active-router.stub';
 import { DSONameServiceMock } from '@dspace/core/testing/dso-name.service.mock';
+import { SearchService } from '@dspace/shared/search/search.service';
+import { of } from 'rxjs';
 
 import { CollectionListElementComponent } from './collection-list-element.component';
 
@@ -72,6 +74,7 @@ describe('CollectionListElementComponent', () => {
         { provide: DSONameService, useValue: new DSONameServiceMock() },
         { provide: 'objectElementProvider', useValue: (mockCollectionWithAbstract) },
         { provide: ActivatedRoute, useValue: new ActivatedRouteStub() },
+        { provide: SearchService, useValue: { search: () => of({ hasCompleted: true, hasSucceeded: true, payload: { pageInfo: { totalElements: 0 } } }) } },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).overrideComponent(CollectionListElementComponent, {
@@ -116,8 +119,9 @@ describe('CollectionListElementComponent', () => {
     });
 
     it('should show the archived items paragraph', () => {
-      const field = fixture.debugElement.query(By.css('span.archived-items-lead'));
+      const field = fixture.debugElement.query(By.css('span.scoped-item-count'));
       expect(field).not.toBeNull();
+      expect(field.nativeElement.textContent).toContain('1');
     });
   });
 
@@ -127,9 +131,9 @@ describe('CollectionListElementComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should not show the archived items paragraph', () => {
-      const field = fixture.debugElement.query(By.css('span.archived-items-lead'));
-      expect(field).toBeNull();
+    it('should show an unavailable label when the fallback scope is missing', () => {
+      const field = fixture.debugElement.query(By.css('span.scoped-item-count'));
+      expect(field.nativeElement.textContent).toContain('N/A');
     });
   });
 });

@@ -1,0 +1,14 @@
+@if (itemCount$ | async; as itemCount) {
+  @if (itemCount.status === 'success') {
+    <span
+      class="badge rounded-pill ucu-count-badge scoped-item-count ps-2 pe-2"
+      [attr.aria-label]="itemCount.count + ' items'"
+      title="Items in this community or collection">
+      {{ itemCount.count | number }}
+    </span>
+  } @else if (itemCount.status === 'loading') {
+    <span class="badge rounded-pill ucu-count-badge scoped-item-count ps-2 pe-2" aria-label="Loading item count">...</span>
+  } @else {
+    <span class="badge rounded-pill ucu-count-badge scoped-item-count ps-2 pe-2" aria-label="Item count unavailable">N/A</span>
+  }
+}

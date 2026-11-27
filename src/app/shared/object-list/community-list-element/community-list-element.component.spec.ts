@@ -13,6 +13,8 @@ import { DSONameService } from '@dspace/core/breadcrumbs/dso-name.service';
 import { Community } from '@dspace/core/shared/community.model';
 import { ActivatedRouteStub } from '@dspace/core/testing/active-router.stub';
 import { DSONameServiceMock } from '@dspace/core/testing/dso-name.service.mock';
+import { SearchService } from '@dspace/shared/search/search.service';
+import { of } from 'rxjs';
 
 import { CommunityListElementComponent } from './community-list-element.component';
 
@@ -49,6 +51,7 @@ describe('CommunityListElementComponent', () => {
         { provide: DSONameService, useValue: new DSONameServiceMock() },
         { provide: 'objectElementProvider', useValue: (mockCommunityWithAbstract) },
         { provide: ActivatedRoute, useValue: new ActivatedRouteStub() },
+        { provide: SearchService, useValue: { search: () => of({ hasCompleted: true, hasSucceeded: true, payload: { pageInfo: { totalElements: 0 } } }) } },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).overrideComponent(CommunityListElementComponent, {

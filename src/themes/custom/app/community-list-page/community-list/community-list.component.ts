@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { CommunityListComponent as BaseComponent } from '../../../../../app/community-list-page/community-list/community-list.component';
+import { ScopedItemCountComponent } from '../../../../../app/shared/object-list/scoped-item-count/scoped-item-count.component';
 import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed-loading.component';
 import { TruncatableComponent } from '../../../../../app/shared/truncatable/truncatable.component';
 import { TruncatablePartComponent } from '../../../../../app/shared/truncatable/truncatable-part/truncatable-part.component';
@@ -22,6 +23,7 @@ import { TruncatablePartComponent } from '../../../../../app/shared/truncatable/
     TranslateModule,
     TruncatableComponent,
     TruncatablePartComponent,
+    ScopedItemCountComponent,
   ],
 })
 export class CommunityListComponent extends BaseComponent {

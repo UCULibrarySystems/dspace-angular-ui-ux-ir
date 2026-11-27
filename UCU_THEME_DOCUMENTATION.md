@@ -126,6 +126,8 @@ The view and download counters on search results are loaded per item from DSpace
 
 The site statistics page loads the `TotalVisitsPerMonth` usage report directly in addition to the site's top-visited items. DSpace supplies the available month/year labels and counts; the statistics page shares the report stream between its table and no-data check to avoid duplicate requests and inconsistent display. The month/year history shown is limited to the data returned by the DSpace statistics API.
 
+Community and collection item badges prefer DSpace's `archivedItemsCount` when it is nonnegative. When DSpace returns the unsupported sentinel value (`-1`), the frontend queries Discovery for the total item count in that community or collection scope, using a one-item response to retrieve the total and sharing in-flight requests for repeated scopes. A failed count is labelled unavailable rather than shown as zero. The reusable fallback is implemented in `src/app/shared/object-list/scoped-item-count/` and is used by the community/collection result rows and community tree.
+
 ### Repository Policy Framework
 
 The `/info/policies` page incorporates the five institutional repository policy areas adapted from the supplied templates: governance and strategy; content and submission; metadata, quality and interoperability; access, rights and legal; and preservation and technical management. It identifies the policies as approved for implementation by Uganda Christian University, links relevant repository guidance and Ugandan legal references, and assigns policy ownership to UCU Libraries and Archives.

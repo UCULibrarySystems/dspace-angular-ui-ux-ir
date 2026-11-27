@@ -6,6 +6,7 @@ import { ViewMode } from '@dspace/core/shared/view-mode.model';
 
 import { listableObjectComponent } from '../../../../../../app/shared/object-collection/shared/listable-object/listable-object.decorator';
 import { CommunityListElementComponent as BaseComponent } from '../../../../../../app/shared/object-list/community-list-element/community-list-element.component';
+import { ScopedItemCountComponent } from '../../../../../../app/shared/object-list/scoped-item-count/scoped-item-count.component';
 
 @Component({
   selector: 'ds-community-list-element',
@@ -15,6 +16,7 @@ import { CommunityListElementComponent as BaseComponent } from '../../../../../.
   templateUrl: '../../../../../../app/shared/object-list/community-list-element/community-list-element.component.html',
   imports: [
     RouterLink,
+    ScopedItemCountComponent,
   ],
 })
 @listableObjectComponent(Community, ViewMode.ListElement, Context.Any, 'custom')

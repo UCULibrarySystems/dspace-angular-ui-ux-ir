@@ -54,9 +54,10 @@
         <span class="d-flex align-middle my-auto">
           <a [routerLink]="node.route" class="lead" role="link" tabindex="0">{{ dsoNameService.getName(node.payload) }}</a>
           <span class="pe-2">&nbsp;</span>
-          @if (node.payload.archivedItemsCount >= 0) {
-            <span class="badge rounded-pill ucu-count-badge align-top archived-items-lead my-auto ps-2 pe-2">{{node.payload.archivedItemsCount}}</span>
-          }
+          <ds-scoped-item-count
+            [scopeId]="node.payload.id"
+            [archivedItemsCount]="node.payload.archivedItemsCount">
+          </ds-scoped-item-count>
         </span>
       </div>
     </div>
@@ -93,6 +94,10 @@
       </span>
       <h6 class="align-middle my-auto">
         <a [routerLink]="node.route" class="lead" role="link" tabindex="0">{{ dsoNameService.getName(node.payload) }}</a>
+        <ds-scoped-item-count
+          [scopeId]="node.payload.id"
+          [archivedItemsCount]="node.payload.archivedItemsCount">
+        </ds-scoped-item-count>
       </h6>
     </div>
     <ds-truncatable [id]="node.id">

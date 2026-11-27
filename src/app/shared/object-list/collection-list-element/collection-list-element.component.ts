@@ -6,6 +6,7 @@ import { ViewMode } from '@dspace/core/shared/view-mode.model';
 
 import { listableObjectComponent } from '../../object-collection/shared/listable-object/listable-object.decorator';
 import { AbstractListableElementComponent } from '../../object-collection/shared/object-collection-element/abstract-listable-element.component';
+import { ScopedItemCountComponent } from '../scoped-item-count/scoped-item-count.component';
 
 @Component({
   selector: 'ds-collection-list-element',
@@ -13,6 +14,7 @@ import { AbstractListableElementComponent } from '../../object-collection/shared
   templateUrl: './collection-list-element.component.html',
   imports: [
     RouterLink,
+    ScopedItemCountComponent,
   ],
 })
 /**

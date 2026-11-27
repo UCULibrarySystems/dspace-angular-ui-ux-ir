@@ -22,6 +22,7 @@ import { take } from 'rxjs/operators';
 import { ThemedLoadingComponent } from '../../shared/loading/themed-loading.component';
 import { TruncatableComponent } from '../../shared/truncatable/truncatable.component';
 import { TruncatablePartComponent } from '../../shared/truncatable/truncatable-part/truncatable-part.component';
+import { ScopedItemCountComponent } from '../../shared/object-list/scoped-item-count/scoped-item-count.component';
 import { CommunityListDatasource } from '../community-list-datasource';
 import { CommunityListService } from '../community-list-service';
 import { FlatNode } from '../flat-node.model';
@@ -45,6 +46,7 @@ import { FlatNode } from '../flat-node.model';
     TranslateModule,
     TruncatableComponent,
     TruncatablePartComponent,
+    ScopedItemCountComponent,
   ],
 })
 export class CommunityListComponent implements OnInit, OnDestroy {
