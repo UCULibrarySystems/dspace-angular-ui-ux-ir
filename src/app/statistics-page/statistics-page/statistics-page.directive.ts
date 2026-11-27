@@ -26,6 +26,7 @@ import {
   map,
   shareReplay,
   switchMap,
+  tap,
 } from 'rxjs/operators';
 
 @Directive()
@@ -51,6 +52,9 @@ export abstract class StatisticsPageDirective<T extends DSpaceObject> implements
 
   hasData$: Observable<boolean>;
 
+  /** The report currently displayed in the compact statistics workspace. */
+  selectedReportId: string;
+
   protected route = inject(ActivatedRoute);
   protected router = inject(Router);
   protected usageReportService = inject(UsageReportDataService);
@@ -60,6 +64,11 @@ export abstract class StatisticsPageDirective<T extends DSpaceObject> implements
   ngOnInit(): void {
     this.scope$ = this.getScope$();
     this.reports$ = this.getReports$().pipe(
+      tap((reports) => {
+        if (!this.selectedReportId && reports.length > 0) {
+          this.selectedReportId = reports.find((report) => report.points.length > 0)?.id ?? reports[0].id;
+        }
+      }),
       shareReplay({ bufferSize: 1, refCount: true }),
     );
     this.hasData$ = this.reports$.pipe(
@@ -100,5 +109,9 @@ export abstract class StatisticsPageDirective<T extends DSpaceObject> implements
    */
   getName(scope: DSpaceObject): string {
     return this.nameService.getName(scope);
+  }
+
+  selectReport(report: UsageReport): void {
+    this.selectedReportId = report.id;
   }
 }

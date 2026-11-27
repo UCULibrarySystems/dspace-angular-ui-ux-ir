@@ -14,7 +14,7 @@ import { StatisticsTableComponent } from '../statistics-table/statistics-table.c
 @Component({
   selector: 'ds-base-community-statistics-page',
   templateUrl: '../statistics-page/statistics-page.component.html',
-  styleUrls: ['./community-statistics-page.component.scss'],
+  styleUrls: ['./community-statistics-page.component.scss', '../statistics-page/statistics-page.component.scss'],
   imports: [
     CommonModule,
     StatisticsTableComponent,
