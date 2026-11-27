@@ -17,9 +17,22 @@
     }
 
     @if (reports) {
-      @for (report of reports; track report) {
+      <nav class="statistics-report-nav" aria-label="Statistics reports">
+        <span class="statistics-report-nav__label">Choose a report</span>
+        <div class="statistics-report-nav__buttons" role="tablist">
+          @for (report of reports; track report.id) {
+            @if (report.points.length > 0) {
+              <button type="button" role="tab" [attr.aria-selected]="selectedReportId === report.id" [class.active]="selectedReportId === report.id" (click)="selectReport(report)">
+                {{ 'statistics.table.title.' + report.reportType | translate }}
+              </button>
+            }
+          }
+        </div>
+      </nav>
+      @for (report of reports; track report.id) {
         <ds-statistics-table
           [report]="report"
+          [hidden]="selectedReportId !== report.id"
           class="m-2 {{ report.id }}">
         </ds-statistics-table>
       }

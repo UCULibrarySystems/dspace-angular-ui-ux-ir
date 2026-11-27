@@ -1,0 +1,16 @@
+.statistics-report-nav {
+  align-items: center;
+  background: #f4f7fb;
+  border: 1px solid #d6e0ec;
+  border-radius: .4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  margin: 1rem .5rem;
+  padding: .75rem 1rem;
+}
+
+.statistics-report-nav__label { color: #173f72; font-weight: 700; }
+.statistics-report-nav__buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+.statistics-report-nav button { background: #fff; border: 1px solid #9eb2c9; border-radius: .25rem; color: #0b3d91; cursor: pointer; font-weight: 600; padding: .4rem .65rem; }
+.statistics-report-nav button:hover, .statistics-report-nav button:focus-visible, .statistics-report-nav button.active { background: #0b3d91; border-color: #0b3d91; color: #fff; }
