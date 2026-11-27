@@ -1,5 +1,5 @@
 <section>
-  @if (displayTitle) {
+  @if (displayTitle && !isDisabledGoalVocabulary()) {
     <h1>
       {{ ('browse.title') | translate:{
       field: 'browse.metadata.' + vocabularyName | translate,
@@ -8,11 +8,10 @@
       } }}
     </h1>
   }
-  @if (isSdgVocabulary()) {
-    <ds-sdg-browse-grid></ds-sdg-browse-grid>
-  } @else if (isNdpVocabulary()) {
-    <ds-ndp-browse-grid></ds-ndp-browse-grid>
-  } @else {
+  <!-- Scholar: SDG and Uganda Vision 2040 browse grids are intentionally disabled. -->
+  <!-- @if (isSdgVocabulary()) { <ds-sdg-browse-grid></ds-sdg-browse-grid> } -->
+  <!-- @else if (isNdpVocabulary()) { <ds-ndp-browse-grid></ds-ndp-browse-grid> } -->
+  @if (!isDisabledGoalVocabulary()) {
     <div class="mb-3">
       <ds-vocabulary-treeview [description]="description"
         [vocabularyOptions]="vocabularyOptions"

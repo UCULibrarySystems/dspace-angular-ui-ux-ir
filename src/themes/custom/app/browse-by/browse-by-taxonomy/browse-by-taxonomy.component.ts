@@ -4,8 +4,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 import { BrowseByTaxonomyComponent as BaseComponent } from '../../../../../app/browse-by/browse-by-taxonomy/browse-by-taxonomy.component';
 import { VocabularyTreeviewComponent } from '../../../../../app/shared/form/vocabulary-treeview/vocabulary-treeview.component';
-import { NdpBrowseGridComponent } from '../../../../../app/shared/goal-badges/ndp-browse-grid.component';
-import { SdgBrowseGridComponent } from './sdg-browse-grid.component';
+// Scholar: specialized SDG and Uganda Vision 2040 browse grids are intentionally disabled.
+// import { NdpBrowseGridComponent } from '../../../../../app/shared/goal-badges/ndp-browse-grid.component';
+// import { SdgBrowseGridComponent } from './sdg-browse-grid.component';
 
 @Component({
   selector: 'ds-browse-by-taxonomy',
@@ -15,8 +16,8 @@ import { SdgBrowseGridComponent } from './sdg-browse-grid.component';
     RouterLink,
     TranslatePipe,
     VocabularyTreeviewComponent,
-    NdpBrowseGridComponent,
-    SdgBrowseGridComponent,
+    // NdpBrowseGridComponent,
+    // SdgBrowseGridComponent,
   ],
 })
 export class BrowseByTaxonomyComponent extends BaseComponent {
