@@ -26,15 +26,12 @@ import {
   take,
 } from 'rxjs';
 
-import { MarkdownViewerComponent } from '../shared/markdown-viewer/markdown-viewer.component';
-
 @Component({
   selector: 'ds-base-footer',
   styleUrls: ['footer.component.scss'],
   templateUrl: 'footer.component.html',
   imports: [
     AsyncPipe,
-    MarkdownViewerComponent,
     RouterLink,
     TranslateModule,
   ],
