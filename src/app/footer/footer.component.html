@@ -25,7 +25,12 @@
       <a routerLink="/info/deposit">Deposit guidance</a>
       <a routerLink="/info/policies">Repository policies</a>
       <a routerLink="/info/data">Data reuse</a>
+      <a routerLink="/info/service">Service level</a>
+      <a routerLink="/info/terms">Terms of use</a>
       <a routerLink="/info/preservation">Digital preservation</a>
+      <a routerLink="/info/notice">Notice and takedown</a>
+      <a routerLink="/info/quality">Quality assurance</a>
+      <a routerLink="/info/curation">Curation policy</a>
       <a routerLink="/info/feedback">Contact the repository</a>
     </nav>
 
@@ -35,12 +40,32 @@
       <a href="tel:+256312350800">+256 312 350 800</a>
       <a href="mailto:repository@ucu.ac.ug">repository@ucu.ac.ug</a>
       <a class="visit-link" href="https://ucu.ac.ug/contact-us/" target="_blank" rel="noopener noreferrer">Plan your visit</a>
+      @if (coarLdnEnabled$ | async) {
+        <a class="coar-notify-support-route" routerLink="/info/coar-notify-support">
+          <img class="n-coar" src="assets/images/n-coar.svg" [attr.alt]="'menu.header.image.logo' | translate">
+          {{ 'footer.link.coar-notify-support' | translate }}
+        </a>
+      }
     </section>
   </div>
 
   <div class="veritas-footer-bottom">
     <span>© {{ copyrightYear }} Uganda Christian University.</span>
     <span>Uganda Christian University Digital Institutional Repository (VERITAS)</span>
-    <a routerLink="info/privacy">Privacy policy</a>
+    <div class="veritas-footer-utilities">
+      @if (showCookieSettings) {
+        <button type="button" (click)="openCookieSettings()">{{ 'footer.link.cookies' | translate }}</button>
+      }
+      <a routerLink="/info/accessibility">{{ 'footer.link.accessibility' | translate }}</a>
+      @if (showPrivacyPolicy) {
+        <a routerLink="/info/privacy">{{ 'footer.link.privacy-policy' | translate }}</a>
+      }
+      @if (showEndUserAgreement) {
+        <a routerLink="/info/end-user-agreement">{{ 'footer.link.end-user-agreement' | translate }}</a>
+      }
+      @if (showSendFeedback$ | async) {
+        <a routerLink="/info/feedback">{{ 'footer.link.feedback' | translate }}</a>
+      }
+    </div>
   </div>
 </footer>

@@ -2,8 +2,8 @@
   display: block;
 
   .veritas-footer {
-    background: #06457f;
-    border-top: 3px solid #d4ad37;
+    background: var(--ucu-blue, #0b3d91);
+    border-top: 3px solid var(--ucu-yellow, #ffd932);
     color: #dce9f5;
     font-size: 0.875rem;
   }
@@ -48,6 +48,15 @@
     .visit-link { color: #e3bd3d; margin-top: 1.25rem; }
   }
 
+  .coar-notify-support-route {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.45rem;
+    margin-top: 0.5rem;
+
+    .n-coar { height: 2rem; max-width: 4rem; object-fit: contain; }
+  }
+
   .veritas-footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     color: #b9cde0;
@@ -57,7 +66,9 @@
     margin: 0 auto;
     max-width: 1440px;
     padding: 1.35rem clamp(2.5rem, 5vw, 6.5rem);
-    a { justify-self: end; }
+    .veritas-footer-utilities { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: end; }
+    button { background: transparent; border: 0; color: inherit; cursor: pointer; padding: 0; text-decoration: none; }
+    a, button { &:hover, &:focus-visible { color: var(--ucu-yellow, #ffd932); text-decoration: underline; } }
     span:nth-child(2) { text-align: center; }
   }
 
@@ -65,6 +76,6 @@
   @media (max-width: 600px) {
     .veritas-footer-main { gap: 2.5rem; grid-template-columns: 1fr; padding: 2.5rem 1.5rem; }
     .veritas-footer-bottom { grid-template-columns: 1fr; padding: 1.25rem 1.5rem; text-align: left; }
-    .veritas-footer-bottom a, .veritas-footer-bottom span:nth-child(2) { justify-self: start; text-align: left; }
+    .veritas-footer-bottom .veritas-footer-utilities, .veritas-footer-bottom span:nth-child(2) { justify-self: start; text-align: left; }
   }
 }
