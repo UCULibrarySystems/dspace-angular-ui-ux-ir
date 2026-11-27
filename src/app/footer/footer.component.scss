@@ -1,186 +1,70 @@
 :host {
-  footer {
-    background-color: var(--ucu-blue);
-    text-align: center;
-    z-index: var(--ds-footer-z-index);
-    border-top: var(--ds-footer-border);
-    padding: var(--ds-footer-padding);
+  display: block;
 
-    p {
-      margin: 0;
-    }
+  .veritas-footer {
+    background: #06457f;
+    border-top: 3px solid #d4ad37;
+    color: #dce9f5;
+    font-size: 0.875rem;
+  }
 
-    div > img {
-      height: var(--ds-footer-logo-height);
-    }
+  .veritas-footer-main {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: minmax(15rem, 1.55fr) repeat(3, minmax(10rem, 1fr));
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 3.1rem clamp(2.5rem, 5vw, 6.5rem) 3.5rem;
+  }
 
+  .veritas-footer-brand img {
+    display: block;
+    height: auto;
+    margin-bottom: 2rem;
+    max-width: 15rem;
+  }
 
-    .top-footer {
-      background-color: var(--ds-top-footer-bg);
-      padding: var(--ds-footer-padding);
-      margin: calc(var(--ds-footer-padding) * -1);
-    }
+  p, address { margin: 0; }
 
-    .bottom-footer {
-      background: var(--ucu-blue);
-      border-top: 4px solid var(--ucu-yellow);
-      color: #fff;
-      display: grid !important;
-      grid-template-columns: minmax(0, 1fr) minmax(8rem, max-content);
-      align-items: center;
-      column-gap: 1rem;
-      padding: 0.7rem 1rem 5rem;
-      row-gap: 0.5rem;
+  .veritas-footer-brand p, .veritas-footer-contact address { color: #c9d9e9; line-height: 1.55; }
 
-      .footer-toggle {
-        display: none;
-      }
+  h2 { color: #fff; font-size: 0.92rem; font-weight: 600; line-height: 1.2; margin: 0 0 1.5rem; }
 
-      .content-container {
-        grid-column: 1;
-        min-width: 0;
-        width: 100%;
-      }
+  a {
+    color: #c9d9e9;
+    text-decoration: none;
 
-      .footer-license {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 0.875rem;
-        margin-top: 0.15rem !important;
-      }
+    &:hover, &:focus-visible { color: #e3bd3d; text-decoration: underline; }
+  }
 
-      .notify-enabled {
-        grid-column: 2;
-        position: static;
-        align-self: center;
-        justify-self: end;
-        margin: 0;
-        max-width: 15rem;
-        min-width: 0;
+  .veritas-footer-social { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.75rem; }
 
-        .coar-notify-support-route {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 0.4rem;
-          max-width: 100%;
-          padding: 0 0.4rem;
-          color: inherit;
-          overflow-wrap: anywhere;
-          text-align: center;
-        }
+  .veritas-footer-links, .veritas-footer-contact { align-items: flex-start; display: flex; flex-direction: column; }
+  .veritas-footer-links a { line-height: 1.45; }
 
-        .n-coar {
-          flex: 0 0 auto;
-          height: clamp(2.5rem, 3.5vw, 3.75rem);
-          max-width: 100%;
-          object-fit: contain;
-        }
-      }
+  .veritas-footer-contact {
+    gap: 1.1rem;
+    h2 { margin-bottom: 0.4rem; }
+    .visit-link { color: #e3bd3d; margin-top: 1.25rem; }
+  }
 
-      ul {
-        flex-wrap: wrap;
-        gap: 0.25rem;
-        max-width: 100%;
-        overflow: visible;
+  .veritas-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    color: #b9cde0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr auto 1fr;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 1.35rem clamp(2.5rem, 5vw, 6.5rem);
+    a { justify-self: end; }
+    span:nth-child(2) { text-align: center; }
+  }
 
-        li {
-          align-items: center;
-          display: inline-flex;
-
-          a, .btn-link {
-            background: var(--ucu-blue);
-            border-radius: 0.25rem;
-            color: inherit;
-            font-size: clamp(0.62rem, 0.68vw, 0.72rem);
-            font-weight: 700;
-            line-height: 1.2;
-            padding: 0.22rem 0.4rem;
-            text-decoration: none;
-            white-space: nowrap;
-
-            &:hover {
-              color: var(--ucu-yellow) !important;
-              text-decoration: none;
-            }
-
-            &:focus {
-              box-shadow: none;
-              text-decoration: none;
-            }
-
-            &:focus-visible {
-              box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
-            }
-          }
-
-        }
-      }
-
-      .footer-info {
-        flex-wrap: wrap;
-        gap: 0.25rem;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .bottom-footer {
-        grid-template-columns: minmax(0, 1fr);
-
-        .content-container {
-          grid-column: 1;
-          max-width: 100%;
-          overflow-wrap: anywhere;
-        }
-
-        .notify-enabled {
-          grid-column: 1;
-          justify-self: center;
-          align-self: center !important;
-          margin: 0.25rem auto 0;
-          max-width: min(100%, 20rem);
-        }
-      }
-    }
-
-    @media (max-width: map-get($grid-breakpoints, sm)) {
-      .bottom-footer {
-        padding: 0.65rem 0.5rem 4.75rem;
-
-        .footer-toggle {
-          align-items: center;
-          background: transparent;
-          border: 0;
-          color: #fff;
-          display: inline-flex;
-          font-size: 0.82rem;
-          font-weight: 700;
-          gap: 0.45rem;
-          justify-content: center;
-          padding: 0.35rem 0.6rem;
-          grid-column: 1;
-        }
-
-        &.footer-collapsed {
-          .content-container {
-            display: none;
-          }
-        }
-
-        .content-container {
-          width: 100%;
-        }
-
-        ul li a,
-        ul li .btn-link {
-          padding-right: 0.4rem;
-          padding-left: 0.4rem;
-        }
-      }
-    }
-
-    .btn {
-      box-shadow: none;
-    }
+  @media (max-width: 900px) { .veritas-footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) {
+    .veritas-footer-main { gap: 2.5rem; grid-template-columns: 1fr; padding: 2.5rem 1.5rem; }
+    .veritas-footer-bottom { grid-template-columns: 1fr; padding: 1.25rem 1.5rem; text-align: left; }
+    .veritas-footer-bottom a, .veritas-footer-bottom span:nth-child(2) { justify-self: start; text-align: left; }
   }
 }
