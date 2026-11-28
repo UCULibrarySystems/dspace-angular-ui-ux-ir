@@ -75,12 +75,14 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
 
   private readonly storageKey = 'scholar-home-tour-seen-v1';
   private readonly maxTourDuration = 20_000;
+  private readonly stepDuration = Math.floor(this.maxTourDuration / this.steps.length);
   private readonly isBrowser: boolean;
   private tourRequestSubscription?: Subscription;
   private startupTimer?: number;
   private positionTimer?: number;
   private focusTimer?: number;
   private countdownTimer?: number;
+  private autoAdvanceTimer?: number;
 
   @ViewChild('tourCard')
   private tourCard?: ElementRef<HTMLElement>;
@@ -120,12 +122,14 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.clearPositionTimer();
     this.clearFocusTimer();
     this.clearCountdownTimer();
+    this.clearAutoAdvanceTimer();
     this.tourRequestSubscription?.unsubscribe();
   }
 
   startTour(firstVisit = false): void {
     this.clearStartupTimer();
     this.clearCountdownTimer();
+    this.clearAutoAdvanceTimer();
     this.isOpen = true;
     this.activeIndex = 0;
     this.secondsRemaining = Math.ceil(this.maxTourDuration / 1000);
@@ -136,6 +140,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
         this.closeTour();
       }
     }, 1000);
+    this.autoAdvanceTimer = window.setInterval(() => this.advanceAutomatically(), this.stepDuration);
     if (firstVisit) {
       this.rememberVisit();
     }
@@ -164,6 +169,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.clearPositionTimer();
     this.clearFocusTimer();
     this.clearCountdownTimer();
+    this.clearAutoAdvanceTimer();
     this.resetHighlight();
     this.rememberVisit();
   }
@@ -237,6 +243,13 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     this.cardPosition = { top: cardTop, left: cardLeft };
   }
 
+  private advanceAutomatically(): void {
+    if (!this.isOpen || this.activeIndex >= this.steps.length - 1) {
+      return;
+    }
+    this.showStep(this.activeIndex + 1);
+  }
+
   private isHomePage(): boolean {
     const segments = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET]?.segments;
     return segments?.[0]?.path === 'home';
@@ -280,6 +293,13 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     if (this.countdownTimer !== undefined) {
       window.clearInterval(this.countdownTimer);
       this.countdownTimer = undefined;
+    }
+  }
+
+  private clearAutoAdvanceTimer(): void {
+    if (this.autoAdvanceTimer !== undefined) {
+      window.clearInterval(this.autoAdvanceTimer);
+      this.autoAdvanceTimer = undefined;
     }
   }
 }
