@@ -41,7 +41,14 @@
               }
             </dl>
           </div>
-          @if (!isPdf) {
+          @if (isPdf) {
+            <div class="col-2">
+              <a class="btn btn-outline-primary btn-download" [href]="'#pdf-preview-' + file.id">
+                <span class="fas fa-eye" aria-hidden="true"></span>
+                <span class="d-none d-md-inline ms-1">View</span>
+              </a>
+            </div>
+          } @else {
             <div class="col-2">
               <ds-file-download-link [showIcon]="true" [bitstream]="file" [item]="item" cssClasses="btn btn-outline-primary btn-download">
                 <span class="d-none d-md-inline">
@@ -52,7 +59,7 @@
           }
           @if (isPdf) {
             <div class="col-12">
-              <ds-pdf-bitstream-preview [bitstream]="file"></ds-pdf-bitstream-preview>
+              <ds-pdf-bitstream-preview [anchorId]="'pdf-preview-' + file.id" [bitstream]="file" [item]="item"></ds-pdf-bitstream-preview>
             </div>
           }
         </div>

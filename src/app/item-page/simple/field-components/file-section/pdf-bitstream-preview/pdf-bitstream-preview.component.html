@@ -1,5 +1,5 @@
 @if (preview$ | async; as preview) {
-  <section class="pdf-preview" [attr.aria-label]="preview.title">
+  <section class="pdf-preview" [id]="anchorId" [attr.aria-label]="preview.title">
     <div class="pdf-preview-header">
       <div class="pdf-preview-heading">
         <span class="fas fa-file-pdf" aria-hidden="true"></span>

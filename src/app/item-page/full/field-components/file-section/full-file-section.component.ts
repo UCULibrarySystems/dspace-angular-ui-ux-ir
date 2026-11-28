@@ -38,9 +38,9 @@ import { ThemedFileDownloadLinkComponent } from '../../../../shared/file-downloa
 import { MetadataDirective } from '../../../../shared/metadata.directive';
 import { MetadataFieldWrapperComponent } from '../../../../shared/metadata-field-wrapper/metadata-field-wrapper.component';
 import { PaginationComponent } from '../../../../shared/pagination/pagination.component';
+import { ThemedThumbnailComponent } from '../../../../thumbnail/themed-thumbnail.component';
 import { FileSizePipe } from '../../../../shared/utils/file-size-pipe';
 import { VarDirective } from '../../../../shared/utils/var.directive';
-import { ThemedThumbnailComponent } from '../../../../thumbnail/themed-thumbnail.component';
 import { PdfBitstreamPreviewComponent } from '../../../simple/field-components/file-section/pdf-bitstream-preview/pdf-bitstream-preview.component';
 import { FileSectionComponent } from '../../../simple/field-components/file-section/file-section.component';
 

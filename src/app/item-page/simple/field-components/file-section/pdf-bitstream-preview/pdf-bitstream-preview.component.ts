@@ -63,6 +63,7 @@ interface PdfPreview {
   ],
 })
 export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
+  @Input() anchorId?: string;
   @Input() bitstream: Bitstream;
   @Input() item: Item;
 
