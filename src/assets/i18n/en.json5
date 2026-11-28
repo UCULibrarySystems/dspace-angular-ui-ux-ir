@@ -2167,6 +2167,13 @@
 
   "footer.link.coar-notify-support": "COAR Notify",
 
+  "info.repository-license": "Repository license",
+  "info.repository-license.title": "Repository license and distribution policy",
+  "info.open-access": "Open access policy",
+  "info.open-access.title": "Uganda Christian University open access policy",
+  "info.cc-by-4": "CC BY 4.0 policy",
+  "info.cc-by-4.title": "CC BY 4.0 policy for UCU VERITAS",
+
   "forgot-email.form.header": "Forgot Password",
 
   "forgot-email.form.info": "Enter the email address associated with the account.",

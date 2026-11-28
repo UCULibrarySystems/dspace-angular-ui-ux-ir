@@ -109,19 +109,19 @@ export const ROUTES: Routes = [
     path: 'repository-license',
     component: RepositoryLicenseComponent,
     resolve: { breadcrumb: i18nBreadcrumbResolver },
-    data: { title: 'Repository license and distribution policy', breadcrumb: 'Repository license' },
+    data: { title: 'info.repository-license.title', breadcrumbKey: 'info.repository-license' },
   },
   {
     path: 'open-access',
     component: OpenAccessComponent,
     resolve: { breadcrumb: i18nBreadcrumbResolver },
-    data: { title: 'Uganda Christian University open access policy', breadcrumb: 'Open access policy' },
+    data: { title: 'info.open-access.title', breadcrumbKey: 'info.open-access' },
   },
   {
     path: 'cc-by-4',
     component: CcBy4Component,
     resolve: { breadcrumb: i18nBreadcrumbResolver },
-    data: { title: 'CC BY 4.0 policy for UCU VERITAS', breadcrumb: 'CC BY 4.0 policy' },
+    data: { title: 'info.cc-by-4.title', breadcrumbKey: 'info.cc-by-4' },
   },
   {
     path: ACCESSIBILITY_SETTINGS_PATH,
