@@ -17,7 +17,7 @@
     [style.width.px]="highlight.width"
     [style.height.px]="highlight.height">
   </div>
-  <section #tourCard class="tour-card" role="dialog" aria-modal="false" aria-labelledby="tour-title" aria-describedby="tour-description" tabindex="-1">
+  <section #tourCard class="tour-card" role="dialog" aria-modal="false" aria-labelledby="tour-title" aria-describedby="tour-description" tabindex="-1" [style.top.px]="cardPosition.top" [style.left.px]="cardPosition.left">
     <header class="tour-card-header">
       <span>UCUDIR site tour</span>
       <button type="button" class="tour-close" (click)="closeTour()" aria-label="Cancel site tour" title="Cancel tour">

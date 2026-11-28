@@ -68,6 +68,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
 
   isOpen = false;
   activeIndex = 0;
+  cardPosition = { top: 16, left: 16 };
   secondsRemaining = 20;
   highlight = { top: 0, left: 0, width: 0, height: 0 };
   backdropPanels: TourBackdropPanel[] = [];
@@ -138,7 +139,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     if (firstVisit) {
       this.rememberVisit();
     }
-    this.showCurrentStep();
+    this.showStep(0);
     this.clearFocusTimer();
     this.focusTimer = window.setTimeout(() => this.tourCard?.nativeElement.focus(), 0);
   }
@@ -148,18 +149,14 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
       this.closeTour();
       return;
     }
-    this.activeIndex += 1;
-    this.resetHighlight();
-    this.showCurrentStep();
+    this.showStep(this.activeIndex + 1);
   }
 
   previous(): void {
     if (this.activeIndex === 0) {
       return;
     }
-    this.activeIndex -= 1;
-    this.resetHighlight();
-    this.showCurrentStep();
+    this.showStep(this.activeIndex - 1);
   }
 
   closeTour(): void {
@@ -175,7 +172,7 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:resize')
   onViewportChange(): void {
     if (this.isOpen) {
-      this.showCurrentStep(false);
+      this.showStep(this.activeIndex, false);
     }
   }
 
@@ -186,12 +183,13 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private showCurrentStep(scrollToTarget = true, attempts = 0): void {
+  /** Updates the copy, counter, spotlight, and card placement as one transition. */
+  private showStep(stepIndex: number, scrollToTarget = true, attempts = 0): void {
     this.clearPositionTimer();
-    const target = document.querySelector<HTMLElement>(this.steps[this.activeIndex].target);
+    const target = document.querySelector<HTMLElement>(this.steps[stepIndex].target);
     if (!target) {
       if (attempts < 10) {
-        this.positionTimer = window.setTimeout(() => this.showCurrentStep(scrollToTarget, attempts + 1), 50);
+        this.positionTimer = window.setTimeout(() => this.showStep(stepIndex, scrollToTarget, attempts + 1), 50);
       } else {
         this.resetHighlight();
       }
@@ -224,7 +222,19 @@ export class HomePageTourComponent implements AfterViewInit, OnDestroy {
         { top, left: right, width: window.innerWidth - right, height: bottom - top },
         { top: bottom, left: 0, width: window.innerWidth, height: window.innerHeight - bottom },
       ];
+      this.activeIndex = stepIndex;
+      this.placeCard(left, top, right, bottom);
     }, 0);
+  }
+
+  private placeCard(left: number, top: number, right: number, bottom: number): void {
+    const cardWidth = Math.min(544, window.innerWidth - 32);
+    const estimatedCardHeight = 230;
+    const gap = 16;
+    const canPlaceBelow = bottom + gap + estimatedCardHeight <= window.innerHeight;
+    const cardTop = canPlaceBelow ? bottom + gap : Math.max(gap, top - estimatedCardHeight - gap);
+    const cardLeft = Math.min(Math.max(gap, left), Math.max(gap, window.innerWidth - cardWidth - gap));
+    this.cardPosition = { top: cardTop, left: cardLeft };
   }
 
   private isHomePage(): boolean {
