@@ -1,17 +1,82 @@
 <footer class="scholar-footer">
   <div class="scholar-footer-main">
     <div class="scholar-footer-brand">
-      <a routerLink="/home" aria-label="Scholar home"><img src="assets/images/scholar-logo.png" alt="Uganda Christian University Scholar"></a>
-      <p>Uganda Christian University Scholar preserves, shares, and celebrates UCU research and scholarship.</p>
-      <div class="scholar-footer-social" aria-label="Uganda Christian University social media">
-        <a href="https://www.facebook.com/UgandaChristianUniversity" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="https://www.instagram.com/ucuniversity_official/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/company/uganda-christian-university-mukono" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a routerLink="/home" aria-label="Scholar home"
+        ><img
+          src="assets/images/scholar-logo.png"
+          alt="Uganda Christian University Scholar"
+      /></a>
+      <p>
+        Uganda Christian University Scholar preserves, shares, and celebrates
+        UCU research and scholarship.
+      </p>
+      <p class="scholar-license-notice">
+        Authors retain rights in their work. UCU distributes Scholar content on
+        authors’ behalf under the item-level license, including CC BY 4.0 where
+        stated.
+      </p>
+      <div
+        class="scholar-footer-social"
+        aria-label="Uganda Christian University social media"
+      >
+        <a
+          href="https://www.facebook.com/UgandaChristianUniversity"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Facebook</a
+        >
+        <a
+          href="https://www.instagram.com/ucuniversity_official/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Instagram</a
+        >
+        <a
+          href="https://www.linkedin.com/company/uganda-christian-university-mukono"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn</a
+        >
       </div>
     </div>
     <nav class="scholar-footer-links" aria-label="Discover UCU">
       <h2>Discover UCU</h2>
-      <a href="https://ucu.ac.ug/about-us/" target="_blank" rel="noopener noreferrer">About the university</a><a href="https://ucu.ac.ug/campuses/" target="_blank" rel="noopener noreferrer">Our campuses</a><a href="https://ucu.ac.ug/life-at-ucu/" target="_blank" rel="noopener noreferrer">Life at UCU</a><a href="https://ucu.ac.ug/research/" target="_blank" rel="noopener noreferrer">Research &amp; innovation</a><a href="https://ucu.ac.ug/news/" target="_blank" rel="noopener noreferrer">News &amp; stories</a><a href="https://ucu.ac.ug/university-resources/" target="_blank" rel="noopener noreferrer">University resources</a><a href="https://ucu.ac.ug/careers/" target="_blank" rel="noopener noreferrer">Careers</a>
+      <a
+        href="https://ucu.ac.ug/about-us/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >About the university</a
+      ><a
+        href="https://ucu.ac.ug/campuses/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Our campuses</a
+      ><a
+        href="https://ucu.ac.ug/life-at-ucu/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Life at UCU</a
+      ><a
+        href="https://ucu.ac.ug/research/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Research &amp; innovation</a
+      ><a
+        href="https://ucu.ac.ug/news/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >News &amp; stories</a
+      ><a
+        href="https://ucu.ac.ug/university-resources/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >University resources</a
+      ><a
+        href="https://ucu.ac.ug/careers/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Careers</a
+      >
     </nav>
     <nav class="scholar-footer-links" aria-label="Scholar services">
       <h2>Scholar services</h2>
@@ -26,32 +91,66 @@
       <a routerLink="/info/curation">Curation policy</a>
       <a routerLink="/info/feedback">Contact the repository</a>
     </nav>
-    <section class="scholar-footer-contact" aria-labelledby="footer-contact-heading">
-      <h2 id="footer-contact-heading">Let's connect</h2><address>Uganda Christian University Libraries &amp; Archives<br>Bishop Tucker Road, Mukono Hill<br>P.O. Box 4, Mukono, Uganda</address><a href="tel:+256312350800">+256 312 350 800</a><a href="mailto:repository@ucu.ac.ug">repository@ucu.ac.ug</a><a class="visit-link" href="https://ucu.ac.ug/contact-us/" target="_blank" rel="noopener noreferrer">Plan your visit</a>
-      @if (coarLdnEnabled$ | async) {
-        <a class="coar-notify-support-route" routerLink="/info/coar-notify-support">
-          <img class="n-coar" src="assets/images/n-coar.svg" [attr.alt]="'menu.header.image.logo' | translate">
-          {{ 'footer.link.coar-notify-support' | translate }}
-        </a>
-      }
+    <section
+      class="scholar-footer-contact"
+      aria-labelledby="footer-contact-heading"
+    >
+      <h2 id="footer-contact-heading">Let's connect</h2>
+      <div class="scholar-contact-details">
+        <address>
+          Uganda Christian University Libraries &amp; Archives<br />Bishop
+          Tucker Road, Mukono Hill<br />P.O. Box 4, Mukono, Uganda
+        </address>
+        @if (coarLdnEnabled$ | async) {
+          <a
+            class="coar-notify-support-route"
+            routerLink="/info/coar-notify-support"
+          >
+            <img
+              class="n-coar"
+              src="assets/images/n-coar.svg"
+              [attr.alt]="'menu.header.image.logo' | translate"
+            />
+            {{ "footer.link.coar-notify-support" | translate }}
+          </a>
+        }
+      </div>
+      <a href="tel:+256312350800">+256 312 350 800</a
+      ><a href="mailto:repository@ucu.ac.ug">repository@ucu.ac.ug</a
+      ><a
+        class="visit-link"
+        href="https://ucu.ac.ug/contact-us/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Plan your visit</a
+      >
     </section>
   </div>
   <div class="scholar-footer-bottom">
-    <span>© {{ copyrightYear }} Uganda Christian University.</span>
-    <span>Uganda Christian University Scholar</span>
+    <span>© {{ copyrightYear }} Uganda Christian University · Scholar</span>
     <div class="scholar-footer-utilities">
       @if (showCookieSettings) {
-        <button type="button" (click)="openCookieSettings()">{{ 'footer.link.cookies' | translate }}</button>
+        <button type="button" (click)="openCookieSettings()">
+          {{ "footer.link.cookies" | translate }}
+        </button>
       }
-      <a routerLink="/info/accessibility">{{ 'footer.link.accessibility' | translate }}</a>
+      <a routerLink="/info/accessibility">{{
+        "footer.link.accessibility" | translate
+      }}</a>
       @if (showPrivacyPolicy) {
-        <a routerLink="/info/privacy">{{ 'footer.link.privacy-policy' | translate }}</a>
+        <a routerLink="/info/privacy">{{
+          "footer.link.privacy-policy" | translate
+        }}</a>
       }
       @if (showEndUserAgreement) {
-        <a routerLink="/info/end-user-agreement">{{ 'footer.link.end-user-agreement' | translate }}</a>
+        <a routerLink="/info/end-user-agreement">{{
+          "footer.link.end-user-agreement" | translate
+        }}</a>
       }
       @if (showSendFeedback$ | async) {
-        <a routerLink="/info/feedback">{{ 'footer.link.feedback' | translate }}</a>
+        <a routerLink="/info/feedback">{{
+          "footer.link.feedback" | translate
+        }}</a>
       }
     </div>
   </div>
