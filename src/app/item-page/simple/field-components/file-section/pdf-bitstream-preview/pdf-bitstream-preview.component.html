@@ -7,13 +7,13 @@
       </div>
       <div class="pdf-preview-actions">
         @if (preview.url) {
-          <a
+          <button
+            id="embedded-pdf-viewer"
             class="btn btn-outline-primary btn-sm pdf-preview-view"
-            [href]="preview.url"
-            target="_blank"
-            rel="noopener noreferrer">
-            {{ 'item.page.pdf-preview.view' | translate }}
-          </a>
+            type="button"
+            (click)="viewEmbeddedPdf()">
+            View PDF
+          </button>
         }
         @if (preview.canDownload) {
           <ds-file-download-link

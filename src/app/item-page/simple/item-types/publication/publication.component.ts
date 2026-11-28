@@ -9,10 +9,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AttachmentSectionComponent } from '../../../../shared/bitstream-attachment/section/attachment-section.component';
 import { DsoEditMenuComponent } from '../../../../shared/dso-page/dso-edit-menu/dso-edit-menu.component';
-import { MetadataFieldWrapperComponent } from '../../../../shared/metadata-field-wrapper/metadata-field-wrapper.component';
 import { listableObjectComponent } from '../../../../shared/object-collection/shared/listable-object/listable-object.decorator';
 import { ThemedResultsBackButtonComponent } from '../../../../shared/results-back-button/themed-results-back-button.component';
-import { ThemedThumbnailComponent } from '../../../../thumbnail/themed-thumbnail.component';
 import { CollectionsComponent } from '../../../field-components/collections/collections.component';
 import { ThemedMediaViewerComponent } from '../../../media-viewer/themed-media-viewer.component';
 import { MiradorViewerComponent } from '../../../mirador-viewer/mirador-viewer.component';
@@ -51,7 +49,6 @@ import { ItemComponent } from '../shared/item.component';
     ItemPageDateFieldComponent,
     ItemPageLicenseFieldComponent,
     ItemPageUriFieldComponent,
-    MetadataFieldWrapperComponent,
     MiradorViewerComponent,
     RelatedItemsComponent,
     RouterLink,
@@ -60,7 +57,6 @@ import { ItemComponent } from '../shared/item.component';
     ThemedMediaViewerComponent,
     ThemedMetadataRepresentationListComponent,
     ThemedResultsBackButtonComponent,
-    ThemedThumbnailComponent,
     TranslateModule,
   ],
 })

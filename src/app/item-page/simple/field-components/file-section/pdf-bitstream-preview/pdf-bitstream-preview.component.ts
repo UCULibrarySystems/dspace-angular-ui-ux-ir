@@ -257,6 +257,11 @@ export class PdfBitstreamPreviewComponent implements OnInit, OnDestroy {
     void this.renderPage(nextPage, this.renderId);
   }
 
+  /** Brings the existing inline PDF reader into view; downloading remains available in its toolbar. */
+  viewEmbeddedPdf(): void {
+    this.pagesElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   private rerenderCurrentPage(): void {
     this.renderId++;
     this.pageRenderTask?.cancel();
