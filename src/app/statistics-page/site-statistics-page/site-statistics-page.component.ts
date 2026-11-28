@@ -56,7 +56,6 @@ export class SiteStatisticsPageComponent extends StatisticsPageDirective<Site> {
           map(({ reports, monthlyReport }) => [
             ...reports.filter((report) => report.reportType !== monthlyReport.reportType),
             monthlyReport,
-            downloadsReport,
           ]),
         ),
       ),
