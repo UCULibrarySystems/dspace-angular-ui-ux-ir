@@ -26,16 +26,19 @@ import { hasValue } from '@dspace/shared/utils/empty.util';
 import { environment } from '../../environments/environment';
 import { AccessibilitySettingsComponent } from './accessibility-settings/accessibility-settings.component';
 import { ThemedCurationComponent } from './curation/themed-curation.component';
+import { CcBy4Component } from './cc-by-4/cc-by-4.component';
 import { ThemedDataComponent } from './data/themed-data.component';
 import { ThemedDepositComponent } from './deposit/themed-deposit.component';
 import { ThemedEndUserAgreementComponent } from './end-user-agreement/themed-end-user-agreement.component';
 import { ThemedFeedbackComponent } from './feedback/themed-feedback.component';
 import { ThemedNoticeComponent } from './notice/themed-notice.component';
+import { OpenAccessComponent } from './open-access/open-access.component';
 import { NotifyInfoComponent } from './notify-info/notify-info.component';
 import { ThemedPreservationComponent } from './preservation/themed-preservation.component';
 import { ThemedPrivacyComponent } from './privacy/themed-privacy.component';
 import { ThemedQualityComponent } from './quality/themed-quality.component';
 import { RepositoryPoliciesComponent } from './policies/policies.component';
+import { RepositoryLicenseComponent } from './repository-license/repository-license.component';
 import { ThemedServiceComponent } from './service/themed-service.component';
 import { ThemedTermsComponent } from './terms/themed-terms.component';
 
@@ -101,6 +104,24 @@ export const ROUTES: Routes = [
     component: RepositoryPoliciesComponent,
     resolve: { breadcrumb: i18nBreadcrumbResolver },
     data: { title: 'info.policies.title', breadcrumbKey: 'info.policies' },
+  },
+  {
+    path: 'repository-license',
+    component: RepositoryLicenseComponent,
+    resolve: { breadcrumb: i18nBreadcrumbResolver },
+    data: { title: 'Repository license and distribution policy', breadcrumb: 'Repository license' },
+  },
+  {
+    path: 'open-access',
+    component: OpenAccessComponent,
+    resolve: { breadcrumb: i18nBreadcrumbResolver },
+    data: { title: 'Uganda Christian University open access policy', breadcrumb: 'Open access policy' },
+  },
+  {
+    path: 'cc-by-4',
+    component: CcBy4Component,
+    resolve: { breadcrumb: i18nBreadcrumbResolver },
+    data: { title: 'CC BY 4.0 policy for UCU VERITAS', breadcrumb: 'CC BY 4.0 policy' },
   },
   {
     path: ACCESSIBILITY_SETTINGS_PATH,

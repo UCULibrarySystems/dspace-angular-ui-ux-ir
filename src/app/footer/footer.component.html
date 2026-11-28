@@ -3,6 +3,7 @@
     <div class="veritas-footer-brand">
       <a routerLink="/home" aria-label="VERITAS home"><img src="assets/images/veritas-library-logo.png" alt="Uganda Christian University Libraries and Archives"></a>
       <p>Uganda Christian University Digital Institutional Repository (VERITAS) preserves, shares, and celebrates UCU scholarship.</p>
+      <p class="veritas-license-notice">Authors retain rights in their work. UCU distributes repository content on authors’ behalf under the item-level license, including CC BY 4.0 where stated.</p>
       <div class="veritas-footer-social" aria-label="Uganda Christian University social media">
         <a href="https://www.facebook.com/UgandaChristianUniversity" target="_blank" rel="noopener noreferrer">Facebook</a>
         <a href="https://www.instagram.com/ucuniversity_official/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -31,27 +32,31 @@
       <a routerLink="/info/notice">Notice and takedown</a>
       <a routerLink="/info/quality">Quality assurance</a>
       <a routerLink="/info/curation">Curation policy</a>
+      <a routerLink="/info/repository-license">Repository license</a>
+      <a routerLink="/info/open-access">Open access policy</a>
+      <a routerLink="/info/cc-by-4">CC BY 4.0 policy</a>
       <a routerLink="/info/feedback">Contact the repository</a>
     </nav>
 
     <section class="veritas-footer-contact" aria-labelledby="footer-contact-heading">
       <h2 id="footer-contact-heading">Let's connect</h2>
-      <address>Uganda Christian University Libraries &amp; Archives<br>Bishop Tucker Road, Mukono Hill<br>P.O. Box 4, Mukono, Uganda</address>
+      <div class="veritas-contact-details">
+        <address>Uganda Christian University Libraries &amp; Archives<br>Bishop Tucker Road, Mukono Hill<br>P.O. Box 4, Mukono, Uganda</address>
+        @if (coarLdnEnabled$ | async) {
+          <a class="coar-notify-support-route" routerLink="/info/coar-notify-support">
+            <img class="n-coar" src="assets/images/n-coar.svg" [attr.alt]="'menu.header.image.logo' | translate">
+            {{ 'footer.link.coar-notify-support' | translate }}
+          </a>
+        }
+      </div>
       <a href="tel:+256312350800">+256 312 350 800</a>
       <a href="mailto:repository@ucu.ac.ug">repository@ucu.ac.ug</a>
       <a class="visit-link" href="https://ucu.ac.ug/contact-us/" target="_blank" rel="noopener noreferrer">Plan your visit</a>
-      @if (coarLdnEnabled$ | async) {
-        <a class="coar-notify-support-route" routerLink="/info/coar-notify-support">
-          <img class="n-coar" src="assets/images/n-coar.svg" [attr.alt]="'menu.header.image.logo' | translate">
-          {{ 'footer.link.coar-notify-support' | translate }}
-        </a>
-      }
     </section>
   </div>
 
   <div class="veritas-footer-bottom">
-    <span>© {{ copyrightYear }} Uganda Christian University.</span>
-    <span>Uganda Christian University Digital Institutional Repository (VERITAS)</span>
+    <span>© {{ copyrightYear }} Uganda Christian University · VERITAS</span>
     <div class="veritas-footer-utilities">
       @if (showCookieSettings) {
         <button type="button" (click)="openCookieSettings()">{{ 'footer.link.cookies' | translate }}</button>
