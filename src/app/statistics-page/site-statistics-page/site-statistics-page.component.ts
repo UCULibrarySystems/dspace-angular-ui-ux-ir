@@ -52,12 +52,10 @@ export class SiteStatisticsPageComponent extends StatisticsPageDirective<Site> {
         combineLatest({
           reports: this.usageReportService.searchStatistics(scope._links.self.href, 0, 10),
           monthlyReport: this.usageReportService.getStatistic(scope.id, 'TotalVisitsPerMonth'),
-          downloadsReport: this.usageReportService.getStatistic(scope.id, 'TotalDownloads'),
         }).pipe(
-          map(({ reports, monthlyReport, downloadsReport }) => [
-            ...reports.filter((report) => ![monthlyReport.reportType, downloadsReport.reportType].includes(report.reportType)),
+          map(({ reports, monthlyReport }) => [
+            ...reports.filter((report) => report.reportType !== monthlyReport.reportType),
             monthlyReport,
-            downloadsReport,
           ]),
         ),
       ),
